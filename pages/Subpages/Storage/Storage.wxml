@@ -1,0 +1,24 @@
+<!--pages/Account_Subpages/Storage/Storage.wxml-->
+
+<!-- 标题 -->
+<view class="title" style="margin-top:20px;">课表缓存列表</view>
+
+<!-- 添加课程 -->
+<picker class="add" mode="multiSelector" range="{{ selectRange }}" value="{{ [0, 0] }}" bindchange="onValueChange">
+  <image src="/image/addClass.svg"></image>
+  <view>创建学期</view>
+</picker>
+
+<!-- 课程列表 -->
+<view class="list" wx:for="{{ list }}" wx:key="list">
+  <view class="semester">{{ item.m }}</view>
+  <view class="time">最后抓取时间：{{ item.t }}</view>
+  <view class="time">课程门数与节数：{{ item.k }} 门 | {{ item.n }} 节</view>
+  <view class="time">占用空间：{{ item.d }} KB</view>
+  <view class="select">
+    <view class="repa" data-id="{{ item.m }}" bindtap="catchTerm">重新抓取</view>
+    <view class="dele" data-id="{{ item.m }}" bindtap="deleTerm">删除</view>
+  </view>
+</view>
+
+<view style="height:25px"></view>

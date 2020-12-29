@@ -1,0 +1,166 @@
+/* pages/Subpages/EditClass/EditClass.wxss */
+
+view.firstTit{
+  margin-top: 20px;
+}
+
+view.sel{
+  font-size: 1.1em;
+  font-weight: 400;
+}
+
+view.textInp{
+  min-height: 50px;
+  width: 84%;
+  margin: 10px 8%;
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 5px 18px;
+  display: flex;
+  align-items: center;
+}
+
+view.textInp textarea{
+  width: 100%;
+  font-size: 1.1em;
+  line-height: 1.5em;
+}
+
+view.keyInput{
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 84%;
+  margin: 10px 8%;
+}
+
+view.keyInput view{
+  font-size: 1.1em;
+  font-weight: 400;
+}
+
+view.keyInput input, view.keyInput picker, view.keyInput view.sele{
+  height: 50px;
+  width: 65%;
+  font-size: 1.1em;
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 0 18px;
+}
+
+view.weekSelecter{
+  display: flex;
+  flex-wrap: wrap;
+  width: 84%;
+  margin: 0 8%;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  justify-content: space-between;
+}
+
+view.weekSelecter view{
+  width: 16.66666%;
+  height: 0;
+  font-size: 1.1em;
+  line-height: 0;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 .6px rgb(231, 231, 231);
+  /* border: 1rpx solid rgb(82, 82, 82); */
+  /* margin: 0 0 -1rpx -1rpx; */
+  /* border-left: 1rpx solid rgba(0, 0, 0, .15); */
+  text-align: center; 
+}
+
+view.weekSelecter view.line{
+  height: 1px;
+  background-color: black;
+}
+
+view.weekView{
+  text-align: center;
+  font-size: 1.1em;
+  display: block;
+  line-height: 50px;
+  height: 50px;
+  box-sizing: border-box;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+/* 列表显示隐藏列表 */
+@keyframes Show{
+  0%{opacity: 0; height: 0; line-height: 0;}
+  100%{opacity: 1; height: 105rpx; line-height: 105rpx;}
+}
+@keyframes Hide{
+  0%{opacity: 1; height: 105rpx; line-height: 105rpx;}
+  100%{opacity: 0; height: 0; line-height: 0;}
+}
+view.Show{
+  animation: Show 200ms ease-in-out;
+  opacity: 1;
+  height: 105rpx !important; 
+  line-height: 105rpx !important;
+}
+view.Hide{
+  animation: Hide 200ms ease-in-out;
+  opacity: 0;
+  height: 0 !important;
+  line-height: 0 !important;
+}
+@keyframes ShowMarginTop{
+  0%{margin-top: 0; opacity: 0;}
+  100%{margin-top: 10px; opacity: 1;}
+}
+@keyframes HideMarginTop{
+  0%{margin-top: 10px; opacity: 1;}
+  100%{margin-top: 0; opacity: 0;}
+}
+view.HideMarginTop{
+  animation: HideMarginTop 200ms ease-in-out;
+  margin-top: 0;
+  opacity: 0;
+}
+view.ShowMarginTop{
+  animation: ShowMarginTop 200ms ease-in-out;
+  margin-top: 10px;
+  opacity: 1;
+}
+
+view.keyInput picker, view.keyInput view.sele{
+  line-height: 50px;
+  width: 48%;
+  text-align: center;
+}
+
+view.submit{
+  background-color: #3EA3D8;
+  color: #FFFFFF;
+  text-align: center;
+  width: calc( 84% - 36px);
+  margin: 10px 8%;
+  border-radius: 20px;
+  height: 40px;
+  font-size: 1.1em;
+  line-height: 40px;
+  font-weight: 500;
+  padding: 5px 18px;
+}
+
+view.del{
+  background-color: #ff9393;
+}
+
+/* 表单错误警告 */
+@keyframes error{
+  0%{background-color: #FFFFFF;}
+  50%{background-color: #ff9393;}
+  100%{background-color: #FFFFFF;}
+}
+view.error{
+  animation: error 1500ms ease-in-out;
+}

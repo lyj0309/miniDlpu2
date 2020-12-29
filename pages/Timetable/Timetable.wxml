@@ -1,0 +1,110 @@
+<!--pages/Timetable/Timetable.wxml-->
+
+<!-- 蒙版 -->
+<view class="mask {{ maskClass }}" 
+style="display: {{maskShow ? 'flex' : 'none'}};" 
+catchtap="clickMask"></view>
+
+<!-- 课程列表 -->
+<view class="cList {{ cListClass }}" 
+style="display: {{cListShow ? 'flex' : 'none'}};"
+catchtap="clickMask">
+  <view class="cListClass" wx:for="{{ cListData }}" wx:key="cListClass" 
+  catchtap="clickCList" data-id="{{ index }}"
+  style="{{ item.o ? 'background-color: #'+item.c+';' : '' }} {{ item.o ? 'min-height:80px;' : '' }} {{ item.o ? 'color:#FFFFFF !important;' : '' }}">
+    <view class="cListTit" style="{{ item.o ? 'color:#FFFFFF !important;' : '' }}">{{ item.o ? '' : '[非本周]' }}{{ item.n }}</view>
+    <view class="cListP">@{{ item.l ? item.l : '无地点'}}</view>
+  </view>
+</view>
+
+<!-- 课程细节 -->
+<view class="cDetail {{ cDetailClass }}" 
+style="display: {{cDetailShow ? 'flex' : 'none'}};" 
+catchtap="clickMask">
+  <view class="cDBlock" catchtap="catchtap"> 
+    <view class="cEditClass"><view wx:if="{{ cDetailData.i }}" bindtap="editClass" 
+      data-id="{{ cDetailData.i }}" style="{{cDetailData.o ? '' : 'color: rgba(0, 0, 0, .60);'}}">
+      编辑</view></view>
+    <view class="cDTit" style="{{ cDetailData.o ? 'background-color: #'+cDetailData.c+';' : '' }} {{ cDetailData.o ? 'color:#FFFFFF !important;' : '' }} {{ cDetailData.i ? 'padding: 8px 70px 8px 18px;' : '' }}">{{ cDetailData.o ? '' : '[非本周]' }}{{ cDetailData.n }}</view>
+    <view class="cDLoca">上课地点：{{ cDetailData.l ? cDetailData.l : '无地点' }}</view>
+    <view class="cDTeach">课程讲师：{{ cDetailData.t ? cDetailData.t : '无老师' }}</view>
+    <view class="cDWeek">周数：{{ cDetailData.m }}</view>
+    <view wx-if="{{ cDetailData.o }}" class="cDWeek">时间：{{ date[cDetailData.w].week }} {{ cDetailData.s + 1 }}-{{ cDetailData.e + 1 }}节</view>
+    <view style="height: 20px"></view>
+  </view>
+</view>
+
+<view class="header">
+  <!-- 学期选择 -->
+  <view class="semester">
+    <view bindtap="headerSelecter" data-doing="showSemesterSelect" data-odoing="showWeekSelect" style="{{ semester != semesterNow ? 'color: #CC433B' : '' }}">
+    {{ semester != semesterNow ? '(非本学期)' : '' }}学期：{{semester}}
+    </view>
+    <view bindtap="headerSelecter" data-doing="showWeekSelect" data-odoing="showSemesterSelect" style="{{ week != weekNow ? 'color: #CC433B' : '' }}">{{ week != weekNow ? '(非本周)' : '' }}第 {{week}} 周</view>
+  </view>
+
+  <!-- 周选择区域 -->
+  <view class="seleAn {{ showWeekSelect === 1 ? '' : showWeekSelect ? 'showSelect' : 'hideSelect' }}">
+    <scroll-view class="slectWeek" scroll-x>
+      <view class="wList {{ weekNow - 1 == index ? 'thisWeek' : '' }} {{ week - 1 == index ? 'selectWeek' : '' }}" wx:for="{{ weekImg }}" wx:key="weekImg" bindtap="changeWeek" data-id="{{ index }}">
+        <view class="weekName">第<text>{{ index + 1 }}</text>周</view>
+        <view class="cImage" style="background-size: 10px 10px; background-repeat: no-repeat; {{ item }}"></view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 学期择区域 -->
+  <view class="seleAn {{ showSemesterSelect === 1 ? '' : showSemesterSelect ? 'showSelect' : 'hideSelect' }}">
+    <scroll-view class="slectSemester" scroll-x>
+    <view class="sList {{ semester == item ? 'thisSemester' : '' }} {{ semesterNow == item ? 'nowSemester' : '' }}" wx:for="{{ semesterList }}" wx:key="sList" data-id="{{ item }}" bindtap="changeSemester">
+      <view>{{ item }}</view>
+      <image src="{{ semester == item ? '/image/semester_select.svg' : '/image/semester.svg' }}"></image>
+    </view>
+    </scroll-view>
+  </view>
+
+  <!-- 蓝色的周表头 -->
+  <view class="week">
+    <view class="background"><image src="/image/moon.svg"></image></view>
+    <view class="weather"><image src="/image/weather/12.svg"></image></view>
+    <view wx:for="{{ date }}" wx:key="date" class="{{ item.today && week == weekNow ? 'today' : '' }}">
+      <view class="weeks">{{ item.week }}</view>
+      <view class="dates">{{ item.date }}</view>
+    </view>
+  </view>
+</view>
+
+<!-- 添加课程选区 -->
+<view class="selection" style="top:{{selection.y}}px; left:{{selection.x}}px; height:{{selection.height}}px; width:{{selection.width}}px;  display: {{selection.show ? 'block':'none'}}" 
+catchtouchmove="dragMove" catchtouchend="dragEnd">
+  <image src="/image/addClass.svg"></image>
+</view>
+
+<!-- 占位 -->
+<view style="height: 83.2px;"></view>
+<view class="{{ showBlank === 1 ? '' : showBlank ? 'showSelect' : 'hideSelect'  }}"></view>
+
+<!-- 表 -->
+<view class="table">
+
+  <!-- 左侧时间部分 -->
+  <view class="time">
+    <view wx:for="{{ time }}" wx:key="time">
+      <view class="number">{{ index + 1 }}</view>
+      <view class="slot">{{ item[0] }}</view>
+      <view class="slot">{{ item[1] }}</view>
+    </view>
+  </view>
+
+  <!-- 主表部分 -->
+  <view class="class" bindtap="selectClassStart">
+    <view wx:for="{{ class[week - 1] }}" wx:key="class" wx:for-item="classItem">
+      <view wx:for="{{ classItem }}" wx:key="day"  wx:for-item="dayItem" 
+      style="margin-top: {{ dayItem.blank * 60 + 3.5 }}px; height: {{ dayItem.len * 60 - 3.5 }}px; background-color: #{{ dayItem.other ? 'DDDDDD' : dayItem.c }}; color: #{{ dayItem.other ? 'A2A2A2' : 'FFFFFF' }}" >
+        <text>{{ dayItem.other ? '[非本周]' + dayItem.n : dayItem.n }}@
+        {{ dayItem.l ? dayItem.l : '无地点' }}</text>
+      </view>
+    </view>
+  </view>
+</view>
+

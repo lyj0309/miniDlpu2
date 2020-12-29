@@ -1,0 +1,67 @@
+{
+  "pages": [
+    "pages/Timetable/Timetable",
+    "pages/Account/Account",
+    "pages/Information/Information",
+    "pages/Subpages/Storage/Storage",
+    "pages/Subpages/StudentId/StudentId",
+    "pages/Subpages/Setting/Setting",
+    "pages/Subpages/EditClass/EditClass",
+    "pages/Subpages/FAQ/FAQ",
+    "pages/Information/evaluation/evaluation"
+  ],
+  "tabBar": {
+    "color": "#B0B0B0",
+    "selectedColor": "#3EA3D8",
+    "list": [
+      {
+        "pagePath": "pages/Timetable/Timetable",
+        "text": "课程表",
+        "iconPath": "image/nav_bar_1_0.png",
+        "selectedIconPath": "image/nav_bar_1_1.png"
+      },
+      {
+        "pagePath": "pages/Information/Information",
+        "text": "综合信息",
+        "iconPath": "image/nav_bar_2_0.png",
+        "selectedIconPath": "image/nav_bar_2_1.png"
+      },
+      {
+        "pagePath": "pages/Account/Account",
+        "text": "设置",
+        "iconPath": "image/nav_bar_3_0.png",
+        "selectedIconPath": "image/nav_bar_3_1.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#F4F0F1",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "迷你教务处",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "van-popup": "@vant/weapp/popup/index",
+    "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
+    "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-collapse": "@vant/weapp/collapse/index",
+    "van-collapse-item": "@vant/weapp/collapse-item/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-notify": "@vant/weapp/notify/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+    "van-empty": "@vant/weapp/empty/index",
+    "van-sticky": "@vant/weapp/sticky/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-radio": "@vant/weapp/radio/index"
+  },
+  "sitemapLocation": "sitemap.json"
+}

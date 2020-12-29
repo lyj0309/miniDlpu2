@@ -1,0 +1,40 @@
+/* pages/Information/Information.wxss */
+
+.index_swiper swiper {
+    width: 750rpx;
+    height: 400rpx;
+}
+
+.index_swiper swiper image {
+    width: 100%;
+}
+
+.items {
+    margin-top: 50rpx;
+    width: 700rpx;
+    margin-left: 30rpx;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.itemImg {
+    display: inline-block;
+    background-blend-mode: overlay;
+    background-size: cover;
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.item {
+    text-align: center;
+    width: 175rpx;
+    height: 200rpx;
+}
+
+/*
+
+.closeIcon{
+    position: absolute;
+    z-index: 1000;
+    bottom: 20rpx;
+}*/

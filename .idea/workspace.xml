@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="238d08f4-32c3-4765-aa92-5e772b838b16" name="默认的" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Wechat mini program page js file(Component API)" />
+        <option value="Wechat mini program page json file(Component API)" />
+        <option value="Wechat mini program page js file(Page API)" />
+        <option value="Wechat mini program page json file(Page API)" />
+        <option value="Wechat mini program component js file" />
+        <option value="Wechat mini program component json file" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1lC3oUesZXlVF1XrBCQJ3UCnBhZ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/image" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\miniProgram\MiniDLPU2\image" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\miniProgram\MiniDLPU2\pages\InformationPages\CourseTimetable" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="238d08f4-32c3-4765-aa92-5e772b838b16" name="默认的" comment="" />
+      <created>1607087425355</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607087425355</updated>
+      <workItem from="1607087426748" duration="2380000" />
+      <workItem from="1607133245491" duration="13247000" />
+      <workItem from="1607247652339" duration="10624000" />
+      <workItem from="1607323266361" duration="18675000" />
+      <workItem from="1607399846065" duration="16013000" />
+      <workItem from="1607585542878" duration="41000" />
+      <workItem from="1607585596904" duration="16535000" />
+      <workItem from="1607676352154" duration="978000" />
+      <workItem from="1607682136887" duration="16158000" />
+      <workItem from="1607750340227" duration="16428000" />
+      <workItem from="1607999211376" duration="4237000" />
+      <workItem from="1608109749545" duration="2860000" />
+      <workItem from="1608279823014" duration="15748000" />
+      <workItem from="1608349928756" duration="12579000" />
+      <workItem from="1608707265009" duration="92000" />
+      <workItem from="1608707371259" duration="596000" />
+      <workItem from="1609126546040" duration="122000" />
+      <workItem from="1609126679819" duration="13227000" />
+      <workItem from="1609222602990" duration="1919000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

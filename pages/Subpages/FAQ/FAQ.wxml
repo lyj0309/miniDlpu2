@@ -1,0 +1,29 @@
+<!--pages/Subpages/FAQ/FAQ.wxml-->
+<!-- <text>pages/Subpages/FAQ/FAQ.wxml</text> -->
+
+<view class=" FAQTitle">常见问题FAQ</view>
+
+<view class="FAQWrap" wx:for="{{FAQ}}" wx:key="FAQIndex" wx:for-index="FAQIndex" wx:for-item="FAQItem" data-faqindex="{{FAQIndex}}" bindtap="tapQuestion" >
+	<view class="listTitle p">
+		{{FAQItem.question}}
+	</view>
+
+	<scroll-view  scroll-y="true"  enhanced="true" show-scrollbar="false"	 class="{{focusIndex==FAQIndex?'listOn':'listOff'}}">
+
+		<view class="FAQTextParagraph" wx:for="{{FAQItem.answerArr}}" wx:key="answerArrIndex" wx:for-index="answerArrIndex" wx:for-item="answerArrItem">
+
+			<view class="FAQTextLine" wx:for="{{answerArrItem}}" wx:key="FAQTextLineIndex" wx:for-index="FAQTextLineIndex" wx:for-item="FAQTextLineItem">
+
+				<view class="FAQTextLine" wx:if="{{!FAQTextLineItem.url}}">
+					{{FAQTextLineItem.text}}
+				</view>
+				<view class="FAQTextLine url" wx:if="{{FAQTextLineItem.url!=undefined}}" data-url="{{FAQTextLineItem.url}}" catchtap="jumpToPage">
+					{{FAQTextLineItem.text}}
+				</view>
+			</view>
+		</view>
+
+
+	</scroll-view>
+
+</view>

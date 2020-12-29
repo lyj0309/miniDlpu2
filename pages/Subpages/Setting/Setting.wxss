@@ -1,0 +1,50 @@
+/* pages/Subpages/Setting/Setting.wxss */
+
+view.sel{
+  font-size: 1.1em;
+  font-weight: 400;
+  /* height: 50px; */
+  /* line-height: 50px; */
+}
+
+view.inp, picker.inp{
+  font-size: 1.1em;
+  background-color: #FFFFFF;
+  padding: 0 10px;
+  line-height: 50px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  min-width: 50%;
+  text-align: center;
+}
+
+view.timeSelect{
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  width: 84%;
+  margin: 10px 8%;
+}
+
+view.switch, view.timeSelect{
+  align-items: center;
+}
+
+switch.inp{
+  zoom: 1.3;
+  padding-left: 10px;
+}
+
+view.button{
+  background-color: #3EA3D8;
+  color: #FFFFFF;
+  text-align: center;
+  width: calc( 84% - 36px);
+  margin: 15px 8%;
+  border-radius: 20px;
+  height: 40px;
+  font-size: 1.1em;
+  line-height: 40px;
+  font-weight: 500;
+  padding: 5px 18px;
+}

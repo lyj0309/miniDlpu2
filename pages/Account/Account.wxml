@@ -1,0 +1,45 @@
+<!--pages/Account/Account.wxml-->
+
+<!-- 顶部用户信息展示区域 -->
+<view class="header">
+  <view class="background">
+    <image src="/image/star.svg"></image>
+  </view>  
+</view>
+
+<!-- 这里是用户头像 -->
+<view class="icon">
+  <view>
+      <open-data type="userAvatarUrl"></open-data>
+  </view>
+</view>
+
+<!-- 用户昵称 -->
+<view class="name">
+  <view class="nick">
+    <open-data type="userNickName"></open-data>
+  </view>
+  <view class="user">
+    <view>{{ user }}</view>
+  </view>
+</view>
+
+<!-- 选项区域 -->
+<view class="opition">
+
+  <!-- 账号 -->
+  <view class="account" bindtap="jump" data-id="0">
+    <view>账号</view>
+    <image src="/image/go.svg"></image>
+  </view>
+
+  <!-- 其他选项 -->
+  <view class="other">
+    <view class="{{ index === 0 ? 'start' : '' }}" data-id="{{ index + 1 }}"
+    wx:for="{{ pages }}" wx:key="opition" bindtap="jump">
+      <view>{{ item }}</view>
+      <image src="/image/go.svg"></image>
+    </view>
+  </view>
+  
+</view>

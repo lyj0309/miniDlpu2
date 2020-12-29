@@ -1,0 +1,59 @@
+/* pages/Account_Subpages/StudentId/StudentId.wxss */
+
+view.user, view.pwd{
+  background-color: #FFFFFF;
+  /* box-shadow: 0 0 0px 1px rgba(0, 0, 0, .08); */
+  width: 84%;
+  margin: 15px 8%;
+  border-radius: 20px;
+  padding: 5px 0;
+  display: flex;
+}
+
+view.user > input, view.pwd > input{
+  height: 40px;
+  width: 100%;
+  font-size: 1.1em;
+  line-height: 40px;
+  /* font-weight: 500; */
+  box-sizing: border-box;
+  padding: 0 18px;
+}
+
+view.pwd > input{
+  padding-right: 5px;
+}
+view.pwd > view{
+  width: 50px;
+  height: 40px;
+}
+view.pwd > view > image{
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+  opacity: .4;
+}
+
+view.submit{
+  background-color: #3EA3D8;
+  color: #FFFFFF;
+  text-align: center;
+  width: calc( 84% - 36px);
+  margin: 15px 8%;
+  border-radius: 20px;
+  height: 40px;
+  font-size: 1.1em;
+  line-height: 40px;
+  font-weight: 500;
+  padding: 5px 18px;
+}
+
+/* 表单错误警告 */
+@keyframes error{
+  0%{background-color: #FFFFFF;}
+  50%{background-color: #ff9393;}
+  100%{background-color: #FFFFFF;}
+}
+view.error{
+  animation: error 1500ms ease-in-out;
+}

@@ -1,0 +1,73 @@
+.title{
+    text-align: center;
+    font-size: 30rpx;
+    margin: 20rpx;
+}
+
+.examCount{
+    text-align: center;
+    margin: 20rpx;
+}
+
+.cjItem{
+    display: flex;
+    justify-content: space-between;
+}
+
+.value-class {
+    flex: none !important;
+}
+
+.empBlock{
+    height: 228rpx;
+    width: 618rpx;
+    overflow: auto;
+    display: flex;
+    flex-direction:column;
+    flex-wrap: wrap;
+    align-content: flex-start
+}
+
+.empBlockItem{
+    margin: 6rpx;
+    border-radius: 12rpx;
+    box-shadow: 1.5rpx 1.5rpx 4rpx 2rpx rgba(136,136,136,0.6);
+    /*background-image: linear-gradient(to right,rgba(72,160,196,0.2),rgba(541,187,97,0.4) ,rgba(20,60,122,0.2));*/
+    background-image: linear-gradient(-55deg,rgba(233,218,72,0.7),rgba(255,195,107,0.4));
+    height:100rpx;
+    width: 215rpx;
+}
+
+.empItems{
+    display: flex;
+    flex-direction: row;
+    margin-left: 5rpx;
+}
+
+.bd{
+    border-left-style: solid;
+    height: 30rpx;
+}
+
+.dot{
+    margin: 5.8rpx;
+    height: 23rpx;
+    width: 23rpx;
+    border-radius: 25rpx;
+}
+
+.green{
+    background-color: #77C182;
+}
+.red{
+    background-color: #CC5983;
+}
+.grey{
+    background-color: gray;
+}
+
+.btn{
+    display: flex;
+    justify-content: space-around;
+}
+

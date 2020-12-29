@@ -1,0 +1,49 @@
+/* pages/Subpages/FAQ/FAQ.wxss */
+
+.FAQTitle{
+  font-size: 1.4em;
+  font-weight: 500;
+  /* width: 84%; */
+  padding: 40rpx 8%;
+  box-shadow: 0 1rpx 0 0 #ccc;
+}
+
+.FAQWrap {
+  min-height: 100rpx;
+  line-height: 100rpx;
+  /* border-bottom: 1rpx solid #aaa; */
+  box-shadow: 0 1rpx 0 0 #ccc;
+}
+
+.listOn {
+  transition: 0.3s;
+  height: 400rpx;
+  background-color: #fff;
+
+}
+
+.listOff {
+  transition: 0.3s;
+  height: 0;
+}
+
+::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+
+.url {
+  color: #3EA3D8;
+}
+
+.FAQTextParagraph {
+  padding-top: 20rpx;
+  margin: 0 auto;
+  
+  line-height: 60rpx;
+  width: 84%;
+}
+
+.FAQTextLine {
+  display: inline;
+}

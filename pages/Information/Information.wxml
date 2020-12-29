@@ -1,0 +1,32 @@
+<!--pages/Information/Information.wxml-->
+
+
+<van-popup round custom-style=" width: 618rpx;height: 1000rpx;" show="{{ show }}" bind:close="onClose">
+    <infoCom id="com" wx:if="{{title !== ''}}" title="{{ title }}"/>
+</van-popup>
+        <!--<van-icon wx:if="{{show}}" class="closeIcon" name="cross" size="50px" />-->
+
+        <!-- 轮播图 开始 -->
+<view class="index_swiper">
+    <swiper autoplay="true" interval="4000" duration="1000" circular="true">
+        <swiper-item>
+            <image mode="widthFix" src="../../image/morebg.png"></image>
+        </swiper-item>
+        <swiper-item>
+            <image mode="widthFix" src="https://s3.ax1x.com/2020/12/01/Dfz8yj.jpg"></image>
+        </swiper-item>
+    </swiper>
+</view>
+        <!-- 轮播图 结束 -->
+
+<view class="items">
+    <view bind:tap="propTap" id="{{idx}}" class="item" wx:key="idx" wx:for="{{array}}" wx:for-index="idx" wx:for-item="itemName">
+        <view style="width: 175rpx;">
+<!--            <view class="itemImg" style="background-image: url({{itemName.imgSrc}})"/>-->
+            <image class="itemImg" src="{{itemName.imgSrc}}"/>
+            <button style=""  wx:if="{{idx===8}}" open-type="feedback">asdf</button>
+        </view>
+        <text>{{itemName.text}}</text>
+    </view>
+</view>
+<van-notify id="van-notify" />

@@ -1,0 +1,24 @@
+/**app.wxss**/
+page {
+  background-color: #F4F0F1;
+  color: rgba(0, 0, 0, .55);
+  font-weight: 500;
+  font-size: .9em;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* 标题 */
+view.title{
+  font-size: 1.4em;
+  font-weight: 500;
+  width: 84%;
+  margin: 0 8%;
+}
+
+/* 正文 */
+view.p{
+  font-size: 1em;
+  font-weight: 400;
+  width: 84%;
+  margin: 0 8%;
+}

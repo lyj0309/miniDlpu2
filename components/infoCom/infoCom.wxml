@@ -1,0 +1,264 @@
+<van-notify id="van-notify"/>
+<view class="title">{{ title }}</view>
+<view wx:if="{{ title === '成绩查询' }}">
+    <van-cell title="学期" title-width="200rpx" bind:tap="showAction" is-link value='{{semester}}'/>
+    <van-action-sheet
+            show="{{ show }}"
+            actions="{{ actions }}"
+            bind:close="onClose"
+            bind:select="onActionSelect"
+    />
+    <view style="display:flex;justify-content:space-between;margin-left: 50rpx; margin-right: 50rpx;">
+        <view>课程名</view>
+        <view style="width:180rpx;display:flex;justify-content:space-between; ">
+            <view>学分</view>
+            <view>成绩</view>
+        </view>
+    </view>
+    <van-collapse accordion value="{{ activeName }}" bind:change="onScoreChange" bind:open="getScoreDetail">
+        <view wx:key="idx" wx:for="{{scoreData}}" wx:for-index="idx" wx:for-item="item">
+            <van-collapse-item name="{{idx}}">
+                <view style="display:flex;justify-content:space-between" slot="title">
+                    <view>{{ item.Name }}</view>
+                    <view style="width:150rpx;display:flex;justify-content:space-between">
+                        <view>{{ item.Credit}}</view>
+                        <view>{{ item.Grade}}</view>
+                    </view>
+                </view>
+                <view style="height:200rpx;width:350rpx;margin-left:30rpx">
+                    <view class="cjItem" wx:if="{{ item.Period }}">
+                        <view>学时：</view>
+                        <view>{{ item.Period }}</view>
+                    </view>
+                    <view class="cjItem" wx:if="{{ item.Ordinary }}">
+                        <view>平时成绩：</view>
+                        <view>{{ item.Ordinary }}</view>
+                    </view>
+                    <view class="cjItem" wx:if="{{ item.OrdPercent }}">
+                        <view>平时成绩占比：</view>
+                        <view>{{ item.OrdPercent }}</view>
+                    </view>
+                    <view class="cjItem" wx:if="{{ item.Middle }}">
+                        <view>期中成绩：</view>
+                        <view>{{ item.Middle }}</view>
+                    </view>
+                    <view class="cjItem" wx:if="{{ item.MiddlePercent }}">
+                        <view>期中成绩占比：</view>
+                        <view>{{ item.MiddlePercent }}</view>
+                    </view>
+                    <view class="cjItem" wx:if="{{ item.Final }}">
+                        <view>期末成绩：</view>
+                        <view>{{ item.Final }}</view>
+                    </view>
+                    <view class="cjItem" wx:if="{{ item.FinalPercent }}">
+                        <view>期末成绩占比：</view>
+                        <view>{{ item.FinalPercent }}</view>
+                    </view>
+                </view>
+            </van-collapse-item>
+        </view>
+    </van-collapse>
+</view>
+
+<view wx:if="{{ title === '考试日程' }}">
+    <view class="examCount">最近共有 <text style="color:red">{{examDateData.length?examDateData.length:0 }}</text> 场考试
+    </view>
+    <view wx:key="idx" wx:for="{{examDateData}}" wx:for-index="idx" wx:for-item="item">
+        <van-cell title="{{item.Name}}" value="{{item.Room}}" label="{{item.Time}}"/>
+    </view>
+</view>
+
+<view wx:if="{{ title === '培养方案' }}">
+    <view class="examCount">一共要学 <text style="color:red">{{ pyfaData.length }}</text> 门课程
+    </view>
+
+    <van-collapse accordion value="{{ activeName }}" bind:change="onChange">
+        <van-cell title="第一学期" value="大一上"/>
+        <view wx:key="idx" wx:for="{{pyfaData}}" wx:for-index="idx" wx:for-item="item">
+            <van-cell wx:if="{{ pyfaData[idx].Semester === '1' && pyfaData[idx+1].Semester === '1,2,3,4'}}" title="第二学期"
+                      value="大一下"/>
+            <van-cell wx:if="{{ pyfaData[idx].Semester === '2' && pyfaData[idx+1].Semester === '3'}}" title="第三学期"
+                      value="大二上"/>
+            <van-cell wx:if="{{ pyfaData[idx].Semester === '3' && pyfaData[idx+1].Semester === '4'}}" title="第四学期"
+                      value="大二下"/>
+            <van-cell wx:if="{{ pyfaData[idx].Semester === '4' && pyfaData[idx+1].Semester === '5'}}" title="第五学期"
+                      value="大三上"/>
+            <van-cell wx:if="{{ pyfaData[idx].Semester === '5' && pyfaData[idx+1].Semester === '6'}}" title="第六学期"
+                      value="大三下"/>
+            <van-cell wx:if="{{ pyfaData[idx].Semester === '6' && pyfaData[idx+1].Semester === '7'}}" title="第七学期"
+                      value="大四上"/>
+            <van-cell wx:if="{{ pyfaData[idx].Semester === '7' && pyfaData[idx+1].Semester === '8'}}" title="第八学期"
+                      value="大四下"/>
+            <van-collapse-item title="{{item.Name}}" name="{{idx}}">
+                <view>
+                    开课单位：{{item.College}}
+                </view>
+                <view>
+                    总学时：{{item.Period}}
+                </view>
+                <view>
+                    学分：{{item.Credit}}
+                </view>
+            </van-collapse-item>
+        </view>
+    </van-collapse>
+</view>
+
+
+<view wx:if="{{ title === '空教室' }}">
+    <!--    标题-->
+    <view style="display:flex;font-size:28rpx;justify-content: space-around;">
+        <view style="width:280rpx; margin-left: 18rpx;" data-idx="0" bind:tap="showEmpCla">
+            {{ epHouse }} {{ epWeek }} {{ epDay }}
+            <van-icon size="30rpx" name="arrow-down"/>
+        </view>
+        <view style="width:280rpx;    display: flex;    justify-content: center;" data-idx="1" bind:tap="showEmpCla">
+            <view id="{{idx}}" style="display:flex" wx:key="idx" wx:for="{{epTime}}" wx:for-index="idx"
+                  wx:for-item="claDot">
+                <view wx:if="{{ claDot === 1 }}" class="dot green"/>
+                <view wx:else class="dot grey"/>
+                <view wx:if="{{ idx === 1 || idx === 3}}" class="bd"/>
+            </view>
+
+            <!--            {{ epTime }}-->
+            <van-icon size="30rpx" name="arrow-down"/>
+        </view>
+        <van-icon bind:tap="searchEmpCla" style="width:50rpx;margin-right: 17rpx;" name="search" size="45rpx"/>
+    </view>
+
+    <!-- 日期选择弹出 -->
+    <van-popup
+            show="{{ empClaShow0 }}"
+            round
+            position="bottom"
+            bind:close="empClaClose0"
+    >
+        <van-picker
+                bind:cancel="empClaClose0"
+                bind:confirm="empClaConfirm0"
+                show-toolbar
+                columns="{{ columns }}"
+        />
+    </van-popup>
+
+    <!-- 时间段选择弹出 -->
+    <van-popup
+            show="{{ empClaShow1 }}"
+            round
+            position="bottom"
+            bind:close="empClaClose1"
+    >
+        <van-cell title="选择节数">
+            <view bind:tap="empClaConfirm1">确定</view>
+        </van-cell>
+        <van-checkbox-group value="{{ result }}" bind:change="onPickerChange">
+            <van-cell-group>
+                <van-cell
+                        wx:for="{{ epClaTimeList }}"
+                        wx:key="index"
+                        title="{{ item }}"
+                        value-class="value-class"
+                        clickable
+                        data-index="{{ index }}"
+                        bind:click="toggle"
+                >
+                    <van-checkbox
+                            catch:tap="noop"
+                            class="checkboxes-{{ index }}"
+                            name="{{ item }}"
+                    />
+                </van-cell>
+            </van-cell-group>
+        </van-checkbox-group>
+    </van-popup>
+    <view style="margin:10rpx">
+        <view>例：</view>
+        <view style="display:flex;">
+            <view class="dot green"/>-----无课
+        </view>
+        <view style="display:flex;">
+            <view class="dot red"/>-----有课
+        </view>
+        <view style="font-size: 25rpx;margin:10rpx">
+            (1,2节)(3,4节) | (5,6节)(7,8节) | (9,10节)(11,12节)
+        </view>
+    </view>
+
+    <view id="{{idx}}" style="margin-top:10rpx" wx:key="idx" wx:for="{{empClaArr}}" wx:for-index="idx"
+          wx:for-item="empCla">
+        <view wx:if="{{ empCla.length !== 0 && idx !== 7 }}" style="margin-left:10rpx">{{ idx + 1 }}楼</view>
+        <view wx:if="{{ empCla.length !== 0 }}" class="empBlock">
+            <view id="{{idx1}}" class="empBlockItem" wx:key="idx1" wx:for="{{empCla}}" wx:for-index="idx1" wx:for-item="cla">
+                <view style="margin: 10rpx;height:40rpx;  overflow: hidden;">{{ cla.Room }}</view>
+                <view class="empItems">
+                    <view id="{{idx2}}" style="display:flex" wx:key="idx2" wx:for="{{cla.Time}}" wx:for-index="idx2" wx:for-item="claDot">
+                        <view wx:if="{{ claDot === 0 }}" class="dot green"/>
+                        <view wx:else class="dot red"/>
+                        <view wx:if="{{ idx2 === 1 || idx2 === 3}}" class="bd"/>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+
+<view wx:if="{{ title === '水卡' }}">
+    <view wx:if="{{ token === '' }}" style="margin-top:100rpx">
+        <van-cell-group>
+            <van-field
+                    model:value="{{ stuNum }}"
+                    label="学号"
+                    type="number"
+                    placeholder="请输入学号"
+                    border="{{ false }}"
+            />
+            <van-field
+                    model:value="{{ name }}"
+                    placeholder="请输入姓名"
+                    label="姓名"
+                    border="{{ false }}"
+            />
+            <van-field
+                    model:value="{{ pwd }}"
+                    placeholder="默认身份证后6位"
+                    label="密码"
+                    password="true"
+                    border="{{ false }}"
+            />
+        </van-cell-group>
+        <van-button bind:click="loginWaterCard" plain type="info" size="large">登录</van-button>
+    </view>
+    <view wx:else>
+        <image wx:if="{{imgUrl }}" mode="widthFix" src="{{imgUrl}}"/>
+        <view style="display:flex;   align-items:center; justify-content: center;flex-direction:column">
+            <view wx:if="{{balance}}">余额：{{balance}}</view>
+            <van-button type="default" bind:tap="logout">退出登录</van-button>
+        </view>
+    </view>
+</view>
+
+
+<view wx:if="{{ title === '评教' }}">
+    <view wx:if="{{evaArr === undefined}}">
+        <van-cell title="{{ Name }}" value="" label="开始时间{{ StartTime }} 结束时间{{ EndTime }}" border="{{ false }}" />
+        <view class="btn">
+            <van-button id="0" bindtap="evaluation" type="default">理论测评</van-button>
+            <van-button id="1" bindtap="evaluation" type="default">实验测评</van-button>
+            <van-button id="2" bindtap="evaluation" type="default">实习测评</van-button>
+        </view>
+    </view>
+    <view wx:else>
+        <view wx:key="idx" wx:for="{{evaArr}}" wx:for-index="idx" wx:for-item="item">
+            <view wx:if="{{ item.Score === '0' }}">
+                <van-cell center title="{{item.Name}}" label="{{item.Teacher}}" >
+                    <view>未评教</view>
+                    <view id="{{idx}}" style="color:red" bind:tap="toEvaluationPage">评教</view>
+                </van-cell>
+            </view>
+        <view wx:else>
+            <van-cell center title="{{item.Name}}" value="{{item.Score}}" label="{{item.Teacher}}" />
+        </view>
+        </view>
+    </view>
+</view>

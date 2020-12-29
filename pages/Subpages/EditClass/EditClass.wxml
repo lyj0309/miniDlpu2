@@ -1,0 +1,47 @@
+<!--pages/Subpages/EditClass/EditClass.wxml-->
+
+<!-- 输入选项 -->
+<view class="title firstTit">课程信息</view>
+<view class="textInp {{ nameError ? 'error' : '' }}">
+<textarea auto-height="true" 
+placeholder-style="font-weight: 400; font-size: 1.1em" 
+placeholder="[必填]请输入课程名称" bindinput="onInput" data-id="n" value="{{ nameVal }}"></textarea></view>
+
+<view class="keyInput">
+  <view>课程讲师：</view>
+  <input placeholder-style="font-weight: 400; font-size: 1.1em" 
+  placeholder="课程讲师" bindinput="onInput" data-id="t" value="{{ teacherVal }}"></input>
+</view>
+
+<view class="keyInput">
+  <view>上课地点：</view>
+  <input placeholder-style="font-weight: 400; font-size: 1.1em" 
+  placeholder="上课地点" bindinput="onInput" data-id="l" value="{{ locateVal }}"></input>
+</view>
+
+<view class="title firstTit">课程时间</view>
+<view class="textInp weekView" bindtap="weekList">{{ weekText }}(周)</view>
+<view class="weekSelecter {{ showWeekList===undefined ? '' : showWeekList ? 'ShowMarginTop' : 'HideMarginTop' }}">
+  <view wx:for="{{ weekList }}" bindtap="{{ item !== 'b' ? 'click2AddWeek' : ''}}" data-id="{{ index }}"
+  class="{{ showWeekList===undefined ? '' : showWeekList ? 'Show' : 'Hide' }}"
+  wx:key="weekSelecter" 
+  style="{{item !== 'b' ? item ? 'background-color: #3EA3D8; color: #FFFFFF' : '' : 'color: rgba(0,0,0,0);' }}">
+  {{ index + 1 }}</view>
+</view>
+
+<view class="keyInput" style="margin-bottom: 0">
+  <picker range="{{ dayList }}" value="{{ day }}" bindchange="dayChange">{{ dayList[day] }}</picker>
+  <view class="sele" bindtap="timeList">第{{ timeText }}(节)</view>
+</view>
+
+<view class="weekSelecter {{ showTimeList===undefined ? '' : showTimeList ? 'ShowMarginTop' : 'HideMarginTop' }}">
+  <view wx:for="{{ timeList }}" bindtap="click2AddTime" data-id="{{ index }}"
+  class="{{ showTimeList===undefined ? '' : showTimeList ? 'Show' : 'Hide' }}"
+  wx:key="weekSelecter" style="{{ item ? 'background-color: #3EA3D8; color: #FFFFFF' : '' }}">{{ index + 1 }}</view>
+</view>
+
+<!-- <view class="title firstTit" style="{{ showWeekList ? '' : 'margin-top: 0px' }}">课程时间</view> -->
+<view class="submit" bindtap="submit">保存</view>
+<view class="submit del" bindtap="delete" wx:if="{{ mode == 2 }}">删除</view>
+
+<view style="height: 20px"></view>

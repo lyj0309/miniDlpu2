@@ -1,0 +1,12 @@
+.radio{
+    padding-top: 20rpx;
+    height: 70rpx;
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+}
+.btn{
+    margin-top: 50rpx;
+    display: flex;
+    justify-content: space-around;
+}

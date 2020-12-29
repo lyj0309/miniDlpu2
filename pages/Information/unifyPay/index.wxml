@@ -1,0 +1,2 @@
+
+<web-view src="https://upay.2333.pub/" bindload="bindload" binderror="binderror"></web-view>

@@ -1,0 +1,372 @@
+/* pages/Timetable/Timetable.wxss */
+
+/* 头部 */
+view.header{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  background-color: #F4F0F1;
+  border-radius: 0 0 0 23px;
+}
+
+/* 学期选择 */
+view.semester {
+  width: 90%;
+  height: 22.4px;
+  line-height: 22.4px;
+  padding: 6px 5%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #F4F0F1;
+}
+
+/* 周 */
+view.week{
+  height: 40.8px;
+  background: #3EA3D8;
+  border-radius: 0 0 0 23px;
+  display: flex;
+  overflow: hidden;
+  /* justify-content: space-between; */
+  padding: 4px 0 4px 10%;
+  width: 90%;
+  color: #FFFFFF;
+}
+view.week > view.background{
+  width: 0;
+  height: 0;
+}
+/* 背景图片 */
+view.week > view.background > image{
+  position: relative;
+  opacity: .4;
+  width: 680rpx;
+  margin: 0 35rpx;
+  top: -90px;
+  left: -75rpx;
+}
+view.week view{
+  width: 100%;
+}
+view.week view.today{
+  background-color: rgba(0, 0, 0, .2);
+  border-radius: 8px;
+}
+view.week > view > view{
+  text-align: center;
+  padding: 0;
+}
+view.week > view > view.weeks{
+  font-size: 1.1em;
+  height: 24.8px;
+  line-height: 24.8px;
+}
+view.week > view > view.dates{
+  font-size: .7em;
+  height: 16px;
+  line-height: 16px;
+}
+/* 天气 */
+view.week > view.weather{
+  width: 0;
+  height: 0;
+}
+view.week > view.weather image{
+  position: relative;
+  left: -57rpx;
+  top: 15rpx;
+  width: 25px;
+  height: 25px;
+  opacity: 1;
+}
+
+/* 选择区域弹出动画 */
+@keyframes showSelect {
+  from{height: 0; opacity: 0;}
+  to{height: 80px; opacity: 1;}
+}
+@keyframes hideSelect {
+  from{height: 80px; opacity: 1;}
+  to{height: 0; opacity: 0;}
+}
+view.showSelect{
+  height: 80px !important;
+  opacity: 1 !important;
+  animation: showSelect 200ms ease-in-out;
+}
+view.hideSelect{
+  height: 0 !important;
+  opacity: 0 !important;
+  animation: hideSelect 200ms ease-in-out;
+}
+
+/* 动画区域 */
+view.seleAn{
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  background-color: #F4F0F1;
+}
+
+/* 周选择区域 */
+scroll-view.slectWeek, scroll-view.slectSemester{
+  height: 80px;
+  width: 95%;
+  padding: 0 2.5%;
+  overflow: hidden;
+  /* display: flex; */
+  white-space: nowrap;
+  background-color: #F4F0F1;
+}
+/* 当前学期 */
+scroll-view.slectSemester view.nowSemester{
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+scroll-view.slectSemester view.thisSemester{
+  border-radius: 10px;
+  margin-bottom: 2px;
+  padding: 0 10.5px 0px 10.5px !important;
+  border: #3EA3D8 1.5px solid !important;
+  color: #3EA3D8;
+  width: 90px;
+  display: inline-block;
+}
+scroll-view.slectSemester view.thisSemester view{
+  opacity: 1 !important;
+}
+scroll-view.slectSemester view.thisSemester image{
+  opacity: 1 !important;
+}
+scroll-view.slectSemester view.sList{
+  height: 72px;
+  padding: 0 12px 5px 12px;
+  width: 90px;
+  display: inline-block;
+}
+scroll-view.slectSemester view.sList view{
+  position: relative;
+  top: 4px;
+  font-size: .9em;
+  text-align: center;
+  line-height: 17px;
+  height: 17px;
+}
+scroll-view.slectSemester view.sList image{
+  width: 90px;
+  height: 55px;
+  opacity: .1;
+}
+/* 当前周 */
+scroll-view.slectWeek view.thisWeek{
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 0 8px 5px 8px !important;
+  margin-bottom: 5px;
+}
+/* 选择周 */
+scroll-view.slectWeek view.selectWeek{
+  border-radius: 10px;
+  border: #3EA3D8 1.5px solid;
+  padding: 0 6.5px 2px 6.5px !important;
+}
+scroll-view.slectWeek view.wList{
+  height: 70px;
+  padding: 0 8px 10px 8px;
+  width: 45px;
+  display: inline-block;
+}
+scroll-view.slectWeek view.wList view.weekName{
+  width: 100%;
+  height: 25px;
+  font-size: .7em;
+  text-align: center;
+  line-height: 25px;
+}
+scroll-view.slectWeek view.wList view.weekName > text{
+  font-size: 2.1em;
+  letter-spacing: -.02em;
+}
+scroll-view.slectWeek view.wList view.cImage{
+  width: 45px;
+  height: 45px;
+  background-image: radial-gradient(#DDDDDD 60%,transparent 0);
+  background-size: 7.5px 7.5px;
+}
+
+/* 表格 */
+view.table{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* 左侧时间 */
+view.table > view.time{
+  width: 10%;
+  /* background-color: rgba(255, 255, 255, .3); */
+}
+view.table > view.time > view{
+  height: 55px;
+  padding: 0 0 5px 0;
+}
+view.table > view.time > view > view.number{
+  position: relative;
+  top: 3px;
+  font-size: 1.1em;
+  text-align: center;
+}
+view.table > view.time > view > view.slot{
+  font-size: .65em;
+  text-align: center;
+}
+
+/* 课程表 */
+view.table > view.class{
+  width: 90%;
+  display: flex;
+}
+view.class > view{
+  width: 100%;
+}
+view.class > view > view{
+  word-break: break-all;
+  width: calc( 100% - 4px );
+  margin: 0 2px;
+  /* margin-bottom: 5px; */
+  font-size: .83em;
+  line-height: 1.25em;
+  text-align: center;
+  background-color: #F4F0F1;
+  box-sizing: border-box;
+  padding: 3px 2px;
+  border-radius: 6px;
+}
+
+/* 选取框框 */
+view.selection{
+  margin: 0 2px;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, .3);
+  border: rgba(0, 0, 0, .25) dashed 1.5px;
+  box-sizing: border-box;
+}
+
+view.selection image{
+  padding: 0 13%;
+  width: 74%;
+  height: 100%;
+  opacity: .35;
+}
+
+/* 蒙版 */
+view.mask {
+  z-index: 9990;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, .75);
+}
+@keyframes Show{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+@keyframes Hide{
+  0%{opacity: 1;}
+  100%{opacity: 0;}
+}
+view.Show{
+  animation: Show 100ms ease-in-out;
+  opacity: 1;
+}
+view.Hide{
+  animation: Hide 100ms ease-in-out;
+  opacity: 0;
+}
+
+/* 弹窗 */
+view.cDetail, view.cList{
+  z-index: 9991;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  /* flex-wrap: wrap; */
+  /* align-items: center; */
+  /* align-content: center; */
+  flex-direction: column;
+  justify-content: center;
+}
+
+view.cList view.cListClass{
+  border-radius: 10px;
+  width: 84%;
+  margin: 3px 8%;
+  /* height: 60px; */
+  box-sizing: border-box;
+  padding: 4px 18px;
+  background-color: #d1d1d1;
+  box-shadow: 0 0 10px rgba(255, 255, 255, .4);
+}
+
+view.cList view.cListClass view.cListTit{
+  font-size: 1.2em;
+  padding-top: 3px;
+  color: rgba(0, 0, 0, .60);
+}
+
+view.cList view.cListClass view.cListP{
+  font-size: .9em;
+  margin-top: -3px;
+  padding-bottom: 4px;
+}
+
+view.cDetail view.cDBlock{
+  width: 84%;
+  min-height: 200px;
+  margin: 0 8%;
+  background-color: #d1d1d1;
+  /* padding: 13px 18px; */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+view.cDBlock{
+  background-color: #FFFFFF !important;
+  box-shadow: 0 0 50px rgba(0, 0, 0, .1) !important;
+}
+
+view.cDetail view.cDBlock view.cDTit{
+  font-size: 1.2em;
+  color: rgba(0, 0, 0, .60);
+  background-color: #d1d1d1;
+  padding: 8px 18px 8px 18px;
+}
+
+view.cDetail view.cDBlock view.cDLoca{
+  padding-top: 8px;
+}
+view.cDetail view.cDBlock view {
+  padding: 2px 18px;
+}
+
+view.cDetail view.cEditClass{
+  padding: 0 !important;
+  height: 0;
+  z-index: 10;
+}
+
+view.cDetail view.cEditClass view{
+  width: 100%;
+  font-size: 1.2em;
+  text-align: right;
+  box-sizing: border-box;
+  padding: 8px 18px;
+  color: #FFFFFF;
+  /* display: none; */
+}
