@@ -45,6 +45,7 @@
 }
 
 .bd{
+
     border-left-style: solid;
     height: 30rpx;
 }

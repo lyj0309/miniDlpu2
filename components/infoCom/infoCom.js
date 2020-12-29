@@ -15,30 +15,9 @@ Component({
         actions: [],
         value1: 0,
         show: false,
-        semester: '全部成绩',
+        semester: '',
     },
     methods: {
-        geneSemesterArray() {
-            let rage = []
-            rage.push({name: '全部学期'})
-            let xueQi = [['大一上', '大一下'], ['大二上', '大二下'], ['大三上', '大三下'], ['大四上', '大四下']]
-            let user = API.get("user")
-            user = '20' + user.slice(0, 2)
-            console.log(user)
-            let nowYear = new Date().getFullYear()
-            for (let i = -1; i < 10; i++) {
-                for (let k = 1; k <= 2; k++) {
-                    let currXQ = (nowYear - (i + 1)) + "-" + (nowYear - i) + "-" + k
-                    let idx = nowYear - (i + 1) - user
-                    if (idx >= 0) {
-                        rage.push({name: currXQ + '  ' + xueQi[idx][k - 1]})
-                    } else {
-                        rage.push({name: currXQ})
-                    }
-                }
-            }
-            this.setData({actions: rage})
-        },
         onActionSelect(event) {
             this.setData({semester: event.detail.name})
             this.getScore(event.detail.name)
@@ -152,37 +131,31 @@ Component({
             })
         },
         getScoreDetail(e) {
-            let that = this
+            if (this.data.scoreData[e.detail].Final!==undefined){ //防止多次请求
+                return
+            }
             API.getUserData((d) => {
                 API.request(
                     API.GET_EXAM_SCORE,
                     {
                         success: (d) => {
                             this.setData({
-                                ['scoreData[' + this.data.activeName + ']']:
-                                    Object.assign(that.data.scoreData[e.detail], d.data.data)
+                                ['scoreData[' + e.detail + ']']:
+                                    Object.assign(this.data.scoreData[e.detail], d.data.data)
                             })
                             //console.log(d.data.data)
                         }
                     }, {
-                        data: encodeURI(that.data.scoreData[e.detail].Detail)
+                        data: encodeURI(this.data.scoreData[e.detail].Detail)
                     },
                     "session=" + d.session
                 )
             })
         },
-        showAction() {
-            this.setData({show: true})
-        },
-        empClaClose0() {
-            this.setData({empClaShow0: false})
-        },
-        empClaClose1() {
-            this.setData({empClaShow1: false})
-        },
-        onClose() {
-            this.setData({show: false})
-        },
+        showAction() {this.setData({show: true})},
+        empClaClose0() {this.setData({empClaShow0: false})},
+        empClaClose1() {this.setData({empClaShow1: false})},
+        onClose() {this.setData({show: false})},
         onChange(event) {
             this.setData({
                 activeName: event.detail,
@@ -204,7 +177,6 @@ Component({
                 semester = semester.slice(0, 11)
             }
             let that = this
-            this.geneSemesterArray()
             API.getUserData((d) => {
                 API.request(
                     API.GET_EXAM_SCORE,
@@ -482,7 +454,29 @@ Component({
             // 在组件实例进入页面节点树时执行=
             switch (this.properties.title) {
                 case '成绩查询':
-                    this.getScore()
+                    let rage = []
+                    let xueQi = [['大一上', '大一下'], ['大二上', '大二下'], ['大三上', '大三下'], ['大四上', '大四下']]
+                    let user = API.get("user")
+                    let semester = API.get("semester")
+                    user = '20' + user.slice(0, 2)
+                    let nowYear = new Date().getFullYear()
+                    for (let i = 8; i >= -1; i--) {
+                        for (let k = 1; k <= 2; k++) {
+                            let currXQ = (nowYear - (i + 1)) + "-" + (nowYear - i) + "-" + k
+                            let idx = nowYear - (i + 1) - user
+                            if (semester === currXQ){
+                                let a = currXQ + '  ' + xueQi[idx][k - 1]
+                                rage.unshift({name: a})
+                                rage.unshift({name: '全部学期'})
+                                this.setData({actions: rage,semester:a})
+                                this.getScore(a)
+                                return
+                            }
+                            if (idx >= 0 && idx <= 3) {
+                                rage.unshift({name: currXQ + '  ' + xueQi[idx][k - 1]})
+                            }
+                        }
+                    }
                     break
                 case '考试日程':
                     this.getExamDate()

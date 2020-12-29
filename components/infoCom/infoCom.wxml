@@ -15,6 +15,9 @@
             <view>成绩</view>
         </view>
     </view>
+    <view style="font-size: 30rpx;margin-top: 200rpx;text-align: center;" wx:if="{{scoreData === null}}">
+        少安毋躁，这个学期的成绩暂时还没有呢
+    </view>
     <van-collapse accordion value="{{ activeName }}" bind:change="onScoreChange" bind:open="getScoreDetail">
         <view wx:key="idx" wx:for="{{scoreData}}" wx:for-index="idx" wx:for-item="item">
             <van-collapse-item name="{{idx}}">

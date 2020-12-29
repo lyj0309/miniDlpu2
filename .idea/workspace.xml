@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="238d08f4-32c3-4765-aa92-5e772b838b16" name="默认的" comment="" />
+    <list default="true" id="238d08f4-32c3-4765-aa92-5e772b838b16" name="默认的" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/Information.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/Information.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.wxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +28,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1lC3oUesZXlVF1XrBCQJ3UCnBhZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -38,6 +51,7 @@
       <recent name="D:\miniProgram\MiniDLPU2\image" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\miniProgram\MiniDLPU2" />
       <recent name="D:\miniProgram\MiniDLPU2\pages\InformationPages\CourseTimetable" />
     </key>
   </component>
@@ -67,11 +81,22 @@
       <workItem from="1608707371259" duration="596000" />
       <workItem from="1609126546040" duration="122000" />
       <workItem from="1609126679819" duration="13227000" />
-      <workItem from="1609222602990" duration="1919000" />
+      <workItem from="1609222602990" duration="14954000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

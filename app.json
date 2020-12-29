@@ -61,7 +61,8 @@
     "van-field": "@vant/weapp/field/index",
     "van-toast": "@vant/weapp/toast/index",
     "van-radio-group": "@vant/weapp/radio-group/index",
-    "van-radio": "@vant/weapp/radio/index"
+    "van-radio": "@vant/weapp/radio/index",
+    "ec-canvas": "./ec-canvas/ec-canvas"
   },
   "sitemapLocation": "sitemap.json"
 }
