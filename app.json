@@ -8,7 +8,8 @@
     "pages/Subpages/Setting/Setting",
     "pages/Subpages/EditClass/EditClass",
     "pages/Subpages/FAQ/FAQ",
-    "pages/Information/evaluation/evaluation"
+    "pages/Information/evaluation/evaluation",
+    "pages/Subpages/StudentId/agreement/agreement"
   ],
   "tabBar": {
     "color": "#B0B0B0",
@@ -62,7 +63,7 @@
     "van-toast": "@vant/weapp/toast/index",
     "van-radio-group": "@vant/weapp/radio-group/index",
     "van-radio": "@vant/weapp/radio/index",
-    "ec-canvas": "./ec-canvas/ec-canvas"
+    "van-notice-bar": "@vant/weapp/notice-bar/index"
   },
   "sitemapLocation": "sitemap.json"
 }

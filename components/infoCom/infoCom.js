@@ -1,10 +1,8 @@
 const API = require("../../script/API");
 import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
-import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
-
 
 Component({
-    styleIsolation: 'shared',
+    styleIsolation: 'shared', //解除组件样式隔离
     properties: { //传过来的值
         title: {
             type: String,
@@ -12,14 +10,22 @@ Component({
         }
     },
     data: {
+        option1: [
+            { text: '全部商品', value: 0 },
+            { text: '新款商品', value: 1 },
+            { text: '活动商品', value: 2 },
+        ],
+        replay: "paused",
         actions: [],
         value1: 0,
         show: false,
         semester: '',
     },
     methods: {
-        onActionSelect(event) {
-            this.setData({semester: event.detail.name})
+
+        onActionSelect(event) { //查成绩选择学期
+            wx.showLoading({title:"加载中"})
+            this.setData({semester: event.detail.name, activeName: ""})
             this.getScore(event.detail.name)
             console.log(event.detail)
         },
@@ -118,7 +124,7 @@ Component({
                             this.setData({empClaArr: cla})
                             // console.log(cla)
                             wx.hideLoading()
-                            Notify({background: '#77C182', message: '查询成功', context: this,})
+                            Notify({background: '#77C182', message: '查询成功', context: this,duration: 933,})
                         }
                     }, {
                         time: time,//第几节
@@ -131,19 +137,22 @@ Component({
             })
         },
         getScoreDetail(e) {
-            if (this.data.scoreData[e.detail].Final!==undefined){ //防止多次请求
+            if (this.data.scoreData[e.detail].Final !== undefined) { //防止多次请求
                 return
             }
             API.getUserData((d) => {
-                API.request(
-                    API.GET_EXAM_SCORE,
-                    {
+                API.request(API.GET_EXAM_SCORE, {
                         success: (d) => {
+                            if (d.data.data === null || d.data.data.Total === "？？？？？？") {
+                                this.setData({['scoreData[' + e.detail + '].Final']: "x"})
+                                this.setData({['opc0[' + e.detail + ']']: 1, ['opc1[' + e.detail + ']']: 0})
+                                return
+                            }
                             this.setData({
                                 ['scoreData[' + e.detail + ']']:
-                                    Object.assign(this.data.scoreData[e.detail], d.data.data)
+                                    Object.assign(this.data.scoreData[e.detail], d.data.data),
                             })
-                            //console.log(d.data.data)
+                            this.setData({['opc0[' + e.detail + ']']: 1, ['opc1[' + e.detail + ']']: 0})
                         }
                     }, {
                         data: encodeURI(this.data.scoreData[e.detail].Detail)
@@ -152,14 +161,20 @@ Component({
                 )
             })
         },
-        showAction() {this.setData({show: true})},
-        empClaClose0() {this.setData({empClaShow0: false})},
-        empClaClose1() {this.setData({empClaShow1: false})},
-        onClose() {this.setData({show: false})},
+        showAction() {
+            this.setData({show: true})
+        },
+        empClaClose0() {
+            this.setData({empClaShow0: false})
+        },
+        empClaClose1() {
+            this.setData({empClaShow1: false})
+        },
+        onClose() {
+            this.setData({show: false})
+        },
         onChange(event) {
-            this.setData({
-                activeName: event.detail,
-            })
+            this.setData({activeName: event.detail,})
         },
         showEmpCla(e) {
             //console.log(e.currentTarget.dataset.idx)
@@ -183,12 +198,18 @@ Component({
                     {
                         success: (d) => {
                             Notify({
+                                duration: 933,
                                 background: '#77C182',
                                 message: '获取成功',
                                 context: this,
                             })
-                            //console.log(d)
-                            that.setData({scoreData: d.data.data})
+                            that.setData({
+                                replay: "paused",
+                                scoreData: d.data.data.Scores,
+                                GPA: d.data.data.GPA,
+                                opc0: new Array(d.data.data.Scores.length).fill(0),
+                                opc1: new Array(d.data.data.Scores.length).fill(1)
+                            })
                             wx.hideLoading()
                         }
                     }, {
@@ -207,9 +228,10 @@ Component({
                     {
                         success: (d) => {
                             //console.log('成功', d.data.data)
-                            that.setData({examDateData: d.data.data})
+                            that.setData({examDateData: d.data.data,replay: "paused"})
                             wx.hideLoading()
                             Notify({
+                                duration: 933,
                                 background: '#77C182',
                                 message: '获取成功',
                                 context: this,
@@ -220,7 +242,7 @@ Component({
                 )
             })
         },
-        getPYFA() {
+        getPYFA() { //培养方案
             let that = this
             API.getUserData((d) => {
                 //console.log(d.session)
@@ -232,10 +254,12 @@ Component({
                             that.setData({pyfaData: d.data.data})
                             wx.hideLoading()
                             Notify({
+                                duration: 933,
                                 background: '#77C182',
                                 message: '获取成功',
                                 context: this,
                             })
+                            this.setData({replay: "paused"})
                         }
                     }, {},
                     "session=" + d.session
@@ -264,8 +288,8 @@ Component({
                 {
                     success: (d) => {
                         if (d.data.errcode === 0) {
-                            //console.log('获取图片成功', d.data)
-                            this.setData({imgUrl: d.data.errmsg.codeUrl})
+                            console.log('获取图片成功', d.data)
+                            this.setData({imgUrl: d.data.errmsg.codeUrl,replay: "paused"})
                         } else {
                             wx.setStorageSync('waterToken', '')
                         }
@@ -293,6 +317,7 @@ Component({
                         if (d.data.errcode === 0) {
                             this.setData({balance: d.data.errmsg.YskBalance})
                             Notify({
+                                duration: 933,
                                 background: '#77C182',
                                 message: '获取成功',
                                 context: this,
@@ -341,11 +366,7 @@ Component({
                                 context: this,
                             })
                         } else {
-                            Notify({
-                                background: '#CC5983',
-                                message: d.data.errmsg,
-                                context: this,
-                            })
+                            Notify({background: '#CC5983', message: d.data.errmsg, context: this,})
                         }
                         wx.hideLoading()
                     }
@@ -424,6 +445,11 @@ Component({
                     API.EVALUATION_LIST,
                     {
                         success: (d) => {
+                            if (d.data.data === null) {
+                                Notify({background: '#CC5983', message: "此项暂时没有评教", context: this,})
+                                wx.hideLoading()
+                                return
+                            }
                             if (d.data.data.EndTime !== undefined) {
                                 this.setData(d.data.data)
                             } else if (d.data.data.length >= 1) {
@@ -442,15 +468,43 @@ Component({
             })
         },
         toEvaluationPage(e) {
-            console.log(this.data)
             wx.navigateTo({
                 url: './evaluation/evaluation?query=' + encodeURIComponent(this.data.evaArr[e.currentTarget.id].Url) +
                     '&callbackUrl=' + encodeURIComponent(this.data.callbackUrl)
             })
+        },
+        replay() { //刷新
+            if (this.data.replay === "running"){
+                return
+            }
+            this.setData({replay: "running"})
+            switch (this.data.title) {
+                case "成绩查询":
+                    this.setData({activeName: ""})
+                    this.getScore(this.data.semester)
+                    break
+                case "考试日程":
+                    this.getExamDate()
+                    break
+                case "培养方案":
+                    this.getPYFA()
+                    break
+                case "水卡":
+                    this.waterCard()
+                    break
+            }
         }
     },
-    lifetimes: {
+    lifetimes: { //组件生命周期
+        ready(){
+            console.log(wx.createSelectorQuery().select('#com'))
+            console.log(wx.createSelectorQuery().select('#com1s'))
+            this.setData({
+                container: () => wx.createSelectorQuery().select('#com'),
+            });
+        },
         attached: function () {
+
             // 在组件实例进入页面节点树时执行=
             switch (this.properties.title) {
                 case '成绩查询':
@@ -464,11 +518,11 @@ Component({
                         for (let k = 1; k <= 2; k++) {
                             let currXQ = (nowYear - (i + 1)) + "-" + (nowYear - i) + "-" + k
                             let idx = nowYear - (i + 1) - user
-                            if (semester === currXQ){
+                            if (semester === currXQ) {
                                 let a = currXQ + '  ' + xueQi[idx][k - 1]
                                 rage.unshift({name: a})
                                 rage.unshift({name: '全部学期'})
-                                this.setData({actions: rage,semester:a})
+                                this.setData({actions: rage, semester: a})
                                 this.getScore(a)
                                 return
                             }

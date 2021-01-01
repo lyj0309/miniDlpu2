@@ -9,6 +9,12 @@
     width: 100%;
 }
 
+
+
+.van-dropdown-item {
+    top: 50px !important;
+}
+
 .items {
     margin-top: 50rpx;
     width: 700rpx;

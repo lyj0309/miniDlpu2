@@ -48,6 +48,11 @@ view.submit{
   padding: 5px 18px;
 }
 
+.agreement{
+  display: flex;
+  justify-content: center;
+}
+
 /* 表单错误警告 */
 @keyframes error{
   0%{background-color: #FFFFFF;}

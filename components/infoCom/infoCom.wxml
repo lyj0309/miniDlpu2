@@ -1,5 +1,6 @@
 <van-notify id="van-notify"/>
 <view class="title">{{ title }}</view>
+<van-icon bind:tap="replay" style="animation-play-state: {{ replay }};" wx:if="{{ title !== '空教室' && title !== '评教' && token !== ''}}" class="replay" size="55rpx" name="replay"/>
 <view wx:if="{{ title === '成绩查询' }}">
     <van-cell title="学期" title-width="200rpx" bind:tap="showAction" is-link value='{{semester}}'/>
     <van-action-sheet
@@ -8,6 +9,9 @@
             bind:close="onClose"
             bind:select="onActionSelect"
     />
+    <view class="examCount">平均绩点：
+        <text style="color:red">{{ GPA }}</text>
+    </view>
     <view style="display:flex;justify-content:space-between;margin-left: 50rpx; margin-right: 50rpx;">
         <view>课程名</view>
         <view style="width:180rpx;display:flex;justify-content:space-between; ">
@@ -28,35 +32,23 @@
                         <view>{{ item.Grade}}</view>
                     </view>
                 </view>
-                <view style="height:200rpx;width:350rpx;margin-left:30rpx">
-                    <view class="cjItem" wx:if="{{ item.Period }}">
-                        <view>学时：</view>
-                        <view>{{ item.Period }}</view>
+                <view style="font-size:27rpx;height:250rpx;opacity:{{ opc0[idx] }};transition: 0.9s;-webkit-transition: 0.7s;">
+                    <view>总成绩：{{item.Grade}}</view>
+                    <view wx:if="{{item.Ordinary}}">平时成绩({{item.OrdPercent }})：{{item.Ordinary}}</view>
+                    <view wx:if="{{item.Middle}}">期中成绩({{item.MiddlePercent}})：{{item.Middle}}</view>
+                    <view wx:if="{{item.Final!=='x'}}" style='margin-bottom:10rpx;'>
+                        期末成绩({{item.FinalPercent}})：{{item.Final}}
                     </view>
-                    <view class="cjItem" wx:if="{{ item.Ordinary }}">
-                        <view>平时成绩：</view>
-                        <view>{{ item.Ordinary }}</view>
+                    <view style='width:100%;border-top:2rpx dashed gray;'></view>
+                    <view style='display:flex;flex-direction:row;margin-top:10rpx;justify-content: space-between;'>
+                        <view>学分：{{item.Credit}}</view>
+                        <view style='width:405rpx;'>绩点：{{item.GPA === '' && item.Grade<=60 ?'不及格没有绩点╥﹏╥...':item.GPA}}
+                        </view>
                     </view>
-                    <view class="cjItem" wx:if="{{ item.OrdPercent }}">
-                        <view>平时成绩占比：</view>
-                        <view>{{ item.OrdPercent }}</view>
-                    </view>
-                    <view class="cjItem" wx:if="{{ item.Middle }}">
-                        <view>期中成绩：</view>
-                        <view>{{ item.Middle }}</view>
-                    </view>
-                    <view class="cjItem" wx:if="{{ item.MiddlePercent }}">
-                        <view>期中成绩占比：</view>
-                        <view>{{ item.MiddlePercent }}</view>
-                    </view>
-                    <view class="cjItem" wx:if="{{ item.Final }}">
-                        <view>期末成绩：</view>
-                        <view>{{ item.Final }}</view>
-                    </view>
-                    <view class="cjItem" wx:if="{{ item.FinalPercent }}">
-                        <view>期末成绩占比：</view>
-                        <view>{{ item.FinalPercent }}</view>
-                    </view>
+                    <view>学时：{{item.Period}}</view>
+                </view>
+                <view style='opacity:{{ opc1[idx] }};  justify-content: center; display: flex;align-items:center;position: relative;transition: 0.7s;-webkit-transition: 0.7s;'>
+                    <view style="font-size:27rpx; top: -180rpx;position: absolute;">加载中</view>
                 </view>
             </van-collapse-item>
         </view>
@@ -64,7 +56,7 @@
 </view>
 
 <view wx:if="{{ title === '考试日程' }}">
-    <view class="examCount">最近共有 <text style="color:red">{{examDateData.length?examDateData.length:0 }}</text> 场考试
+    <view class="examCount">最近共有 <text style="color:red">{{examDateData.length ? examDateData.length : 0 }}</text> 场考试
     </view>
     <view wx:key="idx" wx:for="{{examDateData}}" wx:for-index="idx" wx:for-item="item">
         <van-cell title="{{item.Name}}" value="{{item.Room}}" label="{{item.Time}}"/>
@@ -191,10 +183,12 @@
           wx:for-item="empCla">
         <view wx:if="{{ empCla.length !== 0 && idx !== 7 }}" style="margin-left:10rpx">{{ idx + 1 }}楼</view>
         <view wx:if="{{ empCla.length !== 0 }}" class="empBlock">
-            <view id="{{idx1}}" class="empBlockItem" wx:key="idx1" wx:for="{{empCla}}" wx:for-index="idx1" wx:for-item="cla">
+            <view id="{{idx1}}" class="empBlockItem" wx:key="idx1" wx:for="{{empCla}}" wx:for-index="idx1"
+                  wx:for-item="cla">
                 <view style="margin: 10rpx;height:40rpx;  overflow: hidden;">{{ cla.Room }}</view>
                 <view class="empItems">
-                    <view id="{{idx2}}" style="display:flex" wx:key="idx2" wx:for="{{cla.Time}}" wx:for-index="idx2" wx:for-item="claDot">
+                    <view id="{{idx2}}" style="display:flex" wx:key="idx2" wx:for="{{cla.Time}}" wx:for-index="idx2"
+                          wx:for-item="claDot">
                         <view wx:if="{{ claDot === 0 }}" class="dot green"/>
                         <view wx:else class="dot red"/>
                         <view wx:if="{{ idx2 === 1 || idx2 === 3}}" class="bd"/>
@@ -242,9 +236,12 @@
 </view>
 
 
-<view wx:if="{{ title === '评教' }}">
-    <view wx:if="{{evaArr === undefined}}">
-        <van-cell title="{{ Name }}" value="" label="开始时间{{ StartTime }} 结束时间{{ EndTime }}" border="{{ false }}" />
+<view style="height:2000rpx" wx:if="{{ title === '评教' }}">
+    <view class="sticky">
+        <van-button>ababa</van-button>
+    </view>
+<!--    <view wx:if="{{evaArr === undefined}}">
+        <van-cell title="{{ Name }}" label="开始时间{{ StartTime }} 结束时间{{ EndTime }}" border="{{ false }}"/>
         <view class="btn">
             <van-button id="0" bindtap="evaluation" type="default">理论测评</van-button>
             <van-button id="1" bindtap="evaluation" type="default">实验测评</van-button>
@@ -254,14 +251,14 @@
     <view wx:else>
         <view wx:key="idx" wx:for="{{evaArr}}" wx:for-index="idx" wx:for-item="item">
             <view wx:if="{{ item.Score === '0' }}">
-                <van-cell center title="{{item.Name}}" label="{{item.Teacher}}" >
+                <van-cell center title="{{item.Name}}" label="{{item.Teacher}}">
                     <view>未评教</view>
                     <view id="{{idx}}" style="color:red" bind:tap="toEvaluationPage">评教</view>
                 </van-cell>
             </view>
-        <view wx:else>
-            <van-cell center title="{{item.Name}}" value="{{item.Score}}" label="{{item.Teacher}}" />
+            <view wx:else>
+                <van-cell center title="{{item.Name}}" value="{{item.Score}}" label="{{item.Teacher}}"/>
+            </view>
         </view>
-        </view>
-    </view>
+    </view>-->
 </view>

@@ -1,10 +1,13 @@
 <!--pages/Information/Information.wxml-->
 
+<van-notice-bar
+        wrapable
+        scrollable="{{ false }}" mode="closeable"
+        text="软件处于内测中，如有任何问题请及时反馈至2457395722@qq.com，谢谢。"/>
 
-<van-popup round custom-style=" width: 618rpx;height: 1000rpx;" show="{{ show }}" bind:close="onClose">
+<van-popup id="popup" round custom-style=" width: 618rpx;height: 1000rpx;" show="{{ show }}" bind:close="onClose">
     <infoCom id="com" wx:if="{{title !== ''}}" title="{{ title }}"/>
 </van-popup>
-        <!--<van-icon wx:if="{{show}}" class="closeIcon" name="cross" size="50px" />-->
 
         <!-- 轮播图 开始 -->
 <view class="index_swiper">
@@ -17,12 +20,10 @@
         </swiper-item>
     </swiper>
 </view>
-        <!-- 轮播图 结束 -->
-<view style="height:500rpx;width:750rpx">
-    <ec-canvas ec="{{ ecLine }}"></ec-canvas>
-</view>
+
 <view class="items">
-    <view bind:tap="propTap" id="{{idx}}" class="item" wx:key="idx" wx:for="{{array}}" wx:for-index="idx" wx:for-item="itemName">
+    <view bind:tap="propTap" id="{{idx}}" class="item" wx:key="idx" wx:for="{{array}}" wx:for-index="idx"
+          wx:for-item="itemName">
         <view style="width: 175rpx;">
             <image class="itemImg" src="{{itemName.imgSrc}}"/>
             <!--<button style=""  wx:if="{{idx===8}}" open-type="feedback">asdf</button>-->
@@ -30,4 +31,3 @@
         <text>{{itemName.text}}</text>
     </view>
 </view>
-<van-notify id="van-notify" />
