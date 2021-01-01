@@ -2,13 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="238d08f4-32c3-4765-aa92-5e772b838b16" name="默认的" comment="准备培养方案大改">
+      <change afterPath="$PROJECT_DIR$/miniprogram_npm/we-cropper/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/miniprogram_npm/we-cropper/index.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Account/Account.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Account/Account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Account/Account.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Account/Account.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Account/Account.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Account/Account.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Information/Information.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Information/Information.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/Information.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,16 +66,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/image" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="http.proxy" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\miniProgram\MiniDLPU2" />
+      <recent name="D:\miniProgram\MiniDLPU2\pages\Subpages\AboutUs" />
       <recent name="D:\miniProgram\MiniDLPU2\image" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\miniProgram\MiniDLPU2\components" />
       <recent name="D:\miniProgram\MiniDLPU2" />
       <recent name="D:\miniProgram\MiniDLPU2\pages\InformationPages\CourseTimetable" />
     </key>
@@ -96,7 +113,7 @@
       <workItem from="1609298322074" duration="15762000" />
       <workItem from="1609391864520" duration="13627000" />
       <workItem from="1609473057984" duration="20753000" />
-      <workItem from="1609505019026" duration="614000" />
+      <workItem from="1609505019026" duration="13275000" />
     </task>
     <task id="LOCAL-00001" summary="成绩查询备份">
       <created>1609254589499</created>

@@ -9,8 +9,6 @@
     width: 100%;
 }
 
-
-
 .van-dropdown-item {
     top: 50px !important;
 }

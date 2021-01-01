@@ -1,4 +1,6 @@
 {
+  "darkmode": true,
+  "themeLocation":"theme.json",
   "pages": [
     "pages/Timetable/Timetable",
     "pages/Account/Account",
@@ -12,8 +14,10 @@
     "pages/Subpages/StudentId/agreement/agreement"
   ],
   "tabBar": {
-    "color": "#B0B0B0",
-    "selectedColor": "#3EA3D8",
+    "color": "@tabFontColor",
+    "selectedColor": "@tabSelectedColor",
+    "backgroundColor": "@tabBgColor",
+    "borderStyle": "@tabBorderStyle",
     "list": [
       {
         "pagePath": "pages/Timetable/Timetable",
@@ -36,11 +40,13 @@
     ]
   },
   "window": {
-    "backgroundTextStyle": "light",
-    "backgroundColor": "#F4F0F1",
-    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "迷你教务处",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "@navBgColor",
+    "navigationBarTextStyle": "@navTxtStyle",
+    "backgroundColor": "@bgColor",
+    "backgroundTextStyle": "@bgTxtStyle",
+    "backgroundColorTop": "@bgColorTop",
+    "backgroundColorBottom": "@bgColorBottom"
   },
   "usingComponents": {
     "van-popup": "@vant/weapp/popup/index",

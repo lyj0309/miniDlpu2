@@ -1,0 +1,45 @@
+<!--pages/setting-detail/AboutUs.wxml-->
+<view class="page">
+  <view class='page__hd'>
+  </view>
+  <view class='page__bd'>
+    <view class="title">工大教务处2</view>
+    <view class="version">v1.6.1</view>
+    <view class="self-intro">
+      此程序为工大教务处的2.x版本，为1.x的重构版
+      <text>
+        在此版本中，在各种优化的同时，我们抛弃了许多
+
+        我们大大优化了后端的爬取速度，包括后端使用了反向代理，分布式去应对学校的封IP
+
+        至于前端，好好体验就好了
+
+
+      </text>
+    </view>
+    <view class="repo" bindtap='setrepo'>
+      2.x开源地址：https://github.com/lyj0309/miniDlpu2
+    </view>
+    <view>以下为《工大教务处》1.x说明</view>
+    <view class="self-intro">
+      大家好，我是“工大教务处”小程序的开发者，
+      “工大教务处”是我在课外学习中开发的第一款上线的小程序。
+      “工大教务处”前身是一款安卓程序“mini教务处”，那是我为了方便我自己查询（课表、成绩、考试日程）而开发的。
+      后来经过室友、同学的分享，有些iOS的同学反馈也想要使用。
+      于是我2018年9月份用了一个月学习小程序，并完成了第一版小程序上线。
+      小程序上线后，随着大家的扩散，就有越来越多的用户，也收到了很多建议，于是我一次次地添加功能、修改bug，才有了你们现在看到的这个程序。
+      现在小程序有1.6万(2020.11)用户了，其前身“mini教务处”安卓端现在每天也还有将近100人(2020.11)正在使用。
+    </view>
+    <view class="self-intro">
+      “工大教务处”小程序原理就是爬虫技术，但是爬取教务处网站过于频繁后，教务处网站会将我们的IP封禁一段时间，
+      因此小程序会有查询到不到数据的情况。我们也去和学校教务处老师交谈了一下，希望开放一些数据给我们或者添加一个白名单，最终并没有得到支持。
+      于是我们只能通过一些离线缓存来缓解压力，后续还会发掘更多的方法来提升用户体验。
+    </view>
+    <view class="repo" bindtap='setrepo'>
+      1.x开源地址：https://github.com/Patrick-Jun/miniDLPU
+    </view>
+
+
+  </view>
+</view>
+

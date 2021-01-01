@@ -546,6 +546,7 @@ Page({
     this.initRuler();
     
     this.timeTable((d)=>{
+      console.log(d)
       this.setData(d);
       this.setDayList(this.data.weekNow, this.data.week);
     }, this.data.semester);

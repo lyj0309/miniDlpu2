@@ -25,7 +25,7 @@ view.semester {
 view.week{
   height: 40.8px;
   background: #3EA3D8;
-  border-radius: 0 0 0 23px;
+  /*border-radius: 0 0 0 23px;*/
   display: flex;
   overflow: hidden;
   /* justify-content: space-between; */
@@ -40,7 +40,7 @@ view.week > view.background{
 /* 背景图片 */
 view.week > view.background > image{
   position: relative;
-  opacity: .4;
+  opacity: .5;
   width: 680rpx;
   margin: 0 35rpx;
   top: -90px;
@@ -197,6 +197,8 @@ scroll-view.slectWeek view.wList view.cImage{
 
 /* 表格 */
 view.table{
+  /*改了这奥*/
+  background-image:url(https://s3.ax1x.com/2021/01/01/rz1JEV.md.jpg);
   display: flex;
   flex-wrap: wrap;
 }
@@ -204,7 +206,7 @@ view.table{
 /* 左侧时间 */
 view.table > view.time{
   width: 10%;
-  /* background-color: rgba(255, 255, 255, .3); */
+  background-color: rgba(255, 255, 255, .5);
 }
 view.table > view.time > view{
   height: 55px;
@@ -229,6 +231,7 @@ view.table > view.class{
 view.class > view{
   width: 100%;
 }
+
 view.class > view > view{
   word-break: break-all;
   width: calc( 100% - 4px );

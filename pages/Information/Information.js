@@ -28,10 +28,10 @@ Page({
         }, {
             text: '评教',
             imgSrc: '../../image/pingjiao.png'
-        }, {
+        }/*, {
             text: '统一支付',
             imgSrc: '../../image/pay.png'
-        }
+        }*/
         ],
         container: null,
     },

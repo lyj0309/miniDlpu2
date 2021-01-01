@@ -6,7 +6,7 @@ const pageUrl = [
   "/pages/Subpages/FAQ/FAQ",
   "/pages/Subpages/Storage/Storage",
   "/pages/Subpages/Setting/Setting",
-  "/pages/Subpages/StudentId/StudentId"
+  "/pages/Subpages/AboutUs/AboutUs",
 ];
 
 Page({
