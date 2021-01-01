@@ -1,5 +1,6 @@
 const API = require("../../script/API");
 import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 
 Component({
     styleIsolation: 'shared', //解除组件样式隔离
@@ -7,24 +8,28 @@ Component({
         title: {
             type: String,
             value: '',
-        }
+        },
     },
     data: {
-        option1: [
-            { text: '全部商品', value: 0 },
-            { text: '新款商品', value: 1 },
-            { text: '活动商品', value: 2 },
-        ],
         replay: "paused",
         actions: [],
-        value1: 0,
         show: false,
         semester: '',
     },
     methods: {
-
+        openPyfaDetail(e){
+            console.log(this.data.root)
+            console.log(e)
+            Dialog.alert({
+                context:this.data.root,
+                title: '标题',
+                message: '弹窗内容',
+            }).then(() => {
+                // on close
+            });
+        },
         onActionSelect(event) { //查成绩选择学期
-            wx.showLoading({title:"加载中"})
+            wx.showLoading({title: "加载中"})
             this.setData({semester: event.detail.name, activeName: ""})
             this.getScore(event.detail.name)
             console.log(event.detail)
@@ -124,7 +129,7 @@ Component({
                             this.setData({empClaArr: cla})
                             // console.log(cla)
                             wx.hideLoading()
-                            Notify({background: '#77C182', message: '查询成功', context: this,duration: 933,})
+                            Notify({background: '#77C182', message: '查询成功', context: this, duration: 933,})
                         }
                     }, {
                         time: time,//第几节
@@ -228,7 +233,7 @@ Component({
                     {
                         success: (d) => {
                             //console.log('成功', d.data.data)
-                            that.setData({examDateData: d.data.data,replay: "paused"})
+                            that.setData({examDateData: d.data.data, replay: "paused"})
                             wx.hideLoading()
                             Notify({
                                 duration: 933,
@@ -244,14 +249,27 @@ Component({
         },
         getPYFA() { //培养方案
             let that = this
+            this.setData({
+                pyfaSemester: [['第一学期', '大一上'], ['第二学期', '大一下'], ['第三学期', '大二上'], ['第四学期', '大二下'],
+                    ['第五学期', '大三上'], ['第六学期', '大三下'], ['第七学期', '大四上'], ['第八学期', '大四下'],]
+            })
             API.getUserData((d) => {
                 //console.log(d.session)
                 API.request(
                     API.GET_CULTIVATE_SCHEME,
                     {
                         success: (d) => {
-                            //console.log('成功', d.data.data)
-                            that.setData({pyfaData: d.data.data})
+                            let pyfaData = [[], [], [], [], [], [], [], []]
+                            that.setData({pyfaCount: d.data.data.length})
+                            for (let i = 0; i < d.data.data.length; i++) {
+                                for (let j = 0; j < d.data.data[i].Semester.length; j++) {
+                                    if (d.data.data[i].Semester[j] === ",") {
+                                        continue
+                                    }
+                                    pyfaData[d.data.data[i].Semester[j] - 1].push(d.data.data[i])
+                                }
+                            }
+                            that.setData({pyfaData: pyfaData})
                             wx.hideLoading()
                             Notify({
                                 duration: 933,
@@ -289,7 +307,7 @@ Component({
                     success: (d) => {
                         if (d.data.errcode === 0) {
                             console.log('获取图片成功', d.data)
-                            this.setData({imgUrl: d.data.errmsg.codeUrl,replay: "paused"})
+                            this.setData({imgUrl: d.data.errmsg.codeUrl, replay: "paused"})
                         } else {
                             wx.setStorageSync('waterToken', '')
                         }
@@ -474,7 +492,7 @@ Component({
             })
         },
         replay() { //刷新
-            if (this.data.replay === "running"){
+            if (this.data.replay === "running") {
                 return
             }
             this.setData({replay: "running"})
@@ -496,13 +514,6 @@ Component({
         }
     },
     lifetimes: { //组件生命周期
-        ready(){
-            console.log(wx.createSelectorQuery().select('#com'))
-            console.log(wx.createSelectorQuery().select('#com1s'))
-            this.setData({
-                container: () => wx.createSelectorQuery().select('#com'),
-            });
-        },
         attached: function () {
 
             // 在组件实例进入页面节点树时执行=

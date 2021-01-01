@@ -63,7 +63,8 @@
     "van-toast": "@vant/weapp/toast/index",
     "van-radio-group": "@vant/weapp/radio-group/index",
     "van-radio": "@vant/weapp/radio/index",
-    "van-notice-bar": "@vant/weapp/notice-bar/index"
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-dialog": "@vant/weapp/dialog/index"
   },
   "sitemapLocation": "sitemap.json"
 }

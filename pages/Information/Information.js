@@ -39,11 +39,12 @@ Page({
         this.popup = this.selectComponent("#com"); //组件的id
         this.popup.evaluation(undefined, data); //组件里里面定义的方法
     },
+
     onClose() {
         this.setData({show: false, title: ''});
     },
     propTap: function (prop) {
-        API.getUserData(()=>{
+        API.getUserData(selector=>{
             wx.showLoading({title: '加载中···'})
             console.log(prop.currentTarget.id)
             switch (prop.currentTarget.id) {

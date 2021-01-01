@@ -63,7 +63,7 @@ linear 线性
 }
 
 .sticky{
-    position: sticky;
+    position: sticky !important;
     top: 0rpx;
     left: 0;
     z-index: 9;
@@ -105,3 +105,21 @@ linear 线性
     justify-content: space-around;
 }
 
+.modal-hang{
+    display: flex;
+    flex-direction: row;
+}
+.modal-hang-left{
+    display: flex;
+    flex: 1;
+    /* border-bottom: 1px darkgray solid; */
+    /* 右对齐，不知道为什么text-align:right不行 */
+    justify-content:flex-end;
+}
+.modal-hang-right{
+    display: flex;
+    flex: 1;
+    /* border-bottom: 1px darkgray solid; */
+    padding-left: 5rpx;
+    justify-content:flex-start;
+}

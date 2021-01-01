@@ -1,6 +1,7 @@
 <van-notify id="van-notify"/>
 <view class="title">{{ title }}</view>
-<van-icon bind:tap="replay" style="animation-play-state: {{ replay }};" wx:if="{{ title !== '空教室' && title !== '评教' && token !== ''}}" class="replay" size="55rpx" name="replay"/>
+<van-icon bind:tap="replay" style="animation-play-state: {{ replay }};"
+          wx:if="{{ title !== '空教室' && title !== '评教' && token !== ''}}" class="replay" size="55rpx" name="replay"/>
 <view wx:if="{{ title === '成绩查询' }}">
     <van-cell title="学期" title-width="200rpx" bind:tap="showAction" is-link value='{{semester}}'/>
     <van-action-sheet
@@ -64,39 +65,35 @@
 </view>
 
 <view wx:if="{{ title === '培养方案' }}">
-    <view class="examCount">一共要学 <text style="color:red">{{ pyfaData.length }}</text> 门课程
+    <view class="examCount">一共可能要学 <text style="color:red">{{ pyfaCount }}</text> 门课程
     </view>
 
-    <van-collapse accordion value="{{ activeName }}" bind:change="onChange">
-        <van-cell title="第一学期" value="大一上"/>
-        <view wx:key="idx" wx:for="{{pyfaData}}" wx:for-index="idx" wx:for-item="item">
-            <van-cell wx:if="{{ pyfaData[idx].Semester === '1' && pyfaData[idx+1].Semester === '1,2,3,4'}}" title="第二学期"
-                      value="大一下"/>
-            <van-cell wx:if="{{ pyfaData[idx].Semester === '2' && pyfaData[idx+1].Semester === '3'}}" title="第三学期"
-                      value="大二上"/>
-            <van-cell wx:if="{{ pyfaData[idx].Semester === '3' && pyfaData[idx+1].Semester === '4'}}" title="第四学期"
-                      value="大二下"/>
-            <van-cell wx:if="{{ pyfaData[idx].Semester === '4' && pyfaData[idx+1].Semester === '5'}}" title="第五学期"
-                      value="大三上"/>
-            <van-cell wx:if="{{ pyfaData[idx].Semester === '5' && pyfaData[idx+1].Semester === '6'}}" title="第六学期"
-                      value="大三下"/>
-            <van-cell wx:if="{{ pyfaData[idx].Semester === '6' && pyfaData[idx+1].Semester === '7'}}" title="第七学期"
-                      value="大四上"/>
-            <van-cell wx:if="{{ pyfaData[idx].Semester === '7' && pyfaData[idx+1].Semester === '8'}}" title="第八学期"
-                      value="大四下"/>
-            <van-collapse-item title="{{item.Name}}" name="{{idx}}">
-                <view>
-                    开课单位：{{item.College}}
-                </view>
-                <view>
-                    总学时：{{item.Period}}
-                </view>
-                <view>
-                    学分：{{item.Credit}}
-                </view>
-            </van-collapse-item>
+    <view wx:key="idx" wx:for="{{pyfaData}}" wx:for-index="idx" wx:for-item="pyfa">
+        <!--        <van-cell-group custom-class="position: sticky !important;top: 0rpx;left: 0;z-index: 9;">
+                <van-cell size="large" title="{{pyfaSemester[idx][0]}}" >
+                        <view style="color: red;opacity: 0.5;">{{pyfaSemester[idx][1]}}</view>
+                    </van-cell>
+                </van-cell-group>-->
+        <view style="position: sticky !important;top: 0rpx;left: 0;z-index: 9;box-shadow: 0 2rpx 5rpx #888888;">
+            <van-cell size="large" title="{{pyfaSemester[idx][0]}}    共{{pyfa.length}}门">
+                <view style="color: red;opacity: 0.5;">{{pyfaSemester[idx][1]}}</view>
+            </van-cell>
         </view>
-    </van-collapse>
+        <van-collapse value="{{ activeName }}" accordion bind:change="onChange">
+            <van-collapse-item wx:key="idx1" wx:for="{{pyfa}}" wx:for-index="idx1" wx:for-item="item" value="{{item.Credit}}'/{{item.ExamMode}} "  title="{{item.Name}}" name="{{idx*100+idx1}}">
+                <view class='modal-hang'><view class='modal-hang-left'>开设学期：</view><view class='modal-hang-right'>{{item.Semester}}</view></view>
+                <view class='modal-hang'><view class='modal-hang-left'>学分：</view><view class='modal-hang-right'>{{item.Credit}}</view></view>
+                <view class='modal-hang'><view class='modal-hang-left'>总学时：</view><view class='modal-hang-right'>{{item.Period}}</view></view>
+                <view class='modal-hang'><view class='modal-hang-left'>考核方式：</view><view class='modal-hang-right'>{{item.ExamMode}}</view></view>
+                <view class='modal-hang'><view class='modal-hang-left'>开课单位：</view><view class='modal-hang-right'>{{item.College}}</view></view>
+            </van-collapse-item>
+        </van-collapse>
+<!--        <van-cell-group>
+            <van-cell border="{{true}}" wx:key="idx1" wx:for="{{pyfa}}" wx:for-index="idx1" title="{{item.Name}}"
+                      wx:for-item="item" value="{{item.Credit}}'/{{item.ExamMode}} " bind:click="openPyfaDetail"
+                      is-link/>
+        </van-cell-group>-->
+    </view>
 </view>
 
 
@@ -237,10 +234,8 @@
 
 
 <view style="height:2000rpx" wx:if="{{ title === '评教' }}">
-    <view class="sticky">
-        <van-button>ababa</van-button>
-    </view>
-<!--    <view wx:if="{{evaArr === undefined}}">
+
+    <view wx:if="{{evaArr === undefined}}">
         <van-cell title="{{ Name }}" label="开始时间{{ StartTime }} 结束时间{{ EndTime }}" border="{{ false }}"/>
         <view class="btn">
             <van-button id="0" bindtap="evaluation" type="default">理论测评</van-button>
@@ -260,5 +255,5 @@
                 <van-cell center title="{{item.Name}}" value="{{item.Score}}" label="{{item.Teacher}}"/>
             </view>
         </view>
-    </view>-->
+    </view>
 </view>

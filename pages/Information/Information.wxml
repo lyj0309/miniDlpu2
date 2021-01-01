@@ -3,10 +3,10 @@
 <van-notice-bar
         wrapable
         scrollable="{{ false }}" mode="closeable"
-        text="软件处于内测中，如有任何问题请及时反馈至2457395722@qq.com，谢谢。"/>
+        text="软件处于内测中，如有任何问题请及时反馈至jwc@2333.pub，谢谢。"/>
 
 <van-popup id="popup" round custom-style=" width: 618rpx;height: 1000rpx;" show="{{ show }}" bind:close="onClose">
-    <infoCom id="com" wx:if="{{title !== ''}}" title="{{ title }}"/>
+    <infoCom id="com" wx:if="{{title !== ''}}" title="{{ title }}" root="{{root}}"/>
 </van-popup>
 
         <!-- 轮播图 开始 -->
@@ -31,3 +31,4 @@
         <text>{{itemName.text}}</text>
     </view>
 </view>
+<van-dialog id="van-dialog" />
