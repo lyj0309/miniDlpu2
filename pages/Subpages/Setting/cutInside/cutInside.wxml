@@ -1,18 +1,17 @@
-<import src="../we-cropper/we-cropper.wxml"/>
-
+<import src="./we-cropper/we-cropper.wxml"/>
+        <!-- 图像比例1:1.91 -->
 <view class="cropper-wrapper">
-  <template is="we-cropper" data="{{...cropperOpt}}"/>
-  <view class="cropper-buttons" style="color: {{cropperOpt.boundStyle.color}}">
-    <view
-      class="upload btn"
-      bindtap="uploadTap">
-      上传图片
+    <template is="we-cropper" data="{{...cropperOpt}}"/>
+    <view class="cropper-buttons" style="color: {{cropperOpt.boundStyle.color}}">
+        <view
+                class="upload btn"
+                bindtap="">
+        </view>
+        <view
+                class="getCropperImage btn"
+                style="background-color: {{cropperOpt.boundStyle.color}};"
+                bindtap="getCropperImage">
+            确定
+        </view>
     </view>
-    <view
-      class="getCropperImage btn"
-      style="background-color: {{cropperOpt.boundStyle.color}};"
-      bindtap="getCropperImage">
-      生成图片
-    </view>
-  </view>
 </view>

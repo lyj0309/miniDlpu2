@@ -17,6 +17,21 @@
     {{ userWeek == "default" ? "自动获取" : userWeek }}</picker>
 </view>
 
+
+<!-- 背景选择 -->
+<view class="title" style="margin-top:20px;">课表背景设置</view>
+
+<view class="imgChoose">
+  <view style="width:400rpx;  display: flex;justify-content: center;align-items: center;">
+    <image mode="aspectFit" wx-if="{{bgImg}}" src="{{bgImg}}"  />
+    <view wx:else>当前无背景</view>
+  </view>
+  <view>
+    <view class="button" style="width:80%" bindtap="selectKCBbg">选择课表背景</view>
+    <view wx:if="{{bgImg}}" class="button" style="width:80%" bindtap="deleteKCBbg">清空课表背景</view>
+  </view>
+</view>
+
 <!-- 标题 -->
 <view class="title" style="margin-top:20px;">课表显示设置</view>
 

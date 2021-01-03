@@ -84,8 +84,11 @@ catchtouchmove="dragMove" catchtouchend="dragEnd">
 <view style="height: 83.2px;"></view>
 <view class="{{ showBlank === 1 ? '' : showBlank ? 'showSelect' : 'hideSelect'  }}"></view>
 
+<!-- 背景图片 -->
+<image class="bgImg" style="height:{{ bgImgHeight }}rpx" mode="aspectFill" src="{{ bgImg }}" />
+
 <!-- 表 -->
-<view class="table">
+<view class="table" >
 
   <!-- 左侧时间部分 -->
   <view class="time">
@@ -100,8 +103,8 @@ catchtouchmove="dragMove" catchtouchend="dragEnd">
   <view class="class" bindtap="selectClassStart">
     <view wx:for="{{ class[week - 1] }}" wx:key="class" wx:for-item="classItem">
       <view wx:for="{{ classItem }}" wx:key="day"  wx:for-item="dayItem" 
-      style="margin-top: {{ dayItem.blank * 60 + 3.5 }}px; height: {{ dayItem.len * 60 - 3.5 }}px; background-color: #{{ dayItem.other ? 'DDDDDD' : dayItem.c }}; color: #{{ dayItem.other ? 'A2A2A2' : 'FFFFFF' }}; opacity: {{ dayItem.other ? '0.88' : '0.95' }}" >
-        <text>{{ dayItem.other ? '[非本周]' + dayItem.n : dayItem.n }}@
+      style="margin-top: {{ dayItem.blank * 60 + 3.5 }}px; height: {{ dayItem.len * 60 - 3.5 }}px;background-color: #{{ dayItem.other ? 'DDDDDD' : dayItem.c }}; color: #{{ dayItem.other ? 'A2A2A2' : 'FFFFFF' }}; opacity: {{ dayItem.other ? '0.95' : '0.95' }}" >
+        <text >{{ dayItem.other ? '[非本周]' + dayItem.n : dayItem.n }}@
         {{ dayItem.l ? dayItem.l : '无地点' }}</text>
       </view>
     </view>

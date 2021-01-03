@@ -48,3 +48,8 @@ view.button{
   font-weight: 500;
   padding: 5px 18px;
 }
+
+.imgChoose{
+  margin-top: 20rpx;
+  display: flex;
+}

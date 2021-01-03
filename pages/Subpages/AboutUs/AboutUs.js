@@ -9,18 +9,8 @@ Page({
 
   },
   onShow: function(){
-    let that = this;
-    //主题更新
-    that.setData({
-      theme: app.getTheme()
-    });
   },
   onLoad: function(){
-    let that = this;
-    //主题更新
-    that.setData({
-      theme: app.getTheme()
-    });
   },
   setrepo: function () {
     wx.setClipboardData({
