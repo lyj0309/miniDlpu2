@@ -11,7 +11,8 @@
     "pages/Subpages/EditClass/EditClass",
     "pages/Subpages/FAQ/FAQ",
     "pages/Information/evaluation/evaluation",
-    "pages/Subpages/StudentId/agreement/agreement"
+    "pages/Subpages/StudentId/agreement/agreement",
+    "pages/Subpages/Setting/cutInside/cutInside"
   ],
   "tabBar": {
     "color": "@tabFontColor",
