@@ -41,7 +41,7 @@
     ]
   },
   "window": {
-    "navigationBarTitleText": "迷你教务处",
+    "navigationBarTitleText": "工大教务处",
     "navigationBarBackgroundColor": "@navBgColor",
     "navigationBarTextStyle": "@navTxtStyle",
     "backgroundColor": "@bgColor",

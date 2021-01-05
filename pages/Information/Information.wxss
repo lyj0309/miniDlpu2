@@ -42,3 +42,30 @@
     z-index: 1000;
     bottom: 20rpx;
 }*/
+.modal-hang {
+    display: flex;
+    flex-direction: row;
+}
+
+.modal-hang-left {
+    display: flex;
+    flex: 1;
+    /* border-bottom: 1px darkgray solid; */
+    /* 右对齐，不知道为什么text-align:right不行 */
+    justify-content: flex-end;
+}
+
+.modal-hang-right {
+    display: flex;
+    flex: 1;
+    /* border-bottom: 1px darkgray solid; */
+    padding-left: 5rpx;
+    justify-content: flex-start;
+}
+
+.pyfaDetail{
+    height: 350rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

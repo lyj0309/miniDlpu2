@@ -4,7 +4,7 @@
   </view>
   <view class='page__bd'>
     <view class="title">工大教务处2</view>
-    <view class="version">v1.6.1</view>
+<!--    <view class="version">v1.6.1</view>-->
     <view class="self-intro">
       此程序为工大教务处的2.x版本，为1.x的重构版
       <text>

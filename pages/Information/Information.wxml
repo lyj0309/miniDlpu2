@@ -3,7 +3,7 @@
 <van-notice-bar
         wrapable
         scrollable="{{ false }}" mode="closeable"
-        text="软件处于内测中，如有任何问题请及时反馈至jwc@2333.pub，谢谢。"/>
+        text="软件处于内测中，如有任何问题请及时反馈,谢谢。本次更新:水卡自动登录,背景可修改"/>
 
 <van-popup id="popup" round custom-style=" width: 618rpx;height: 1000rpx;" show="{{ show }}" bind:close="onClose">
     <infoCom id="com" wx:if="{{title !== ''}}" title="{{ title }}" root="{{root}}"/>
@@ -22,13 +22,39 @@
 </view>
 
 <view class="items">
-    <view bind:tap="propTap" id="{{idx}}" class="item" wx:key="idx" wx:for="{{array}}" wx:for-index="idx"
-          wx:for-item="itemName">
+    <view bind:tap="propTap" id="{{idx}}" class="item" wx:key="idx" wx:for="{{array}}" wx:for-index="idx" wx:for-item="item">
         <view style="width: 175rpx;">
-            <image class="itemImg" src="{{itemName.imgSrc}}"/>
+            <image class="itemImg" src="{{item.imgSrc}}"/>
             <!--<button style=""  wx:if="{{idx===8}}" open-type="feedback">asdf</button>-->
         </view>
-        <text>{{itemName.text}}</text>
+        <text>{{item.text}}</text>
     </view>
 </view>
-<van-dialog id="van-dialog" />
+<van-dialog
+        title="{{showData.Name?showData.Name:showData.Room}}"
+        use-slot
+        width="{{showData.Name?'250':'280'}}"
+        show="{{ minShow }}"
+        confirm-button-text="关闭"
+        bind:confirm="closeMinModel"
+>
+    <view class="pyfaDetail" wx:if="{{showData.College !== undefined}}">
+        <view>
+            <view class='modal-hang'><view class='modal-hang-left'>开设学期：</view><view class='modal-hang-right'>{{showData.Semester}}</view></view>
+            <view class='modal-hang'><view class='modal-hang-left'>学分：</view><view class='modal-hang-right'>{{showData.Credit}}</view></view>
+            <view class='modal-hang'><view class='modal-hang-left'>总学时：</view><view class='modal-hang-right'>{{showData.Period}}</view></view>
+            <view class='modal-hang'><view class='modal-hang-left'>考核方式：</view><view class='modal-hang-right'>{{showData.ExamMode}}</view></view>
+            <view class='modal-hang'><view class='modal-hang-left'>开课单位：</view><view class='modal-hang-right'>{{showData.College}}</view></view>
+        </view>
+ </view>
+    <view wx:else >
+        <view wx:for="{{epClaTimeList}}" wx:key="idx"  wx:for-index="idx" wx:for-item="item">
+            <view class='modal-hang' style='margin-top:30rpx;'>
+                <view style='width:65%;text-align: right;'>{{item}}:</view>
+                <view  wx:if="{{showData.Time[idx] === 1}}" style="color:#CC5983">有课</view>
+                <view  wx:else style="color:#77C182">无课</view>
+            </view>
+        </view>
+    </view>
+
+</van-dialog>

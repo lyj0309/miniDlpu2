@@ -23,7 +23,7 @@
 <!-- 提交按钮 -->
 <view class="submit" bindtap="submit">验证并保存</view>
 
-<view class="agreement">登录或注册即代表您已同意我们的 <navigator style="    color: cornflowerblue;" url="./agreement/agreement" hover-class="navigator-hover">《用户协议》</navigator></view>
+<view class="agreement">登录或注册即代表您已同意我们的 <navigator style="color: cornflowerblue;" url="./agreement/agreement" hover-class="navigator-hover">《用户协议》</navigator></view>
 <!-- 最后显示时间 -->
 <!-- <view class="title" style="margin-top:15px;">上一次验证时间</view> -->
 

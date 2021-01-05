@@ -64,20 +64,21 @@ Page({
                         console.log("剪裁图片大小", r)
                     }
                 })
+                let bgImg = wx.getStorageSync(`bgImg`)
+                if (bgImg !== '' || bgImg !== null){
+                    FSM.removeSavedFile({
+                        filePath: bgImg,
+                        success: r => {
+                            wx.removeStorageSync(`bgImg`)
+                            console.log(`移除成功`)
+                        }
+                    })
+                }
 
                 FSM.saveFile({
                     tempFilePath: src, // 传入一个本地临时文件路径
                     success(res) {
-                        let bgImg = wx.getStorageSync(`bgImg`)
-                        if (bgImg){
-                            FSM.removeSavedFile({
-                                filePath: bgImg,
-                                success: r => {
-                                    wx.removeStorageSync(`bgImg`)
-                                    console.log(`移除成功`)
-                                }
-                            })
-                        }
+
                         //console.log(res.savedFilePath) // res.savedFilePath 为一个本地缓存文件路径
                         wx.setStorageSync(`bgImg`, res.savedFilePath)
                         wx.hideLoading()

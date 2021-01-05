@@ -9,7 +9,7 @@
 }
 
 .replay {
-    animation:rotate 2s linear infinite;
+    animation: rotate 2s linear infinite;
     /*    animation-name:rotate;
 linear 线性
         animation-duration:3s ;
@@ -19,6 +19,7 @@ linear 线性
     right: 20rpx;
     position: absolute;
 }
+
 .value-class {
     flex: none !important;
 }
@@ -62,11 +63,22 @@ linear 线性
     width: 215rpx;
 }
 
-.sticky{
+.sticky {
+    opacity: 0.88;
+    background-color: #ffffff;
     position: sticky !important;
     top: 0rpx;
     left: 0;
     z-index: 9;
+    box-shadow: 0 3rpx 3rpx #888888;
+}
+
+.empTitle{
+    align-items: center;
+    display:flex;
+    font-size:28rpx;
+    justify-content: space-around;
+    height:75rpx
 }
 
 .empItems {
@@ -105,21 +117,3 @@ linear 线性
     justify-content: space-around;
 }
 
-.modal-hang{
-    display: flex;
-    flex-direction: row;
-}
-.modal-hang-left{
-    display: flex;
-    flex: 1;
-    /* border-bottom: 1px darkgray solid; */
-    /* 右对齐，不知道为什么text-align:right不行 */
-    justify-content:flex-end;
-}
-.modal-hang-right{
-    display: flex;
-    flex: 1;
-    /* border-bottom: 1px darkgray solid; */
-    padding-left: 5rpx;
-    justify-content:flex-start;
-}

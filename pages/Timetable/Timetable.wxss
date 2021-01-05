@@ -26,6 +26,7 @@ view.week {
     height: 40.8px;
     background: #3EA3D8;
     /*border-radius: 0 0 0 23px;*/
+    border-radius: 0 0 0 5px;
     display: flex;
     overflow: hidden;
     /* justify-content: space-between; */
@@ -134,7 +135,7 @@ view.seleAn {
 }
 
 /* 周选择区域 */
-scroll-view.slectWeek, scroll-view.slectSemester {
+scroll-view.selectWeek, scroll-view.selectSemester {
     height: 80px;
     width: 95%;
     padding: 0 2.5%;
@@ -145,12 +146,12 @@ scroll-view.slectWeek, scroll-view.slectSemester {
 }
 
 /* 当前学期 */
-scroll-view.slectSemester view.nowSemester {
+scroll-view.selectSemester view.nowSemester {
     background-color: #FFFFFF;
     border-radius: 10px;
 }
 
-scroll-view.slectSemester view.thisSemester {
+scroll-view.selectSemester view.thisSemester {
     border-radius: 10px;
     margin-bottom: 2px;
     padding: 0 10.5px 0px 10.5px !important;
@@ -160,22 +161,22 @@ scroll-view.slectSemester view.thisSemester {
     display: inline-block;
 }
 
-scroll-view.slectSemester view.thisSemester view {
+scroll-view.selectSemester view.thisSemester view {
     opacity: 1 !important;
 }
 
-scroll-view.slectSemester view.thisSemester image {
+scroll-view.selectSemester view.thisSemester image {
     opacity: 1 !important;
 }
 
-scroll-view.slectSemester view.sList {
+scroll-view.selectSemester view.sList {
     height: 72px;
     padding: 0 12px 5px 12px;
     width: 90px;
     display: inline-block;
 }
 
-scroll-view.slectSemester view.sList view {
+scroll-view.selectSemester view.sList view {
     position: relative;
     top: 4px;
     font-size: .9em;
@@ -184,14 +185,14 @@ scroll-view.slectSemester view.sList view {
     height: 17px;
 }
 
-scroll-view.slectSemester view.sList image {
+scroll-view.selectSemester view.sList image {
     width: 90px;
     height: 55px;
     opacity: .1;
 }
 
 /* 当前周 */
-scroll-view.slectWeek view.thisWeek {
+scroll-view.selectWeek view.thisWeek {
     background-color: #FFFFFF;
     border-radius: 10px;
     padding: 0 8px 5px 8px !important;
@@ -199,20 +200,20 @@ scroll-view.slectWeek view.thisWeek {
 }
 
 /* 选择周 */
-scroll-view.slectWeek view.selectWeek {
+scroll-view.selectWeek view.selectWeek {
     border-radius: 10px;
     border: #3EA3D8 1.5px solid;
     padding: 0 6.5px 2px 6.5px !important;
 }
 
-scroll-view.slectWeek view.wList {
+scroll-view.selectWeek view.wList {
     height: 70px;
     padding: 0 8px 10px 8px;
     width: 45px;
     display: inline-block;
 }
 
-scroll-view.slectWeek view.wList view.weekName {
+scroll-view.selectWeek view.wList view.weekName {
     width: 100%;
     height: 25px;
     font-size: .7em;
@@ -220,12 +221,12 @@ scroll-view.slectWeek view.wList view.weekName {
     line-height: 25px;
 }
 
-scroll-view.slectWeek view.wList view.weekName > text {
+scroll-view.selectWeek view.wList view.weekName > text {
     font-size: 2.1em;
     letter-spacing: -.02em;
 }
 
-scroll-view.slectWeek view.wList view.cImage {
+scroll-view.selectWeek view.wList view.cImage {
     width: 45px;
     height: 45px;
     background-image: radial-gradient(#DDDDDD 60%, transparent 0);

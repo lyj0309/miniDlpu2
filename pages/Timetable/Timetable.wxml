@@ -45,7 +45,7 @@ catchtap="clickMask">
 
   <!-- 周选择区域 -->
   <view class="seleAn {{ showWeekSelect === 1 ? '' : showWeekSelect ? 'showSelect' : 'hideSelect' }}">
-    <scroll-view class="slectWeek" scroll-x>
+    <scroll-view class="selectWeek" scroll-left="{{ scrollLeft }}" scroll-x="true">
       <view class="wList {{ weekNow - 1 == index ? 'thisWeek' : '' }} {{ week - 1 == index ? 'selectWeek' : '' }}" wx:for="{{ weekImg }}" wx:key="weekImg" bindtap="changeWeek" data-id="{{ index }}">
         <view class="weekName">第<text>{{ index + 1 }}</text>周</view>
         <view class="cImage" style="background-size: 10px 10px; background-repeat: no-repeat; {{ item }}"></view>
@@ -55,7 +55,7 @@ catchtap="clickMask">
 
   <!-- 学期择区域 -->
   <view class="seleAn {{ showSemesterSelect === 1 ? '' : showSemesterSelect ? 'showSelect' : 'hideSelect' }}">
-    <scroll-view class="slectSemester" scroll-x>
+    <scroll-view class="selectSemester" scroll-x>
     <view class="sList {{ semester == item ? 'thisSemester' : '' }} {{ semesterNow == item ? 'nowSemester' : '' }}" wx:for="{{ semesterList }}" wx:key="sList" data-id="{{ item }}" bindtap="changeSemester">
       <view>{{ item }}</view>
       <image src="{{ semester == item ? '/image/semester_select.svg' : '/image/semester.svg' }}"></image>
@@ -103,7 +103,7 @@ catchtouchmove="dragMove" catchtouchend="dragEnd">
   <view class="class" bindtap="selectClassStart">
     <view wx:for="{{ class[week - 1] }}" wx:key="class" wx:for-item="classItem">
       <view wx:for="{{ classItem }}" wx:key="day"  wx:for-item="dayItem" 
-      style="margin-top: {{ dayItem.blank * 60 + 3.5 }}px; height: {{ dayItem.len * 60 - 3.5 }}px;background-color: #{{ dayItem.other ? 'DDDDDD' : dayItem.c }}; color: #{{ dayItem.other ? 'A2A2A2' : 'FFFFFF' }}; opacity: {{ dayItem.other ? '0.95' : '0.95' }}" >
+      style="margin-top: {{ dayItem.blank * 60 + 3.5 }}px; height: {{ dayItem.len * 60 - 3.5 }}px;background-color: {{ dayItem.other ? 'rgba(221,221,221,0.8)' : dayItem.c }}; color: #{{ dayItem.other ? 'A2A2A2' : 'FFFFFF' }}" >
         <text >{{ dayItem.other ? '[非本周]' + dayItem.n : dayItem.n }}@
         {{ dayItem.l ? dayItem.l : '无地点' }}</text>
       </view>

@@ -17,7 +17,7 @@
 <!-- 用户昵称 -->
 <view class="name">
   <view class="nick">
-    <open-data type="userNickName"></open-data>
+    {{ name }}
   </view>
   <view class="user">
     <view>{{ user }}</view>
@@ -40,10 +40,16 @@
       <view>{{ item }}</view>
       <image src="/image/go.svg"></image>
     </view>
+      <button  open-type="feedback">
+      <view style="opacity: 0.6;">意见反馈</view>
+      <image src="/image/go.svg"></image>
+      </button>
+      <button open-type="contact">
+      <view style="opacity: 0.6;">联系客服</view>
+      <image src="/image/go.svg"></image>
+      </button>
   </view>
-  
 </view>
 <view class='showmsg'>
-
 <text>工大小程序联盟\n</text>
 </view>

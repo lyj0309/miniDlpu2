@@ -1,4 +1,6 @@
 const API = require("../../script/API");
+import Dialog from '../..//miniprogram_npm/@vant/weapp/dialog/dialog';
+
 Page({
 
     /**
@@ -34,12 +36,16 @@ Page({
         }*/
         ],
         container: null,
+        minShow: false,
     },
     refreshEva(data) {
         this.popup = this.selectComponent("#com"); //组件的id
         this.popup.evaluation(undefined, data); //组件里里面定义的方法
     },
 
+    closeMinModel(){
+        this.setData({minShow: false});
+    },
     onClose() {
         this.setData({show: false, title: ''});
     },

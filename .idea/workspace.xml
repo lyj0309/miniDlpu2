@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="238d08f4-32c3-4765-aa92-5e772b838b16" name="默认的" comment="准备培养方案大改">
-      <change afterPath="$PROJECT_DIR$/pages/Subpages/Setting/cutInside/cutInside.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/Subpages/Setting/cutInside/cutInside.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/Subpages/Setting/cutInside/cutInside.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/Subpages/Setting/cutInside/cutInside.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/Subpages/Setting/cutInside/we-cropper/we-cropper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/Subpages/Setting/cutInside/we-cropper/we-cropper.wxml" afterDir="false" />
+    <list default="true" id="238d08f4-32c3-4765-aa92-5e772b838b16" name="默认的" comment="可改背景">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram_npm/we-cropper/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/Setting/cutInside/we-cropper/we-cropper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram_npm/we-cropper/index.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/Setting/Setting.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/Setting/Setting.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/Setting/Setting.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/Setting/Setting.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/Setting/Setting.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/Setting/Setting.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Account/Account.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Account/Account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Account/Account.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Account/Account.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Account/Account.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Account/Account.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/Information.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/Information.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/Information.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Subpages/Setting/cutInside/cutInside.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/Setting/cutInside/cutInside.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/API.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/KCB.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/KCB.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +120,10 @@
       <workItem from="1609505019026" duration="13275000" />
       <workItem from="1609561890005" duration="1926000" />
       <workItem from="1609565636857" duration="21241000" />
-      <workItem from="1609644369295" duration="7596000" />
+      <workItem from="1609644369295" duration="10362000" />
+      <workItem from="1609728729479" duration="6300000" />
+      <workItem from="1609756015933" duration="6914000" />
+      <workItem from="1609819147520" duration="12732000" />
     </task>
     <task id="LOCAL-00001" summary="成绩查询备份">
       <created>1609254589499</created>
@@ -141,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609484566675</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="可改背景">
+      <created>1609656577461</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1609656577461</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,6 +178,7 @@
     </ignored-roots>
     <MESSAGE value="成绩查询备份" />
     <MESSAGE value="准备培养方案大改" />
-    <option name="LAST_COMMIT_MESSAGE" value="准备培养方案大改" />
+    <MESSAGE value="可改背景" />
+    <option name="LAST_COMMIT_MESSAGE" value="可改背景" />
   </component>
 </project>

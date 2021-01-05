@@ -552,6 +552,9 @@ Page({
         this.timeTable((d) => {
             this.setData(d);
             this.setDayList(this.data.weekNow, this.data.week);
+            this.setData({
+                scrollLeft:this.data.weekNow*45
+            })
         }, this.data.semester);
 
     },

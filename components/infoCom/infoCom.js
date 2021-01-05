@@ -1,6 +1,5 @@
 const API = require("../../script/API");
 import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
-import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 
 Component({
     styleIsolation: 'shared', //解除组件样式隔离
@@ -17,16 +16,22 @@ Component({
         semester: '',
     },
     methods: {
-        openPyfaDetail(e){
-            console.log(this.data.root)
-            console.log(e)
-            Dialog.alert({
-                context:this.data.root,
-                title: '标题',
-                message: '弹窗内容',
-            }).then(() => {
-                // on close
-            });
+        openPyfaDetail(e) { //打开培养方案弹窗
+            let thisPage = getCurrentPages()[0];//获取页面页面实例对象
+            thisPage.setData({
+                minShow: true,
+                showData:e.currentTarget.dataset.item
+            })
+            //console.log(e.currentTarget.dataset.item)
+        },
+        openEmpDetail(e){
+            let thisPage = getCurrentPages()[0];//获取页面页面实例对象
+           // console.log(e.currentTarget.dataset.item)
+            thisPage.setData({
+                minShow: true,
+                showData:e.currentTarget.dataset.item,
+                epClaTimeList:this.data.epClaTimeList
+            })
         },
         onActionSelect(event) { //查成绩选择学期
             wx.showLoading({title: "加载中"})
@@ -129,7 +134,7 @@ Component({
                             this.setData({empClaArr: cla})
                             // console.log(cla)
                             wx.hideLoading()
-                            Notify({background: '#77C182', message: '查询成功', context: this, duration: 933,})
+                            Notify({background: '#77C182', message: '查询成功', context: this,})
                         }
                     }, {
                         time: time,//第几节
@@ -203,7 +208,6 @@ Component({
                     {
                         success: (d) => {
                             Notify({
-                                duration: 933,
                                 background: '#77C182',
                                 message: '获取成功',
                                 context: this,
@@ -236,7 +240,6 @@ Component({
                             that.setData({examDateData: d.data.data, replay: "paused"})
                             wx.hideLoading()
                             Notify({
-                                duration: 933,
                                 background: '#77C182',
                                 message: '获取成功',
                                 context: this,
@@ -272,7 +275,6 @@ Component({
                             that.setData({pyfaData: pyfaData})
                             wx.hideLoading()
                             Notify({
-                                duration: 933,
                                 background: '#77C182',
                                 message: '获取成功',
                                 context: this,
@@ -294,10 +296,27 @@ Component({
                 name: '',
             })
             this.checkWaterLogin()
+            console.log(token)
             if (token !== '') {
                 this.setWaterInfo()
+            } else {
+                this.waterAutoLogin()
             }
             wx.hideLoading()
+        },
+        waterAutoLogin() {
+            API.getUserData(
+                e => {
+                    let pwd
+                    if (e.user.substring(0, 2) === "20") { //判断是19还是20级
+                        console.log("20级")
+                        pwd = e.user.substring(e.user.length - 6)
+                    } else {
+                        pwd = API.get(`idCard`)
+                    }
+                    this.loginWaterCard(e.name, e.user, pwd)
+                }
+            )
         },
         checkWaterLogin() {
             //console.log(this.data.token)
@@ -333,9 +352,12 @@ Component({
                     success: (d) => {
                         console.log('成功', d.data)
                         if (d.data.errcode === 0) {
-                            this.setData({balance: d.data.errmsg.YskBalance})
+                            this.setData({
+                                balance: d.data.errmsg.YskBalance,
+                                userName: d.data.errmsg.realname,
+                                stuId: d.data.errmsg.student
+                            })
                             Notify({
-                                duration: 933,
                                 background: '#77C182',
                                 message: '获取成功',
                                 context: this,
@@ -368,7 +390,7 @@ Component({
             this.setData({token: ''})
 
         },
-        loginWaterCard() {
+        loginWaterCard(name, stuNum, pwd) {
             API.request(
                 API.LOGIN_WATERCARD,
                 {
@@ -378,6 +400,7 @@ Component({
                             wx.setStorageSync('waterToken', d.data.errmsg.token)
                             this.setData({token: d.data.errmsg.token})
                             this.checkWaterLogin()
+                            this.setWaterInfo()
                             Notify({
                                 background: '#77C182',
                                 message: '登录成功',
@@ -395,9 +418,9 @@ Component({
                     m: "water",
                     do: "appapi",
                     op: "user.login",
-                    realname: this.data.name,
-                    studentID: this.data.stuNum,
-                    password: this.data.pwd,
+                    realname: this.data.name ? this.data.name : name,
+                    studentID: this.data.stuNum ? this.data.stuNum : stuNum,
+                    password: this.data.pwd ? this.data.pwd : pwd,
                     time: "1607400092",
                     sign: "dffddefeb30cc01984f00ee8038e0793",
                     style: "2",

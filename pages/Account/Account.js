@@ -47,8 +47,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let user = API.get("user");
-    this.setData({user:user})
+    API.getUserData(e=>{
+      this.setData(e)
+    })
 
   },
 

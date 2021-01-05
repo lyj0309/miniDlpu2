@@ -1,106 +1,138 @@
 /* pages/Account/Account.wxss */
 
-.showmsg{
-  position: absolute;
-  bottom: 10rpx;
-  width: 100%;
-  text-align: center;
-  font-size: 24rpx;
-  color: rgb(206, 206, 206);
+.showmsg {
+    position: absolute;
+    bottom: 10rpx;
+    width: 100%;
+    text-align: center;
+    font-size: 24rpx;
+    color: rgb(206, 206, 206);
 }
 
 /* 顶部显示用户头像的地方 */
-view.header{
-  width: 100%;
-  height: 80px;
-  background-color: #3EA3D8;
-  border-radius: 0 0 0 30px;
-  overflow: hidden;
-}
-view.header view.background{
-  width: 0;
-  height: 0;
-}
-view.header view.background image{
-  position: relative;
-  top: -75px;
-  width: 750rpx;
-  opacity: .3;
+view.header {
+    width: 100%;
+    height: 80px;
+    background-color: #3EA3D8;
+    border-radius: 0 0 0 30px;
+    overflow: hidden;
 }
 
- /* 用户头像显示 */
- /* 注意：这里的用户头像不占据80px文档高度 */
-view.icon{
-  width: 100%;
-  height: 50px;
+view.header view.background {
+    width: 0;
+    height: 0;
 }
-view.icon view{
-  position: relative;
-  top: -40px;
-  margin: 0 calc( 50% - 40px );
-  overflow: hidden;
-  border-radius: 100%;
-  border: #FFFFFF 2px solid;
-  box-shadow: 0 0 0 15px rgba(0, 0, 0, .08);
-  width: 80px;
-  height: 80px;
+
+view.header view.background image {
+    position: relative;
+    top: -75px;
+    width: 750rpx;
+    opacity: .3;
+}
+
+/* 用户头像显示 */
+/* 注意：这里的用户头像不占据80px文档高度 */
+view.icon {
+    width: 100%;
+    height: 50px;
+}
+
+view.icon view {
+    position: relative;
+    top: -40px;
+    margin: 0 calc(50% - 40px);
+    overflow: hidden;
+    border-radius: 100%;
+    border: #FFFFFF 2px solid;
+    box-shadow: 0 0 0 15px rgba(0, 0, 0, .08);
+    width: 80px;
+    height: 80px;
 }
 
 /* 用户昵称 */
-view.name{
-  width: 100%;
-  margin-top: 15px;
+view.name {
+    width: 100%;
+    margin-top: 15px;
 }
-view.name view.nick{
-  font-size: 1.4em;
-  font-weight: 500;
-  color: rgba(0, 0, 0, .65);
-  text-align: center;
+
+view.name view.nick {
+    font-size: 1.4em;
+    font-weight: 500;
+    color: rgba(0, 0, 0, .65);
+    text-align: center;
 }
-view.name view.user{
-  font-size: .8em;
-  text-align: center;
+
+view.name view.user {
+    font-size: .8em;
+    text-align: center;
 }
 
 /* 用户选项区域 */
-view.opition{
-  width: 84%;
-  margin: 10px 8% 0 8%;
+view.opition {
+    width: 84%;
+    margin: 10px 8% 0 8%;
 }
-view.opition > view.account, 
-view.opition > view.other > view{
-  width: 100%;
-  display: flex;
-  box-sizing: border-box;
-  justify-content: space-between;
+
+view.opition > view.account,
+view.opition > view.other > view {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 3px 0;
+    border-top: 1px solid rgba(0, 0, 0, .08);
 }
-view.opition > view.other > view{
-  border-top: 1px solid rgba(0, 0, 0, .08);
+
+view.opition > view.other > view.start {
+    border: none;
 }
-view.opition > view.other > view.start{
-  border: none;
+
+view.opition > view.account,
+view.opition > view.other {
+    background-color: #FFFFFF;
+    /* box-shadow: 0 0 0px 1px rgba(0, 0, 0, .08); */
+    border-radius: 20px;
+    margin: 15px 0;
+    padding: 5px 18px;
 }
-view.opition > view.account, 
-view.opition > view.other{
-  background-color: #FFFFFF;
-  /* box-shadow: 0 0 0px 1px rgba(0, 0, 0, .08); */
-  border-radius: 20px;
-  margin: 15px 0;
-  padding: 5px 18px;
+
+view.opition > view.account view,
+view.opition > view.other > view > view {
+    height: 40px;
+    font-size: 1.1em;
+    line-height: 40px;
+    font-weight: 500;
 }
-view.opition > view.other > view{
-  padding: 3px 0;
+
+view.opition > view image {
+    width: 12px;
+    height: 12px;
+    margin: 14px 0;
+    opacity: .5;
 }
-view.opition > view.account view, 
-view.opition > view.other > view > view{
-  height: 40px;
-  font-size: 1.1em;
-  line-height: 40px;
-  font-weight: 500;
+
+view.opition > view.other > button.start {
+    border: none;
 }
-view.opition > view image{
-  width: 12px;
-  height: 12px;
-  margin: 14px 0;
-  opacity: .5;
+
+view.opition > view.other > button {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 3px 0 0 0 ;
+    border-top: 1px solid rgba(0, 0, 0, .08) ;
+    font-size: 1.1em;
+    color: auto;
+    background-color: #ffffff;
+}
+
+view.opition > view.other > button:after {
+    border: 0;
+}
+
+view.opition > view.other > button > view {
+    height: 40px;
+    line-height: 40px;
+    font-weight: 500;
 }
