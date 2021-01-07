@@ -336,6 +336,8 @@ API.GET_JS_SESSION = {
             [d.ip, d.name, d.session, r.id, r.pwd, date,d.idCard]
         );
 
+        // 发起登录请求
+        API.request(API.GET_STATIC_DATA, {});
         rd();
     }
 };
@@ -354,17 +356,20 @@ API.GET_STATIC_DATA = {
         // 更新时间
         let date = new Date();
 
+        //console.log("传入学期",d.semester)
+        let semester = API.geneSemesterArr(d.semester)[1]
+        //console.log("静态数据semester",semester)
         // 存储到缓存
         API.set(
             ["semester", "weekNow", "lastGetStaticDataTime"],
-            [d.semester, d.week_now, date]
+            [semester, d.week_now, date]
         );
 
         // 更新到全局数据
         API.setObjData(
             getApp().globalData.StaticData,
             ["semester", "weekNow", "time"],
-            [d.semester, d.week_now, date]
+            [semester, d.week_now, date]
         );
 
         rd();
@@ -382,13 +387,12 @@ API.GET_TIME_TABLE = {
 
     // 成功后存储数据
     ok: (d, code, r, rd) => {
-
         // 如果没有数据
         // if(d.data === null && d.code === 1) return;
 
         if (!r.semester) return;
 
-        API.calcKCB(r.semester, d, () => {
+        API.calcKCB(r.semester+(r.age === undefined?"":r.age), d, () => {
             rd();
         }, API.getSetting());
     }
@@ -398,96 +402,55 @@ API.GET_TIME_TABLE = {
 API.GET_EXAM_DATE = {
     url: 'https://jwc.2333.pub/exam_date',
     method: 'GET',
-
-    // 成功后存储数据
-    ok: (d, code, r, rd) => {
-
-    }
 }
 
 API.GET_EXAM_SCORE = {
     url: 'https://jwc.2333.pub/exam_score',
     method: 'GET',
 
-    // 成功后存储数据
-    ok: (d, code, r, rd) => {
-
-    }
 }
 
 API.GET_CULTIVATE_SCHEME = {
     url: 'https://jwc.2333.pub/cultivate_scheme',
     method: 'GET',
-
-    // 成功后存储数据
-    ok: (d, code, r, rd) => {
-
-    }
 }
 
 API.LOGIN_WATERCARD = {
     url: 'https://www.wuweixuezi.com/app/index.php',
     method: 'GET',
 
-    // 成功后存储数据
-    ok: (d, code, r, rd) => {
-
-    }
 }
 API.GET_WATERCARD_IMG = {
     url: 'https://www.wuweixuezi.com/app/index.php',
     method: 'GET',
 
-    // 成功后存储数据
-    ok: (d, code, r, rd) => {
-
-    }
 }
 API.GET_WATERCARD_INFO = {
     url: 'https://www.wuweixuezi.com/app/index.php',
     method: 'GET',
 
-    // 成功后存储数据
-    ok: (d, code, r, rd) => {
-
-    }
 }
 
 
 API.GET_EMPTY_CLASS = {
     url: 'https://jwc.2333.pub/empty_class',
     method: 'GET',
-
-    // 成功后存储数据
-    ok: (d, code, r, rd) => {
-
-    }
 }
 API.EVALUATION_LIST = {
     url: 'https://jwc.2333.pub/evaluation',
     method: 'GET',
-    // 成功后存储数据
-    ok: (d, code, r, rd) => {
 
-    }
 }
 API.EVALUATION_DETAIL = {
     url: 'https://jwc.2333.pub/evaluation_detail',
     method: 'GET',
-    // 成功后存储数据
-    ok: (d, code, r, rd) => {
-
-    }
 }
 
 
 API.EVALUATION_POST = {
     url: 'https://jwc.2333.pub/evaluation_post',
     method: 'GET',
-    // 成功后存储数据
-    ok: (d, code, r, rd) => {
 
-    }
 }
 
 
@@ -854,6 +817,7 @@ API.getTimeTable = function (then, semester, session) {
     let termList = API.getTermList();
     let timeTable = API.get(semester);
 
+    //console.log("获取学期课表",termList,"2",timeTable)
     // 先看看学期列表有没有
     let iv = false;
     for (let i = 0; i < termList.List.length; i++)
@@ -874,7 +838,8 @@ API.getTimeTable = function (then, semester, session) {
         {
             ok: () => then(App.globalData.TermData[semester])
         }, {
-            semester: semester
+            age: semester.slice(11, semester.length),
+            semester: semester.slice(0, 11)
         },
         "session=" + session
     );
@@ -882,5 +847,30 @@ API.getTimeTable = function (then, semester, session) {
     return "none";
 }
 
+API.geneSemesterArr = function (semester){
+    let rage = []
+    let xueQi = [['大一上', '大一下'], ['大二上', '大二下'], ['大三上', '大三下'], ['大四上', '大四下']]
+    let user = API.get("user")
+    if (user === '' || user === undefined) { return [[],semester] }
+    if (semester === undefined)  {semester = API.get("semester").slice(0,11)}
+    //console.log("user",user,semester)
+    user = '20' + user.slice(0, 2)
+    let nowYear = new Date().getFullYear()
+    for (let i = 8; i >= -1; i--) {
+        for (let k = 1; k <= 2; k++) {
+            let currXQ = (nowYear - (i + 1)) + "-" + (nowYear - i) + "-" + k
+            let idx = nowYear - (i + 1) - user
+            if (semester === currXQ) {
+                let a = currXQ + '  ' + xueQi[idx][k - 1]
+                rage.unshift({name: a})
+                rage.unshift({name: '全部学期'})
+                return [rage,a]
+            }
+            if (idx >= 0 && idx <= 3) {
+                rage.unshift({name: currXQ + '  ' + xueQi[idx][k - 1]})
+            }
+        }
+    }
+}
 
 module.exports = API;

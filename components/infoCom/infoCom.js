@@ -17,17 +17,15 @@ Component({
     },
     methods: {
         openPyfaDetail(e) { //打开培养方案弹窗
-            let thisPage = getCurrentPages()[0];//获取页面页面实例对象
-            thisPage.setData({
+            this.page.setData({
                 minShow: true,
                 showData:e.currentTarget.dataset.item
             })
             //console.log(e.currentTarget.dataset.item)
         },
         openEmpDetail(e){
-            let thisPage = getCurrentPages()[0];//获取页面页面实例对象
            // console.log(e.currentTarget.dataset.item)
-            thisPage.setData({
+            this.page.setData({
                 minShow: true,
                 showData:e.currentTarget.dataset.item,
                 epClaTimeList:this.data.epClaTimeList
@@ -39,51 +37,12 @@ Component({
             this.getScore(event.detail.name)
             console.log(event.detail)
         },
-
-        empClaConfirm0(event) {
-            const {picker, value, index} = event.detail
-            console.log(value)
-            this.setData({empClaShow0: false, epHouse: value[0], epWeek: value[1], epDay: value[2]})
-        },
-        empClaConfirm1() { //第几节确认
-            if (this.data.result.length === 0) {
-                Notify({
-                    background: '#CC5983',
-                    message: '至少选择一个哦',
-                    context: this,
-                })
-                return
-            }
-            let time = [0, 0, 0, 0, 0, 0]
-            for (let i = 0; i < this.data.result.length; i++) {
-                for (let j = 0; j < this.data.epClaTimeList.length; j++) {
-                    if (this.data.epClaTimeList[j] === this.data.result[i]) {
-                        time[j] = 1
-                        break
-                    }
-                }
-
-            }
-            console.log(this.data.result)
-            this.setData({empClaShow1: false, epTime: time})
-        },
         onScoreChange(event) {
             this.setData({
                 activeName: event.detail,
             })
         },
-        onPickerChange(event) {//星期几选择
-            this.setData({
-                result: event.detail
-            })
-        },
-        toggle(event) {
-            const {index} = event.currentTarget.dataset
-            const checkbox = this.selectComponent(`.checkboxes-${index}`)
-            checkbox.toggle()
-        },
-        noop() {
-        },
+
         searchEmpCla() {
             wx.showLoading({title: '查询中'})
             let day, dayStr = "一二三四五六日", time = ''
@@ -174,12 +133,7 @@ Component({
         showAction() {
             this.setData({show: true})
         },
-        empClaClose0() {
-            this.setData({empClaShow0: false})
-        },
-        empClaClose1() {
-            this.setData({empClaShow1: false})
-        },
+
         onClose() {
             this.setData({show: false})
         },
@@ -188,10 +142,17 @@ Component({
         },
         showEmpCla(e) {
             //console.log(e.currentTarget.dataset.idx)
+
+            
+
             if (e.currentTarget.dataset.idx === '0') {
-                this.setData({empClaShow0: true})
+                this.page.setData({
+                    empClaShow0: true
+                })
             } else {
-                this.setData({empClaShow1: true})
+                this.page.setData({
+                    empClaShow1: true
+                })
             }
 
         },
@@ -439,7 +400,7 @@ Component({
             for (let i = 1; i <= 20; i++) {
                 weekValue.push(i + "周")
             }
-            this.setData({
+            this.page.setData({
                 columns: [
                     {
                         values: ['综合楼', '艺院', '服院', '其他'],
@@ -456,12 +417,14 @@ Component({
                 ],
                 empClaShow0: false,
                 empClaShow1: false,
+                epClaTimeList: ['一二节 8:00-9:40', '三四节 10:05-11:45', '五六节 13:20-14:55', '七八节 15:15-16:50', '九十节 18:00-19:40', '十一二节 19:50-21:40'],
+                result: ['三四节 10:05-11:45'],
+            })
+            this.setData({
                 epDay: "周" + "日一二三四五六".charAt(new Date().getDay()),
                 epWeek: week + '周',
                 epTime: [0, 1, 0, 0, 0, 0],
                 epHouse: '综合楼',
-                epClaTimeList: ['一二节 8:00-9:40', '三四节 10:05-11:45', '五六节 13:20-14:55', '七八节 15:15-16:50', '九十节 18:00-19:40', '十一二节 19:50-21:40'],
-                result: ['三四节 10:05-11:45'],
             })
             wx.hideLoading()
         },
@@ -538,33 +501,13 @@ Component({
     },
     lifetimes: { //组件生命周期
         attached: function () {
-
+            this.page = getCurrentPages()[0];//获取页面页面实例对象
             // 在组件实例进入页面节点树时执行=
             switch (this.properties.title) {
                 case '成绩查询':
-                    let rage = []
-                    let xueQi = [['大一上', '大一下'], ['大二上', '大二下'], ['大三上', '大三下'], ['大四上', '大四下']]
-                    let user = API.get("user")
-                    let semester = API.get("semester")
-                    user = '20' + user.slice(0, 2)
-                    let nowYear = new Date().getFullYear()
-                    for (let i = 8; i >= -1; i--) {
-                        for (let k = 1; k <= 2; k++) {
-                            let currXQ = (nowYear - (i + 1)) + "-" + (nowYear - i) + "-" + k
-                            let idx = nowYear - (i + 1) - user
-                            if (semester === currXQ) {
-                                let a = currXQ + '  ' + xueQi[idx][k - 1]
-                                rage.unshift({name: a})
-                                rage.unshift({name: '全部学期'})
-                                this.setData({actions: rage, semester: a})
-                                this.getScore(a)
-                                return
-                            }
-                            if (idx >= 0 && idx <= 3) {
-                                rage.unshift({name: currXQ + '  ' + xueQi[idx][k - 1]})
-                            }
-                        }
-                    }
+                    let arr = API.geneSemesterArr()
+                    this.setData({actions: arr[0], semester: arr[1]})
+                    this.getScore(arr[1])
                     break
                 case '考试日程':
                     this.getExamDate()

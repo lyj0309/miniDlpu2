@@ -495,10 +495,8 @@ Page({
 
         // 获取学期列表
         let TermList = API.getTermList();
-
         // 获取静态数据
         API.getStaticData((s) => {
-
             // 获取当前应该显示的学期
             let whichKCB = {
                 semester: TermList.select == "default" ? s.semester : TermList.select,

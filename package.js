@@ -1,6 +1,6 @@
-{
-  "name": "aaa",
-  "version": "1.0.0",
+module.exports ={
+  "name": "minidlpu2",
+  "version": "1.9.0",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {

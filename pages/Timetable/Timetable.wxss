@@ -1,4 +1,18 @@
 /* pages/Timetable/Timetable.wxss */
+@media (prefers-color-scheme: dark) {
+    page {
+        background-color: #1f1f1f;
+    }
+
+    .table, .header, .mask, .cList, .cDetail {
+        filter: invert(1) hue-rotate(.5turn);
+    }
+
+    image {
+        opacity: .75;
+    }
+}
+
 
 /* 头部 */
 view.header {

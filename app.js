@@ -1,10 +1,19 @@
 //app.js
 
 const KCB = require("./script/KCB");
-
+const CONFIG = require("./package.js")
 App({
   onLaunch: function () {
-    
+    let ver = wx.getStorageSync(`version`)
+    if (ver!==CONFIG["version"]){
+      let user = wx.getStorageSync(`user`)
+      let pwd = wx.getStorageSync(`pwd`)
+      wx.clearStorageSync()
+      wx.setStorageSync("version",CONFIG["version"])
+      wx.setStorageSync("user",user)
+      wx.setStorageSync("pwd",pwd)
+      console.log(`更新成功`)
+    }
   },
   globalData: {
 

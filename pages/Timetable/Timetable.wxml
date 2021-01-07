@@ -57,7 +57,7 @@ catchtap="clickMask">
   <view class="seleAn {{ showSemesterSelect === 1 ? '' : showSemesterSelect ? 'showSelect' : 'hideSelect' }}">
     <scroll-view class="selectSemester" scroll-x>
     <view class="sList {{ semester == item ? 'thisSemester' : '' }} {{ semesterNow == item ? 'nowSemester' : '' }}" wx:for="{{ semesterList }}" wx:key="sList" data-id="{{ item }}" bindtap="changeSemester">
-      <view>{{ item }}</view>
+      <view style="font-size:10px">{{ item }}</view>
       <image src="{{ semester == item ? '/image/semester_select.svg' : '/image/semester.svg' }}"></image>
     </view>
     </scroll-view>
@@ -102,8 +102,8 @@ catchtouchmove="dragMove" catchtouchend="dragEnd">
   <!-- 主表部分 -->
   <view class="class" bindtap="selectClassStart">
     <view wx:for="{{ class[week - 1] }}" wx:key="class" wx:for-item="classItem">
-      <view wx:for="{{ classItem }}" wx:key="day"  wx:for-item="dayItem" 
-      style="margin-top: {{ dayItem.blank * 60 + 3.5 }}px; height: {{ dayItem.len * 60 - 3.5 }}px;background-color: {{ dayItem.other ? 'rgba(221,221,221,0.8)' : dayItem.c }}; color: #{{ dayItem.other ? 'A2A2A2' : 'FFFFFF' }}" >
+      <view wx:for="{{ classItem }}" wx:key="day"  wx:for-item="dayItem"
+      style="margin-top: {{ dayItem.blank * 60 + 3.5 }}px; height: {{ dayItem.len * 60 - 3.5 }}px;background-color: {{ dayItem.other ? 'rgba(221,221,221,0.8)' : dayItem.c }}; color: #{{ dayItem.other ? '909090' : 'FFFFFF' }}" >
         <text >{{ dayItem.other ? '[非本周]' + dayItem.n : dayItem.n }}@
         {{ dayItem.l ? dayItem.l : '无地点' }}</text>
       </view>

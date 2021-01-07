@@ -1,6 +1,8 @@
-.van-dropdown-item {
+
+.van-popup {
     top: 50px !important;
 }
+
 
 .title {
     text-align: center;
@@ -20,9 +22,6 @@ linear 线性
     position: absolute;
 }
 
-.value-class {
-    flex: none !important;
-}
 
 
 /* 刷新旋转 */
@@ -52,7 +51,10 @@ linear 线性
     flex-wrap: wrap;
     align-content: flex-start
 }
-
+.waterImg{
+    width: 100%;
+    height: 618rpx;
+}
 .empBlockItem {
     margin: 6rpx;
     border-radius: 12rpx;

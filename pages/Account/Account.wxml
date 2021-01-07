@@ -1,5 +1,6 @@
 <!--pages/Account/Account.wxml-->
 
+
 <!-- 顶部用户信息展示区域 -->
 <view class="header">
   <view class="background">
@@ -41,11 +42,11 @@
       <image src="/image/go.svg"></image>
     </view>
       <button  open-type="feedback">
-      <view style="opacity: 0.6;">意见反馈</view>
+      <view>意见反馈</view>
       <image src="/image/go.svg"></image>
       </button>
       <button open-type="contact">
-      <view style="opacity: 0.6;">联系客服</view>
+      <view>联系客服</view>
       <image src="/image/go.svg"></image>
       </button>
   </view>

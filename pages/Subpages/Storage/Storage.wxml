@@ -4,7 +4,7 @@
 <view class="title" style="margin-top:20px;">课表缓存列表</view>
 
 <!-- 添加课程 -->
-<picker class="add" mode="multiSelector" range="{{ selectRange }}" value="{{ [0, 0] }}" bindchange="onValueChange">
+<picker class="add"  range="{{ selectRange }}" value="{{ 0 }}" bindchange="onValueChange">
   <image src="/image/addClass.svg"></image>
   <view>创建学期</view>
 </picker>

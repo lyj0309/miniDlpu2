@@ -1,4 +1,28 @@
 /* pages/Information/Information.wxss */
+@media (prefers-color-scheme: dark) {
+    page, image,open-data {
+        background-color: #1f1f1f;
+        filter: invert(1) hue-rotate(.5turn);
+    }
+    image,open-data{
+        opacity: .75;
+    }
+}
+
+
+.value-class {
+    flex: none !important;
+}
+
+/*.pop{
+    position: absolute;
+    filter: blur(0);
+    z-index: 1000;
+    width: 618rpx;
+    left: 66rpx;
+    bottom: calc(100% - 1000rpx)/2rpx;
+    height: 1000rpx
+}*/
 
 .index_swiper swiper {
     width: 750rpx;

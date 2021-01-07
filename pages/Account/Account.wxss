@@ -1,5 +1,15 @@
 /* pages/Account/Account.wxss */
 
+@media (prefers-color-scheme: dark) {
+    page, image,open-data {
+        background-color: #1f1f1f;
+        filter: invert(1) hue-rotate(.5turn);
+    }
+    image{
+        opacity: .75;
+    }
+}
+
 .showmsg {
     position: absolute;
     bottom: 10rpx;
@@ -132,6 +142,7 @@ view.opition > view.other > button:after {
 }
 
 view.opition > view.other > button > view {
+    color: rgba(0, 0, 0, .55);
     height: 40px;
     line-height: 40px;
     font-weight: 500;

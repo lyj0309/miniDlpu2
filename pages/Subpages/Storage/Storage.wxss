@@ -1,5 +1,13 @@
 /* pages/Account_Subpages/Storage/Storage.wxss */
-
+@media (prefers-color-scheme: dark) {
+  page, image,open-data {
+    background-color: #1f1f1f;
+    filter: invert(1) hue-rotate(.5turn);
+  }
+  image,open-data{
+    opacity: .75;
+  }
+}
 view.list{
   background-color: #FFFFFF;
   border-radius: 18px;

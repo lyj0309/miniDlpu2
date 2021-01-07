@@ -1,5 +1,26 @@
 /**app.wxss**/
+
+/*@media (prefers-color-scheme: dark) {
+    !* DarkMode 下的样式 start *!
+    page, image,open-data {
+        background-color: #1f1f1f;
+        filter: invert(1) hue-rotate(.5turn);
+    }
+    image,open-data{
+        opacity: .75;
+    }
+    !* DarkMode 下的样式 end *!
+}
+page, image,open-data {
+  background-color: #1f1f1f;
+  filter: invert(1) hue-rotate(.5turn);
+}
+image,open-data{
+  opacity: .75;
+}*/
+
 page {
+  height: 100%;
   background-color: #F4F0F1;
   color: rgba(0, 0, 0, .55);
   font-weight: 500;
