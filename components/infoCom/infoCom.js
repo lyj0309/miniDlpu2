@@ -19,16 +19,16 @@ Component({
         openPyfaDetail(e) { //打开培养方案弹窗
             this.page.setData({
                 minShow: true,
-                showData:e.currentTarget.dataset.item
+                showData: e.currentTarget.dataset.item
             })
             //console.log(e.currentTarget.dataset.item)
         },
-        openEmpDetail(e){
-           // console.log(e.currentTarget.dataset.item)
+        openEmpDetail(e) {
+            // console.log(e.currentTarget.dataset.item)
             this.page.setData({
                 minShow: true,
-                showData:e.currentTarget.dataset.item,
-                epClaTimeList:this.data.epClaTimeList
+                showData: e.currentTarget.dataset.item,
+                epClaTimeList: this.data.epClaTimeList
             })
         },
         onActionSelect(event) { //查成绩选择学期
@@ -143,7 +143,6 @@ Component({
         showEmpCla(e) {
             //console.log(e.currentTarget.dataset.idx)
 
-            
 
             if (e.currentTarget.dataset.idx === '0') {
                 this.page.setData({
@@ -173,13 +172,20 @@ Component({
                                 message: '获取成功',
                                 context: this,
                             })
-                            that.setData({
-                                replay: "paused",
-                                scoreData: d.data.data.Scores,
-                                GPA: d.data.data.GPA,
-                                opc0: new Array(d.data.data.Scores.length).fill(0),
-                                opc1: new Array(d.data.data.Scores.length).fill(1)
-                            })
+                            let set = function () {
+                                that.setData({
+                                    replay: "paused",
+                                    scoreData: d.data.data.Scores,
+                                    GPA: d.data.data.GPA,
+                                    opc0: new Array(d.data.data.Scores === null ? 0 : d.data.data.Scores).fill(0),
+                                    opc1: new Array(d.data.data.Scores === null ? 0 : d.data.data.Scores).fill(1)
+                                })
+                            }
+                            if (d.data.data.GPA.indexOf('.') !== 1) API.reLogin(e => {
+                                set()
+                            }, getApp())
+                            else set()
+
                             wx.hideLoading()
                         }
                     }, {
@@ -294,13 +300,7 @@ Component({
                         wx.hideLoading()
                     }
                 }, {
-                    i: "2",
-                    j: "3",
-                    c: "entry",
-                    m: "water",
-                    do: "appapi",
-                    op: "user.getPrcode",
-                    time: "1607400092",
+                    i: "2", j: "3", c: "entry", m: "water", do: "appapi", op: "user.getPrcode", time: "1607400092",
                     sign: "dffddefeb30cc01984f00ee8038e0793",
                     token: this.data.token
                 },
@@ -334,15 +334,8 @@ Component({
                         wx.hideLoading()
                     }
                 }, {
-                    i: "2",
-                    j: "3",
-                    c: "entry",
-                    m: "water",
-                    do: "appapi",
-                    op: "user.getIndex",
-                    time: "1607424790",
-                    sign: "243e317a29b4f8f180df5047ec39cd56",
-                    token: this.data.token
+                    i: "2", j: "3", c: "entry", m: "water", do: "appapi", op: "user.getIndex", time: "1607424790",
+                    sign: "243e317a29b4f8f180df5047ec39cd56", token: this.data.token
                 },
             )
         },
@@ -373,19 +366,12 @@ Component({
                         wx.hideLoading()
                     }
                 }, {
-                    i: "2",
-                    j: "3",
-                    c: "entry",
-                    m: "water",
-                    do: "appapi",
-                    op: "user.login",
+                    i: "2", j: "3", c: "entry", m: "water", do: "appapi", op: "user.login",
                     realname: this.data.name ? this.data.name : name,
                     studentID: this.data.stuNum ? this.data.stuNum : stuNum,
                     password: this.data.pwd ? this.data.pwd : pwd,
-                    time: "1607400092",
-                    sign: "dffddefeb30cc01984f00ee8038e0793",
-                    style: "2",
-                    schoolID: "7"
+                    time: "1607400092", sign: "dffddefeb30cc01984f00ee8038e0793",
+                    style: "2", schoolID: "7"
                 },
             )
         },
@@ -506,6 +492,10 @@ Component({
             switch (this.properties.title) {
                 case '成绩查询':
                     let arr = API.geneSemesterArr()
+                    for (let i = 0; i < arr[0].length; i++) {
+                        arr[0][i].color = "black"
+                    }
+                    console.log(arr[0])
                     this.setData({actions: arr[0], semester: arr[1]})
                     this.getScore(arr[1])
                     break

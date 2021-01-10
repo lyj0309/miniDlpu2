@@ -1,34 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="238d08f4-32c3-4765-aa92-5e772b838b16" name="默认的" comment="背景颜色修正">
+    <list default="true" id="238d08f4-32c3-4765-aa92-5e772b838b16" name="默认的" comment="深色模式">
+      <change afterPath="$PROJECT_DIR$/image/weather/bigrain.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/bigrainstorm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/bigsnow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/cloudy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/heavysnow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/lightrain.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/lightsnow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/middlerain.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/middlesnow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/overcast.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/rainandsnow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/rainstorm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/snowshower.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/sun.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/svg/10.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/svg/12.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/svg/13.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/svg/14.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/svg/17.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/svg/20.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/svg/21.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/svg/7.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/svg/8.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/thunderrain.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/app.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/infoCom/score.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Account/Account.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Account/Account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Account/Account.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Account/Account.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Account/Account.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Account/Account.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/image/weather/svg/1.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/10.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/11.svg" beforeDir="false" afterPath="$PROJECT_DIR$/image/weather/svg/11.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/12.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/13.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/14.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/15.svg" beforeDir="false" afterPath="$PROJECT_DIR$/image/weather/svg/15.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/16.svg" beforeDir="false" afterPath="$PROJECT_DIR$/image/weather/svg/16.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/17.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/18.svg" beforeDir="false" afterPath="$PROJECT_DIR$/image/weather/svg/18.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/19.svg" beforeDir="false" afterPath="$PROJECT_DIR$/image/weather/svg/19.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/image/weather/svg/2.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/20.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/21.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/22.svg" beforeDir="false" afterPath="$PROJECT_DIR$/image/weather/svg/22.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/23.svg" beforeDir="false" afterPath="$PROJECT_DIR$/image/weather/svg/23.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/24.svg" beforeDir="false" afterPath="$PROJECT_DIR$/image/weather/svg/24.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/3.svg" beforeDir="false" afterPath="$PROJECT_DIR$/image/weather/svg/3.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/4.svg" beforeDir="false" afterPath="$PROJECT_DIR$/image/weather/svg/4.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/5.svg" beforeDir="false" afterPath="$PROJECT_DIR$/image/weather/svg/5.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/6.svg" beforeDir="false" afterPath="$PROJECT_DIR$/image/weather/svg/6.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/7.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/8.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/weather/9.svg" beforeDir="false" afterPath="$PROJECT_DIR$/image/weather/svg/9.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Information/Information.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Information/Information.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Information/Information.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/EditClass/EditClass.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/EditClass/EditClass.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/FAQ/FAQ.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/FAQ/FAQ.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/Setting/Setting.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/Setting/Setting.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/Storage/Storage.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/Storage/Storage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/Storage/Storage.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/Storage/Storage.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/Storage/Storage.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/Storage/Storage.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/unifyPay/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/StudentId/agreement/agreement.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/StudentId/agreement/agreement.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
@@ -76,7 +113,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pages/Subpages/Setting/cutInside" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="ts.external.directory.path" value="C:\Users\24573\AppData\Local\JetBrains\Toolbox\apps\WebStorm\ch-0\203.6682.155\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
@@ -84,11 +121,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\miniProgram\MiniDLPU2\components" />
       <recent name="D:\miniProgram\MiniDLPU2\pages\Subpages\Setting\cutInside" />
       <recent name="D:\miniProgram\MiniDLPU2\pages\Subpages\Setting" />
       <recent name="D:\miniProgram\MiniDLPU2" />
       <recent name="D:\miniProgram\MiniDLPU2\pages\Subpages\AboutUs" />
-      <recent name="D:\miniProgram\MiniDLPU2\image" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\miniProgram\MiniDLPU2\pages\Subpages\Setting\cutInside" />
@@ -137,7 +174,9 @@
       <workItem from="1609867268828" duration="58000" />
       <workItem from="1609910226242" duration="19799000" />
       <workItem from="1610003377916" duration="9491000" />
-      <workItem from="1610015291150" duration="6018000" />
+      <workItem from="1610015291150" duration="9473000" />
+      <workItem from="1610078852734" duration="26916000" />
+      <workItem from="1610166165630" duration="35283000" />
     </task>
     <task id="LOCAL-00001" summary="成绩查询备份">
       <created>1609254589499</created>
@@ -174,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609837773863</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="深色模式">
+      <created>1610029790092</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1610029790092</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +247,7 @@
     <MESSAGE value="准备培养方案大改" />
     <MESSAGE value="可改背景" />
     <MESSAGE value="背景颜色修正" />
-    <option name="LAST_COMMIT_MESSAGE" value="背景颜色修正" />
+    <MESSAGE value="深色模式" />
+    <option name="LAST_COMMIT_MESSAGE" value="深色模式" />
   </component>
 </project>

@@ -13,7 +13,6 @@
     }
 }
 
-
 /* 头部 */
 view.header {
     width: 100%;
@@ -95,14 +94,35 @@ view.week > view.weather {
     width: 0;
     height: 0;
 }
-
-view.week > view.weather image {
+/* 天气图标 */
+view.week > view.weather image  {
     position: relative;
     left: -57rpx;
-    top: 15rpx;
+    top: 5rpx;
     width: 25px;
     height: 25px;
     opacity: 1;
+}
+/* 温度 */
+view.week > view.weather view {
+    font-size: 0.80em;
+    position: relative;
+    left: -60rpx;
+    top: -4rpx;
+    opacity: 1;
+}
+
+#openWeather{
+    position: relative;
+    left: -100rpx;
+    top: -90rpx;
+    width: 50px;
+    height: 100rpx;
+}
+
+.weatherChart{
+    width: 600rpx;
+    height: 600rpx;
 }
 
 /* 选择区域弹出动画 */
@@ -446,4 +466,57 @@ view.cDetail view.cEditClass view {
     padding: 8px 18px;
     color: #FFFFFF;
     /* display: none; */
+}
+
+
+.page-section-spacing {
+    margin-top: 60rpx;
+}
+
+.scroll-view_H {
+    width:100%;
+    height:850rpx;
+    white-space: nowrap;
+}
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    color: transparent;
+}
+.scroll-view-item {
+    height: 300rpx;
+}
+
+.scroll-view-item_H {
+    display: inline-block;
+}
+
+.txt {
+    width:2250rpx;
+    display: flex;
+}
+
+.blk {
+    font-weight:bold;
+
+    width: 6.66%;
+}
+.img{
+    width: 100%;
+}
+.img > image{
+    left: 42rpx;
+    width:66rpx;
+    height:66rpx
+}
+.blk > view {
+    text-align: center;
+    width: 100%;
+    word-wrap: break-word;
+    white-space: pre-line;
+}
+
+.blk > text {
+    word-wrap: break-word;
+    white-space: pre-line;
 }

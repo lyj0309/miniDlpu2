@@ -144,7 +144,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if ( wx.getSystemInfoSync().theme!== 'light'){
+      this.setData({
+        bgc:` background-color: #666666 ;`
+      })
+    }
+
     this.setStorageData();
+    if (options.id !== undefined){
+      this.setData({user:options.id,pwd:options.pwd})
+    }
   },
 
   /**

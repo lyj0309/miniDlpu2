@@ -333,7 +333,7 @@ API.GET_JS_SESSION = {
         API.setObjData(
             getApp().globalData.UserData,
             ["ip", "name", "session", "user", "pwd", "time", "idCard"],
-            [d.ip, d.name, d.session, r.id, r.pwd, date,d.idCard]
+            [d.ip, d.name, d.session, r.id, r.pwd, date, d.idCard]
         );
 
         // 发起登录请求
@@ -361,15 +361,15 @@ API.GET_STATIC_DATA = {
         //console.log("静态数据semester",semester)
         // 存储到缓存
         API.set(
-            ["semester", "weekNow", "lastGetStaticDataTime"],
-            [semester, d.week_now, date]
+            ["semester", "weekNow", "lastGetStaticDataTime","weather"],
+            [semester, d.week_now, date,d.weather]
         );
 
         // 更新到全局数据
         API.setObjData(
             getApp().globalData.StaticData,
-            ["semester", "weekNow", "time"],
-            [semester, d.week_now, date]
+            ["semester", "weekNow", "time","weather"],
+            [semester, d.week_now, date,d.weather]
         );
 
         rd();
@@ -392,13 +392,16 @@ API.GET_TIME_TABLE = {
 
         if (!r.semester) return;
 
-        API.calcKCB(r.semester+(r.age === undefined?"":r.age), d, () => {
+        API.calcKCB(r.semester + (r.age === undefined ? "" : r.age), d, () => {
             rd();
         }, API.getSetting());
     }
 }
 
-
+API.KEEP_SESSION = {
+    url: 'https://jwc.2333.pub/keep_session',
+    method: 'PUT',
+}
 API.GET_EXAM_DATE = {
     url: 'https://jwc.2333.pub/exam_date',
     method: 'GET',
@@ -730,6 +733,15 @@ API.getUserData = function (then, Tips = true) {
         return;
     }
 
+    API.reLogin(e => {
+        then(e)
+    }, App)
+
+    return "r";
+}
+
+
+API.reLogin = function (then, App, Tips = true) {
     // 发送网络请求
     API.request(
         API.GET_JS_SESSION,
@@ -759,8 +771,6 @@ API.getUserData = function (then, Tips = true) {
             pwd: App.globalData.UserData.pwd
         }
     );
-
-    return "r";
 }
 
 /**
@@ -847,12 +857,16 @@ API.getTimeTable = function (then, semester, session) {
     return "none";
 }
 
-API.geneSemesterArr = function (semester){
+API.geneSemesterArr = function (semester) {
     let rage = []
     let xueQi = [['大一上', '大一下'], ['大二上', '大二下'], ['大三上', '大三下'], ['大四上', '大四下']]
     let user = API.get("user")
-    if (user === '' || user === undefined) { return [[],semester] }
-    if (semester === undefined)  {semester = API.get("semester").slice(0,11)}
+    if (user === '' || user === undefined) {
+        return [[], semester]
+    }
+    if (semester === undefined) {
+        semester = API.get("semester").slice(0, 11)
+    }
     //console.log("user",user,semester)
     user = '20' + user.slice(0, 2)
     let nowYear = new Date().getFullYear()
@@ -864,7 +878,7 @@ API.geneSemesterArr = function (semester){
                 let a = currXQ + '  ' + xueQi[idx][k - 1]
                 rage.unshift({name: a})
                 rage.unshift({name: '全部学期'})
-                return [rage,a]
+                return [rage, a]
             }
             if (idx >= 0 && idx <= 3) {
                 rage.unshift({name: currXQ + '  ' + xueQi[idx][k - 1]})
@@ -872,5 +886,25 @@ API.geneSemesterArr = function (semester){
         }
     }
 }
+
+API.keepSession = function () {
+    let App = getApp()
+    console.log(App)
+/*    // 发送网络请求
+    API.request(
+        API.KEEP_SESSION,
+        {
+            // 成功后返回数据
+            success: (d) => {
+                console.log(d)
+            },
+
+        }, {
+            id: App.globalData.UserData.user,
+            pwd: App.globalData.UserData.pwd
+        }
+    );*/
+}
+
 
 module.exports = API;

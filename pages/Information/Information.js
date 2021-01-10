@@ -1,5 +1,4 @@
 import Notify from "../../miniprogram_npm/@vant/weapp/notify/notify";
-
 const API = require("../../script/API");
 
 Page({
@@ -110,17 +109,6 @@ Page({
                     })
                     wx.hideLoading()
                     break
-                /*            case '6':
-                                wx.navigateToMiniProgram({
-                                    appId: 'wx3f924baa54174a84',
-                                    path: 'pages/index/index',
-                                    envVersion: 'release',
-                                    success(res) {
-                                        // 打开成功
-                                    }
-                                })
-                                wx.hideLoading()
-                                break*/
                 case '7':
                     wx.navigateTo({
                         url: './unifyPay/index'

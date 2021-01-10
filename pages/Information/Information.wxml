@@ -3,7 +3,7 @@
 <van-notice-bar
         wrapable
         scrollable="{{ false }}" mode="closeable"
-        text="软件处于内测中，如有任何问题请及时反馈,谢谢。本次更新:深色模式"/>
+        text="软件处于内测中，如有任何问题请及时反馈,谢谢。本次更新:天气预报"/>
 
 <van-popup overlay-style="{{ overlayStyle?overlayStyle:'' }}" id="popup" round custom-style="width: 618rpx;height: 1000rpx" show="{{ show }}" bind:close="onClose">
     <infoCom id="com" wx:if="{{title !== ''}}" title="{{ title }}" root="{{root}}"/>
@@ -65,7 +65,7 @@
             <image mode="widthFix" src="../../image/morebg.png"></image>
         </swiper-item>
         <swiper-item>
-            <image mode="widthFix" src="https://s3.ax1x.com/2020/12/01/Dfz8yj.jpg"></image>
+            <image mode="widthFix" src="https://s3.ax1x.com/2021/01/08/suQMfU.jpg"></image>
         </swiper-item>
     </swiper>
 </view>

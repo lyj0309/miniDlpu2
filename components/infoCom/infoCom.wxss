@@ -36,6 +36,9 @@ linear 线性
     }
 
 }
+.actions{
+    color: red;
+}
 
 .examCount {
     text-align: center;

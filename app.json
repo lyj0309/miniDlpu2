@@ -12,7 +12,8 @@
     "pages/Subpages/FAQ/FAQ",
     "pages/Information/evaluation/evaluation",
     "pages/Subpages/StudentId/agreement/agreement",
-    "pages/Subpages/Setting/cutInside/cutInside"
+    "pages/Subpages/Setting/cutInside/cutInside",
+    "pages/Information/unifyPay/index"
   ],
   "tabBar": {
     "color": "@tabFontColor",

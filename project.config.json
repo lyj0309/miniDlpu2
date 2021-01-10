@@ -90,6 +90,18 @@
         {
           "name": "pages/Subpages/Storage/Storage",
           "pathName": "pages/Subpages/Storage/Storage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/Subpages/StudentId/StudentId",
+          "pathName": "pages/Subpages/StudentId/StudentId",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/Information/unifyPay/index",
+          "pathName": "pages/Information/unifyPay/index",
           "scene": null
         }
       ]

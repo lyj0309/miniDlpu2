@@ -4,16 +4,16 @@
 <view class="title" style="margin-top:20px;">账号设置</view>
 
 <!-- 账号输入框 -->
-<view class="user {{ userError ? 'error' : '' }}">
+<view style="{{bgc?bgc:''}}" class="user {{ userError ? 'error' : '' }}">
   <input type="number" confirm-type="done" placeholder="全学号" 
-  placeholder-style="font-weight: 400; font-size: 1.1em" 
+  placeholder-style="font-weight: 400; font-size: 1.1em"
   bindinput="onInput" data-do="1" value="{{ user }}"></input>
 </view>
 
 <!-- 密码输入框 -->
-<view class="pwd {{ pwdError ? 'error' : '' }}">
-  <input type="text" confirm-type="done" placeholder="教务处密码" 
-  placeholder-style="font-weight: 400; font-size: 1.1em" 
+<view style="{{bgc?bgc:''}}" class="pwd {{ pwdError ? 'error' : '' }}">
+  <input type="text" confirm-type="done" placeholder="教务处密码"
+  placeholder-style="font-weight: 400; font-size: 1.1em"
   password="{{ showPassWord }}" bindinput="onInput" data-do="2" value="{{ pwd }}"></input>
   <view bindtap="onShowPassWord">
     <image src="{{ showPassWord ? '/image/eyeClose.svg' : '/image/eyeOpen.svg' }}"></image>
