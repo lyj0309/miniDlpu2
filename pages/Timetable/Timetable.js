@@ -575,7 +575,6 @@ Page({
         this.setData({show: false});
     },
     showWeather() {
-        console.log(`显示天气`)
         this.setData({show: true});
     },
     /**
@@ -583,7 +582,7 @@ Page({
      */
     onReady: function () {
         const query = wx.createSelectorQuery()
-        query.select('#myCanvas')
+        query.select('#weatherCanvas')
             .fields({node: true, size: true})
             .exec((res) => {
                 const dpr = wx.getSystemInfoSync().pixelRatio
@@ -608,7 +607,7 @@ Page({
                 //console.log("单位：", unitY)
                 let p = []
                 for (let k = 0; k < 15; k++) p.push(new Object({x: 0.0, y1: 0.0, y2: 0.0}));
-                for (let v = 0; v < 3; v++) {
+                for (let v = 0; v < 3;v++) {
                     for (let i = v * 5; i < v * 5 + 6; i++) {
                         if (i === 15) {
                             break
@@ -657,20 +656,26 @@ Page({
                     }
                     wx.canvasToTempFilePath({
                         canvas: this.canvas,
+                        canvasId:"weatherCanvas",
                         success: res => {
-                            //console.log(res.tempFilePath)
+                            console.log(res.tempFilePath)
                             this.setData({['srcs['+v+']']: res.tempFilePath})
+                            if (v === 2) this.setData({canvasShow:false})
                         },
                         fail: r => {
                             console.log(r)
                         }
                     })
-                    ctx.clearRect(0, 0, 1000, 1000);
+                    ctx.clearRect(0, 0, 1000, 1000)
                     //console.log(`画完一个`)
+
                 }
-                console.log(`全部画完`)
-                this.setData({canvasShow:false})
             })
+        if ( wx.getSystemInfoSync().theme!== 'light'){
+            this.setData({
+                weatherPopStyle:"filter: invert(1) hue-rotate(.5turn);"
+            })
+        }
     },
 
 

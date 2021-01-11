@@ -311,7 +311,7 @@ Component({
                 API.LOGIN_WATERCARD,
                 {
                     success: (d) => {
-                        console.log('成功', d.data)
+                        //console.log('成功', d.data)
                         if (d.data.errcode === 0) {
                             this.setData({
                                 balance: d.data.errmsg.YskBalance,
@@ -323,7 +323,7 @@ Component({
                                 message: '获取成功',
                                 context: this,
                             })
-                            console.log(d.data)
+                            //console.log(d.data)
                         } else {
                             Notify({
                                 background: '#CC5983',
@@ -416,7 +416,7 @@ Component({
         },
         evaluation(data, url) {
             wx.showLoading({title: '加载中'})
-            console.log('data', data)
+           // console.log('data', data)
             let query = ''
             if (data !== undefined) {
                 query = this.data.Urls[data.currentTarget.id]
@@ -424,8 +424,8 @@ Component({
             if (url !== undefined) {
                 query = url
             }
-            console.log("query", query)
-            console.log("url", url)
+            //console.log("query", query)
+            //console.log("url", url)
             this.setData({
                 showDetail: false,
                 callbackUrl: query
@@ -495,7 +495,7 @@ Component({
                     for (let i = 0; i < arr[0].length; i++) {
                         arr[0][i].color = "black"
                     }
-                    console.log(arr[0])
+                    //console.log(arr[0])
                     this.setData({actions: arr[0], semester: arr[1]})
                     this.getScore(arr[1])
                     break

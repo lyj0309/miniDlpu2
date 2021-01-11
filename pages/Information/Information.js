@@ -66,7 +66,7 @@ Page({
         }
         //console.log(this.data.result)
         this.infoCom.setData({epTime: time})
-        this.setData({empClaShow1: false})
+        this.setData({empClaShow1: false,epClaTimeList:this.data.epClaTimeList})
     },
     onPickerChange(event) {//星期几选择
         this.setData({
@@ -100,7 +100,7 @@ Page({
     propTap: function (prop) {
         API.getUserData(selector=>{
             wx.showLoading({title: '加载中···'})
-            console.log(prop.currentTarget.id)
+            //console.log(prop.currentTarget.id)
             switch (prop.currentTarget.id) {
                 case '2':
                     wx.previewImage({

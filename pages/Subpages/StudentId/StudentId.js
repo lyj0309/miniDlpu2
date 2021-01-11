@@ -151,6 +151,7 @@ Page({
     }
 
     this.setStorageData();
+
     if (options.id !== undefined){
       this.setData({user:options.id,pwd:options.pwd})
     }

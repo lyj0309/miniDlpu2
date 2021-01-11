@@ -8,8 +8,8 @@
         filter: invert(1) hue-rotate(.5turn);
     }
 
-    image {
-        opacity: .75;
+    .bgImg {
+        opacity: 0.75;
     }
 }
 

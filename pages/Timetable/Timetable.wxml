@@ -1,8 +1,8 @@
 <!--pages/Timetable/Timetable.wxml-->
 <!-- 天气 -->
-<van-popup round show="{{ show }}" custom-style="height: 1050rpx" bind:close="onClose" position="top">
+<van-popup round show="{{ show }}" custom-style="height: 1050rpx;{{ weatherPopStyle?weatherPopStyle:'' }}" bind:close="onClose" position="top">
     <view class="title" style="margin-top: 50rpx;margin-bottom: 50rpx;color:black">
-        15天趋势预报
+        大连15天趋势预报
     </view>
     <scroll-view class="scroll-view_H" scroll-x="true">
         <view class="txt">
@@ -171,6 +171,6 @@
         </view>
     </view>
 </view>
-<canvas wx:if="{{canvasShow}}" type="2d" id="myCanvas" style="width: 750rpx; height: 400rpx;"/>
+<canvas wx:if="{{canvasShow}}" type="2d" id="weatherCanvas" style="width: 750rpx; height: 400rpx;"/>
 
 
