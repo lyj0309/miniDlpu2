@@ -11,14 +11,15 @@ const TIME = [
 const UNIT = 60;
 
 
-
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        canvasShow:true,
+        canvas0Show: true,
+        canvas1Show: true,
+        canvas2Show: true,
 
         //天气弹出层
         show: false,
@@ -568,7 +569,7 @@ Page({
         //console.log(weather)
         this.setData({
             weather: weather,
-            temperature: weather[0].tem1 + '/' + weather[0].tem2 +'°'
+            temperature: weather[0].tem1 + '/' + weather[0].tem2 + '°'
         })
     },
     onClose() {
@@ -581,44 +582,45 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        const query = wx.createSelectorQuery()
-        query.select('#weatherCanvas')
-            .fields({node: true, size: true})
-            .exec((res) => {
-                const dpr = wx.getSystemInfoSync().pixelRatio
-                this.canvas = res[0].node
-                let ctx = this.canvas.getContext('2d')
-                this.canvas.width = res[0].width * dpr
-                this.canvas.height = res[0].height * dpr
-                ctx.scale(dpr, dpr)
-                //console.log("宽度：", res[0].width)
-                //console.log("高度；", res[0].height)
-                //需要为字留40px
-                let weather = wx.getStorageSync(`weather`)
-                let highest = weather[15].high
-                let lowest = weather[15].low
-                weather.pop()
-                this.setData({
-                    weather: weather
-                })
-                //console.log("天气", weather)
-                let unitY = (res[0].height - 80) / (highest - lowest) //单位高度 (改这里变斜率)
-                let unitX = res[0].width / 5
-                //console.log("单位：", unitY)
-                let p = []
-                for (let k = 0; k < 15; k++) p.push(new Object({x: 0.0, y1: 0.0, y2: 0.0}));
-                for (let v = 0; v < 3;v++) {
+        const dpr = wx.getSystemInfoSync().pixelRatio
+        let weather = wx.getStorageSync(`weather`)
+        let highest = weather[15].high
+        let lowest = weather[15].low
+        weather.pop()
+        this.setData({
+            weather: weather
+        })
+        let p = []
+        const query =  wx.createSelectorQuery()
+        for (let k = 0; k < 15; k++) p.push(new Object({x: 0.0, y1: 0.0, y2: 0.0}));
+        for (let v = 0; v < 3; v++) {
+            query.select('#weatherCanvas' + v.toString())
+                .fields({node: true, size: true})
+                .exec((res) => {
+                    let canvas = res[0].node
+                    let ctx = canvas.getContext('2d')
+                    canvas.width = res[0].width * dpr
+                    canvas.height = res[0].height * dpr
+                    ctx.scale(dpr, dpr)
+                    //console.log("宽度：", res[0].width)
+                    //console.log("高度；", res[0].height)
+                    //需要为字留40px
+
+                    //console.log("天气", weather)
+                    let unitY = (res[0].height - 80) / (highest - lowest) //单位高度 (改这里变斜率)
+                    let unitX = res[0].width / 5
+                    //console.log("单位：", unitY)
+
                     for (let i = v * 5; i < v * 5 + 6; i++) {
                         if (i === 15) {
                             break
                         }
                         let high = weather[i].tem1
                         let low = weather[i].tem2
-
                         p[i].y1 = 35 + unitY * (highest - high) //改这里变间距
                         p[i].y2 = res[0].height - 35 - unitY * (low - lowest)
                         p[i].x = Math.round((unitX * ((2 * (i - 5 * v) + 1)) / 2))
-                        Math.round((unitX * -1 / 2))
+
                         let draw = function (y, yl, k) {
                             if ((i === 5 && v === 1) || (i === 10 && v === 2)) {
                                 ctx.lineWidth = 2
@@ -626,6 +628,7 @@ Page({
                                 ctx.beginPath();
                                 //计算三角函数
                                 let long = Math.sqrt(unitX * unitX + (y - yl) * (y - yl))  //计算长边
+                                //console.log((Math.round((unitX * -1 / 2))) + 5.1 * (unitX / long), yl + 5.1 * ((y - yl) / long))
                                 ctx.moveTo((Math.round((unitX * -1 / 2))) + 5.1 * (unitX / long), yl + 5.1 * ((y - yl) / long));
                                 ctx.lineTo(p[i].x - +5.1 * (unitX / long), y - +5.1 * ((y - yl) / long));
                                 ctx.stroke();
@@ -655,25 +658,23 @@ Page({
                         draw(p[i].y2, p[i - 1] ? p[i - 1].y2 : 0, 1)
                     }
                     wx.canvasToTempFilePath({
-                        canvas: this.canvas,
-                        canvasId:"weatherCanvas",
+                        canvas: canvas,
+                        canvasId: "weatherCanvas" + v.toString(),
                         success: res => {
-                            console.log(res.tempFilePath)
-                            this.setData({['srcs['+v+']']: res.tempFilePath})
-                            if (v === 2) this.setData({canvasShow:false})
+                            //console.log(res.tempFilePath)
+                            this.setData({['srcs[' + v + ']']: res.tempFilePath,['canvas'+v+'Show']:false})
                         },
                         fail: r => {
                             console.log(r)
                         }
                     })
-                    ctx.clearRect(0, 0, 1000, 1000)
                     //console.log(`画完一个`)
+                })
+        }
 
-                }
-            })
-        if ( wx.getSystemInfoSync().theme!== 'light'){
+        if (wx.getSystemInfoSync().theme !== 'light') {
             this.setData({
-                weatherPopStyle:"filter: invert(1) hue-rotate(.5turn);"
+                weatherPopStyle: "filter: invert(1) hue-rotate(.5turn);"
             })
         }
     },

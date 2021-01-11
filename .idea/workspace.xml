@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="238d08f4-32c3-4765-aa92-5e772b838b16" name="默认的" comment="天气预报">
+    <list default="true" id="238d08f4-32c3-4765-aa92-5e772b838b16" name="默认的" comment="天气预报iosbug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Information/Information.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/unifyPay/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Subpages/Setting/Setting.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/Setting/Setting.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.wxss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +114,7 @@
       <workItem from="1610015291150" duration="9473000" />
       <workItem from="1610078852734" duration="26916000" />
       <workItem from="1610166165630" duration="40310000" />
-      <workItem from="1610296778382" duration="5260000" />
+      <workItem from="1610296778382" duration="11022000" />
     </task>
     <task id="LOCAL-00001" summary="成绩查询备份">
       <created>1609254589499</created>
@@ -171,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610270164215</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="天气预报iosbug">
+      <created>1610352519278</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1610352519278</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +201,7 @@
     <MESSAGE value="背景颜色修正" />
     <MESSAGE value="深色模式" />
     <MESSAGE value="天气预报" />
-    <option name="LAST_COMMIT_MESSAGE" value="天气预报" />
+    <MESSAGE value="天气预报iosbug" />
+    <option name="LAST_COMMIT_MESSAGE" value="天气预报iosbug" />
   </component>
 </project>

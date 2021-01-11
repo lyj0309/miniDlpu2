@@ -215,6 +215,16 @@ Page({
             sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
             sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
             success(res) {
+/*                wx.compressImage({
+                    src: res.tempFilePaths[0], // 图片路径
+                    quality: 100, // 压缩质量
+                    success:r=>{
+                        console.log(r["tempFilePath"])
+                        wx.navigateTo({
+                            url: './cutInside/cutInside?src=' + r["tempFilePath"]
+                        })
+                    }
+                })*/
                 //  获取裁剪图片资源后，给data添加src属性及其值
                 wx.navigateTo({
                     url: './cutInside/cutInside?src=' + res.tempFilePaths[0]
