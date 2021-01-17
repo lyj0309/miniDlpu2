@@ -312,8 +312,10 @@ API.request = function (api, callback, data, cookie) {
  * @static GET_JS_SESSION
  * @description JsSession授权接口
  */
+const baseHost = "https://jwc.nogg.cn"
+
 API.GET_JS_SESSION = {
-    url: 'https://jwc.2333.pub/login',
+    url: baseHost + '/login',
     method: 'POST',
     contentType: 'application/json',
 
@@ -347,7 +349,7 @@ API.GET_JS_SESSION = {
  * @description 获取静态数据接口
  */
 API.GET_STATIC_DATA = {
-    url: 'https://jwc.2333.pub/static',
+    url: baseHost + '/static',
     method: 'GET',
 
 
@@ -361,15 +363,15 @@ API.GET_STATIC_DATA = {
         //console.log("静态数据semester",semester)
         // 存储到缓存
         API.set(
-            ["semester", "weekNow", "lastGetStaticDataTime","weather"],
-            [semester, d.week_now, date,d.weather]
+            ["semester", "weekNow", "lastGetStaticDataTime", "weather"],
+            [semester, d.week_now, date, d.weather]
         );
 
         // 更新到全局数据
         API.setObjData(
             getApp().globalData.StaticData,
-            ["semester", "weekNow", "time","weather"],
-            [semester, d.week_now, date,d.weather]
+            ["semester", "weekNow", "time", "weather"],
+            [semester, d.week_now, date, d.weather]
         );
 
         rd();
@@ -381,7 +383,7 @@ API.GET_STATIC_DATA = {
  * @description 获取课程表接口
  */
 API.GET_TIME_TABLE = {
-    url: 'https://jwc.2333.pub/course_timetable',
+    url: baseHost + '/course_timetable',
     method: 'GET',
     loading: "正在抓取课表",
 
@@ -399,29 +401,110 @@ API.GET_TIME_TABLE = {
 }
 
 API.KEEP_SESSION = {
-    url: 'https://jwc.2333.pub/keep_session',
+    url: baseHost + '/keep_session',
     method: 'PUT',
+
 }
 API.GET_EXAM_DATE = {
-    url: 'https://jwc.2333.pub/exam_date',
+    url: baseHost + '/exam_date',
     method: 'GET',
+    no: () => {
+        API.reLogin(() => {
+        }, getApp())
+        wx.hideLoading()
+        wx.showToast({
+            icon: 'none',
+            title: 'session过期，请重新打开'
+        })
+    }
 }
 
 API.GET_EXAM_SCORE = {
-    url: 'https://jwc.2333.pub/exam_score',
+    url: baseHost + '/exam_score',
     method: 'GET',
-
+    no: () => {
+        API.reLogin(() => {
+        }, getApp())
+        wx.hideLoading()
+        wx.showToast({
+            icon: 'none',
+            title: 'session过期，请重新打开'
+        })
+    }
 }
 
 API.GET_CULTIVATE_SCHEME = {
-    url: 'https://jwc.2333.pub/cultivate_scheme',
+    url: baseHost + '/cultivate_scheme',
     method: 'GET',
+    no: () => {
+        API.reLogin(() => {
+        }, getApp())
+        wx.hideLoading()
+        wx.showToast({
+            icon: 'none',
+            title: 'session过期，请重新打开'
+        })
+    }
+}
+
+API.GET_EMPTY_CLASS = {
+    url: baseHost + '/empty_class',
+    method: 'GET',
+    no: () => {
+        API.reLogin(() => {
+        }, getApp())
+        wx.hideLoading()
+        wx.showToast({
+            icon: 'none',
+            title: 'session过期，请重新打开'
+        })
+    }
+}
+API.EVALUATION_LIST = {
+    url: baseHost + '/evaluation',
+    method: 'GET',
+    no: () => {
+        API.reLogin(() => {
+        }, getApp())
+        wx.hideLoading()
+        wx.showToast({
+            icon: 'none',
+            title: 'session过期，请重新打开'
+        })
+    }
+}
+API.EVALUATION_DETAIL = {
+    url: baseHost + '/evaluation_detail',
+    method: 'GET',
+    no: () => {
+        API.reLogin(() => {
+        }, getApp())
+        wx.hideLoading()
+        wx.showToast({
+            icon: 'none',
+            title: 'session过期，请重新打开'
+        })
+    }
+}
+
+
+API.EVALUATION_POST = {
+    url: baseHost + '/evaluation_post',
+    method: 'GET',
+    no: () => {
+        API.reLogin(() => {
+        }, getApp())
+        wx.hideLoading()
+        wx.showToast({
+            icon: 'none',
+            title: 'session过期，请重新打开'
+        })
+    }
 }
 
 API.LOGIN_WATERCARD = {
     url: 'https://www.wuweixuezi.com/app/index.php',
     method: 'GET',
-
 }
 API.GET_WATERCARD_IMG = {
     url: 'https://www.wuweixuezi.com/app/index.php',
@@ -430,28 +513,6 @@ API.GET_WATERCARD_IMG = {
 }
 API.GET_WATERCARD_INFO = {
     url: 'https://www.wuweixuezi.com/app/index.php',
-    method: 'GET',
-
-}
-
-
-API.GET_EMPTY_CLASS = {
-    url: 'https://jwc.2333.pub/empty_class',
-    method: 'GET',
-}
-API.EVALUATION_LIST = {
-    url: 'https://jwc.2333.pub/evaluation',
-    method: 'GET',
-
-}
-API.EVALUATION_DETAIL = {
-    url: 'https://jwc.2333.pub/evaluation_detail',
-    method: 'GET',
-}
-
-
-API.EVALUATION_POST = {
-    url: 'https://jwc.2333.pub/evaluation_post',
     method: 'GET',
 
 }
@@ -743,34 +804,43 @@ API.getUserData = function (then, Tips = true) {
 
 API.reLogin = function (then, App, Tips = true) {
     // 发送网络请求
-    API.request(
-        API.GET_JS_SESSION,
-        {
-            loading: 'none',
-            successMsg: 'none',
-            failMsg: 'none',
+    wx.login({
+        success: res => {
+            if (res.code) {
+                API.request(
+                    API.GET_JS_SESSION,
+                    {
+                        loading: 'none',
+                        successMsg: 'none',
+                        failMsg: 'none',
 
-            // 成功后返回数据
-            ok: (d) => {
-                then(App.globalData.UserData);
-            },
+                        // 成功后返回数据
+                        ok: (d) => {
+                            then(App.globalData.UserData);
+                        },
 
-            no: (d) => {
-                if (Tips) wx.showModal({
-                    title: '账号错误',
-                    confirmText: '去设置',
-                    cancelText: '稍等',
-                    content: '您的账号信息错误，请修改正确，才能正常获取数据！',
-                    success: (res) => {
-                        if (res.confirm) wx.navigateTo({url: '/pages/Subpages/StudentId/StudentId'});
+                        no: (d) => {
+                            if (Tips) wx.showModal({
+                                title: '账号错误',
+                                confirmText: '去设置',
+                                cancelText: '稍等',
+                                content: '您的账号信息错误，请修改正确，才能正常获取数据！',
+                                success: (res) => {
+                                    if (res.confirm) wx.navigateTo({url: '/pages/Subpages/StudentId/StudentId'});
+                                }
+                            });
+                        }
+                    }, {
+                        id: App.globalData.UserData.user,
+                        pwd: App.globalData.UserData.pwd,
+                        code:res.code
                     }
-                });
+                )
+            } else {
+                console.log('登录失败！' + res.errMsg)
             }
-        }, {
-            id: App.globalData.UserData.user,
-            pwd: App.globalData.UserData.pwd
         }
-    );
+    })
 }
 
 /**
@@ -890,20 +960,20 @@ API.geneSemesterArr = function (semester) {
 API.keepSession = function () {
     let App = getApp()
     console.log(App)
-/*    // 发送网络请求
-    API.request(
-        API.KEEP_SESSION,
-        {
-            // 成功后返回数据
-            success: (d) => {
-                console.log(d)
-            },
+    /*    // 发送网络请求
+        API.request(
+            API.KEEP_SESSION,
+            {
+                // 成功后返回数据
+                success: (d) => {
+                    console.log(d)
+                },
 
-        }, {
-            id: App.globalData.UserData.user,
-            pwd: App.globalData.UserData.pwd
-        }
-    );*/
+            }, {
+                id: App.globalData.UserData.user,
+                pwd: App.globalData.UserData.pwd
+            }
+        );*/
 }
 
 

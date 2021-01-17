@@ -8,6 +8,7 @@
     opacity: .75;
   }
 }
+
 .page__bd {
   padding: 0 20rpx;
 }

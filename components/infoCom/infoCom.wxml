@@ -57,7 +57,12 @@
 </view>
 
 <view wx:if="{{ title === '考试日程' }}">
-    <view class="examCount">最近共有 <text style="color:red">{{examDateData.length ? examDateData.length : 0 }}</text> 场考试
+    <view class="examCount">最近
+        <text wx:if="{{examDateData.length }}">共有
+            <text style="color:red">{{examDateData.length }}</text>
+            场</text>
+        <text style="color:red" wx:else>没有</text>
+        考试
     </view>
     <view wx:key="idx" wx:for="{{examDateData}}" wx:for-index="idx" wx:for-item="item">
         <van-cell title="{{item.Name}}" value="{{item.Room}}" label="{{item.Time}}"/>
@@ -67,27 +72,22 @@
 <view wx:if="{{ title === '培养方案' }}">
     <view class="examCount">一共可能要学 <text style="color:red">{{ pyfaCount }}</text> 门课程
     </view>
-
-    <view wx:key="idx" wx:for="{{pyfaData}}" wx:for-index="idx" wx:for-item="pyfa">
-        <view class="sticky">
-            <van-cell title-style="color: #CC5983" size="large" title="{{pyfaSemester[idx][1]}}    共{{pyfa.length}}门">
-                <view >{{pyfaSemester[idx][0]}}</view>
-            </van-cell>
+    <view style="font-size: 2.5em;text-align: center;" wx:if="{{pyfaData[0].length === 0}}">暂无</view>
+    <view wx:else>
+        <view wx:key="idx" wx:for="{{pyfaData}}" wx:for-index="idx" wx:for-item="pyfa">
+            <view class="sticky">
+                <van-cell title-style="color: #CC5983" size="large"
+                          title="{{pyfaSemester[idx][1]}}    共{{pyfa.length}}门">
+                    <view>{{pyfaSemester[idx][0]}}</view>
+                </van-cell>
+            </view>
+            <van-cell-group>
+                <van-cell border="{{true}}" wx:key="idx1" wx:for="{{pyfa}}" wx:for-index="idx1" title="{{item.Name}}"
+                          wx:for-item="item" value="{{item.Credit}}'/{{item.ExamMode}} " data-item="{{item}}"
+                          bind:click="openPyfaDetail"
+                          is-link/>
+            </van-cell-group>
         </view>
-<!--        <van-collapse value="{{ activeName }}" accordion bind:change="onChange">
-            <van-collapse-item wx:key="idx1" wx:for="{{pyfa}}" wx:for-index="idx1" wx:for-item="item" value="{{item.Credit}}'/{{item.ExamMode}} "  title="{{item.Name}}" name="{{idx*100+idx1}}">
-                <view class='modal-hang'><view class='modal-hang-left'>开设学期：</view><view class='modal-hang-right'>{{item.Semester}}</view></view>
-                <view class='modal-hang'><view class='modal-hang-left'>学分：</view><view class='modal-hang-right'>{{item.Credit}}</view></view>
-                <view class='modal-hang'><view class='modal-hang-left'>总学时：</view><view class='modal-hang-right'>{{item.Period}}</view></view>
-                <view class='modal-hang'><view class='modal-hang-left'>考核方式：</view><view class='modal-hang-right'>{{item.ExamMode}}</view></view>
-                <view class='modal-hang'><view class='modal-hang-left'>开课单位：</view><view class='modal-hang-right'>{{item.College}}</view></view>
-            </van-collapse-item>
-        </van-collapse>-->
-        <van-cell-group>
-            <van-cell border="{{true}}" wx:key="idx1" wx:for="{{pyfa}}" wx:for-index="idx1" title="{{item.Name}}"
-                      wx:for-item="item" value="{{item.Credit}}'/{{item.ExamMode}} " data-item="{{item}}" bind:click="openPyfaDetail"
-                      is-link/>
-        </van-cell-group>
     </view>
 </view>
 
@@ -131,10 +131,11 @@
           wx:for-item="empCla">
         <view wx:if="{{ empCla.length !== 0 && idx !== 7 }}" style="margin-left:10rpx">{{ idx + 1 }}楼</view>
         <view wx:if="{{ empCla.length !== 0 }}" class="empBlock">
-            <view bind:tap="openEmpDetail" data-item="{{cla}}" id="{{idx1}}" class="empBlockItem" wx:key="idx1" wx:for="{{empCla}}" wx:for-index="idx1"
+            <view bind:tap="openEmpDetail" data-item="{{cla}}" id="{{idx1}}" class="empBlockItem" wx:key="idx1"
+                  wx:for="{{empCla}}" wx:for-index="idx1"
                   wx:for-item="cla">
                 <view style="margin: 10rpx;height:40rpx;  overflow: hidden;">{{ cla.Room }}</view>
-                <view  class="empItems">
+                <view class="empItems">
                     <view id="{{idx2}}" style="display:flex" wx:key="idx2" wx:for="{{cla.Time}}" wx:for-index="idx2"
                           wx:for-item="claDot">
                         <view wx:if="{{ claDot === 0 }}" class="dot green"/>
@@ -178,7 +179,7 @@
     <view wx:else>
         <image class="waterImg" wx:if="{{imgUrl }}" mode="widthFix" src="{{imgUrl}}"/>
         <view style="display:flex;align-items:center; justify-content: center;flex-direction:column">
-            <view wx:if="{{balance}}">{{userName}}  {{ stuId }}</view>
+            <view wx:if="{{balance}}">{{userName}} {{ stuId }}</view>
             <view wx:if="{{balance}}">余额：{{balance}}</view>
             <van-button type="default" bind:tap="logout">退出登录</van-button>
         </view>
@@ -186,7 +187,7 @@
 </view>
 
 
-<view  wx:if="{{ title === '评教' }}">
+<view wx:if="{{ title === '评教' }}">
 
     <view wx:if="{{evaArr === undefined}}">
         <view style="text-align: center;" wx:if="{{Name===''}}">

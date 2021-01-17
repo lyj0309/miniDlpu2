@@ -20,7 +20,8 @@ Page({
         canvas0Show: true,
         canvas1Show: true,
         canvas2Show: true,
-
+        defBgColor:"rgba(222,222,222,0.7)",
+        defontColor:"787878",
         //天气弹出层
         show: false,
 
@@ -567,9 +568,17 @@ Page({
     initWeather() {
         let weather = API.get(`weather`)
         //console.log(weather)
+        let now = new Date()
+        let icon = weather === ""?"":weather[1].conditionIdDay
+        if (now.getHours() > 19 || now.getHours() < 5){
+            icon = weather === ""?"":weather[1].conditionIdNight
+        }
         this.setData({
-            weather: weather,
-            temperature: weather[0].tem1 + '/' + weather[0].tem2 + '°'
+            highest: weather[15].max,
+            lowest: weather[15].min,
+            weather: weather.slice(0,15),
+            weatherImg : icon,
+            temperature: weather === ""?"":weather[1].tempDay + '/' + weather[1].tempNight + '°'
         })
     },
     onClose() {
@@ -583,13 +592,7 @@ Page({
      */
     onReady: function () {
         const dpr = wx.getSystemInfoSync().pixelRatio
-        let weather = wx.getStorageSync(`weather`)
-        let highest = weather[15].high
-        let lowest = weather[15].low
-        weather.pop()
-        this.setData({
-            weather: weather
-        })
+        if ( this.data.weather === "") return
         let p = []
         const query =  wx.createSelectorQuery()
         for (let k = 0; k < 15; k++) p.push(new Object({x: 0.0, y1: 0.0, y2: 0.0}));
@@ -597,6 +600,7 @@ Page({
             query.select('#weatherCanvas' + v.toString())
                 .fields({node: true, size: true})
                 .exec((res) => {
+                    if (res[0] === null) return
                     let canvas = res[0].node
                     let ctx = canvas.getContext('2d')
                     canvas.width = res[0].width * dpr
@@ -607,7 +611,7 @@ Page({
                     //需要为字留40px
 
                     //console.log("天气", weather)
-                    let unitY = (res[0].height - 80) / (highest - lowest) //单位高度 (改这里变斜率)
+                    let unitY = (res[0].height - 90) / (this.data.highest - this.data.lowest) //单位高度 (改这里变斜率)
                     let unitX = res[0].width / 5
                     //console.log("单位：", unitY)
 
@@ -615,10 +619,10 @@ Page({
                         if (i === 15) {
                             break
                         }
-                        let high = weather[i].tem1
-                        let low = weather[i].tem2
-                        p[i].y1 = 35 + unitY * (highest - high) //改这里变间距
-                        p[i].y2 = res[0].height - 35 - unitY * (low - lowest)
+                        let high = this.data.weather[i].tempDay
+                        let low = this.data.weather[i].tempNight
+                        p[i].y1 = 35 + unitY * (this.data.highest - high) //改这里变间距
+                        p[i].y2 = res[0].height - 35 - unitY * (low - this.data.lowest)
                         p[i].x = Math.round((unitX * ((2 * (i - 5 * v) + 1)) / 2))
 
                         let draw = function (y, yl, k) {
@@ -674,6 +678,8 @@ Page({
 
         if (wx.getSystemInfoSync().theme !== 'light') {
             this.setData({
+                defontColor:"aaaaaa",
+                defBgColor:"rgba(66,66,66,0.8)",
                 weatherPopStyle: "filter: invert(1) hue-rotate(.5turn);"
             })
         }

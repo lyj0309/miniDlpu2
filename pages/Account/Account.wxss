@@ -10,6 +10,17 @@
     }
 }
 
+#vip{
+    margin-top: 0;
+    font-style:italic;
+    border-radius: 100rpx;
+    width: 2.9em;
+    height: 1.3em;
+    font-size: 0.5em;
+    background-image: linear-gradient(to right, #F2D07A , #E3C05B);
+    color: white;
+}
+
 .showmsg {
     position: absolute;
     bottom: 10rpx;
@@ -66,6 +77,8 @@ view.name {
 }
 
 view.name view.nick {
+    justify-content: center;
+    display: flex;
     font-size: 1.4em;
     font-weight: 500;
     color: rgba(0, 0, 0, .65);

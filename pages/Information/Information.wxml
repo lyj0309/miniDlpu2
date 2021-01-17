@@ -3,7 +3,7 @@
 <van-notice-bar
         wrapable
         scrollable="{{ false }}" mode="closeable"
-        text="软件处于内测中，如有任何问题请及时反馈,谢谢。本次更新:天气预报"/>
+        text="工大教务处v2内测ing,有问题即时反馈哦"/>
 
 <van-popup overlay-style="{{ overlayStyle?overlayStyle:'' }}" id="popup" round custom-style="width: 618rpx;height: 1000rpx" show="{{ show }}" bind:close="onClose">
     <infoCom id="com" wx:if="{{title !== ''}}" title="{{ title }}" root="{{root}}"/>

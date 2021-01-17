@@ -1,5 +1,4 @@
 <import src="./we-cropper/we-cropper.wxml"/>
-        <!-- 图像比例1:1.91 -->
 <view class="cropper-wrapper">
     <template is="we-cropper" data="{{...cropperOpt}}"/>
     <view class="cropper-buttons" style="color: {{cropperOpt.boundStyle.color}}">

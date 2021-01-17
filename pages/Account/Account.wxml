@@ -19,6 +19,7 @@
 <view class="name">
   <view class="nick">
     {{ name }}
+<!--    <view id="vip">VIP</view>-->
   </view>
   <view class="user">
     <view>{{ user }}</view>

@@ -72,3 +72,12 @@ view.submit{
 view.error{
   animation: error 1500ms ease-in-out;
 }
+
+.show-stro,.show-advice{
+  padding: 10rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  /* border: 1px gray double; */
+}

@@ -1,17 +1,4 @@
 /* pages/Timetable/Timetable.wxss */
-@media (prefers-color-scheme: dark) {
-    page {
-        background-color: #1f1f1f;
-    }
-
-    .table, .header, .mask, .cList, .cDetail {
-        filter: invert(1) hue-rotate(.5turn);
-    }
-
-    .bgImg {
-        opacity: 0.75;
-    }
-}
 
 /* 头部 */
 view.header {
@@ -94,8 +81,9 @@ view.week > view.weather {
     width: 0;
     height: 0;
 }
+
 /* 天气图标 */
-view.week > view.weather image  {
+view.week > view.weather image {
     position: relative;
     left: -57rpx;
     top: 5rpx;
@@ -103,24 +91,52 @@ view.week > view.weather image  {
     height: 25px;
     opacity: 1;
 }
+
 /* 温度 */
 view.week > view.weather view {
     font-size: 0.80em;
     position: relative;
-    left: -60rpx;
+    left: -64rpx;
     top: -4rpx;
     opacity: 1;
 }
 
-#openWeather{
+.direction{
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.dir{
+    justify-content: center;
+    display: flex;
+}
+
+.dir > view{
+    font-weight: lighter;
+}
+
+#today{
+    z-index: -10;
+    top: 0rpx;
+    position: absolute;
+    background-color:#eeeeee ;
+    opacity: 0.4;
+    height: 850rpx;
+    border-radius: 1em;
+    width: 150rpx;
+    left: 150rpx;
+}
+
+
+#openWeather {
     position: relative;
     left: -100rpx;
     top: -90rpx;
-    width: 50px;
+    width: 60px;
     height: 100rpx;
 }
 
-.weatherChart{
+.weatherChart {
     width: 600rpx;
     height: 600rpx;
 }
@@ -413,7 +429,7 @@ view.cList view.cListClass {
 view.cList view.cListClass view.cListTit {
     font-size: 1.2em;
     padding-top: 3px;
-    color: rgba(0, 0, 0, .60);
+    color: #787878
 }
 
 view.cList view.cListClass view.cListP {
@@ -474,15 +490,17 @@ view.cDetail view.cEditClass view {
 }
 
 .scroll-view_H {
-    width:100%;
-    height:850rpx;
+    width: 100%;
+    height: 850rpx;
     white-space: nowrap;
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
     width: 0;
     height: 0;
     color: transparent;
 }
+
 .scroll-view-item {
     height: 300rpx;
 }
@@ -492,23 +510,27 @@ view.cDetail view.cEditClass view {
 }
 
 .txt {
-    width:2250rpx;
+    margin-top: 45rpx;
+    width: 2250rpx;
     display: flex;
 }
 
 .blk {
-    font-weight:bold;
+    font-weight: bold;
 
     width: 6.66%;
 }
-.img{
+
+.img {
     width: 100%;
 }
-.img > image{
+
+.img > image {
     left: 42rpx;
-    width:66rpx;
-    height:66rpx
+    width: 66rpx;
+    height: 66rpx
 }
+
 .blk > view {
     text-align: center;
     width: 100%;
@@ -520,3 +542,42 @@ view.cDetail view.cEditClass view {
     word-wrap: break-word;
     white-space: pre-line;
 }
+
+
+
+@media (prefers-color-scheme: dark) {
+
+    page {
+        background-color: #1f1f1f;
+    }
+
+    .bgImg{
+        opacity: 0.75;
+    }
+
+    .time, .header {
+        filter: invert(1) hue-rotate(.5turn);
+    }
+
+    .class, .mask, .cList, .cDetail {
+        filter: brightness(0.8);
+    }
+
+    view.mask {
+        filter: brightness(0.1);
+    }
+
+    view.cDetail view.cDBlock view.cDTit,view.cList view.cListClass  {
+        color: #909090;
+        background-color: rgba(66,66,66,0.8);
+    }
+
+    view.cDBlock {
+        background-color: #1f1f1f !important;
+        color: #aaaaaa;
+    }
+
+
+}
+
+

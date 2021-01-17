@@ -7,8 +7,9 @@ App({
     onLaunch: function () {
         let ver = wx.getStorageSync(`version`)
         if (ver !== CONFIG["version"]) {
-            let user = wx.getStorageSync(`user`)
-            let pwd = wx.getStorageSync(`pwd`)
+            let user = wx.getStorageSync(`userid`)
+            let pwd = wx.getStorageSync(`userpwd`)
+            console .log(user,pwd)
             wx.clearStorageSync()
             wx.setStorageSync("version", CONFIG["version"])
             wx.setStorageSync("user", user)
