@@ -98,8 +98,8 @@ Page({
         this.setData({show: false, title: ''});
     },
     propTap: function (prop) {
+        wx.showLoading({title: '加载中···'})
         API.getUserData(selector=>{
-            wx.showLoading({title: '加载中···'})
             //console.log(prop.currentTarget.id)
             switch (prop.currentTarget.id) {
                 case '2':

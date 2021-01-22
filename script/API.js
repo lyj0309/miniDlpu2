@@ -780,6 +780,7 @@ API.getUserData = function (then, Tips = true) {
     if (!API.testData(App.globalData.UserData, ["user", "pwd"])) {
         if (Tips && (!App.globalData.Pooping.UserId)) {
             App.globalData.Pooping.UserId = true;
+            wx.hideLoading()
             wx.showModal({
                 title: '账号信息',
                 confirmText: '去设置',

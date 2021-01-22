@@ -9,6 +9,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        loading:false,
         user: "",
         pwd: "",
         showPassWord: true,
@@ -80,6 +81,8 @@ Page({
      * @description 提交验证
      */
     submit: function () {
+        if (this.data.loading === true)return
+        this.setData({loading:true})
         // 表单校验 这里只检验空
         let error = 0;
         if (!this.userData.user) error = 1;
@@ -144,6 +147,7 @@ Page({
         this.userData.pwd = pwd;
 
         this.setData({
+            loading:false,
             user: user,
             pwd: pwd,
             time: time

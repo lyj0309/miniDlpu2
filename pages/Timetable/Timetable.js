@@ -574,11 +574,11 @@ Page({
             icon = weather === ""?"":weather[1].conditionIdNight
         }
         this.setData({
-            highest: weather[15].max,
-            lowest: weather[15].min,
+            highest:  weather[15]?weather[15].max:"",
+            lowest: weather[15]?weather[15].min:"",
             weather: weather.slice(0,15),
             weatherImg : icon,
-            temperature: weather === ""?"":weather[1].tempDay + '/' + weather[1].tempNight + '°'
+            temperature: weather === ""?"":weather[1].tempDay + '°/' + weather[1].tempNight + '°'
         })
     },
     onClose() {

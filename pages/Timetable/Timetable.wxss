@@ -93,10 +93,11 @@ view.week > view.weather image {
 }
 
 /* 温度 */
-view.week > view.weather view {
+#temperature{
+    width: 86rpx;
     font-size: 0.80em;
     position: relative;
-    left: -64rpx;
+    left: -75rpx;
     top: -4rpx;
     opacity: 1;
 }
@@ -167,13 +168,13 @@ view.week > view.weather view {
 view.showSelect {
     height: 80px !important;
     opacity: 1 !important;
-    animation: showSelect 200ms ease-in-out;
+    animation: showSelect 250ms ease;
 }
 
 view.hideSelect {
     height: 0 !important;
     opacity: 0 !important;
-    animation: hideSelect 200ms ease-in-out;
+    animation: hideSelect 250ms ease;
 }
 
 /* 动画区域 */
@@ -391,12 +392,12 @@ view.mask {
 }
 
 view.Show {
-    animation: Show 100ms ease-in-out;
+    animation: Show 200ms ease;
     opacity: 1;
 }
 
 view.Hide {
-    animation: Hide 100ms ease-in-out;
+    animation: Hide 200ms ease;
     opacity: 0;
 }
 
