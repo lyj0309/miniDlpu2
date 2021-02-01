@@ -1,6 +1,6 @@
 module.exports ={
   "name": "minidlpu2",
-  "version": "1.9.0",
+  "version": "2.0.1",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {

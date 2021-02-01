@@ -8,6 +8,7 @@
     opacity: .75;
   }
 }
+
 view.firstTit{
   margin-top: 20px;
 }

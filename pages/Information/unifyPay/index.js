@@ -1,3 +1,4 @@
 Page({
-
+    onLoad(query) {
+    }
 });

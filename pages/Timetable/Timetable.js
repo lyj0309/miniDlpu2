@@ -20,8 +20,8 @@ Page({
         canvas0Show: true,
         canvas1Show: true,
         canvas2Show: true,
-        defBgColor:"rgba(222,222,222,0.7)",
-        defontColor:"787878",
+        defBgColor: "rgba(222,222,222,0.7)",
+        defontColor: "787878",
         //天气弹出层
         show: false,
 
@@ -103,7 +103,7 @@ Page({
             setTimeout(() => {
                 sData[show] = false;
                 this.setData(sData);
-            }, 100)
+            }, 200)
         }
     },
 
@@ -365,12 +365,6 @@ Page({
             selection: this.data.selection
         });
 
-        // console.log(
-        //   "周：" + (this.dragData.week + 1) +
-        //   " 开始：" + (this.dragData.yt + 1) +
-        //   " 结束：" + (this.dragData.ye + 1) +
-        //   " 当前周：" + (this.data.week)
-        // );
 
         // 跳转到课表编辑界面
         wx.navigateTo({
@@ -461,8 +455,12 @@ Page({
      * @description 设置日期列表
      */
     setDayList: function (nowWeek, seleckWeek) {
-
+        if (nowWeek <= 0 && seleckWeek > 0) nowWeek++
         let date = new Date();
+        if (seleckWeek < 0) {
+            let cday = date.getDay() === 0 ? 0 : 7 - date.getDay()
+            this.setData({countdownTime: ((Math.abs(nowWeek) - 1) * 7 * 24 * 60 + ((24 - date.getHours()) * 60) + (60 - date.getMinutes()) + cday * 24 * 60) * 60 * 1000})
+        }
         let oneDay = 1000 * 60 * 60 * 24 * 1;
         let pd = new Date(date.getTime() + (seleckWeek / 1 - nowWeek / 1) * oneDay * 7);
         let f = false;
@@ -491,7 +489,7 @@ Page({
 
             if (test(M) || ii > 64) break;
         }
-        // console.log(nowWeek, seleckWeek,M,pd);
+        //  console.log(nowWeek, seleckWeek, M, pd);
         this.setWeek(M);
     },
 
@@ -569,16 +567,16 @@ Page({
         let weather = API.get(`weather`)
         //console.log(weather)
         let now = new Date()
-        let icon = weather === ""?"":weather[1].conditionIdDay
-        if (now.getHours() > 19 || now.getHours() < 5){
-            icon = weather === ""?"":weather[1].conditionIdNight
+        let icon = weather === "" ? "" : weather[1].conditionIdDay
+        if (now.getHours() > 19 || now.getHours() < 5) {
+            icon = weather === "" ? "" : weather[1].conditionIdNight
         }
         this.setData({
-            highest:  weather[15]?weather[15].max:"",
-            lowest: weather[15]?weather[15].min:"",
-            weather: weather.slice(0,15),
-            weatherImg : icon,
-            temperature: weather === ""?"":weather[1].tempDay + '°/' + weather[1].tempNight + '°'
+            highest: weather[15] ? weather[15].max : "",
+            lowest: weather[15] ? weather[15].min : "",
+            weather: weather.slice(0, 15),
+            weatherImg: icon,
+            temperature: weather === "" ? "" : weather[1].tempDay + '°/' + weather[1].tempNight + '°'
         })
     },
     onClose() {
@@ -592,9 +590,9 @@ Page({
      */
     onReady: function () {
         const dpr = wx.getSystemInfoSync().pixelRatio
-        if ( this.data.weather === "") return
+        if (this.data.weather === "") return
         let p = []
-        const query =  wx.createSelectorQuery()
+        const query = wx.createSelectorQuery()
         for (let k = 0; k < 15; k++) p.push(new Object({x: 0.0, y1: 0.0, y2: 0.0}));
         for (let v = 0; v < 3; v++) {
             query.select('#weatherCanvas' + v.toString())
@@ -666,7 +664,7 @@ Page({
                         canvasId: "weatherCanvas" + v.toString(),
                         success: res => {
                             //console.log(res.tempFilePath)
-                            this.setData({['srcs[' + v + ']']: res.tempFilePath,['canvas'+v+'Show']:false})
+                            this.setData({['srcs[' + v + ']']: res.tempFilePath, ['canvas' + v + 'Show']: false})
                         },
                         fail: r => {
                             console.log(r)
@@ -678,8 +676,8 @@ Page({
 
         if (wx.getSystemInfoSync().theme !== 'light') {
             this.setData({
-                defontColor:"aaaaaa",
-                defBgColor:"rgba(66,66,66,0.8)",
+                defontColor: "aaaaaa",
+                defBgColor: "rgba(66,66,66,0.8)",
                 weatherPopStyle: "filter: invert(1) hue-rotate(.5turn);"
             })
         }

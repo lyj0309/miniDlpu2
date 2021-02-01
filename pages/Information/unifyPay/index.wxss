@@ -1,0 +1,16 @@
+.img{
+    width: 750rpx;
+    height: 3300rpx;
+}
+
+@media (prefers-color-scheme: dark) {
+    page {
+        background-color: #1f1f1f;
+    }
+
+    image {
+        filter: invert(1) brightness(1.8);
+        opacity: .75;
+    }
+}
+

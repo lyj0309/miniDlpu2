@@ -12,7 +12,7 @@
                 <view wx:if="{{idx === 0}}">昨天</view>
                 <view wx:elif="{{idx === 1}}">今天</view>
                 <view wx:elif="{{idx === 2}}">明天</view>
-                <view wx:else>{{"周" +item.week }}</view>
+                <view wx:else>{{"周" + item.week }}</view>
                 <view style="font-weight: lighter;margin-top:8rpx">{{item.date}}</view>
                 <view class="img">
                     <image wx:if="{{item.conditionIdDay}}" mode="aspectFit"
@@ -21,7 +21,7 @@
                 <view style="color: black;">{{item.conditionDay}}</view>
             </view>
         </view>
-        <view id="today" />
+        <view id="today"/>
         <view class="scroll-view-item_H" style="width:750rpx; height: 400rpx;" wx:key="idx" wx:for="{{srcs}}"
               wx:for-index="idx" wx:for-item="item">
             <image style="width:100%; height: 400rpx;" src="{{item}}"></image>
@@ -35,17 +35,21 @@
                 </view>
                 <view style="color: black;">{{item.conditionNight}}</view>
                 <view class="dir" wx:if="{{ item.windDegreesDay === item.windDegreesNight }}">
-                    <image class="direction" style="transform: rotate({{item.windDegreesDay - 225 }}deg);" src="/image/windirection.svg"></image>
+                    <image class="direction" style="transform: rotate({{item.windDegreesDay - 225 }}deg);"
+                           src="/image/windirection.svg"></image>
                     <view>{{item.windLevelDay}}级</view>
                 </view>
                 <view wx:else>
                     <view class="dir">
-                        <image class="direction" style="transform: rotate({{item.windDegreesDay - 225}}deg);" src="/image/windirection.svg"></image>
+                        <image class="direction" style="transform: rotate({{item.windDegreesDay - 225}}deg);"
+                               src="/image/windirection.svg"></image>
                         <view>{{item.windLevelDay}}级</view>
-                    </view><text style="font-weight: lighter;">转</text>
+                    </view>
+                    <text style="font-weight: lighter;">转</text>
                     <view class="dir">
-                    <image class="direction" style="transform: rotate({{item.windDegreesNight - 225}}deg);" src="/image/windirection.svg"></image>
-                    <view >{{item.windLevelNight}}级</view>
+                        <image class="direction" style="transform: rotate({{item.windDegreesNight - 225}}deg);"
+                               src="/image/windirection.svg"></image>
+                        <view>{{item.windLevelNight}}级</view>
                     </view>
                 </view>
             </view>
@@ -140,7 +144,8 @@
         </view>
         <!--   天气   -->
         <view class="weather">
-            <image style="filter: brightness(100)" wx:if="{{weather}}" src="{{ '/image/weather/'+ weatherImg +'.svg' }}"></image>
+            <image style="filter: brightness(100)" wx:if="{{weather}}"
+                   src="{{ '/image/weather/'+ weatherImg +'.svg' }}"></image>
             <view id="temperature">{{temperature}}</view>
             <view id="openWeather" bind:tap="showWeather"></view>
         </view>
@@ -153,7 +158,7 @@
 
         <!-- 添加课程选区 -->
 <view class="selection"
-      style="top:{{selection.y}}px; left:{{selection.x}}px; height:{{selection.height}}px; width:{{selection.width}}px;  display: {{selection.show ? 'block':'none'}}"
+      style="top:{{selection.y}}px; left:{{selection.x}}px; height:{{selection.height}}px; width:{{selection.width}}px;z-index:  {{selection.show ? '1':'-99'}}; opacity: {{selection.show ? '1':'0'}};transition:0.2s ease;"
       catchtouchmove="dragMove" catchtouchend="dragEnd">
     <image src="/image/addClass.svg"></image>
 </view>
@@ -178,7 +183,7 @@
     </view>
 
     <!-- 主表部分 -->
-    <view class="class" bindtap="selectClassStart">
+    <view wx:if="{{week >= 0}}" class="class" bindtap="selectClassStart">
         <view wx:for="{{ class[week - 1] }}" wx:key="class" wx:for-item="classItem">
             <view wx:for="{{ classItem }}" wx:key="day" wx:for-item="dayItem"
                   style="margin-top: {{ dayItem.blank * 60 + 3.5 }}px; height: {{ dayItem.len * 60 - 3.5 }}px;background-color: {{ dayItem.other ? defBgColor : dayItem.c }}; color: #{{ dayItem.other ? defontColor : 'FFFFFF' }}">
@@ -187,7 +192,14 @@
             </view>
         </view>
     </view>
+    <view class="countdown" wx:else>
+        <view>
+            <view>距开学还有</view>
+            <van-count-down style="font-size: 1.4rem;"  time="{{ countdownTime }}" format="DD 天 HH 时 mm 分 ss 秒" />
+        </view>
+    </view>
 </view>
+
 <canvas wx:if="{{canvas0Show}}" type="2d" id="weatherCanvas0" style="width: 750rpx; height: 400rpx;"/>
 <canvas wx:if="{{canvas1Show}}" type="2d" id="weatherCanvas1" style="width: 750rpx; height: 400rpx;"/>
 <canvas wx:if="{{canvas2Show}}" type="2d" id="weatherCanvas2" style="width: 750rpx; height: 400rpx;"/>

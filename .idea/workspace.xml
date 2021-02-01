@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="238d08f4-32c3-4765-aa92-5e772b838b16" name="默认的" comment="墨迹天气接口，各种bug">
+    <list default="true" id="238d08f4-32c3-4765-aa92-5e772b838b16" name="默认的" comment="动画性能改版备份">
+      <change afterPath="$PROJECT_DIR$/image/.idea/image.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/13.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/weather/15.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/xl.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/feedback.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.js" beforeDir="false" afterPath="$PROJECT_DIR$/package.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Information/Information.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/Information.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/unifyPay/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Subpages/EditClass/EditClass.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/EditClass/EditClass.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Subpages/EditClass/EditClass.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/EditClass/EditClass.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Subpages/FAQ/FAQ.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/FAQ/FAQ.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Subpages/Setting/Setting.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/Setting/Setting.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Subpages/Storage/Storage.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/Storage/Storage.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/API.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +77,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/image" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="ts.external.directory.path" value="C:\Users\24573\AppData\Local\JetBrains\Toolbox\apps\WebStorm\ch-0\203.6682.155\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
@@ -61,13 +85,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\project-web\MiniDLPU2\image" />
+      <recent name="D:\project-web\MiniDLPU2" />
       <recent name="D:\miniProgram\MiniDLPU2\components" />
       <recent name="D:\miniProgram\MiniDLPU2\pages\Subpages\Setting\cutInside" />
       <recent name="D:\miniProgram\MiniDLPU2\pages\Subpages\Setting" />
-      <recent name="D:\miniProgram\MiniDLPU2" />
-      <recent name="D:\miniProgram\MiniDLPU2\pages\Subpages\AboutUs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\project-web\MiniDLPU2\image" />
       <recent name="D:\miniProgram\MiniDLPU2\pages\Subpages\Setting\cutInside" />
       <recent name="D:\miniProgram\MiniDLPU2\components" />
       <recent name="D:\miniProgram\MiniDLPU2" />
@@ -123,7 +148,11 @@
       <workItem from="1610688804940" duration="17300000" />
       <workItem from="1610881000781" duration="7663000" />
       <workItem from="1611291826956" duration="20000" />
-      <workItem from="1611291858764" duration="3043000" />
+      <workItem from="1611291858764" duration="6034000" />
+      <workItem from="1611469742248" duration="40000" />
+      <workItem from="1611737661322" duration="13898000" />
+      <workItem from="1611809589337" duration="12960000" />
+      <workItem from="1612182644754" duration="5984000" />
     </task>
     <task id="LOCAL-00001" summary="成绩查询备份">
       <created>1609254589499</created>
@@ -188,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610881836034</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="动画性能改版备份">
+      <created>1611295917658</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1611295917658</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +265,7 @@
     <MESSAGE value="天气预报" />
     <MESSAGE value="天气预报iosbug" />
     <MESSAGE value="墨迹天气接口，各种bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="墨迹天气接口，各种bug" />
+    <MESSAGE value="动画性能改版备份" />
+    <option name="LAST_COMMIT_MESSAGE" value="动画性能改版备份" />
   </component>
 </project>

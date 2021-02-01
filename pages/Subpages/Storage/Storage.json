@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "缓存管理",
   "usingComponents": {},
   "enablePullDownRefresh": true
 }

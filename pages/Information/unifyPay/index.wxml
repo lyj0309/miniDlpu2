@@ -1,1 +1,6 @@
+<!--
 <web-view src="https://upay.2333.pub/" bindload="bindload" binderror="binderror"></web-view>
+-->
+<scroll-view scroll-y="true" style="height: {{ wx.getSystemInfoSync().windowHeight }}rpx;">
+    <image class="img" mode="aspectFill" src="../../../image/xl.svg"></image>
+</scroll-view>

@@ -1,4 +1,5 @@
 import Notify from "../../miniprogram_npm/@vant/weapp/notify/notify";
+
 const API = require("../../script/API");
 
 Page({
@@ -37,12 +38,12 @@ Page({
         ],
         container: null,
         minShow: false,
-        empClaShow0:false
+        empClaShow0: false
     },
     empClaConfirm0(event) { //空教室确认
         const {picker, value, index} = event.detail
         //console.log(value)
-        this.setData({empClaShow0: false, })
+        this.setData({empClaShow0: false,})
         this.infoCom.setData({epHouse: value[0], epWeek: value[1], epDay: value[2]})
     },
     empClaConfirm1() { //第几节确认
@@ -66,7 +67,7 @@ Page({
         }
         //console.log(this.data.result)
         this.infoCom.setData({epTime: time})
-        this.setData({empClaShow1: false,epClaTimeList:this.data.epClaTimeList})
+        this.setData({empClaShow1: false, epClaTimeList: this.data.epClaTimeList})
     },
     onPickerChange(event) {//星期几选择
         this.setData({
@@ -91,7 +92,7 @@ Page({
         this.popup.evaluation(undefined, data); //组件里里面定义的方法
     },
 
-    closeMinModel(){
+    closeMinModel() {
         this.setData({minShow: false});
     },
     onClose() {
@@ -99,15 +100,25 @@ Page({
     },
     propTap: function (prop) {
         wx.showLoading({title: '加载中···'})
-        API.getUserData(selector=>{
+        API.getUserData(selector => {
             //console.log(prop.currentTarget.id)
             switch (prop.currentTarget.id) {
                 case '2':
-                    wx.previewImage({
-                        current: 'https://s3.ax1x.com/2020/12/05/DON5qJ.jpg',
-                        urls: ['https://s3.ax1x.com/2020/12/05/DON5qJ.jpg', 'https://s3.ax1x.com/2020/12/05/DON4r4.jpg']
+                    wx.navigateTo({
+                        url: './unifyPay/index'
                     })
                     wx.hideLoading()
+/*                    wx.previewImage({
+                        current: 'http://cdn.2333.pub/xl.svg',
+                        urls: ["http://cdn.2333.pub/xl.svg"],
+                        success: res => {
+                            console.log("成功", res)
+                        },
+                        fail: res => {
+                            console.log("失败", res)
+                        }
+                    })
+                    wx.hideLoading()*/
                     break
                 case '7':
                     wx.navigateTo({
@@ -127,10 +138,10 @@ Page({
         })
     },
     onLoad(query) {
-       if ( wx.getSystemInfoSync().theme!== 'light'){
-           this.setData({
-               overlayStyle:"background-color: rgba(255,255,255,0.7)"
-           })
-       }
+        if (wx.getSystemInfoSync().theme !== 'light') {
+            this.setData({
+                overlayStyle: "background-color: rgba(255,255,255,0.7)"
+            })
+        }
     }
 })

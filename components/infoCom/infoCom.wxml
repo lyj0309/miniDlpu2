@@ -129,7 +129,7 @@
 
     <view id="{{idx}}" style="margin-top:10rpx" wx:key="idx" wx:for="{{empClaArr}}" wx:for-index="idx"
           wx:for-item="empCla">
-        <view wx:if="{{ empCla.length !== 0 && idx !== 7 }}" style="margin-left:10rpx">{{ idx + 1 }}楼</view>
+        <view wx:if="{{ empCla.length !== 0 && idx !== 7 }}" class="floor">{{ idx + 1 }}楼</view>
         <view wx:if="{{ empCla.length !== 0 }}" class="empBlock">
             <view bind:tap="openEmpDetail" data-item="{{cla}}" id="{{idx1}}" class="empBlockItem" wx:key="idx1"
                   wx:for="{{empCla}}" wx:for-index="idx1"

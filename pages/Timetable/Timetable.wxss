@@ -370,7 +370,7 @@ view.mask {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, .75);
+    background-color: rgba(255, 255, 255, .66);
 }
 
 @keyframes Show {
@@ -392,12 +392,12 @@ view.mask {
 }
 
 view.Show {
-    animation: Show 200ms ease;
+    animation: Show 233ms ease;
     opacity: 1;
 }
 
 view.Hide {
-    animation: Hide 200ms ease;
+    animation: Hide 233ms ease;
     opacity: 0;
 }
 
@@ -544,6 +544,14 @@ view.cDetail view.cEditClass view {
     white-space: pre-line;
 }
 
+.countdown{
+    font-size: 1.2rem;
+    opacity: 1;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
 @media (prefers-color-scheme: dark) {
@@ -560,7 +568,7 @@ view.cDetail view.cEditClass view {
         filter: invert(1) hue-rotate(.5turn);
     }
 
-    .class, .mask, .cList, .cDetail {
+    .class > view > view, .mask, .cList, .cDetail {
         filter: brightness(0.8);
     }
 
@@ -578,7 +586,7 @@ view.cDetail view.cEditClass view {
         color: #aaaaaa;
     }
 
-
 }
+
 
 
