@@ -1,39 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="238d08f4-32c3-4765-aa92-5e772b838b16" name="默认的" comment="动画性能改版备份">
-      <change afterPath="$PROJECT_DIR$/image/.idea/image.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/weather/13.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/weather/15.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/xl.svg" afterDir="false" />
+    <list default="true" id="238d08f4-32c3-4765-aa92-5e772b838b16" name="默认的" comment="关于我们修改，开学倒计时">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/infoCom/infoCom.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/feedback.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.js" beforeDir="false" afterPath="$PROJECT_DIR$/package.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/infoCom/infoCom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/infoCom/infoCom.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/infoCom/infoCom.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infoCom/infoCom.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/infoCom/infoCom.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Information/Information.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/Information.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/Information/Information.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/Information.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/unifyPay/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/AboutUs/AboutUs.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/EditClass/EditClass.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/EditClass/EditClass.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/EditClass/EditClass.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/EditClass/EditClass.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/FAQ/FAQ.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/FAQ/FAQ.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/Setting/Setting.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/Setting/Setting.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/Storage/Storage.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/Storage/Storage.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Timetable/Timetable.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Timetable/Timetable.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/simple/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/simple/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/simple/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Information/unifyPay/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Information/simple/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Subpages/StudentId/StudentId.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/API.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,11 +76,11 @@
       <recent name="D:\miniProgram\MiniDLPU2\pages\Subpages\Setting" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\project-web\MiniDLPU2\pages\Information" />
       <recent name="D:\project-web\MiniDLPU2\image" />
       <recent name="D:\miniProgram\MiniDLPU2\pages\Subpages\Setting\cutInside" />
       <recent name="D:\miniProgram\MiniDLPU2\components" />
       <recent name="D:\miniProgram\MiniDLPU2" />
-      <recent name="D:\miniProgram\MiniDLPU2\pages\InformationPages\CourseTimetable" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -153,6 +137,7 @@
       <workItem from="1611737661322" duration="13898000" />
       <workItem from="1611809589337" duration="12960000" />
       <workItem from="1612182644754" duration="5984000" />
+      <workItem from="1612677321028" duration="5512000" />
     </task>
     <task id="LOCAL-00001" summary="成绩查询备份">
       <created>1609254589499</created>

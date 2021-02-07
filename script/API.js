@@ -338,8 +338,6 @@ API.GET_JS_SESSION = {
             [d.ip, d.name, d.session, r.id, r.pwd, date, d.idCard]
         );
 
-        // 发起登录请求
-        API.request(API.GET_STATIC_DATA, {});
         rd();
     }
 };
@@ -805,43 +803,35 @@ API.getUserData = function (then, Tips = true) {
 
 API.reLogin = function (then, App, Tips = true) {
     // 发送网络请求
-    wx.login({
-        success: res => {
-            if (res.code) {
-                API.request(
-                    API.GET_JS_SESSION,
-                    {
-                        loading: 'none',
-                        successMsg: 'none',
-                        failMsg: 'none',
+    API.request(
+        API.GET_JS_SESSION,
+        {
+            loading: 'none',
+            successMsg: 'none',
+            failMsg: 'none',
 
-                        // 成功后返回数据
-                        ok: (d) => {
-                            then(App.globalData.UserData);
-                        },
+            // 成功后返回数据
+            ok: (d) => {
+                then(App.globalData.UserData);
+            },
 
-                        no: (d) => {
-                            if (Tips) wx.showModal({
-                                title: '账号错误',
-                                confirmText: '去设置',
-                                cancelText: '稍等',
-                                content: '您的账号信息错误，请修改正确，才能正常获取数据！',
-                                success: (res) => {
-                                    if (res.confirm) wx.navigateTo({url: '/pages/Subpages/StudentId/StudentId'});
-                                }
-                            });
-                        }
-                    }, {
-                        id: App.globalData.UserData.user,
-                        pwd: App.globalData.UserData.pwd,
-                        code:res.code
+            no: (d) => {
+                if (Tips) wx.showModal({
+                    title: '账号错误',
+                    confirmText: '去设置',
+                    cancelText: '稍等',
+                    content: '您的账号信息错误，请修改正确，才能正常获取数据！',
+                    success: (res) => {
+                        if (res.confirm) wx.navigateTo({url: '/pages/Subpages/StudentId/StudentId'});
                     }
-                )
-            } else {
-                console.log('登录失败！' + res.errMsg)
+                });
             }
+        }, {
+            id: App.globalData.UserData.user,
+            pwd: App.globalData.UserData.pwd,
+            code: ""
         }
-    })
+    )
 }
 
 /**

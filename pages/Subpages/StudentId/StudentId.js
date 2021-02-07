@@ -145,6 +145,8 @@ Page({
 
         this.userData.user = user;
         this.userData.pwd = pwd;
+        //更新学期
+        API.request(API.GET_STATIC_DATA, {});
 
         this.setData({
             loading:false,

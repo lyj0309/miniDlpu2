@@ -14,7 +14,7 @@
     "pages/Information/evaluation/evaluation",
     "pages/Subpages/StudentId/agreement/agreement",
     "pages/Subpages/Setting/cutInside/cutInside",
-    "pages/Information/unifyPay/index"
+    "pages/Information/simple/index"
   ],
   "tabBar": {
     "color": "@tabFontColor",
@@ -50,6 +50,12 @@
     "backgroundTextStyle": "@bgTxtStyle",
     "backgroundColorTop": "@bgColorTop",
     "backgroundColorBottom": "@bgColorBottom"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
   },
   "usingComponents": {
     "van-popup": "@vant/weapp/popup/index",

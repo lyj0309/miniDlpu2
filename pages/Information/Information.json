@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "综合信息",
   "usingComponents": {
-    "infoCom": "/components/infoCom/infoCom"
+    "infoCom": "./infoCom/infoCom"
   }
 }

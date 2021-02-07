@@ -3,7 +3,7 @@
 <van-notice-bar
         wrapable
         scrollable="{{ false }}" mode="closeable"
-        text="工大教务处v2内测ing,有问题即时反馈哦"/>
+        text="掌上教务处（工大教务处v2）,有问题即时反馈哦"/>
 
 <van-popup overlay-style="{{ overlayStyle?overlayStyle:'' }}" id="popup" round custom-style="width: 618rpx;height: 1000rpx" show="{{ show }}" bind:close="onClose">
     <infoCom id="com" wx:if="{{title !== ''}}" title="{{ title }}" root="{{root}}"/>

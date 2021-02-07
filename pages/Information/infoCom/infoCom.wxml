@@ -177,7 +177,7 @@
         <van-button bind:click="loginWaterCard" plain type="info" size="large">登录</van-button>
     </view>
     <view wx:else>
-        <image class="waterImg" wx:if="{{imgUrl }}" mode="widthFix" src="{{imgUrl}}"/>
+        <image class="waterImg" mode="widthFix" src="{{imgUrl}}"/>
         <view style="display:flex;align-items:center; justify-content: center;flex-direction:column">
             <view wx:if="{{balance}}">{{userName}} {{ stuId }}</view>
             <view wx:if="{{balance}}">余额：{{balance}}</view>

@@ -100,12 +100,11 @@ Page({
     },
     propTap: function (prop) {
         wx.showLoading({title: '加载中···'})
-        API.getUserData(selector => {
             //console.log(prop.currentTarget.id)
             switch (prop.currentTarget.id) {
                 case '2':
                     wx.navigateTo({
-                        url: './unifyPay/index'
+                        url: './simple/index'
                     })
                     wx.hideLoading()
 /*                    wx.previewImage({
@@ -122,7 +121,7 @@ Page({
                     break
                 case '7':
                     wx.navigateTo({
-                        url: './unifyPay/index'
+                        url: './simple/index'
                     })
                     wx.hideLoading()
                     break
@@ -135,7 +134,6 @@ Page({
                     break
             }
             this.infoCom = this.selectComponent("#com");
-        })
     },
     onLoad(query) {
         if (wx.getSystemInfoSync().theme !== 'light') {

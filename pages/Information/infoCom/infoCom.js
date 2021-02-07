@@ -1,5 +1,5 @@
-const API = require("../../script/API");
-import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
+const API = require("../../../script/API");
+import Notify from '../../../miniprogram_npm/@vant/weapp/notify/notify';
 
 Component({
     styleIsolation: 'shared', //解除组件样式隔离
@@ -257,7 +257,6 @@ Component({
             } else {
                 this.waterAutoLogin()
             }
-            wx.hideLoading()
         },
         waterAutoLogin() {
             API.getUserData(
@@ -349,9 +348,9 @@ Component({
                                 context: this,
                             })
                         } else {
-                            Notify({background: '#CC5983', message: d.data.errmsg, context: this,})
+                            Notify({background: '#CC5983', message:this.data.name ? d.data.errmsg: "默认密码不正确，请输入自己改的密码" , context: this,})
+                            wx.hideLoading()
                         }
-                        wx.hideLoading()
                     }
                 }, {
                     i: "2", j: "3", c: "entry", m: "water", do: "appapi", op: "user.login",
