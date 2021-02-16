@@ -1,8 +1,7 @@
 # Windows
 [Dd]esktop.ini
 Thumbs.db
-$RECYCLE.BIN/
-.idea
+
 
 # macOS
 .DS_Store
@@ -13,4 +12,8 @@ $RECYCLE.BIN/
 
 # Node.js
 node_modules/
-.idea/workspace.xml
+
+
+
+$RECYCLE.BIN/
+.idea
