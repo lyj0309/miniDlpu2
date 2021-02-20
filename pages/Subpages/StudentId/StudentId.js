@@ -9,7 +9,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        loading:false,
+        loading: false,
         user: "",
         pwd: "",
         showPassWord: true,
@@ -70,6 +70,7 @@ Page({
 
         // 应用
         this.setData(con);
+        this.setData({loading: false});
         setTimeout(() => {
             input.map((v) => con[v] = true);
             this.setData(con);
@@ -81,14 +82,15 @@ Page({
      * @description 提交验证
      */
     submit: function () {
-        if (this.data.loading === true)return
-        this.setData({loading:true})
+
+        if (this.data.loading === true) return
+        this.setData({loading: true})
         // 表单校验 这里只检验空
         let error = 0;
         if (!this.userData.user) error = 1;
         if (!this.userData.pwd && !error) error = 2;
         if (!this.userData.pwd && error === 1) error = 3;
-
+        //console.log(`提交了`, error)
         // 要说的话
         if (error) {
             let message = [, '学号', '密码', '学号与密码'];
@@ -113,7 +115,9 @@ Page({
 
                                 // 返回
                                 setTimeout(() => {
-                                    wx.navigateBack({})
+                                    wx.switchTab({
+                                        url: '/pages/Timetable/Timetable'
+                                    })
                                 }, 200);
 
                             },
@@ -123,7 +127,7 @@ Page({
                                 this.inputError(3);
                             }
                         },
-                        {id: this.userData.user, pwd: this.userData.pwd,code:res.code}
+                        {id: this.userData.user, pwd: this.userData.pwd, code: res.code}
                     );
                 } else {
                     console.log('登录失败！' + res.errMsg)
@@ -149,7 +153,7 @@ Page({
         API.request(API.GET_STATIC_DATA, {});
 
         this.setData({
-            loading:false,
+            loading: false,
             user: user,
             pwd: pwd,
             time: time
@@ -168,8 +172,10 @@ Page({
 
         this.setStorageData();
 
-        if (options.id !== undefined) {
-            this.setData({user: options.id, pwd: options.pwd})
+        if (options.user !== undefined) {
+            this.userData.user = options.user;
+            this.userData.pwd = options.pwd;
+            this.setData({user: options.user, pwd: options.pwd})
         }
     },
 

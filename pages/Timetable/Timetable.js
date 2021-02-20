@@ -547,6 +547,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+
+
         // 初始化静态数据
         this.initWeather()
 
@@ -561,6 +563,11 @@ Page({
             })
         }, this.data.semester);
 
+    },
+
+    backPresent() {
+        this.setData({week: this.data.weekNow});
+        this.setDayList(this.data.weekNow, this.data.week);
     },
 
     initWeather() {

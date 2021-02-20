@@ -68,6 +68,7 @@ Page({
         //console.log(this.data.result)
         this.infoCom.setData({epTime: time})
         this.setData({empClaShow1: false, epClaTimeList: this.data.epClaTimeList})
+
     },
     onPickerChange(event) {//星期几选择
         this.setData({
@@ -107,22 +108,19 @@ Page({
                         url: './simple/index'
                     })
                     wx.hideLoading()
-/*                    wx.previewImage({
-                        current: 'http://cdn.2333.pub/xl.svg',
-                        urls: ["http://cdn.2333.pub/xl.svg"],
-                        success: res => {
-                            console.log("成功", res)
-                        },
-                        fail: res => {
-                            console.log("失败", res)
-                        }
-                    })
-                    wx.hideLoading()*/
                     break
                 case '7':
-                    wx.navigateTo({
-                        url: './simple/index'
+                    wx.navigateToMiniProgram({
+                        appId: 'wx96401daae94c037c',
+                        path: 'pages/Subpages/StudentId/StudentId?id=' + 'dasfsadf' + '&pwd=' + 'asdfdsaf',
+                        envVersion: 'release',
+                        success(res) {
+                            // 打开成功
+                        }
                     })
+/*                    wx.navigateTo({
+                        url: './simple/index'
+                    })*/
                     wx.hideLoading()
                     break
                 case '8': //意见反馈

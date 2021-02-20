@@ -91,11 +91,23 @@
               style="{{ cDetailData.o ? 'background-color: '+cDetailData.c+';' : '' }} {{ cDetailData.o ? 'color:#FFFFFF !important;' : '' }} {{ cDetailData.i ? 'padding: 8px 70px 8px 18px;' : '' }}">
             {{ cDetailData.o ? '' : '[非本周]' }}{{ cDetailData.n }}
         </view>
-        <view class="cDLoca">上课地点：{{ cDetailData.l ? cDetailData.l : '无地点' }}</view>
-        <view class="cDTeach">课程讲师：{{ cDetailData.t ? cDetailData.t : '无老师' }}</view>
-        <view class="cDWeek">周数：{{ cDetailData.m }}</view>
-        <view wx-if="{{ cDetailData.o }}" class="cDWeek">时间：{{ date[cDetailData.w].week }} {{ cDetailData.s + 1
+        <view class="cDLoca">
+            <image src="../../image/map.svg"/>
+            地点：{{ cDetailData.l ? cDetailData.l : '无地点' }}
+        </view>
+
+        <view class="cDWeek">
+            <image src="../../image/calendar.svg"/>
+            周数：{{ cDetailData.m }}
+        </view>
+        <view wx-if="{{ cDetailData.o }}" class="cDWeek">
+            <image src="../../image/menu.svg"/>
+            时间：{{ date[cDetailData.w].week }} {{ cDetailData.s + 1
             }}-{{ cDetailData.e + 1 }}节
+        </view>
+        <view class="cDTeach">
+            <image src="../../image/user.svg"/>
+            老师：{{ cDetailData.t ? cDetailData.t : '无老师' }}
         </view>
         <view style="height: 20px"></view>
     </view>
@@ -195,9 +207,13 @@
     <view class="countdown" wx:else>
         <view>
             <view>距开学还有</view>
-            <van-count-down style="font-size: 1.4rem;"  time="{{ countdownTime }}" format="DD 天 HH 时 mm 分 ss 秒" />
+            <van-count-down style="font-size: 1.4rem;" time="{{ countdownTime }}" format="DD 天 HH 时 mm 分 ss 秒"/>
+            <view>仅 供 参 考</view>
         </view>
     </view>
+</view>
+<view wx:if="{{ week !== weekNow}}" id="backBtn">
+    <van-button color="#3ea3db" round type="info" bindtap="backPresent">返回当前周</van-button>
 </view>
 
 <canvas wx:if="{{canvas0Show}}" type="2d" id="weatherCanvas0" style="width: 750rpx; height: 400rpx;"/>

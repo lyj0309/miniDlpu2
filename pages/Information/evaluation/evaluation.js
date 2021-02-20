@@ -7,7 +7,6 @@ Page({
     data: {
         value: '',
     },
-
     onLoad: function (options) {
         wx.setNavigationBarTitle({title: '评教评教'})
         this.setData({callbackUrl:options.callbackUrl,loadState:false})

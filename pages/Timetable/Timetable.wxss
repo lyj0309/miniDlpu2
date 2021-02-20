@@ -142,6 +142,21 @@ view.week > view.weather image {
     height: 600rpx;
 }
 
+.cDBlock > view >image{
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+.cDBlock > view {
+    display: flex;
+    align-items: center;
+}
+#backBtn{
+    position: fixed;
+    bottom:3rem ;
+    right: 1rem;
+}
+
 /* 选择区域弹出动画 */
 @keyframes showSelect {
     from {
