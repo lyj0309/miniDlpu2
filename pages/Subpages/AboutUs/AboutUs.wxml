@@ -1,7 +1,7 @@
 <!--pages/setting-detail/AboutUs.wxml-->
 
 <view class='page__bd'>
-    <view class="title">工大教务处2</view>
+    <view class="title">掌上教务处（工大教务处v2）</view>
     <!--    <view class="version">v1.6.1</view>-->
     <view class="self-intro">
         此程序为工大教务处的2.x版本，为1.x的重构版
@@ -10,13 +10,12 @@
             1. 美化页面
             2. 优化爬取策略
             3. ...
-
         </text>
     </view>
-    <view class="repo" bindtap='setrepo'>
+    <view class="repo">
         2.x开源地址：https://github.com/lyj0309/miniDlpu2
-    </view>
-    <view>以下为《工大教务处》1.x说明</view>
+    </view >
+    <view style=" margin-top: 60rpx; ">以下为《工大教务处》1.x说明</view>
     <view class="self-intro">
         大家好，我是“工大教务处”小程序的开发者，
         “工大教务处”是我在课外学习中开发的第一款上线的小程序。
@@ -31,12 +30,11 @@
         因此小程序会有查询到不到数据的情况。我们也去和学校教务处老师交谈了一下，希望开放一些数据给我们或者添加一个白名单，最终并没有得到支持。
         于是我们只能通过一些离线缓存来缓解压力，后续还会发掘更多的方法来提升用户体验。
     </view>
-    <view class="repo" bindtap='setrepo'>
+    <view class="repo">
         1.x开源地址：https://github.com/Patrick-Jun/miniDLPU
     </view>
 </view>
 
-        <!--pages/setting-detail/thanks.wxml-->
 <view class="page">
     <view class='page__hd'>
         <view class='head-box'>
@@ -50,14 +48,14 @@
                 <view class="item-title">开发者</view>
                 <view class="item-content">
                     <view>吴俊：工大教务处开发</view>
-                    <view>秦浩轩：评教小助手/采集平台开发</view>
+                    <view>秦浩轩：工大教务处2/评教小助手/采集平台开发</view>
                     <view>梁研骏：工大教务处2开发</view>
                 </view>
             </view>
             <view class="item">
                 <view class="item-title">指导老师</view>
                 <view class="item-content">
-                    <view>刘娜  李明霞  彭峰  尹艳辉</view>
+                    <view>刘娜 李明霞 彭峰 尹艳辉</view>
                 </view>
             </view>
             <view class="item">
@@ -72,28 +70,36 @@
             <view class="item">
                 <view class="item-title">客服</view>
                 <view class="item-content">
-                    <view>史雅静  金灵  王一伊  于琳</view>
-                    <view>陈强  赵丹佳</view>
+                    <view>史雅静 金灵 王一伊 于琳</view>
+                    <view>陈强 赵丹佳</view>
                 </view>
             </view>
             <view class="item">
                 <view class="item-title">服务器赞助</view>
                 <view class="item-content">
                     <view>吴俊：MOS/猪蹄/嘻嘻哈哈/妲己/一只牛</view>
-                    <view>秦浩轩：<span class="del"> 笔芯 </span></view>
-                    <view>王昊：<span class="del"> 毛驴的春天 </span></view>
-                    <view>张曦：<span class="del"> 玄队</span></view>
-                    <view>温宇彤：<span class="del"> xt/xt2 </span></view>
+                    <view>秦浩轩：
+                        <span class="del">笔芯</span>
+                    </view>
+                    <view>王昊：
+                        <span class="del">毛驴的春天</span>
+                    </view>
+                    <view>张曦：
+                        <span class="del">玄队</span>
+                    </view>
+                    <view>温宇彤：
+                        <span class="del">xt/xt2</span>
+                    </view>
                     <view>陈强：大熊与szr🐻</view>
                 </view>
             </view>
             <view class="item">
                 <view class="item-title">测试参与者</view>
                 <view class="item-content">
-                    <view>姚晓鹏  杨越琪  秦浩轩  周婷</view>
-                    <view>金灵  白悦松  朱立子一  于琳</view>
-                    <view>王文治  王瑜欣  史雅静  陈强</view>
-                    <view>赵丹佳  匿名</view>
+                    <view>姚晓鹏 杨越琪 秦浩轩 周婷</view>
+                    <view>金灵 白悦松 朱立子一 于琳</view>
+                    <view>王文治 王瑜欣 史雅静 陈强</view>
+                    <view>赵丹佳 匿名</view>
                 </view>
             </view>
             <view class="item">
@@ -103,32 +109,6 @@
                     <view>等合计36名热心用户</view>
                 </view>
             </view>
-            <!-- <view class='body-box-head'>
-              <view>2018.08.18  “mini教务处”安卓APP发布</view>
-              <view style="margin-top: 0rpx;">2018.09.16  “工大教务处”小程序发布</view>
-              <view style="margin-top: 0rpx;"><text decode="{{true}}" space="{{true}}">2018.12.06&emsp;荣获移动应用省级二等奖</text></view>
-              <view>程序从最开始简陋页面，只能简单查询课程表到现在BUG逐渐修复，页面逐渐美化，功能逐渐完善，少不了大家对我的支持和督促，感谢每一位同学！</view>
-              <view>最后还需要特别感谢以下帮助我的小伙伴们！</view>
-            </view> -->
-            <!-- <view class='displayheart'><image src='../../image/liteheart.png'></image></view> -->
-            <!-- <view class='body-box-con'>
-              <view class='tr'>
-                <view class='th th1'>名单</view>
-                <view class='th th2'>大事件</view>
-              </view>
-              <view class='tr'>
-                <view class='td td1'>网络16 何玉梅</view>
-                <view class='td td2'>安卓LOGO设计</view>
-              </view>
-              <view class='tr'>
-                <view class='td td1'>计算机16 邓雪梅</view>
-                <view class='td td2'>课程小块颜色设计</view>
-              </view>
-              <view class='tr'>
-                <view class='td td1'>视传18 秦浩轩</view>
-                <view class='td td2'>综合信息页UI设计，3号笔芯服务器</view>
-              </view>
-            </view> -->
         </view>
     </view>
     <view class='full-some'></view>

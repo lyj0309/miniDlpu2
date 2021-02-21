@@ -273,14 +273,14 @@ API.request = function (api, callback, data, cookie) {
                 message = requestData.failMsg;
 
             // api关键字为后端返回错误代码
-            if (message == 'api')
-                message = d.data.err_msg ? d.data.err_msg : ('未知错误，代码:' + d.data.code);
+            if (message === 'api') message = d.data.err_msg ? d.data.err_msg : ('未知错误，代码:' + d.data.code);
 
             // 显示错误提示
-            if (message) wx.showToast({
-                icon: 'none',
-                title: message
-            });
+            if (message)  wx.showModal({
+                title: message,
+                confirmText: '确定',
+                showCancel: false,
+            })
         }
     };
 

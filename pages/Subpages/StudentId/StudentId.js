@@ -90,7 +90,7 @@ Page({
         if (!this.userData.user) error = 1;
         if (!this.userData.pwd && !error) error = 2;
         if (!this.userData.pwd && error === 1) error = 3;
-        //console.log(`提交了`, error)
+        console.log(`提交了`, error)
         // 要说的话
         if (error) {
             let message = [, '学号', '密码', '学号与密码'];

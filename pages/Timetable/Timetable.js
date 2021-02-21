@@ -604,7 +604,7 @@ Page({
         for (let v = 0; v < 3; v++) {
             query.select('#weatherCanvas' + v.toString())
                 .fields({node: true, size: true})
-                .exec((res) => {
+                .exec(res => {
                     if (res[0] === null) return
                     let canvas = res[0].node
                     let ctx = canvas.getContext('2d')
