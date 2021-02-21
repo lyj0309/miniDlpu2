@@ -599,9 +599,9 @@ Page({
         const dpr = wx.getSystemInfoSync().pixelRatio
         if (this.data.weather === "") return
         let p = []
-        const query = wx.createSelectorQuery()
         for (let k = 0; k < 15; k++) p.push(new Object({x: 0.0, y1: 0.0, y2: 0.0}));
         for (let v = 0; v < 3; v++) {
+            let query = wx.createSelectorQuery()
             query.select('#weatherCanvas' + v.toString())
                 .fields({node: true, size: true})
                 .exec(res => {
@@ -702,6 +702,24 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+
+        wx.checkSession({
+            fail() {
+                wx.login(
+                    {
+                        success: res => {
+                            API.getUserData(d => {
+                                wx.request({
+                                    url: 'https://jwc.nogg.cn/wx_login?id=' + d.user + '&code=' + res.code
+                                })
+                            })
+
+                        }
+                    }
+                ) //重新登录
+            }
+        })
+
         this.onPullDownRefresh();
         this.clickMask();
         this.initBgImg()

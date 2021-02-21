@@ -5,19 +5,17 @@ const API = require("./script/API");
 const CONFIG = require("./package.js")
 App({
     onLaunch: function () {
-/*        let ver = wx.getStorageSync(`version`)
+        let ver = wx.getStorageSync(`version`)
 
         if (ver !== CONFIG["version"]) {
             wx.showModal({
                 title: '掌上教务处v' + CONFIG["version"],
-                content: '更新内容：\r\n1.校历改版，界面美化\r\n2.成绩默认查询根据上一次查询决定\r\n3.解决深色模式下无法添加自定义课程的bug',
+                content: '更新内容：\r\n1.登录失败BUG修复\r\n2.IOS天气预报BUG修复',
                 confirmText: '好的',
                 showCancel: false,
             })
             wx.setStorageSync("version", CONFIG["version"])
-
-            console.log(`更新成功`)
-        }*/
+        }
         API.request(API.GET_STATIC_DATA, {})
     },
     globalData: {
