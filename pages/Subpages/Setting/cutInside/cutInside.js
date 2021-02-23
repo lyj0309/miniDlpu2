@@ -8,8 +8,8 @@ const width = device.windowWidth
 const height = device.windowHeight
 
 let bgImgHeight = wx.getStorageSync(`bgImgHeight`)
-if (bgImgHeight === null ||bgImgHeight==='') {
-    let systemInfo = wx.getSystemInfoSync()
+if (bgImgHeight === null || bgImgHeight === '') {
+    let systemInfo = device
     // px转换到rpx的比例
     let pxToRpxScale = 750 / systemInfo.windowWidth;
     // 图片的高度
@@ -17,7 +17,7 @@ if (bgImgHeight === null ||bgImgHeight==='') {
     wx.setStorageSync(`bgImgHeight`, ktxWindowHeight)
     bgImgHeight = ktxWindowHeight
 }
-const imgHeight = 300*(bgImgHeight/750)
+const imgHeight = 300 * (bgImgHeight / 750)
 
 Page({
     data: {
@@ -26,7 +26,7 @@ Page({
             targetId: 'targetCropper',
             pixelRatio: device.pixelRatio,
             width,
-            height,
+            height:height*0.93,
             scale: 2.5,
             zoom: 8,
             cut: {
@@ -40,7 +40,7 @@ Page({
                 mask: 'rgba(0,0,0,0.8)',
                 lineWidth: 1
             }
-        }
+        },
     },
     touchStart(e) {
         this.cropper.touchStart(e)
@@ -65,7 +65,7 @@ Page({
                     }
                 })
                 let bgImg = wx.getStorageSync(`bgImg`)
-                if (bgImg !== '' || bgImg !== null){
+                if (bgImg !== '' || bgImg !== null) {
                     FSM.removeSavedFile({
                         filePath: bgImg,
                         success: r => {
@@ -128,6 +128,7 @@ Page({
                 wx.hideToast()
             })
 
+        console.log(this.data)
 
         wx.getFileSystemManager().getFileInfo({
             filePath: option.src,
