@@ -177,7 +177,6 @@ Component({
                             opc0: new Array(d.Scores === null ? 0 : d.Scores).fill(0),
                             opc1: new Array(d.Scores === null ? 0 : d.Scores).fill(1)
                         })
-
                         wx.hideLoading()
                     }
                 }, {
@@ -348,7 +347,11 @@ Component({
                                 context: this,
                             })
                         } else {
-                            Notify({background: '#CC5983', message:this.data.name ? d.data.errmsg: "默认密码不正确，请输入自己改的密码" , context: this,})
+                            Notify({
+                                background: '#CC5983',
+                                message: this.data.name ? d.data.errmsg : "默认密码不正确，请输入自己改的密码",
+                                context: this,
+                            })
                             wx.hideLoading()
                         }
                     }
@@ -474,6 +477,8 @@ Component({
     lifetimes: { //组件生命周期
         attached: function () {
             API.getUserData(d => {
+                //console.log(`userdata`, d)
+
                 this.session = d.session
                 this.page = getCurrentPages()[0];//获取页面页面实例对象
                 // 在组件实例进入页面节点树时执行

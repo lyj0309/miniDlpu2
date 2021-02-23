@@ -276,7 +276,7 @@ API.request = function (api, callback, data, cookie) {
             if (message === 'api') message = d.data.err_msg ? d.data.err_msg : ('未知错误，代码:' + d.data.code);
 
             // 显示错误提示
-            if (message)  wx.showModal({
+            if (message) wx.showModal({
                 title: message,
                 confirmText: '确定',
                 showCancel: false,
@@ -750,6 +750,7 @@ API.getStaticData = function (then) {
  * 注意：传递给then函数是全局指针，不要修改数据！！！（非常重要！！）
  */
 API.getUserData = function (then, Tips = true) {
+    let startTime = new Date().getTime();
 
     // 获取当前时间 全局对象
     let App = getApp();
@@ -794,6 +795,9 @@ API.getUserData = function (then, Tips = true) {
     }
 
     API.reLogin(e => {
+        wx.reportAnalytics('userdata_time', {
+            time: new Date().getTime() - startTime,
+        });
         then(e)
     }, App)
 
