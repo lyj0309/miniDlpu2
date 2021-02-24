@@ -83,7 +83,7 @@
     <view class="cDBlock" catchtap="catchtap">
         <view class="cEditClass">
             <view wx:if="{{ cDetailData.i }}" bindtap="editClass"
-                  data-id="{{ cDetailData.i }}" style="{{cDetailData.o ? '' : 'color: rgba(0, 0, 0, .60);'}}">
+                  data-id="{{ cDetailData.i }}" style="{{cDetailData.o ? '' : 'color: rgba(0, 0, 0, .60);'}}margin-top: 30px;">
                 编辑
             </view>
         </view>
@@ -170,7 +170,7 @@
 
         <!-- 添加课程选区 -->
 <view class="selection"
-      style="top:{{selection.y}}px; left:{{selection.x}}px; height:{{selection.height}}px; width:{{selection.width}}px;z-index:  {{selection.show ? '1':'-99'}}; opacity: {{selection.show ? '1':'0'}};transition:0.2s ease;"
+      style="top:{{selection.y}}px; left:{{selection.x}}px; height:{{selection.height}}px; width:{{selection.width}}px;z-index:  {{selection.show ? '1':'-9'}}; opacity: {{selection.show ? '1':'0'}};transition: 0.2s ease;"
       catchtouchmove="dragMove" catchtouchend="dragEnd">
     <image src="/image/addClass.svg"></image>
 </view>
@@ -205,10 +205,12 @@
         </view>
     </view>
     <view class="countdown" wx:else>
-        <view>
-            <view>距开学还有</view>
-            <van-count-down style="font-size: 1.4rem;" time="{{ countdownTime }}" format="DD 天 HH 时 mm 分 ss 秒"/>
-            <view>仅 供 参 考</view>
+        <view class="{{ bgImg===''?'':'dim' }}">
+            <view>
+                <view>距开学还有</view>
+                <van-count-down style="font-size: 1.4rem;" time="{{ countdownTime }}" format="DD 天 HH 时 mm 分 ss 秒"/>
+                <view>仅 供 参 考</view>
+            </view>
         </view>
     </view>
 </view>

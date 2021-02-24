@@ -83,8 +83,8 @@ linear 线性
 }
 
 .sticky {
-    opacity: 0.88;
-    background-color: #ffffff;
+    backdrop-filter: blur(4px);
+    background-color: rgba(255,255,255,0.5) !important;
     position: sticky !important;
     top: 0rpx;
     left: 0;

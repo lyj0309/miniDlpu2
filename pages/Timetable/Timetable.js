@@ -20,7 +20,7 @@ Page({
         canvas0Show: true,
         canvas1Show: true,
         canvas2Show: true,
-        defBgColor: "rgba(222,222,222,0.7)",
+        defBgColor: "rgba(222,222,222,0.55)",
         defontColor: "787878",
         //天气弹出层
         show: false,

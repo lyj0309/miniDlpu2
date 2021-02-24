@@ -57,12 +57,8 @@
 </view>
 
 <view wx:if="{{ title === '考试日程' }}">
-    <view class="examCount">最近
-        <text wx:if="{{examDateData.length }}">共有
-            <text style="color:red">{{examDateData.length }}</text>
-            场</text>
-        <text style="color:red" wx:else>没有</text>
-        考试
+    <view class="examCount">最近<text wx:if="{{examDateData.length }}">共有 <text style="color:red"> {{examDateData.length }} </text>场考试</text>
+        <text wx:else  ><text style="color:red">没有</text> 考试</text>
     </view>
     <view wx:key="idx" wx:for="{{examDateData}}" wx:for-index="idx" wx:for-item="item">
         <van-cell title="{{item.Name}}" value="{{item.Room}}" label="{{item.Time}}"/>
@@ -75,12 +71,10 @@
     <view style="font-size: 2.5em;text-align: center;" wx:if="{{pyfaData[0].length === 0}}">暂无</view>
     <view wx:else>
         <view wx:key="idx" wx:for="{{pyfaData}}" wx:for-index="idx" wx:for-item="pyfa">
-            <view class="sticky">
-                <van-cell title-style="color: #CC5983" size="large"
+                <van-cell custom-class="sticky" title-style="color: #CC5983" size="large"
                           title="{{pyfaSemester[idx][1]}}    共{{pyfa.length}}门">
                     <view>{{pyfaSemester[idx][0]}}</view>
                 </van-cell>
-            </view>
             <van-cell-group>
                 <van-cell border="{{true}}" wx:key="idx1" wx:for="{{pyfa}}" wx:for-index="idx1" title="{{item.Name}}"
                           wx:for-item="item" value="{{item.Credit}}'/{{item.ExamMode}} " data-item="{{item}}"

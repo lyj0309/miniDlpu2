@@ -156,6 +156,19 @@ view.week > view.weather image {
     bottom:3rem ;
     right: 1rem;
 }
+/* 毛玻璃 */
+.dim{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    height: 7rem;
+    width: 12rem;
+    box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, .3);
+    backdrop-filter: blur(3px);
+    background: rgba(255, 255, 255, .3);
+    overflow: hidden;
+}
 
 /* 选择区域弹出动画 */
 @keyframes showSelect {
@@ -346,6 +359,8 @@ view.class > view {
 }
 
 view.class > view > view {
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, .3);
+    backdrop-filter: blur(4px);
     word-break: break-all;
     width: calc(100% - 4px);
     margin: 0 2px;
@@ -489,6 +504,7 @@ view.cDetail view.cEditClass {
     height: 0;
     z-index: 10;
 }
+
 
 view.cDetail view.cEditClass view {
     width: 100%;

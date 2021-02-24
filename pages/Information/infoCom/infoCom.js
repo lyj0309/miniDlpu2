@@ -59,7 +59,7 @@ Component({
                     time += (i + 1).toString()
                 }
             }
-            let week = this.data.epWeek.match(/\d?/)[0]
+            let week = this.data.epWeek.substr(1).match(/\d*/)[0]
             console.log(week)
             API.request(
                 API.GET_EMPTY_CLASS,
@@ -375,7 +375,7 @@ Component({
                 dayValue.push("周" + "一二三四五六日".charAt(i))
             }
             for (let i = 1; i <= 20; i++) {
-                weekValue.push(i + "周")
+                weekValue.push("第" + i + "周")
             }
             this.page.setData({
                 columns: [
@@ -399,7 +399,7 @@ Component({
             })
             this.setData({
                 epDay: "周" + "日一二三四五六".charAt(new Date().getDay()),
-                epWeek: week + '周',
+                epWeek: "第"+week + '周',
                 epTime: [0, 1, 0, 0, 0, 0],
                 epHouse: '综合楼',
             })
