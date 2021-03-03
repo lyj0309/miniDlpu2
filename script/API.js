@@ -233,6 +233,7 @@ API.request = function (api, callback, data, cookie) {
 
     // 数据错误
     requestData.no = (code, d) => {
+
         API.runCallBack(api.no, callback.no, code, d, data);
     };
 
@@ -271,6 +272,7 @@ API.request = function (api, callback, data, cookie) {
 
             else if (API.testMessage(requestData.failMsg))
                 message = requestData.failMsg;
+
 
             // api关键字为后端返回错误代码
             if (message === 'api') message = d.data.err_msg ? d.data.err_msg : ('未知错误，代码:' + d.data.code);
@@ -355,6 +357,7 @@ API.GET_STATIC_DATA = {
     ok: (d, a, b, rd) => {
         // 更新时间
         let date = new Date();
+       // let date = new Date('1995-12-17T03:24:00');
 
         //console.log("传入学期",d.semester)
         let semester = API.geneSemesterArr(d.semester)[1]
@@ -430,9 +433,23 @@ API.GET_EXAM_SCORE = {
         })
     }
 }
-
+// 培养方案
 API.GET_CULTIVATE_SCHEME = {
     url: baseHost + '/cultivate_scheme',
+    method: 'GET',
+    no: () => {
+        API.reLogin(() => {
+        }, getApp())
+        wx.hideLoading()
+        wx.showToast({
+            icon: 'none',
+            title: 'session过期，请重新打开'
+        })
+    }
+}
+// 培养方案列表
+API.GET_CULTIVATE_SCHEME_LIST = {
+    url: baseHost + '/cultivate_scheme_list',
     method: 'GET',
     no: () => {
         API.reLogin(() => {
@@ -471,6 +488,7 @@ API.EVALUATION_LIST = {
         })
     }
 }
+
 API.EVALUATION_DETAIL = {
     url: baseHost + '/evaluation_detail',
     method: 'GET',
@@ -499,6 +517,21 @@ API.EVALUATION_POST = {
         })
     }
 }
+//四级
+API.CET = {
+    url: baseHost + '/cet',
+    method: 'GET',
+}
+
+
+API.ADD_EXAM_DATE_ALARM = {
+    url: baseHost + '/exam_date_alarm',
+    method: 'POST',
+}
+API.DELETE_EXAM_DATE_ALARM = {
+    url: baseHost + '/exam_date_alarm',
+    method: 'DELETE',
+}
 
 API.LOGIN_WATERCARD = {
     url: 'https://www.wuweixuezi.com/app/index.php',
@@ -514,6 +547,7 @@ API.GET_WATERCARD_INFO = {
     method: 'GET',
 
 }
+
 
 
 /**
@@ -709,6 +743,7 @@ API.getStaticData = function (then) {
 
             // 成功后返回数据
             ok: (d) => {
+                console.log(`数据过期`)
                 then(App.globalData.StaticData);
             }
         });

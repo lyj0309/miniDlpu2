@@ -15,6 +15,11 @@
     <view class="repo">
         2.x开源地址：https://github.com/lyj0309/miniDlpu2
     </view >
+    <view class="repo">
+        当然，如果你想体验小程序的新功能，或者想为小程序找BUG，或想当客服，可以添加 <text style="color:blue" bindtap="openImg">我</text> 的微信，我将把你拉到小程序DEBUG群里，届时你将体验到最新的功能
+    </view >
+
+
     <view style=" margin-top: 60rpx; ">以下为《工大教务处》1.x说明</view>
     <view class="self-intro">
         大家好，我是“工大教务处”小程序的开发者，

@@ -76,9 +76,11 @@
 <view class="button" bindtap="reCalcKCB">重新演算课程数据</view>
 
 <!-- 标题 -->
-<!-- <view class="title" style="margin-top:20px;">危险操作</view> -->
-<!-- <view class="p">请谨慎操作下面配置，数据一旦清除无法恢复！！</view> -->
+<!--
+ <view class="title" style="margin-top:20px;">危险操作</view>
+ <view class="p">请谨慎操作下面配置，数据一旦清除无法恢复！！</view>
 
-<!-- <view class="button" style="background-color: #ff9393" bindtap="deleteAll">清除小程序数据</view> -->
+ <view class="button" style="background-color: #ff9393" bindtap="deleteAll">清除小程序数据</view>
+-->
 
 <view style="height: 20px;"></view>

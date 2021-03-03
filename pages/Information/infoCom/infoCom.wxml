@@ -58,23 +58,32 @@
 
 <view wx:if="{{ title === '考试日程' }}">
     <view class="examCount">最近<text wx:if="{{examDateData.length }}">共有 <text style="color:red"> {{examDateData.length }} </text>场考试</text>
-        <text wx:else  ><text style="color:red">没有</text> 考试</text>
+        <text wx:else><text style="color:red">没有</text> 考试</text>
     </view>
     <view wx:key="idx" wx:for="{{examDateData}}" wx:for-index="idx" wx:for-item="item">
-        <van-cell title="{{item.Name}}" value="{{item.Room}}" label="{{item.Time}}"/>
+        <van-cell title-width="350rpx" title="{{item.Name}}" label="{{item.Time}}">
+            <view class="examFlex">
+                <view>
+                    {{ item.Room }}
+                    <van-count-down time="{{ item.cdtime }}" format="剩DD天HH时" />
+                </view>
+                    <image bindtap="propExamAlarm" id="{{ idx }}" style="width: 60rpx; height: 60rpx" src="{{ alarmImg[item.alarmImgIdx] }}"></image>
+            </view>
+        </van-cell>
     </view>
 </view>
 
 <view wx:if="{{ title === '培养方案' }}">
+
     <view class="examCount">一共可能要学 <text style="color:red">{{ pyfaCount }}</text> 门课程
     </view>
     <view style="font-size: 2.5em;text-align: center;" wx:if="{{pyfaData[0].length === 0}}">暂无</view>
     <view wx:else>
         <view wx:key="idx" wx:for="{{pyfaData}}" wx:for-index="idx" wx:for-item="pyfa">
-                <van-cell custom-class="sticky" title-style="color: #CC5983" size="large"
-                          title="{{pyfaSemester[idx][1]}}    共{{pyfa.length}}门">
-                    <view>{{pyfaSemester[idx][0]}}</view>
-                </van-cell>
+            <van-cell custom-class="sticky" title-style="color: #CC5983" size="large"
+                      title="{{pyfaSemester[idx][1]}}    共{{pyfa.length}}门">
+                <view>{{pyfaSemester[idx][0]}}</view>
+            </van-cell>
             <van-cell-group>
                 <van-cell border="{{true}}" wx:key="idx1" wx:for="{{pyfa}}" wx:for-index="idx1" title="{{item.Name}}"
                           wx:for-item="item" value="{{item.Credit}}'/{{item.ExamMode}} " data-item="{{item}}"
@@ -87,7 +96,7 @@
 
 
 <view wx:if="{{ title === '空教室' }}">
-    <!--    标题-->
+    <!--  标题  -->
     <view class="sticky empTitle">
         <view style="width:280rpx; margin-left: 18rpx;" data-idx="0" bind:tap="showEmpCla">
             {{ epHouse }} {{ epWeek }} {{ epDay }}
@@ -101,7 +110,7 @@
                 <view wx:if="{{ idx === 1 || idx === 3}}" class="bd"/>
             </view>
 
-            <!--            {{ epTime }}-->
+            <!-- {{ epTime }}-->
             <van-icon size="30rpx" name="arrow-down"/>
         </view>
         <van-icon bind:tap="searchEmpCla" style="width:50rpx;margin-right: 17rpx;" name="search" size="45rpx"/>
@@ -209,4 +218,29 @@
             </view>
         </view>
     </view>
+</view>
+
+<view class="score" wx:if="{{ title === '四六级' }}">
+        <view id="score_tit">
+           <text> 姓　　名：{{ data.n }}\n</text>
+           <text> 学　　校：{{ data.x }}\n</text>
+        </view>
+        <view id="score_write">
+            <view class="titleT">笔试成绩</view>
+            <text>准考证号：{{ data.z }}\n</text>
+            <text>总　 　分： <text style=" color: red;"> {{ data.s }}</text>\n</text>
+            <view class="scoreT">
+             <text>  听　　　力：{{ data.l }}\n</text>
+             <text>  阅　　　读：{{ data.r }}\n</text>
+             <text>  写作和翻译：{{ data.w }}\n</text>
+            </view>
+        </view>
+        <view id="score_oral">
+            <view class="titleT">口试成绩</view>
+          <text> 准考证号：{{ data.kyz }}\n</text>
+          <text> 等　　级：{{ data.kys }}\n</text>
+        </view>
+        <view id="score_id" style="display: none;margin-top: 30px;">
+            <text> 成绩报告单编号：{{ data.id }}</text>
+        </view>
 </view>

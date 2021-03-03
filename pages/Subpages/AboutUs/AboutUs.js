@@ -12,4 +12,10 @@ Page({
   },
   onLoad: function(){
   },
+  openImg(){
+  wx.previewImage({
+    urls:["http://cdn.nogg.cn/myqrcode.jpg"],
+    current:"http://cdn.nogg.cn/myqrcode.jpg"
+  })
+  }
 })

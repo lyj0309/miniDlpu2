@@ -1,4 +1,5 @@
 {
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -56,6 +57,12 @@
         {
           "name": "pages/Subpages/EditClass/EditClass",
           "pathName": "pages/Subpages/EditClass/EditClass",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/Information/simple/index",
+          "pathName": "pages/Information/simple/index",
           "scene": null
         }
       ]

@@ -8,8 +8,13 @@ Component({
             type: String,
             value: '',
         },
+        data: {
+            type: Object,
+            value: {},
+        }
     },
     data: {
+        alarmImg: `../../../image/information/alarm.svg`,
         replay: "paused",
         actions: [],
         show: false,
@@ -185,6 +190,7 @@ Component({
                 "session=" + this.session
             )
         },
+        // 考试日程
         getExamDate() {
             let that = this
             // console.log(this.session)
@@ -192,8 +198,19 @@ Component({
                 API.GET_EXAM_DATE,
                 {
                     ok: (d) => {
-                        //console.log('成功', d)
-                        that.setData({examDateData: d, replay: "paused"})
+                        console.log('成功', d)
+                        console.log()
+
+                        for (let dElement of d) {
+                            //console.log( new Date(dElement.Time.substring(0,dElement.Time.indexOf(`~`)))-  new Date()  )
+                            dElement.cdtime = new Date(dElement.Time.substring(0, dElement.Time.indexOf(`~`))) - new Date()
+                            dElement.alarmImgIdx = 0
+                        }
+                        that.setData({
+                            examDateData: d,
+                            replay: "paused",
+                            alarmImg: [`../../../image/information/alarm.svg`, `../../../image/information/noalarm.svg`]
+                        })
                         wx.hideLoading()
                         Notify({
                             background: '#77C182',
@@ -205,6 +222,47 @@ Component({
                 "session=" + this.session
             )
         },
+        propExamAlarm(e) {
+            let a = this.data.examDateData
+            if (a[e.currentTarget.id].alarmImgIdx === 0) {
+
+                a[e.currentTarget.id].alarmImgIdx = 1
+                this.setData({
+                    examDateData: a
+                })
+            } else {
+
+                wx.showModal({
+                    title:`考试提醒（beta）`,
+                    content:`在考试前一个小时将通知宁，也可以随时关闭`,
+                    confirmText:"开启",
+                })
+                // 打开考试提醒
+                // wx.requestSubscribeMessage({
+                //     tmplIds: ['ev2cvXp8X8sMDzLB-BJnwVszlS6Zm7pMQHxcTd1D8wA'],
+                //     success: res => {
+                        API.request(
+                            API.ADD_EXAM_DATE_ALARM,
+                            {
+                                ok: d => {
+                                    console.log(d)
+                                }
+                            }, {
+                                id: a[e.currentTarget.id].ID,
+                                subject: a[e.currentTarget.id].Name,
+                                time: a[e.currentTarget.id].Time,
+                                class: a[e.currentTarget.id].Room,
+                            }, "session=" + this.session
+                        )
+                        a[e.currentTarget.id].alarmImgIdx = 0
+                        this.setData({
+                            examDateData: a
+                        })
+
+                //  }})
+            }
+        },
+
         getPYFA() { //培养方案
             let that = this
             this.setData({
@@ -399,7 +457,7 @@ Component({
             })
             this.setData({
                 epDay: "周" + "日一二三四五六".charAt(new Date().getDay()),
-                epWeek: "第"+week + '周',
+                epWeek: "第" + week + '周',
                 epTime: [0, 1, 0, 0, 0, 0],
                 epHouse: '综合楼',
             })
@@ -472,8 +530,13 @@ Component({
                     this.waterCard()
                     break
             }
-        }
+        },
+        cet() {
+            console.log(this.data.data)
+
+        },
     },
+
     lifetimes: { //组件生命周期
         attached: function () {
             API.getUserData(d => {
@@ -511,6 +574,9 @@ Component({
                         break
                     case '评教':
                         this.evaluation()
+                        break
+                    case '四六级':
+                        this.cet()
                         break
                 }
             })

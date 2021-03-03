@@ -136,3 +136,24 @@ linear 线性
     justify-content: space-around;
 }
 
+
+.score {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.score > view {
+    width: 500rpx;
+}
+
+.titleT{
+    font-size: 1.1rem;
+}
+
+.examFlex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}

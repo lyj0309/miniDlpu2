@@ -215,7 +215,7 @@
     </view>
 </view>
 <view wx:if="{{ week !== weekNow}}" id="backBtn">
-    <van-button color="#3ea3db" round type="info" bindtap="backPresent">返回当前周</van-button>
+    <van-button custom-class="backBtn" color="rgba(62, 163, 216,0.8)" round type="info" bindtap="backPresent">返回当前周</van-button>
 </view>
 
 <canvas wx:if="{{canvas0Show}}" type="2d" id="weatherCanvas0" style="width: 750rpx; height: 400rpx;"/>

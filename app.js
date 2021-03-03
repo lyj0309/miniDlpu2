@@ -5,18 +5,22 @@ const API = require("./script/API");
 const CONFIG = require("./package.js")
 App({
     onLaunch: function () {
+        //重新抓取可程表
         let ver = wx.getStorageSync(`version`)
 
         if (ver !== CONFIG["version"]) {
             wx.showModal({
                 title: '掌上教务处v' + CONFIG["version"],
-                content: '更新内容：\r\n1.登录失败BUG修复\r\n2.IOS天气预报BUG修复',
+                content: '更新内容：\r\n' + CONFIG["info"],
                 confirmText: '好的',
                 showCancel: false,
             })
             wx.setStorageSync("version", CONFIG["version"])
         }
-        API.request(API.GET_STATIC_DATA, {})
+        //API.request(API.GET_STATIC_DATA, {})
+    },
+    onShow(options) {
+
     },
     globalData: {
 

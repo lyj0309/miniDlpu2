@@ -115,7 +115,7 @@ Page({
 
                                 // 返回
                                 setTimeout(() => {
-                                    wx.switchTab({
+                                    wx.reLaunch({
                                         url: '/pages/Timetable/Timetable'
                                     })
                                 }, 200);

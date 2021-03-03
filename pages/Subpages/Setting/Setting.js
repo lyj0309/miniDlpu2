@@ -185,25 +185,6 @@ Page({
             cancelText: '手滑了',
             content: '删除全部数据将会全部学期课表数据，用户设置，自定义课表也会被删除！！\n你确定要删除吗？',
             success: (res) => {
-                if (!res.confirm) return;
-
-                let app = getApp();
-                app.globalData.TermData[id] = undefined;
-                wx.removeStorageSync(id);
-
-                let tlist = API.getTermList().List.filter((v) => {
-                    if (v == id) return false;
-                    else return true;
-                });
-
-                app.globalData.TermList.List = tlist;
-                API.set("TermList", tlist);
-
-                wx.showToast({
-                    title: '删除成功',
-                })
-
-                this.onLoad();
             }
         });
     },

@@ -6,7 +6,7 @@
         text="掌上教务处（工大教务处v2）,有问题即时反馈哦"/>
 
 <van-popup overlay-style="{{ overlayStyle?overlayStyle:'' }}" id="popup" round custom-style="width: 618rpx;height: 1000rpx" show="{{ show }}" bind:close="onClose">
-    <infoCom id="com" wx:if="{{title !== ''}}" title="{{ title }}" root="{{root}}"/>
+    <infoCom id="com" wx:if="{{title !== ''}}" title="{{ title }}" data="{{ verData }}" root="{{root}}"/>
 </van-popup>
 
         <!-- 日期选择弹出 -->
@@ -79,6 +79,28 @@
     </view>
 </view>
 
+<!-- cet验证码弹窗-->
+<van-popup
+        show="{{ verShow }}"
+        round
+        position="bottom"
+        custom-style="height: 20%;"
+        bind:close="onClose"
+>
+    <view style="margin-top:50rpx">2020年下半年全国大学英语四、六级考试（含口试）</view>
+<view style="display:flex;margin-top:30rpx">
+    <image bindtap="getVerImg" style="width:200rpx;height:50rpx" mode="aspectFill" src="data:image/png;base64,{{verImg}}"></image>
+    <van-cell-group>
+        <van-field
+                custom-style="width:400rpx"
+                model:value="{{ verCode }}"
+                placeholder="请输入验证码"
+                border="{{ false }}"
+        />
+    </van-cell-group>
+    <van-button bindtap="queryCet" type="default">确定</van-button>
+</view>
+</van-popup>
 
 
 

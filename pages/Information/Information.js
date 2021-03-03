@@ -8,29 +8,34 @@ Page({
      * 页面的初始数据
      */
     data: {
+        verShow: false,
+        verCode: '',
         title: '',
         show: false,
         array: [{
             text: '成绩查询',
-            imgSrc: '../../image/search.png'
+            imgSrc: '../../image/information/search.png'
         }, {
-            imgSrc: '../../image/ksrc.png',
+            imgSrc: '../../image/information/ksrc.png',
             text: '考试日程'
         }, {
             text: '校历',
-            imgSrc: '../../image/date.png'
+            imgSrc: '../../image/information/date.png'
         }, {
             text: '培养方案',
-            imgSrc: '../../image/edu.png'
+            imgSrc: '../../image/information/edu.png'
         }, {
             text: '空教室',
-            imgSrc: '../../image/room2.png'
+            imgSrc: '../../image/information/room2.png'
         }, {
             text: '水卡',
-            imgSrc: '../../image/qr_code.png'
+            imgSrc: '../../image/information/qr_code.png'
         }, {
             text: '评教',
-            imgSrc: '../../image/pingjiao.png'
+            imgSrc: '../../image/information/pingjiao.png'
+        }, {
+            text: '四六级(beta)',
+            imgSrc: '../../image/information/CET.png'
         }/*, {
             text: '统一支付',
             imgSrc: '../../image/pay.png'
@@ -97,47 +102,108 @@ Page({
         this.setData({minShow: false});
     },
     onClose() {
-        this.setData({show: false, title: ''});
+        this.setData({show: false, title: '', verShow: false});
     },
     propTap: function (prop) {
         wx.showLoading({title: '加载中···'})
-            //console.log(prop.currentTarget.id)
-            switch (prop.currentTarget.id) {
-                case '2':
-                    wx.navigateTo({
-                        url: './simple/index'
-                    })
-                    wx.hideLoading()
-                    break
-                case '7':
-                    wx.navigateToMiniProgram({
-                        appId: 'wx96401daae94c037c',
-                        path: 'pages/Subpages/StudentId/StudentId?id=' + 'dasfsadf' + '&pwd=' + 'asdfdsaf',
-                        envVersion: 'release',
-                        success(res) {
-                            // 打开成功
-                        }
-                    })
-/*                    wx.navigateTo({
-                        url: './simple/index'
-                    })*/
-                    wx.hideLoading()
-                    break
-                case '8': //意见反馈
+        //console.log(prop.currentTarget.id)
+        switch (prop.currentTarget.id) {
+            case '2':
+                wx.navigateTo({
+                    url: './simple/index'
+                })
+                wx.hideLoading()
+                break
+            case '7':
+                this.getVerImg()
+                /*                    wx.navigateToMiniProgram({
+                                        appId: 'wx96401daae94c037c',
+                                        path: 'pages/Subpages/StudentId/StudentId?id=' + 'dasfsadf' + '&pwd=' + 'asdfdsaf',
+                                        envVersion: 'release',
+                                        success(res) {
+                                            // 打开成功
+                                        }
+                                    })*/
 
-                    wx.hideLoading()
-                    break
-                default:
-                    this.setData({show: true, title: this.data.array[parseInt(prop.currentTarget.id)].text});
-                    break
+
+                /*                    wx.navigateTo({
+                                        url: './simple/index'
+                                    })*/
+                break
+            case '8': //意见反馈
+                wx.hideLoading()
+                break
+            default:
+                this.setData({show: true, title: this.data.array[parseInt(prop.currentTarget.id)].text});
+                break
+        }
+        this.infoCom = this.selectComponent("#com");
+    },
+
+    getVerImg() {
+        API.getUserData(
+            data => {
+                API.request(API.CET, {
+                        ok: (d) => {
+                            this.setData({
+                                verImg: d.img,
+                                verSession: d.session,
+                                verShow: true
+                            })
+                            wx.hideLoading()
+                            console.log(d)
+                        }
+                    }, {},
+                    "session=" + data.session
+                )
             }
-            this.infoCom = this.selectComponent("#com");
+        )
+    },
+    // 查询四级成绩
+    queryCet() {
+        wx.showLoading({title: "加载中"})
+        if (this.data.verCode.length === 0) {
+            this.getVerImg();
+            return
+        }
+        API.getUserData(
+            d => {
+                API.request(API.CET, {
+                        ok: d => {
+                            wx.hideLoading()
+                            const oriData = d.slice(16, d.length - 2)
+                            console.log(oriData)
+                            const verData = oriData.toString().replace(/{/g, '{"').replace(/:/g, '":').replace(/,/g, ',"').replace(/'/g, '"')
+                            //const verData = oriData.toString().replace("'",'"')
+                            console.log(verData)
+                            this.setData({show: true, title: '四六级', verShow: false, verData: JSON.parse(verData)});
+                        },
+                        no: (c, d) => {
+                            console.log(d.err_msg)
+                            wx.showToast({
+                                icon: 'none',
+                                title: d.err_msg
+                            })
+                            this.getVerImg()
+                        }
+                    }, {
+                        code: this.data.verCode,
+                        session: this.data.verSession
+                    },
+                    "session=" + d.session
+                )
+            }
+        )
     },
     onLoad(query) {
+        if (query.id !== undefined) {
+            let prop
+            this.propTap(prop.currentTarget.id = query.id)
+        }
         if (wx.getSystemInfoSync().theme !== 'light') {
             this.setData({
                 overlayStyle: "background-color: rgba(255,255,255,0.7)"
             })
         }
-    }
+    },
 })

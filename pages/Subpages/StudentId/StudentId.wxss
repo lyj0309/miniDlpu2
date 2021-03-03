@@ -9,6 +9,11 @@
   }
 }
 
+.navigator{
+  color: cornflowerblue;
+  display: inline-block;
+}
+
 
 view.user, view.pwd{
   background-color: #FFFFFF;

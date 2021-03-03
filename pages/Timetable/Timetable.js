@@ -21,7 +21,7 @@ Page({
         canvas1Show: true,
         canvas2Show: true,
         defBgColor: "rgba(222,222,222,0.55)",
-        defontColor: "787878",
+        defontColor: "707070",
         //天气弹出层
         show: false,
 
@@ -153,7 +153,7 @@ Page({
      * @description 初始化全局标尺 用来进行后续的坐标计算
      */
     initRuler: function () {
-        let ww = this.ruler.ww = wx.getSystemInfoSync().windowWidth;
+        let ww = this.ruler.ww = this.sysinfo.windowWidth;
 
         let blank = this.data.showBlank === 1 ? false : this.data.showBlank;
 
@@ -547,7 +547,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.sysinfo = wx.getSystemInfoSync()
 
         // 初始化静态数据
         this.initWeather()
@@ -559,7 +559,7 @@ Page({
             this.setData(d);
             this.setDayList(this.data.weekNow, this.data.week);
             this.setData({
-                scrollLeft: this.data.weekNow * 45
+                scrollLeft: (this.data.weekNow - 1) * 45
             })
         }, this.data.semester);
 
@@ -596,7 +596,7 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        const dpr = wx.getSystemInfoSync().pixelRatio
+        const dpr = this.sysinfo.pixelRatio
         if (this.data.weather === "") return
         let p = []
         for (let k = 0; k < 15; k++) p.push(new Object({x: 0.0, y1: 0.0, y2: 0.0}));
@@ -681,10 +681,10 @@ Page({
                 })
         }
 
-        if (wx.getSystemInfoSync().theme !== 'light') {
+        if (this.sysinfo.theme !== 'light') {
             this.setData({
                 defontColor: "aaaaaa",
-                defBgColor: "rgba(66,66,66,0.8)",
+                defBgColor: "rgba(66,66,66,0.6)",
                 weatherPopStyle: "filter: invert(1) hue-rotate(.5turn);"
             })
         }
@@ -720,7 +720,7 @@ Page({
             }
         })
 
-        this.onPullDownRefresh();
+        //this.onPullDownRefresh();
         this.clickMask();
         this.initBgImg()
     },
@@ -743,6 +743,8 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
+        // console.log('onPullDownRefresh')
+
         this.timeTable((d) => {
             this.setData(d);
             this.setDayList(this.data.weekNow, this.data.week);
