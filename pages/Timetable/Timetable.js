@@ -716,11 +716,12 @@ Page({
 
                         }
                     }
-                ) //重新登录
+                )
             }
         })
 
-        //this.onPullDownRefresh();
+        if (this.data.onshow) this.onPullDownRefresh();
+        this.setData({onshow:true})
         this.clickMask();
         this.initBgImg()
     },
@@ -743,8 +744,6 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-        // console.log('onPullDownRefresh')
-
         this.timeTable((d) => {
             this.setData(d);
             this.setDayList(this.data.weekNow, this.data.week);

@@ -2,25 +2,10 @@
 
 <view class='page__bd'>
     <view class="title">掌上教务处（工大教务处v2）</view>
-    <!--    <view class="version">v1.6.1</view>-->
-    <view class="self-intro">
-        此程序为工大教务处的2.x版本，为1.x的重构版
-        <text>
-            此版本特性：
-            1. 美化页面
-            2. 优化爬取策略
-            3. ...
-        </text>
-    </view>
-    <view class="repo">
-        2.x开源地址：https://github.com/lyj0309/miniDlpu2
-    </view >
-    <view class="repo">
-        当然，如果你想体验小程序的新功能，或者想为小程序找BUG，或想当客服，可以添加 <text style="color:blue" bindtap="openImg">我</text> 的微信，我将把你拉到小程序DEBUG群里，届时你将体验到最新的功能
-    </view >
+        <view class="version">v{{ CONFIG.version }}</view>
+        <view class="version">此版本特性：{{ CONFIG.info }}</view>
 
 
-    <view style=" margin-top: 60rpx; ">以下为《工大教务处》1.x说明</view>
     <view class="self-intro">
         大家好，我是“工大教务处”小程序的开发者，
         “工大教务处”是我在课外学习中开发的第一款上线的小程序。
@@ -35,16 +20,30 @@
         因此小程序会有查询到不到数据的情况。我们也去和学校教务处老师交谈了一下，希望开放一些数据给我们或者添加一个白名单，最终并没有得到支持。
         于是我们只能通过一些离线缓存来缓解压力，后续还会发掘更多的方法来提升用户体验。
     </view>
-    <view class="repo">
-        1.x开源地址：https://github.com/Patrick-Jun/miniDLPU
+    <view class="self-intro">
+        此程序为工大教务处的2.x版本，为1.x的重构版
+
+
+
     </view>
+    <view style="margin-top:10rpx">历史版本</view>
+    <view wx:for-item="item" wx:for="{{ CONFIG.past }}">
+        <view>{{ item.version }}：{{ item.info }}</view>
+    </view>
+    <view class="repo">
+        2.x开源地址：https://github.com/lyj0309/miniDlpu2
+    </view >
+    <view class="repo">
+        当然，如果你想体验小程序的新功能，或者想为小程序找BUG，或想当客服，可以选择联系客服沟通，我将把你拉到小程序DEBUG群里，届时你将体验到最新的功能
+    </view >
+
 </view>
 
 <view class="page">
     <view class='page__hd'>
         <view class='head-box'>
             贡献名单
-            <view class="head-box-tips">2020年12月31日统计</view>
+            <view class="head-box-tips">2021年3月12日统计</view>
         </view>
     </view>
     <view class='page__bd'>
@@ -60,14 +59,12 @@
             <view class="item">
                 <view class="item-title">指导老师</view>
                 <view class="item-content">
-                    <view>刘娜 李明霞 彭峰 尹艳辉</view>
+                    <view>彭峰</view>
                 </view>
             </view>
             <view class="item">
                 <view class="item-title">设计参与者</view>
                 <view class="item-content">
-                    <view>何玉梅：第一代logo设计(含安卓)</view>
-                    <view>邓雪梅：课程小方块背景色设计(含安卓)</view>
                     <view>秦浩轩：综合信息页UI设计</view>
                     <view>潘雨：第二代logo设计、活动图片设计</view>
                 </view>
@@ -75,27 +72,14 @@
             <view class="item">
                 <view class="item-title">客服</view>
                 <view class="item-content">
-                    <view>史雅静 金灵 王一伊 于琳</view>
-                    <view>陈强 赵丹佳</view>
+                    <view>黄奥翔 于梓漪</view>
+                    <view>陈强 梁研骏</view>
                 </view>
             </view>
             <view class="item">
                 <view class="item-title">服务器赞助</view>
                 <view class="item-content">
-                    <view>吴俊：MOS/猪蹄/嘻嘻哈哈/妲己/一只牛</view>
-                    <view>秦浩轩：
-                        <span class="del">笔芯</span>
-                    </view>
-                    <view>王昊：
-                        <span class="del">毛驴的春天</span>
-                    </view>
-                    <view>张曦：
-                        <span class="del">玄队</span>
-                    </view>
-                    <view>温宇彤：
-                        <span class="del">xt/xt2</span>
-                    </view>
-                    <view>陈强：大熊与szr🐻</view>
+                    <view>梁研骏：ybyb,韭菜的自我修养</view>
                 </view>
             </view>
             <view class="item">
@@ -107,25 +91,9 @@
                     <view>赵丹佳 匿名</view>
                 </view>
             </view>
-            <view class="item">
-                <view class="item-title">建议提供者</view>
-                <view class="item-content">
-                    <view>于欣汝 刘美娜 彭彪</view>
-                    <view>等合计36名热心用户</view>
-                </view>
-            </view>
         </view>
     </view>
     <view class='full-some'></view>
-    <!-- <view class="me">
-      <view>鉴于很多人误解小程序属于学校官方，作者是**杰，因此我决定自爆照片以澄清。</view>
-      <view>
-        <image src="https://1zdz.cn/patrick/20190908094338.jpg"></image>
-        <view>网络16级某学长科一到科四均一次过拿证当天傻笑.jpg</view>
-      </view>
-    </view> -->
-
-    <!-- <view class='download' bindtap='seturl'>安卓下载：https://download.1zdz.cn</view> -->
 </view>
 
 

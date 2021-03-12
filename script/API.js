@@ -1,5 +1,6 @@
 const API = {};
 const KCB = require("KCB");
+const LOG = require('log')
 
 /**
  * @function parseTime
@@ -523,14 +524,10 @@ API.CET = {
     method: 'GET',
 }
 
+API.FAQ = {
+    url:  baseHost + '/assets/FAQ.json',
+    method: 'GET',
 
-API.ADD_EXAM_DATE_ALARM = {
-    url: baseHost + '/exam_date_alarm',
-    method: 'POST',
-}
-API.DELETE_EXAM_DATE_ALARM = {
-    url: baseHost + '/exam_date_alarm',
-    method: 'DELETE',
 }
 
 API.LOGIN_WATERCARD = {
@@ -547,6 +544,8 @@ API.GET_WATERCARD_INFO = {
     method: 'GET',
 
 }
+
+
 
 
 
@@ -697,8 +696,8 @@ API.getSetting = function () {
 API.STATIC_DATA_INVALID = 10 * 60 * 1000;
 
 /**
- * @static STATIC_DATA_INVALID
- * @description 静态数据失效时间（毫秒）
+ * @static JS_SESSION_INVALID
+ * @description session失效时间（毫秒）
  */
 API.JS_SESSION_INVALID = 40 * 60 * 1000;
 
@@ -785,6 +784,7 @@ API.getStaticData = function (then) {
  * 注意：传递给then函数是全局指针，不要修改数据！！！（非常重要！！）
  */
 API.getUserData = function (then, Tips = true) {
+
     let startTime = new Date().getTime();
 
     // 获取当前时间 全局对象
@@ -801,13 +801,15 @@ API.getUserData = function (then, Tips = true) {
     API.setObjData(
         App.globalData.UserData,
         globalDataKey,
-        API.get(["ip", "name", "session", "user", "pwd", "lastGetSessionTime"])
+        API.get(["ip", "name", "session", "user", "pwd", "lastGetessionTime"])
     );
 
     // 再次校验全局数据是否合法
     if (API.testData(App.globalData.UserData, globalDataKey, API.JS_SESSION_INVALID))
         return then(App.globalData.UserData);
 
+    LOG.setFilterMsg(`getData时间`)
+    LOG.info(new Date().getTime() - startTime)
     // 到这里如果函数还未返回
     // 在发送网络请求之前，检查用户是否验证账号密码
     // 如果用户没有正确填写 在这里引导用户
@@ -830,9 +832,8 @@ API.getUserData = function (then, Tips = true) {
     }
 
     API.reLogin(e => {
-        wx.reportAnalytics('userdata_time', {
-            time: new Date().getTime() - startTime,
-        });
+        LOG.setFilterMsg(`重新登录时间`)
+        LOG.info(new Date().getTime() - startTime)
         then(e)
     }, App)
 

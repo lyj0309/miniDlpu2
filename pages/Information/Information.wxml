@@ -132,3 +132,7 @@
         </view>
     </view>
 </van-dialog>
+
+<view class='showmsg'>
+    <text>您的分享就是对作者最大的支持\n</text>
+</view>

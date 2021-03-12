@@ -43,3 +43,12 @@ view.p{
   width: 84%;
   margin: 0 8%;
 }
+
+.showmsg {
+  position: absolute;
+  bottom: 10rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: rgb(206, 206, 206);
+}

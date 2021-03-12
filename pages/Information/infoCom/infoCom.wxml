@@ -43,7 +43,7 @@
                     <view style='width:100%;border-top:2rpx dashed gray;'></view>
                     <view style='display:flex;flex-direction:row;margin-top:10rpx;justify-content: space-between;'>
                         <view>学分：{{item.Credit}}</view>
-                        <view style='width:405rpx;'>绩点：{{item.GPA === '' && item.Grade<=60 ?'不及格没有绩点╥﹏╥...':item.GPA}}
+                        <view style='width:405rpx;'>绩点：{{item.GPA === '' && item.Grade < 60 ?'不及格没有绩点╥﹏╥...':item.GPA}}
                         </view>
                     </view>
                     <view>学时：{{item.Period}}</view>
@@ -57,20 +57,21 @@
 </view>
 
 <view wx:if="{{ title === '考试日程' }}">
-    <view class="examCount">最近<text wx:if="{{examDateData.length }}">共有 <text style="color:red"> {{examDateData.length }} </text>场考试</text>
+    <view class="examCount">最近<text wx:if="{{examDateData.length }}">共有 <text style="color:red"> {{examDateData.length
+        }} </text>场考试</text>
         <text wx:else><text style="color:red">没有</text> 考试</text>
     </view>
-    <view wx:key="idx" wx:for="{{examDateData}}" wx:for-index="idx" wx:for-item="item">
-        <van-cell title-width="350rpx" title="{{item.Name}}" label="{{item.Time}}">
-            <view class="examFlex">
-                <view>
-                    {{ item.Room }}
-                    <van-count-down time="{{ item.cdtime }}" format="剩DD天HH时" />
-                </view>
-                    <image bindtap="propExamAlarm" id="{{ idx }}" style="width: 60rpx; height: 60rpx" src="{{ alarmImg[item.alarmImgIdx] }}"></image>
-            </view>
-        </van-cell>
+    <view class="examAlarm">
+        <text>考试提醒</text>
+        <view style="width:10px"/>
+        <van-switch size="1.2rem" checked="{{ examAlarm }}" bind:change="switchExamAlarm"/>
     </view>
+    <van-cell wx:key="idx" wx:for="{{examDateData}}" wx:for-index="idx" wx:for-item="item"
+              title-width="350rpx" title="{{item.Name}}" label="{{item.Time}}">
+        {{ item.Room }}
+        <van-count-down wx:if="{{ item.cdtime > 0 }}" time="{{ item.cdtime }}" format="剩DD天HH时"/>
+        <view wx:else>已考完</view>
+    </van-cell>
 </view>
 
 <view wx:if="{{ title === '培养方案' }}">
@@ -221,26 +222,26 @@
 </view>
 
 <view class="score" wx:if="{{ title === '四六级' }}">
-        <view id="score_tit">
-           <text> 姓　　名：{{ data.n }}\n</text>
-           <text> 学　　校：{{ data.x }}\n</text>
+    <view id="score_tit">
+        <text> 姓　　名：{{ data.n }}\n</text>
+        <text> 学　　校：{{ data.x }}\n</text>
+    </view>
+    <view id="score_write">
+        <view class="titleT">笔试成绩</view>
+        <text>准考证号：{{ data.z }}\n</text>
+        <text>总　 　分： <text style=" color: red;"> {{ data.s }}</text>\n</text>
+        <view class="scoreT">
+            <text> 听　　　力：{{ data.l }}\n</text>
+            <text> 阅　　　读：{{ data.r }}\n</text>
+            <text> 写作和翻译：{{ data.w }}\n</text>
         </view>
-        <view id="score_write">
-            <view class="titleT">笔试成绩</view>
-            <text>准考证号：{{ data.z }}\n</text>
-            <text>总　 　分： <text style=" color: red;"> {{ data.s }}</text>\n</text>
-            <view class="scoreT">
-             <text>  听　　　力：{{ data.l }}\n</text>
-             <text>  阅　　　读：{{ data.r }}\n</text>
-             <text>  写作和翻译：{{ data.w }}\n</text>
-            </view>
-        </view>
-        <view id="score_oral">
-            <view class="titleT">口试成绩</view>
-          <text> 准考证号：{{ data.kyz }}\n</text>
-          <text> 等　　级：{{ data.kys }}\n</text>
-        </view>
-        <view id="score_id" style="display: none;margin-top: 30px;">
-            <text> 成绩报告单编号：{{ data.id }}</text>
-        </view>
+    </view>
+    <view id="score_oral">
+        <view class="titleT">口试成绩</view>
+        <text> 准考证号：{{ data.kyz }}\n</text>
+        <text> 等　　级：{{ data.kys }}\n</text>
+    </view>
+    <view id="score_id" style="display: none;margin-top: 30px;">
+        <text> 成绩报告单编号：{{ data.id }}</text>
+    </view>
 </view>

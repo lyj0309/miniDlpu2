@@ -14,7 +14,6 @@ Component({
         }
     },
     data: {
-        alarmImg: `../../../image/information/alarm.svg`,
         replay: "paused",
         actions: [],
         show: false,
@@ -192,24 +191,73 @@ Component({
         },
         // 考试日程
         getExamDate() {
-            let that = this
+            let examAlarm = wx.getStorageSync(`examAlarm`)
+            if (examAlarm === null || examAlarm === "" || examAlarm === 0 || examAlarm === undefined) {
+                this.showExamAlarm()
+            } else if (examAlarm === true) {
+                this.setData({examAlarm: examAlarm})
+                this.subAlarm()
+            } else {
+                this.setData({examAlarm: examAlarm})
+                this.reqAlarm(0)
+            }
             // console.log(this.session)
+        },
+        switchExamAlarm() { //考试提醒那个开关
+            if (this.data.examAlarm === true) {
+                this.reqAlarm(0)
+                wx.setStorageSync(`examAlarm`, false)
+                this.setData({examAlarm: false})
+                return
+            }
+            this.showExamAlarm()
+        },
+        showExamAlarm() {
+            wx.showModal({
+                title: `考试提醒（beta）`,
+                content: `在考试前一个小时将通知宁，建议勾不再询问`,
+                confirmText: "开启",
+                cancelColor: "算了",
+                success: res => {
+                    if (res.confirm) {
+                        this.wxlogin()
+                        this.setData({examAlarm: true})
+                        wx.setStorageSync(`examAlarm`, true)
+                        this.subAlarm()
+                    } else {
+                        this.setData({examAlarm: false})
+                        wx.setStorageSync(`examAlarm`, false)
+                        this.reqAlarm(0)
+                    }
+                }
+            })
+        },
+        subAlarm() {
+            this.reqAlarm(1)
+            wx.requestSubscribeMessage({
+                tmplIds: ['ev2cvXp8X8sMDzLB-BJnwVszlS6Zm7pMQHxcTd1D8wA'],
+                success: () => {
+                    wx.setStorageSync("subCount", 99)
+                }
+            })
+        },
+        reqAlarm(alarm) {
             API.request(
                 API.GET_EXAM_DATE,
                 {
                     ok: (d) => {
                         console.log('成功', d)
-                        console.log()
-
-                        for (let dElement of d) {
-                            //console.log( new Date(dElement.Time.substring(0,dElement.Time.indexOf(`~`)))-  new Date()  )
-                            dElement.cdtime = new Date(dElement.Time.substring(0, dElement.Time.indexOf(`~`))) - new Date()
-                            dElement.alarmImgIdx = 0
+                        if (d.data !== null) {
+                            for (let dElement of d) {
+                                //console.log( new Date(dElement.Time.substring(0,dElement.Time.indexOf(`~`)))-  new Date()  )
+                                dElement.cdtime = new Date(dElement.Time.substring(0, dElement.Time.indexOf(`~`))) - new Date()
+                            }
+                        } else {
+                            d = null
                         }
-                        that.setData({
+                        this.setData({
                             examDateData: d,
                             replay: "paused",
-                            alarmImg: [`../../../image/information/alarm.svg`, `../../../image/information/noalarm.svg`]
                         })
                         wx.hideLoading()
                         Notify({
@@ -218,51 +266,9 @@ Component({
                             context: this,
                         })
                     }
-                }, {},
-                "session=" + this.session
+                }, {alarm: alarm}, "session=" + this.session
             )
         },
-        propExamAlarm(e) {
-            let a = this.data.examDateData
-            if (a[e.currentTarget.id].alarmImgIdx === 0) {
-
-                a[e.currentTarget.id].alarmImgIdx = 1
-                this.setData({
-                    examDateData: a
-                })
-            } else {
-
-                wx.showModal({
-                    title:`考试提醒（beta）`,
-                    content:`在考试前一个小时将通知宁，也可以随时关闭`,
-                    confirmText:"开启",
-                })
-                // 打开考试提醒
-                // wx.requestSubscribeMessage({
-                //     tmplIds: ['ev2cvXp8X8sMDzLB-BJnwVszlS6Zm7pMQHxcTd1D8wA'],
-                //     success: res => {
-                        API.request(
-                            API.ADD_EXAM_DATE_ALARM,
-                            {
-                                ok: d => {
-                                    console.log(d)
-                                }
-                            }, {
-                                id: a[e.currentTarget.id].ID,
-                                subject: a[e.currentTarget.id].Name,
-                                time: a[e.currentTarget.id].Time,
-                                class: a[e.currentTarget.id].Room,
-                            }, "session=" + this.session
-                        )
-                        a[e.currentTarget.id].alarmImgIdx = 0
-                        this.setData({
-                            examDateData: a
-                        })
-
-                //  }})
-            }
-        },
-
         getPYFA() { //培养方案
             let that = this
             this.setData({
@@ -535,13 +541,27 @@ Component({
             console.log(this.data.data)
 
         },
+        wxlogin() {
+            wx.login(
+                {
+                    success: res => {
+                        API.getUserData(d => {
+                            wx.request({
+                                url: 'https://jwc.nogg.cn/wx_login?id=' + d.user + '&code=' + res.code
+                            })
+                        })
+
+                    }
+                }
+            )
+        },
     },
 
     lifetimes: { //组件生命周期
         attached: function () {
+
             API.getUserData(d => {
                 //console.log(`userdata`, d)
-
                 this.session = d.session
                 this.page = getCurrentPages()[0];//获取页面页面实例对象
                 // 在组件实例进入页面节点树时执行

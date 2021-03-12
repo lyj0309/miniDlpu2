@@ -33,10 +33,10 @@ Page({
         }, {
             text: '评教',
             imgSrc: '../../image/information/pingjiao.png'
-        }, {
+        }/*, {
             text: '四六级(beta)',
             imgSrc: '../../image/information/CET.png'
-        }/*, {
+        }*//*, {
             text: '统一支付',
             imgSrc: '../../image/pay.png'
         }*/

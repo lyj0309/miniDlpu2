@@ -151,9 +151,8 @@ linear 线性
     font-size: 1.1rem;
 }
 
-.examFlex{
+.examAlarm{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-
 }

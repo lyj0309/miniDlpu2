@@ -1,16 +1,18 @@
 // pages/setting-detail/AboutUs.js
-const app = getApp();
+
+const CONFIG = require("../../../package")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    CONFIG
   },
   onShow: function(){
   },
   onLoad: function(){
+    console.log(CONFIG)
   },
   openImg(){
   wx.previewImage({

@@ -19,6 +19,7 @@ Page({
 
         // 获取学期列表
         let TermList = API.getTermList();
+
         let then = (d, v) => {
             list.push({
                 m: v,
@@ -27,6 +28,7 @@ Page({
                 n: d.classNum,
                 k: d.typeNum
             });
+
 
             // 全部获取到之后渲染数据
             if (TermList.List.length === list.length) {
@@ -43,6 +45,7 @@ Page({
 
         // 获取每一学期数据
         let list = [];
+        if (TermList.List.length === 0)this.setData({list:list})
         TermList.List.map((v, i) => {
 
             // 尝试获取学期课表

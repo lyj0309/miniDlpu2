@@ -80,7 +80,8 @@
     "van-radio": "@vant/weapp/radio/index",
     "van-notice-bar": "@vant/weapp/notice-bar/index",
     "van-dialog": "@vant/weapp/dialog/index",
-    "van-count-down": "@vant/weapp/count-down/index"
+    "van-count-down": "@vant/weapp/count-down/index",
+    "van-switch": "@vant/weapp/switch/index"
   },
   "sitemapLocation": "sitemap.json"
 }
