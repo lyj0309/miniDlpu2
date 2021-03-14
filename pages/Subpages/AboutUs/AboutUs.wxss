@@ -11,80 +11,46 @@
 /* pages/setting-detail/thanks.wxss */
 page{
   width: 90%;
-  margin: 10rpx 5%;
-  color: black;
+  margin: 20rpx 5%;
 }
 
-.title {
-  margin-top: 30rpx;
-  font-size: 36rpx;
-  text-align: center;
+view.Stit {
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 3em;
+  font-weight: 600;
+  color: rgba(0, 0, 0, .8);
 }
-.version {
-  text-align: center;
-  font-size: 26rpx;
-  color: gray;
+
+view.Stit text.Sver{
+  padding-left: 15rpx;
+  font-size: 0.35em;
+  font-weight: normal;
+  color: rgba(0, 0, 0, .8);
 }
-.self-intro {
-  margin-top: 30rpx;
-  line-height: 38rpx;
-  font-size: 28rpx;
+view.Sline{
+  height: 1rpx;
+  border-top: 1px rgba(0, 0, 0, .1) solid;
+  padding-bottom: 10rpx;
+  
+}
+view.Sinfo{
+  font-size: 0.9em;
+}
+view.Sintro{
   text-indent: 2em;
-  color: #676262;
+  margin: 10rpx 0;
 }
-.repo {
-  margin-top: 30rpx;
-  line-height: 38rpx;
-  font-size: 28rpx;
-}
-.repo span {
-  color: blue;
+view.Stit2{
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 2em;
+  font-weight: 600;
+  color: rgba(0, 0, 0, .7);
 }
 
-
-
-.head-box{
-  width: 100%;
-  height: 180rpx;
-  text-align: center;
-  font-family: Microsoft YaHei;
-  font-size: 56rpx;
-  line-height: 180rpx;
-  letter-spacing: 20rpx;
+view.space{
+  height: 35rpx;
 }
-.head-box-tips{
-  width: 100%;
-  margin-top: -45rpx;
-  text-align: center;
-  font-family: SimSun;
-  line-height: 20rpx;
-  font-size: 20rpx;
-  letter-spacing: 0;
-  color: #bbb;
-}
-.body-box{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.item{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.item-title{
-  height: 66rpx;
-  padding: 0 20rpx 0;
-  line-height: 66rpx;
-  text-align: center;
-  font-family: KaiTi;
-  font-size: 42rpx;
-  border-bottom: #999 solid 1px;
-}
-.item-content{
-  margin: 30rpx 0rpx 80rpx;
-  font-family: SimSun;
-  font-size: 30rpx;
-}
-
