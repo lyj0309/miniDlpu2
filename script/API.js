@@ -529,6 +529,10 @@ API.FAQ = {
     method: 'GET',
 
 }
+API.ABOUTUS = {
+    url:  baseHost + '/assets/aboutUs',
+    method: 'GET',
+}
 
 API.LOGIN_WATERCARD = {
     url: 'https://www.wuweixuezi.com/app/index.php',

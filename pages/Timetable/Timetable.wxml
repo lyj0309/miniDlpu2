@@ -221,5 +221,3 @@
 <canvas wx:if="{{canvas0Show}}" type="2d" id="weatherCanvas0" style="width: 750rpx; height: 400rpx;"/>
 <canvas wx:if="{{canvas1Show}}" type="2d" id="weatherCanvas1" style="width: 750rpx; height: 400rpx;"/>
 <canvas wx:if="{{canvas2Show}}" type="2d" id="weatherCanvas2" style="width: 750rpx; height: 400rpx;"/>
-
-

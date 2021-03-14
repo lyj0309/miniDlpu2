@@ -32,3 +32,7 @@
   <label style="color:#3EA3D8;font-size:1.3em" >忘记密码？：</label>
   <view>新生初始密码一般是身份证后6位；忘记密码可打开教务处网站(http://jiaowu.dlpu.edu.cn/)，找到左下角「管理系统入口」，点击「教务系统教师学生入口」，然后「找回学生密码」；或者<navigator class="navigator" url="/pages/Information/simple/index?findpwd=1" hover-class="navigator-hover">找回密码</navigator>  </view>
 </view>
+<view class='show-advice'>
+  <label style="color:#3EA3D8;font-size:1.3em" >非本校或者想体验？：</label>
+  <view>账号：18888，密码：123456  </view>
+</view>

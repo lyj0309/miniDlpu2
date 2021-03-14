@@ -196,6 +196,9 @@ Page({
         )
     },
     onLoad(query) {
+
+
+
         if (query.id !== undefined) {
             let prop
             this.propTap(prop.currentTarget.id = query.id)

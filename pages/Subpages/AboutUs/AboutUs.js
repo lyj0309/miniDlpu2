@@ -1,6 +1,7 @@
 // pages/setting-detail/AboutUs.js
 
 const CONFIG = require("../../../package")
+const API = require("../../../script/API");
 Page({
 
   /**
@@ -12,6 +13,11 @@ Page({
   onShow: function(){
   },
   onLoad: function(){
+    API.request(API.ABOUTUS,{
+      success:r=>{
+        this.setData({data:r.data})
+      }
+    })
     console.log(CONFIG)
   },
   openImg(){
