@@ -61,11 +61,8 @@
         <!-- 轮播图 开始 -->
 <view class="index_swiper">
     <swiper autoplay="true" interval="4000" duration="1000" circular="true">
-        <swiper-item>
-            <image mode="widthFix" src="../../image/morebg.png"></image>
-        </swiper-item>
-        <swiper-item>
-            <image mode="widthFix" src="https://s3.ax1x.com/2021/01/08/suQMfU.jpg"></image>
+        <swiper-item wx:for="{{ slides }}" wx:for-index="idx" wx:key="idx" wx:for-item="item">
+            <image id="{{ idx }}" mode="widthFix" src="{{ item.src }}"  bindtap="preViewImg"/>
         </swiper-item>
     </swiper>
 </view>
@@ -89,7 +86,7 @@
 >
     <view style="margin-top:50rpx">2020年下半年全国大学英语四、六级考试（含口试）</view>
 <view style="display:flex;margin-top:30rpx">
-    <image bindtap="getVerImg" style="width:200rpx;height:50rpx" mode="aspectFill" src="data:image/png;base64,{{verImg}}"></image>
+    <image bindtap="getVerImg" style="width:200rpx;height:50rpx" mode="aspectFill" src="data:image/png;base64,{{verImg}}" />
     <van-cell-group>
         <van-field
                 custom-style="width:400rpx"

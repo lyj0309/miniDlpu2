@@ -1,6 +1,6 @@
 // pages/setting-detail/AboutUs.js
 
-const CONFIG = require("../../../package")
+const CONFIG = require("../../../package.js")
 const API = require("../../../script/API");
 Page({
 

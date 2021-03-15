@@ -41,6 +41,7 @@ Page({
             imgSrc: '../../image/pay.png'
         }*/
         ],
+        slides:[{src:'../../image/morebg.png'}],
         container: null,
         minShow: false,
         empClaShow0: false
@@ -110,7 +111,7 @@ Page({
         switch (prop.currentTarget.id) {
             case '2':
                 wx.navigateTo({
-                    url: './simple/index'
+                    url: './simple/index?name=xl'
                 })
                 wx.hideLoading()
                 break
@@ -195,14 +196,36 @@ Page({
             }
         )
     },
+    preViewImg(e){
+        if (e.currentTarget.id === "0") return
+        wx.previewImage({
+            urls:[this.data.slides[e.currentTarget.id].src]
+        })
+    },
     onLoad(query) {
-
-
-
         if (query.id !== undefined) {
-            let prop
-            this.propTap(prop.currentTarget.id = query.id)
+        let prop = {
+            currentTarget:{
+                id :1
+            }
         }
+            this.propTap(prop)
+        }
+
+        wx.request({
+            url :"https://v0.api.upyun.com/dpujwc/sideshow/",
+            header: {
+                'content-type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Basic Zm9udDpuTHZIRVNDZ3JpOFJXa3FnWXM2RGRnblV1S1pCcjU4eg=='
+            },
+            success:result => {
+                for (const file of result.data.files) {
+                    this.data.slides.push({src:'https://cdn.nogg.cn/sideshow/'+file.name})
+                }
+                this.setData({slides:this.data.slides})
+            }
+        })
         if (wx.getSystemInfoSync().theme !== 'light') {
             this.setData({
                 overlayStyle: "background-color: rgba(255,255,255,0.7)"

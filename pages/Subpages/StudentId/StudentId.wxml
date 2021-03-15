@@ -23,14 +23,14 @@
 <!-- 提交按钮 -->
 <view class="submit" bindtap="submit">验证并保存</view>
 
-<view class="agreement">登录或注册即代表您已同意我们的 <navigator style="color: cornflowerblue;" url="./agreement/agreement" hover-class="navigator-hover">《用户协议》</navigator></view>
+<view class="agreement">登录或注册即代表您已同意我们的 <navigator class="navigator" url="/pages/Information/simple/index?name=agreement" hover-class="navigator-hover">《用户协议》</navigator></view>
 <!-- 最后显示时间 -->
 <!-- <view class="title" style="margin-top:15px;">上一次验证时间</view> -->
 
 <view class="p" style="text-align: center">上一次验证时间：{{ time }}</view>
 <view class='show-advice'>
   <label style="color:#3EA3D8;font-size:1.3em" >忘记密码？：</label>
-  <view>新生初始密码一般是身份证后6位；忘记密码可打开教务处网站(http://jiaowu.dlpu.edu.cn/)，找到左下角「管理系统入口」，点击「教务系统教师学生入口」，然后「找回学生密码」；或者<navigator class="navigator" url="/pages/Information/simple/index?findpwd=1" hover-class="navigator-hover">找回密码</navigator>  </view>
+  <view>新生初始密码一般是身份证后6位；忘记密码可打开教务处网站(http://jiaowu.dlpu.edu.cn/)，找到左下角「管理系统入口」，点击「教务系统教师学生入口」，然后「找回学生密码」；或者<navigator class="navigator" url="/pages/Information/simple/index?name=findpwd" hover-class="navigator-hover">找回密码</navigator>  </view>
 </view>
 <view class='show-advice'>
   <label style="color:#3EA3D8;font-size:1.3em" >非本校或者想体验？：</label>
