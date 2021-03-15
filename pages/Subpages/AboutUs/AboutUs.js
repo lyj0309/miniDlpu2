@@ -20,6 +20,19 @@ Page({
     })
     console.log(CONFIG)
   },
+
+  copyQQGroup: function(){
+    wx.setClipboardData({
+      //准备复制的数据内容
+      data: "634740972",
+      success: function (res) {
+        wx.showToast({
+          title: '复制成功',
+        });
+      }
+    });
+  },
+
   openImg(){
   wx.previewImage({
     urls:["http://cdn.nogg.cn/myqrcode.jpg"],

@@ -7,30 +7,36 @@
     <view class="Sintro" wx:for="{{data}}" wx:for-item="item" wx:key="item">{{ item }}</view>
     <view class="space"></view>
 
-    <view class="Stit2">·开发者</view>
-    <view class="Sintro" style="text-indent: 0;" wx:for='{{["吴俊：工大教务处开发", "秦浩轩：工大教务处2/评教小助手/采集平台开发", "梁研骏：工大教务处2开发", "隋学良：工大教务处2开发"]}}' wx:for-item="item" wx:key="item">{{ item }}</view>
+    <view class="Stit2">QQ交流群</view>
+    <view class="Sintro" style="text-indent: 0;" bindtap="copyQQGroup">群号：634740972
+    <text style="text-decoration: underline">(点我复制)
+    </text></view>
 
-    <view class="Stit2">·指导老师</view>
+    <view class="space"></view>
+    <view class="Stit2">开发者</view>
+    <view class="Sintro" style="text-indent: 0;" wx:for='{{["吴俊：工大教务处开发", "秦浩轩：工大教务处2/评教小助手", "梁研骏：工大教务处2开发", "隋学良：工大教务处2开发"]}}' wx:for-item="item" wx:key="item">{{ item }}</view>
+
+    <view class="Stit2">指导老师</view>
     <view class="Sintro" style="text-indent: 0;" wx:for='{{["彭峰"]}}' wx:for-item="item" wx:key="item">{{ item }}</view>
     <view class="space"></view>
 
-    <view class="Stit2">·客服</view>
+    <view class="Stit2">客服</view>
     <view class="Sintro" style="text-indent: 0;" wx:for='{{["黄奥翔 于梓漪", "陈强 梁研骏"]}}' wx:for-item="item" wx:key="item">{{ item }}</view>
     <view class="space"></view>
 
-    <view class="Stit2">·服务器赞助</view>
+    <view class="Stit2">服务器赞助</view>
     <view class="Sintro" style="text-indent: 0;" wx:for='{{["梁研骏：ybyb,韭菜的自我修养"]}}' wx:for-item="item" wx:key="item">{{ item }}</view>
     <view class="space"></view>
 
-    <view class="Stit2">·测试参与者</view>
+    <view class="Stit2">测试参与者</view>
     <view class="Sintro" style="text-indent: 0;" wx:for='{{["姚晓鹏 杨越琪 秦浩轩 周婷", "金灵 白悦松 朱立子一 于琳", "王文治 王瑜欣 史雅静 陈强", "赵丹佳 匿名"]}}' wx:for-item="item" wx:key="item">{{ item }}</view>
     <view class="space"></view>
 
-    <view class="Stit2">·历史版本</view>
+    <view class="Stit2">历史版本</view>
     <view wx:for-item="item" wx:for="{{ CONFIG.past }}" class="Sintro" wx:key="item" style="text-indent: 0;">{{ item.version }}：{{ item.info }}</view>
 
     <view class="space"></view>
-    <view class="Stit2">·开源地址</view>
+    <view class="Stit2">开源地址</view>
     <view class="Sintro" style="text-indent: 0;">https://github.com/lyj0309/miniDlpu2</view>
     <view class="Sintro">
         当然，如果你想体验小程序的新功能，或者想为小程序找BUG，或想当客服，可以选择联系客服沟通，我将把你拉到小程序DEBUG群里，届时你将体验到最新的功能！
