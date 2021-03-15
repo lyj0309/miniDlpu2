@@ -15,7 +15,7 @@ Page({
   onLoad: function(){
     API.request(API.ABOUTUS,{
       success:r=>{
-        this.setData({data:r.data})
+        this.setData({data:r.data.split(/\s/)})
       }
     })
     console.log(CONFIG)
