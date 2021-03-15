@@ -3,8 +3,11 @@
 掌上教务处(大连工业大学的工大教务处小程序v2)，主要有学生课程表查询、学生成绩、考试日程、校历、培养方案、空教室、评教等功能。
 
 ## 主要页面展示
+![image](https://user-images.githubusercontent.com/50474995/111158380-ed8d0300-85d2-11eb-9081-654376d9d1ea.png)
+![image](https://user-images.githubusercontent.com/50474995/111158426-fa115b80-85d2-11eb-925e-2acbb40beaf7.png)
 
 ## 小程序码
+![gh_97aaf8177dee_258 (2)](https://user-images.githubusercontent.com/50474995/111158556-1ca37480-85d3-11eb-895f-d81e2fb123fb.jpg)
 
 ## 功能对应路径
 
