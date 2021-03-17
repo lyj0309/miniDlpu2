@@ -812,8 +812,6 @@ API.getUserData = function (then, Tips = true) {
     if (API.testData(App.globalData.UserData, globalDataKey, API.JS_SESSION_INVALID))
         return then(App.globalData.UserData);
 
-    LOG.setFilterMsg(`getData时间`)
-    LOG.info(new Date().getTime() - startTime)
     // 到这里如果函数还未返回
     // 在发送网络请求之前，检查用户是否验证账号密码
     // 如果用户没有正确填写 在这里引导用户
@@ -836,8 +834,11 @@ API.getUserData = function (then, Tips = true) {
     }
 
     API.reLogin(e => {
-        LOG.setFilterMsg(`重新登录时间`)
-        LOG.info(new Date().getTime() - startTime)
+        const  t = new Date().getTime() - startTime
+        if (t > 300){
+            LOG.setFilterMsg(`重新登录时间`)
+            LOG.info(t)
+        }
         then(e)
     }, App)
 

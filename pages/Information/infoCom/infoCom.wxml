@@ -33,7 +33,7 @@
                         <view>{{ item.Grade}}</view>
                     </view>
                 </view>
-                <view style="font-size:27rpx;height:250rpx;opacity:{{ opc0[idx] }};transition: 0.9s;-webkit-transition: 0.7s;">
+                <view style="font-size:27rpx;height:28s0rpx;opacity:{{ opc0[idx] }};transition: 0.9s;-webkit-transition: 0.7s;">
                     <view>总成绩：{{item.Grade}}</view>
                     <view wx:if="{{item.Ordinary}}">平时成绩({{item.OrdPercent }})：{{item.Ordinary}}</view>
                     <view wx:if="{{item.Middle}}">期中成绩({{item.MiddlePercent}})：{{item.Middle}}</view>
@@ -47,6 +47,8 @@
                         </view>
                     </view>
                     <view>学时：{{item.Period}}</view>
+                    <view>课程属性：{{item.Property}}</view>
+                    <view>课程性质：{{item.Properties}}</view>
                 </view>
                 <view style='opacity:{{ opc1[idx] }};  justify-content: center; display: flex;align-items:center;position: relative;transition: 0.7s;-webkit-transition: 0.7s;'>
                     <view style="font-size:27rpx; top: -180rpx;position: absolute;">加载中</view>
@@ -57,8 +59,7 @@
 </view>
 
 <view wx:if="{{ title === '考试日程' }}">
-    <view class="examCount">最近<text wx:if="{{examDateData.length }}">共有 <text style="color:red"> {{examDateData.length
-        }} </text>场考试</text>
+    <view class="examCount">最近<text wx:if="{{examDateData.length }}">共有 <text style="color:red"> {{examDateData.length }} </text>场考试</text>
         <text wx:else><text style="color:red">没有</text> 考试</text>
     </view>
     <view class="examAlarm">
