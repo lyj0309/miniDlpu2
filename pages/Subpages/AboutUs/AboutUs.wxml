@@ -17,7 +17,7 @@
     <view class="Sintro" style="text-indent: 0;" wx:for='{{["吴俊：工大教务处开发", "秦浩轩：工大教务处2/评教小助手", "梁研骏：工大教务处2开发", "隋学良：工大教务处2开发"]}}' wx:for-item="item" wx:key="item">{{ item }}</view>
 
     <view class="Stit2">指导老师</view>
-    <view class="Sintro" style="text-indent: 0;" wx:for='{{["彭峰"]}}' wx:for-item="item" wx:key="item">{{ item }}</view>
+    <view class="Sintro" style="text-indent: 0;" wx:for='{{["彭锋"]}}' wx:for-item="item" wx:key="item">{{ item }}</view>
     <view class="space"></view>
 
     <view class="Stit2">客服</view>
