@@ -364,7 +364,6 @@ view.class > view {
 }
 /* 块块 */
 view.class > view > view {
-    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, .3);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     word-break: break-all;

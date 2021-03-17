@@ -111,14 +111,7 @@ Page({
                             // 成功后保存数据
                             ok: (d, code, r) => {
                                 // 传递到视图层
-                                this.setStorageData();
-
-                                // 返回
-                                setTimeout(() => {
-                                    wx.reLaunch({
-                                        url: '/pages/Timetable/Timetable'
-                                    })
-                                }, 200);
+                                this.setStorageData(1);
 
                             },
 
@@ -141,7 +134,7 @@ Page({
      * @function setStorageData
      * @description 设置缓存数据
      */
-    setStorageData: function () {
+    setStorageData: function (k) {
         let user = API.get("user");
         let pwd = API.get("pwd");
         let lGST = API.get("lastGetSessionTime");
@@ -150,7 +143,30 @@ Page({
         this.userData.user = user;
         this.userData.pwd = pwd;
         //更新学期
-        API.request(API.GET_STATIC_DATA, {});
+        if (k === 1){
+            API.request(API.GET_STATIC_DATA, {
+                ok:r=>{
+                    API.getUserData((d) => {
+                        // 获取课表
+                        const sem = API.geneSemesterArr()[1]
+                        API.request(
+                            API.GET_TIME_TABLE,
+                            {
+                                ok: (d) => {
+                                    wx.reLaunch({
+                                        url: '/pages/Timetable/Timetable'
+                                    })
+                                }
+                            }, {
+                                semester: sem.slice(0, 11),
+                                age: sem.slice(11,sem.length),
+                            },
+                            "session=" + d.session
+                        );
+                    });
+                }
+            });
+        }
 
         this.setData({
             loading: false,
