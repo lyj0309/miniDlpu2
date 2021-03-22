@@ -203,6 +203,13 @@ Page({
         })
     },
     onLoad(query) {
+        wx.showShareMenu({
+
+            withShareTicket:true,
+
+            menus:['shareAppMessage','shareTimeline']
+
+        })
         if (query.id !== undefined) {
         let prop = {
             currentTarget:{

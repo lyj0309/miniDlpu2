@@ -45,7 +45,7 @@ Page({
 
         // 获取每一学期数据
         let list = [];
-        if (TermList.List.length === 0)this.setData({list:list})
+        if (TermList.List.length === 0) this.setData({list: list})
         TermList.List.map((v, i) => {
 
             // 尝试获取学期课表
@@ -89,27 +89,11 @@ Page({
      * @returns void
      */
     catch: function (v) {
-        // 获取用户信息
-        API.getUserData((d) => {
-
-            // 获取课表
-            API.request(
-                API.GET_TIME_TABLE,
-                {
-                    loading: "正在抓取",
-                    successMsg: "抓取成功",
-                    failMsg: "api",
-                    ok: (d) => {
-                        // console.log(d);
-                        this.onLoad();
-                    }
-                }, {
-                    semester: v.slice(0, 11),
-                    age: v.slice(11, v.length)
-                },
-                "session=" + d.session
-            );
-        });
+        API.reCatchTable(v).then(r=>{
+            if (r === true){
+                this.onLoad()
+            }
+        })
     },
 
     /**
@@ -142,7 +126,7 @@ Page({
      */
     deleTerm: function (e) {
         let id = e.currentTarget.dataset.id;
-
+        API.delTable(id)
         wx.showModal({
             title: '删除学期',
             confirmText: '删除',
@@ -150,18 +134,6 @@ Page({
             content: '学期数据删除后会释放对应缓存空间，同时，自定义课表也会被删除！！\n你确定要删除吗？',
             success: (res) => {
                 if (!res.confirm) return;
-
-                let app = getApp();
-                app.globalData.TermData[id] = undefined;
-                wx.removeStorageSync(id);
-
-                let tlist = API.getTermList().List.filter((v) => {
-                    if (v == id) return false;
-                    else return true;
-                });
-
-                app.globalData.TermList.List = tlist;
-                API.set("TermList", tlist);
 
                 wx.showToast({
                     title: '删除成功',

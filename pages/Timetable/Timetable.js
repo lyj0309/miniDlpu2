@@ -342,6 +342,7 @@ Page({
      * @param e 自定事件
      */
     editClass: function (e) {
+        console.log(e)
         let id = e.currentTarget.dataset.id;
 
         // 跳转到课表编辑界面
@@ -547,6 +548,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        wx.showShareMenu({
+
+            withShareTicket: true,
+
+            menus: ['shareAppMessage', 'shareTimeline']
+
+        })
         this.sysinfo = wx.getSystemInfoSync()
 
         // 初始化静态数据
@@ -556,6 +564,7 @@ Page({
         this.initRuler();
 
         this.timeTable((d) => {
+            console.log(d)
             this.setData(d);
             this.setDayList(this.data.weekNow, this.data.week);
             this.setData({
@@ -720,8 +729,8 @@ Page({
             }
         })
 
-        if (this.data.onshow) this.onPullDownRefresh();
-        this.setData({onshow:true})
+        if (this.data.onshow) this.onPullDownRefresh(true);
+        this.setData({onshow: true})
         this.clickMask();
         this.initBgImg()
     },
@@ -743,11 +752,19 @@ Page({
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function () {
-        this.timeTable((d) => {
-            this.setData(d);
-            this.setDayList(this.data.weekNow, this.data.week);
-        }, this.data.semester);
+    onPullDownRefresh: function (e) {
+        if (e === undefined) {
+            API.getStaticData(r => {
+                API.reCatchTable(r.semester,true).then(r => {
+                    this.onLoad()
+                })
+            })
+        } else {
+            this.timeTable((d) => {
+                this.setData(d);
+                this.setDayList(this.data.weekNow, this.data.week);
+            }, this.data.semester);
+        }
     },
 
     /**

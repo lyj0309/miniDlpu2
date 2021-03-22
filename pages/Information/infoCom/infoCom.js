@@ -559,8 +559,8 @@ Component({
 
     lifetimes: { //组件生命周期
         attached: function () {
-
             API.getUserData(d => {
+                getApp().globalData.firstin = false
                 //console.log(`userdata`, d)
                 this.session = d.session
                 this.page = getCurrentPages()[0];//获取页面页面实例对象

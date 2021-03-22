@@ -30,7 +30,7 @@
                     <view>{{ item.Name }}</view>
                     <view style="width:150rpx;display:flex;justify-content:space-between">
                         <view>{{ item.Credit}}</view>
-                        <view>{{ item.Grade}}</view>
+                        <view style="color:{{item.Grade<60||item.Grade==='不及格'?'red':''}}">{{ item.Grade}}</view>
                     </view>
                 </view>
                 <view style="font-size:27rpx;height:28s0rpx;opacity:{{ opc0[idx] }};transition: 0.9s;-webkit-transition: 0.7s;">

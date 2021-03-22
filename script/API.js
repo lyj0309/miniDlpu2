@@ -358,7 +358,7 @@ API.GET_STATIC_DATA = {
     ok: (d, a, b, rd) => {
         // 更新时间
         let date = new Date();
-       // let date = new Date('1995-12-17T03:24:00');
+        // let date = new Date('1995-12-17T03:24:00');
 
         //console.log("传入学期",d.semester)
         let semester = API.geneSemesterArr(d.semester)[1]
@@ -525,12 +525,12 @@ API.CET = {
 }
 
 API.FAQ = {
-    url:  baseHost + '/assets/FAQ.json',
+    url: baseHost + '/assets/FAQ.json',
     method: 'GET',
 
 }
 API.ABOUTUS = {
-    url:  baseHost + '/assets/aboutUs',
+    url: baseHost + '/assets/aboutUs',
     method: 'GET',
 }
 
@@ -548,9 +548,6 @@ API.GET_WATERCARD_INFO = {
     method: 'GET',
 
 }
-
-
-
 
 
 /**
@@ -624,6 +621,7 @@ API.calcKCB = function (semester, d, then, o = {}) {
         // 记录占用缓存大小
         data.size = 10000;
         data.size = JSON.stringify(data).length;
+        //console.log(data,d)
 
         // 存储到缓存
         API.set(semester, data);
@@ -788,8 +786,26 @@ API.getStaticData = function (then) {
  * 注意：传递给then函数是全局指针，不要修改数据！！！（非常重要！！）
  */
 API.getUserData = function (then, Tips = true) {
+    const startTime = new Date().getTime();
+    const loginTime = wx.getStorageSync(`loginTime`)
+    const loginOverTime = wx.getStorageSync(`loginOverTime`)
 
-    let startTime = new Date().getTime();
+    if (getApp().globalData.firstin !== false) {
+        LOG.setFilterMsg(`getUserData`)
+        const getUserDataTime = wx.getStorageSync(`getUserDataTime`)
+        console.log(loginTime, getUserDataTime, loginOverTime)
+        if (loginTime === '' || loginTime === undefined || loginTime === null) {
+            wx.setStorageSync(`loginTime`, 0)
+            wx.setStorageSync(`getUserDataTime`, 0)
+            wx.setStorageSync(`loginOverTime`, 0)
+        } else {
+            wx.setStorageSync(`getUserDataTime`, getUserDataTime + 1)
+        }
+        LOG.info(`登录次数`, loginTime)
+        LOG.info(`获取data次数`, getUserDataTime)
+        LOG.info(`超时次数`, loginOverTime)
+    }
+
 
     // 获取当前时间 全局对象
     let App = getApp();
@@ -834,14 +850,15 @@ API.getUserData = function (then, Tips = true) {
     }
 
     API.reLogin(e => {
-        const  t = new Date().getTime() - startTime
-        if (t > 300){
-            LOG.setFilterMsg(`重新登录时间`)
+        wx.setStorageSync(`loginTime`, loginTime + 1)
+        const t = new Date().getTime() - startTime
+        if (t > 300) {
+            LOG.addFilterMsg(`登录超时`)
+            wx.setStorageSync(`loginOverTime`, loginOverTime + 1)
             LOG.info(t)
         }
         then(e)
     }, App)
-
     return "r";
 }
 
@@ -965,7 +982,7 @@ API.getTimeTable = function (then, semester, session) {
 
 API.geneSemesterArr = function (semester) {
     let rage = []
-    let xueQi = [['大一上', '大一下'], ['大二上', '大二下'], ['大三上', '大三下'], ['大四上', '大四下']]
+    let xueQi = [['大一上', '大一下'], ['大二上', '大二下'], ['大三上', '大三下'], ['大四上', '大四下'], ['大五上', '大五下'], ['大六上', '大六下'], ['大七上', '大七下']]
     let user = API.get("user")
     if (user === '' || user === undefined) {
         return [[], semester]
@@ -1010,6 +1027,47 @@ API.keepSession = function () {
                 pwd: App.globalData.UserData.pwd
             }
         );*/
+}
+
+
+API.reCatchTable = function (id, del) {
+    if (del !== true)     this.delTable(id)
+    return new Promise(function (resolve, reject) {
+        API.getUserData((d) => {
+            // 获取课表
+            API.request(
+                API.GET_TIME_TABLE,
+                {
+                    loading: "正在抓取",
+                    successMsg: "抓取成功",
+                    failMsg: "api",
+                    ok: (d) => {
+                        resolve(true)
+                        // console.log(d);
+                    }
+                }, {
+                    semester: id.slice(0, 11),
+                    age: id.slice(11, id.length)
+                },
+                "session=" + d.session
+            );
+        });
+
+    })
+}
+
+API.delTable = function (id) {
+    let app = getApp();
+    app.globalData.TermData[id] = undefined;
+    wx.removeStorageSync(id);
+
+    let tlist = API.getTermList().List.filter((v) => {
+        if (v == id) return false;
+        else return true;
+    });
+
+    app.globalData.TermList.List = tlist;
+    API.set("TermList", tlist);
 }
 
 
