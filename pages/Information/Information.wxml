@@ -5,11 +5,12 @@
         scrollable="{{ false }}" mode="closeable"
         text="掌上教务处（工大教务处v2）,有问题即时反馈哦"/>
 
-<van-popup overlay-style="{{ overlayStyle?overlayStyle:'' }}" id="popup" round custom-style="width: 618rpx;height: 1000rpx" show="{{ show }}" bind:close="onClose">
+<van-popup overlay-style="{{ overlayStyle?overlayStyle:'' }}" id="popup" round
+           custom-style="width: 618rpx;height: 1000rpx" show="{{ show }}" bind:close="onClose">
     <infoCom id="com" wx:if="{{title !== ''}}" title="{{ title }}" data="{{ verData }}" root="{{root}}"/>
 </van-popup>
 
-        <!-- 日期选择弹出 -->
+        <!-- 空教室日期选择弹出 -->
 
 <van-popup
         overlay-style="{{ overlayStyle?overlayStyle:'' }}"
@@ -18,7 +19,13 @@
         position="bottom"
         bind:close="empClaClose0"
 >
+    <van-picker bind:cancel="empClaClose0"
+                bind:confirm="pyfaConfirm"
+                show-toolbar
+                wx:if="{{ title === '培养方案'}}" columns="{{ columns }}" bind:change="onPyfaChange"/>
+
     <van-picker
+            wx:if="{{ title === '空教室'}}"
             bind:cancel="empClaClose0"
             bind:confirm="empClaConfirm0"
             show-toolbar
@@ -26,7 +33,7 @@
     />
 </van-popup>
 
-        <!-- 时间段选择弹出 -->
+        <!-- 空教室时间段选择弹出 -->
 <van-popup
         overlay-style="{{ overlayStyle?overlayStyle:'' }}"
         show="{{ empClaShow1 }}"
@@ -62,13 +69,14 @@
 <view class="index_swiper">
     <swiper autoplay="true" interval="4000" duration="1000" circular="true">
         <swiper-item wx:for="{{ slides }}" wx:for-index="idx" wx:key="idx" wx:for-item="item">
-            <image id="{{ idx }}" mode="widthFix" src="{{ item.src }}"  bindtap="preViewImg"/>
+            <image id="{{ idx }}" mode="widthFix" src="{{ item.src }}" bindtap="preViewImg"/>
         </swiper-item>
     </swiper>
 </view>
 
 <view class="items">
-    <view bind:tap="propTap" id="{{idx}}" class="item" wx:key="idx" wx:for="{{array}}" wx:for-index="idx" wx:for-item="item">
+    <view bind:tap="propTap" id="{{idx}}" class="item" wx:key="idx" wx:for="{{array}}" wx:for-index="idx"
+          wx:for-item="item">
         <view style="width: 175rpx;">
             <image class="itemImg" src="{{item.imgSrc}}"/>
         </view>
@@ -76,7 +84,7 @@
     </view>
 </view>
 
-<!-- cet验证码弹窗-->
+        <!-- cet验证码弹窗-->
 <van-popup
         show="{{ verShow }}"
         round
@@ -85,20 +93,20 @@
         bind:close="onClose"
 >
     <view style="margin-top:50rpx">2020年下半年全国大学英语四、六级考试（含口试）</view>
-<view style="display:flex;margin-top:30rpx">
-    <image bindtap="getVerImg" style="width:200rpx;height:50rpx" mode="aspectFill" src="data:image/png;base64,{{verImg}}" />
-    <van-cell-group>
-        <van-field
-                custom-style="width:400rpx"
-                model:value="{{ verCode }}"
-                placeholder="请输入验证码"
-                border="{{ false }}"
-        />
-    </van-cell-group>
-    <van-button bindtap="queryCet" type="default">确定</van-button>
-</view>
+    <view style="display:flex;margin-top:30rpx">
+        <image bindtap="getVerImg" style="width:200rpx;height:50rpx" mode="aspectFill"
+               src="data:image/png;base64,{{verImg}}"/>
+        <van-cell-group>
+            <van-field
+                    custom-style="width:400rpx"
+                    model:value="{{ verCode }}"
+                    placeholder="请输入验证码"
+                    border="{{ false }}"
+            />
+        </van-cell-group>
+        <van-button bindtap="queryCet" type="default">确定</van-button>
+    </view>
 </van-popup>
-
 
 
 <van-dialog
@@ -112,19 +120,34 @@
 >
     <view class="pyfaDetail" wx:if="{{showData.College !== undefined}}">
         <view>
-            <view class='modal-hang'><view class='modal-hang-left'>开设学期：</view><view class='modal-hang-right'>{{showData.Semester}}</view></view>
-            <view class='modal-hang'><view class='modal-hang-left'>学分：</view><view class='modal-hang-right'>{{showData.Credit}}</view></view>
-            <view class='modal-hang'><view class='modal-hang-left'>总学时：</view><view class='modal-hang-right'>{{showData.Period}}</view></view>
-            <view class='modal-hang'><view class='modal-hang-left'>考核方式：</view><view class='modal-hang-right'>{{showData.ExamMode}}</view></view>
-            <view class='modal-hang'><view class='modal-hang-left'>开课单位：</view><view class='modal-hang-right'>{{showData.College}}</view></view>
+            <view class='modal-hang'>
+                <view class='modal-hang-left'>开设学期：</view>
+                <view class='modal-hang-right'>{{showData.Semester}}</view>
+            </view>
+            <view class='modal-hang'>
+                <view class='modal-hang-left'>学分：</view>
+                <view class='modal-hang-right'>{{showData.Credit}}</view>
+            </view>
+            <view class='modal-hang'>
+                <view class='modal-hang-left'>总学时：</view>
+                <view class='modal-hang-right'>{{showData.Period}}</view>
+            </view>
+            <view class='modal-hang'>
+                <view class='modal-hang-left'>考核方式：</view>
+                <view class='modal-hang-right'>{{showData.ExamMode}}</view>
+            </view>
+            <view class='modal-hang'>
+                <view class='modal-hang-left'>开课单位：</view>
+                <view class='modal-hang-right'>{{showData.College}}</view>
+            </view>
         </view>
- </view>
-    <view wx:else >
-        <view wx:for="{{epClaTimeList}}" wx:key="idx"  wx:for-index="idx" wx:for-item="item">
+    </view>
+    <view wx:else>
+        <view wx:for="{{epClaTimeList}}" wx:key="idx" wx:for-index="idx" wx:for-item="item">
             <view class='modal-hang' style='margin-top:30rpx;'>
                 <view style='width:65%;text-align: right;'>{{item}}:</view>
-                <view  wx:if="{{showData.Time[idx] === 1}}" style="color:#CC5983">有课</view>
-                <view  wx:else style="color:#77C182">无课</view>
+                <view wx:if="{{showData.Time[idx] === 1}}" style="color:#CC5983">有课</view>
+                <view wx:else style="color:#77C182">无课</view>
             </view>
         </view>
     </view>

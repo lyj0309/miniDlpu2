@@ -156,7 +156,10 @@ Component({
                     empClaShow1: true
                 })
             }
-
+        },
+        showPyfaSelect(){
+            wx.showLoading({title:"加载中"})
+            this.page.showPyfaSelect()
         },
         getScore(semester) {//获取成绩
             if (semester === undefined || semester === '全部学期') {
@@ -269,8 +272,17 @@ Component({
                 }, {alarm: alarm}, "session=" + this.session
             )
         },
-        getPYFA() { //培养方案
+        getPYFA(data) { //培养方案
+            console.log(data)
             let that = this
+            if (data !== undefined){
+                this.setData({
+                    department:data[0],
+                    major:data[1],
+                grade:data[2],
+                })
+            }
+
             this.setData({
                 pyfaSemester: [['第一学期', '大一上'], ['第二学期', '大一下'], ['第三学期', '大二上'], ['第四学期', '大二下'],
                     ['第五学期', '大三上'], ['第六学期', '大三下'], ['第七学期', '大四上'], ['第八学期', '大四下'],]
@@ -300,7 +312,11 @@ Component({
                         })
                         this.setData({replay: "paused"})
                     }
-                }, {},
+                }, {
+                    department:data?data[0]:"",
+                    major:data?data[1]:"",
+                    grade:data?data[2].substr(0,data[2].length-1):"",
+                },
                 "session=" + this.session
             )
         },

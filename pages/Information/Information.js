@@ -1,4 +1,5 @@
 import Notify from "../../miniprogram_npm/@vant/weapp/notify/notify";
+const DEBUG = new (require("../../script/Debug"))();
 
 const API = require("../../script/API");
 
@@ -81,6 +82,16 @@ Page({
             result: event.detail
         })
     },
+    onPyfaChange(event){
+        const { picker, value, index } = event.detail;
+        console.log(value,index,this.data.pyfa[value[0]][Object.keys(this.data.pyfa[value[0]])[0]])
+        picker.setColumnValues(1,Object.keys(this.data.pyfa[value[0]]));
+        if (index === 0){
+              picker.setColumnValues(2,this.data.pyfa[value[0]][Object.keys(this.data.pyfa[value[0]])[0]]);
+        }else {
+            picker.setColumnValues(2,this.data.pyfa[value[0]][value[1]]);
+        }
+    },
     toggle(event) {
         const {index} = event.currentTarget.dataset
         const checkbox = this.selectComponent(`.checkboxes-${index}`)
@@ -104,6 +115,11 @@ Page({
     },
     onClose() {
         this.setData({show: false, title: '', verShow: false});
+    },
+    pyfaConfirm(e){
+        wx.showLoading({title:`加载中`})
+        this.infoCom.getPYFA(e.detail.value)
+        this.setData({empClaShow0: false})
     },
     propTap: function (prop) {
         wx.showLoading({title: '加载中···'})
@@ -201,6 +217,35 @@ Page({
         wx.previewImage({
             urls:[this.data.slides[e.currentTarget.id].src]
         })
+    },
+    showPyfaSelect(){//显示培养方案选择框
+        API.getUserData(
+            d => {
+                API.request(API.GET_CULTIVATE_SCHEME_LIST,{
+                    ok :r=>{
+                        this.setData({columns:[
+                                {
+                                    values: Object.keys(r),
+                                    className: 'column1',
+                                },
+                                {
+                                    values: Object.keys(r[Object.keys(r)[0]]),
+                                    className: 'column2',
+                                },
+                                {
+                                    values: r[Object.keys(r)[0]][Object.keys(r[Object.keys(r)[0]])[0]],
+                                    className: 'column3',
+                                },
+                            ],
+                            pyfa:r,
+                            empClaShow0:true
+                        })
+                        wx.hideLoading()
+                    }
+                },{},"session=" + d.session)
+            }
+        )
+
     },
     onLoad(query) {
         wx.showShareMenu({

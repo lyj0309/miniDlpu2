@@ -76,6 +76,13 @@
 </view>
 
 <view wx:if="{{ title === '培养方案' }}">
+    <van-cell wx:if="{{ !major }}" title="查看其他专业" bind:tap="showPyfaSelect" is-link/>
+    <view wx:else class="empTitle" bind:tap="showPyfaSelect">
+        <view>{{ department }} </view>
+        <view>{{ major }} </view>
+        <view>{{ grade }}</view>
+        <van-icon name="arrow"/>
+    </view>
 
     <view class="examCount">一共可能要学 <text style="color:red">{{ pyfaCount }}</text> 门课程
     </view>

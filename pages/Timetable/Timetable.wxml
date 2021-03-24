@@ -199,8 +199,8 @@
         <view wx:for="{{ class[week - 1] }}" wx:key="class" wx:for-item="classItem">
             <view wx:for="{{ classItem }}" wx:key="day" wx:for-item="dayItem"
                   style="margin-top: {{ dayItem.blank * 60 + 3.5 }}px; height: {{ dayItem.len * 60 - 3.5 }}px;background-color: {{ dayItem.other ? defBgColor : dayItem.c }}; color: #{{ dayItem.other ? defontColor : 'FFFFFF' }};    box-shadow: {{ dayItem.other ? '' : '0.7px 0.7px 2px 0.7px rgba(0, 0, 0, .15);' }}">
-                <text style="font-weight: 500;">{{ dayItem.other ? '[非本周]' + dayItem.n : dayItem.n }}@
-                    {{ dayItem.l ? dayItem.l : '无地点' }}</text>
+                <text>{{ dayItem.other ? '[非本周]' + dayItem.n : dayItem.n }}@
+                   {{ dayItem.l ? dayItem.l : '无地点' }}</text>
             </view>
         </view>
     </view>

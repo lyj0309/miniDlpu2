@@ -248,7 +248,7 @@ API.request = function (api, callback, data, cookie) {
         let data = d.data ? (d.data.data ? d.data.data : d.data) : undefined;
 
         // 成功
-        if (code == 1) {
+        if (code === 1) {
             requestData.ok(data);
 
             // 显示成功消息
@@ -256,35 +256,40 @@ API.request = function (api, callback, data, cookie) {
                 icon: 'success',
                 title: requestData.successMsg
             })
+            return
+        }
+        if (code === 3) {
+            API.reLogin(() => {
+                wx.request(requestData)
+            }, getApp())
+            return;
         }
 
         // 失败
-        else {
-            requestData.no(code, data);
+        requestData.no(code, data);
 
-            let message = "";
-            // 显示失败消息
-            if (
-                requestData.failMsg &&
-                (requestData.failMsg.constructor === Array ||
-                    requestData.failMsg.constructor === Object) &&
-                API.testMessage(requestData.failMsg[code])
-            ) message = requestData.failMsg[code];
+        let message = "";
+        // 显示失败消息
+        if (
+            requestData.failMsg &&
+            (requestData.failMsg.constructor === Array ||
+                requestData.failMsg.constructor === Object) &&
+            API.testMessage(requestData.failMsg[code])
+        ) message = requestData.failMsg[code];
 
-            else if (API.testMessage(requestData.failMsg))
-                message = requestData.failMsg;
+        else if (API.testMessage(requestData.failMsg))
+            message = requestData.failMsg;
 
 
-            // api关键字为后端返回错误代码
-            if (message === 'api') message = d.data.err_msg ? d.data.err_msg : ('未知错误，代码:' + d.data.code);
+        // api关键字为后端返回错误代码
+        if (message === 'api') message = d.data.err_msg ? d.data.err_msg : ('未知错误，代码:' + d.data.code);
 
-            // 显示错误提示
-            if (message) wx.showModal({
-                title: message,
-                confirmText: '确定',
-                showCancel: false,
-            })
-        }
+        // 显示错误提示
+        if (message) wx.showModal({
+            title: message,
+            confirmText: '确定',
+            showCancel: false,
+        })
     };
 
     // 失败
@@ -410,113 +415,44 @@ API.KEEP_SESSION = {
 API.GET_EXAM_DATE = {
     url: baseHost + '/exam_date',
     method: 'GET',
-    no: () => {
-        API.reLogin(() => {
-        }, getApp())
-        wx.hideLoading()
-        wx.showToast({
-            icon: 'none',
-            title: 'session过期，请重新打开'
-        })
-    }
+
 }
 
 API.GET_EXAM_SCORE = {
     url: baseHost + '/exam_score',
     method: 'GET',
-    no: () => {
-        API.reLogin(() => {
-        }, getApp())
-        wx.hideLoading()
-        wx.showToast({
-            icon: 'none',
-            title: 'session过期，请重新打开'
-        })
-    }
+
 }
 // 培养方案
 API.GET_CULTIVATE_SCHEME = {
     url: baseHost + '/cultivate_scheme',
     method: 'GET',
-    no: () => {
-        API.reLogin(() => {
-        }, getApp())
-        wx.hideLoading()
-        wx.showToast({
-            icon: 'none',
-            title: 'session过期，请重新打开'
-        })
-    }
+
 }
 // 培养方案列表
 API.GET_CULTIVATE_SCHEME_LIST = {
     url: baseHost + '/cultivate_scheme_list',
     method: 'GET',
-    no: () => {
-        API.reLogin(() => {
-        }, getApp())
-        wx.hideLoading()
-        wx.showToast({
-            icon: 'none',
-            title: 'session过期，请重新打开'
-        })
-    }
 }
 
 API.GET_EMPTY_CLASS = {
     url: baseHost + '/empty_class',
     method: 'GET',
-    no: () => {
-        API.reLogin(() => {
-        }, getApp())
-        wx.hideLoading()
-        wx.showToast({
-            icon: 'none',
-            title: 'session过期，请重新打开'
-        })
-    }
 }
 API.EVALUATION_LIST = {
     url: baseHost + '/evaluation',
     method: 'GET',
-    no: () => {
-        API.reLogin(() => {
-        }, getApp())
-        wx.hideLoading()
-        wx.showToast({
-            icon: 'none',
-            title: 'session过期，请重新打开'
-        })
-    }
 }
 
 API.EVALUATION_DETAIL = {
     url: baseHost + '/evaluation_detail',
     method: 'GET',
-    no: () => {
-        API.reLogin(() => {
-        }, getApp())
-        wx.hideLoading()
-        wx.showToast({
-            icon: 'none',
-            title: 'session过期，请重新打开'
-        })
-    }
 }
 
 
 API.EVALUATION_POST = {
     url: baseHost + '/evaluation_post',
     method: 'GET',
-    no: () => {
-        API.reLogin(() => {
-        }, getApp())
-        wx.hideLoading()
-        wx.showToast({
-            icon: 'none',
-            title: 'session过期，请重新打开'
-        })
-    }
 }
 //四级
 API.CET = {
@@ -546,7 +482,6 @@ API.GET_WATERCARD_IMG = {
 API.GET_WATERCARD_INFO = {
     url: 'https://www.wuweixuezi.com/app/index.php',
     method: 'GET',
-
 }
 
 
@@ -701,7 +636,7 @@ API.STATIC_DATA_INVALID = 10 * 60 * 1000;
  * @static JS_SESSION_INVALID
  * @description session失效时间（毫秒）
  */
-API.JS_SESSION_INVALID = 40 * 60 * 1000;
+API.JS_SESSION_INVALID = 400 * 60 * 1000;
 
 /**
  * @function getStaticData
@@ -787,24 +722,6 @@ API.getStaticData = function (then) {
  */
 API.getUserData = function (then, Tips = true) {
     const startTime = new Date().getTime();
-    const loginTime = wx.getStorageSync(`loginTime`)
-    const loginOverTime = wx.getStorageSync(`loginOverTime`)
-
-    if (getApp().globalData.firstin !== false) {
-        LOG.setFilterMsg(`getUserData`)
-        const getUserDataTime = wx.getStorageSync(`getUserDataTime`)
-        console.log(loginTime, getUserDataTime, loginOverTime)
-        if (loginTime === '' || loginTime === undefined || loginTime === null) {
-            wx.setStorageSync(`loginTime`, 0)
-            wx.setStorageSync(`getUserDataTime`, 0)
-            wx.setStorageSync(`loginOverTime`, 0)
-        } else {
-            wx.setStorageSync(`getUserDataTime`, getUserDataTime + 1)
-        }
-        LOG.info(`登录次数`, loginTime)
-        LOG.info(`获取data次数`, getUserDataTime)
-        LOG.info(`超时次数`, loginOverTime)
-    }
 
 
     // 获取当前时间 全局对象
@@ -821,7 +738,7 @@ API.getUserData = function (then, Tips = true) {
     API.setObjData(
         App.globalData.UserData,
         globalDataKey,
-        API.get(["ip", "name", "session", "user", "pwd", "lastGetessionTime"])
+        API.get(["ip", "name", "session", "user", "pwd", "lastGetSessionTime"])
     );
 
     // 再次校验全局数据是否合法
@@ -850,11 +767,9 @@ API.getUserData = function (then, Tips = true) {
     }
 
     API.reLogin(e => {
-        wx.setStorageSync(`loginTime`, loginTime + 1)
         const t = new Date().getTime() - startTime
         if (t > 300) {
             LOG.addFilterMsg(`登录超时`)
-            wx.setStorageSync(`loginOverTime`, loginOverTime + 1)
             LOG.info(t)
         }
         then(e)
@@ -1031,7 +946,7 @@ API.keepSession = function () {
 
 
 API.reCatchTable = function (id, del) {
-    if (del !== true)     this.delTable(id)
+    if (del !== true) this.delTable(id)
     return new Promise(function (resolve, reject) {
         API.getUserData((d) => {
             // 获取课表
