@@ -4,6 +4,9 @@
 page {
     background-color: #eeeeee;
     font-family: Microsoft YaHei, SimHei,STHeiti,serif;
+    -webkit-transition: none !important;
+    transition: none !important;
+    animation:none !important;
 }
 
 /* 头部 */
@@ -149,10 +152,16 @@ view.week > view.weather image {
 }
 
 
-.cDBlock > view > image {
-    width: 1rem;
-    height: 1rem;
-    margin-right: 0.5rem;
+.cDItem > image {
+    width: 1.1em;
+    height: 1.1em;
+}
+
+.cDItem > view {
+
+    margin-left: 0.8em;
+    width: 530rpx;
+    padding: 0 !important;
 }
 
 .cDBlock > view {
@@ -185,45 +194,19 @@ view.week > view.weather image {
     overflow: hidden;
 }
 
-/* 选择区域弹出动画 */
-@keyframes showSelect {
-    from {
-        height: 0;
-        opacity: 0;
-    }
-    to {
-        height: 80px;
-        opacity: 1;
-    }
-}
-
-@keyframes hideSelect {
-    from {
-        height: 80px;
-        opacity: 1;
-    }
-    to {
-        height: 0;
-        opacity: 0;
-    }
-}
-
 view.showSelect {
+    transition: height 233ms;
     height: 80px !important;
-    opacity: 1 !important;
-    animation: showSelect 250ms ease;
 }
 
 view.hideSelect {
+    transition: height 233ms;
     height: 0 !important;
-    opacity: 0 !important;
-    animation: hideSelect 250ms ease;
 }
 
 /* 动画区域 */
 view.seleAn {
     height: 0;
-    opacity: 0;
     overflow: hidden;
     background-color: #F4F0F1;
 }
@@ -343,7 +326,6 @@ view.table {
 /* 左侧时间 */
 view.table > view.time {
     width: 10%;
-    background-color: rgba(255, 255, 255, .4);
 }
 
 view.table > view.time > view {
@@ -379,9 +361,8 @@ view.class > view > view {
     -webkit-backdrop-filter: blur(5px);
     word-break: break-all;
     width: calc(100% - 4px);
-    margin: 0 2px;
     /* margin-bottom: 5px; */
-    font-size: 0.9em;
+    font-size: 0.88em;
     line-height: 1.2em;
     text-align: center;
     background-color: #F4F0F1;
@@ -505,7 +486,9 @@ view.cDBlock {
 }
 
 view.cDetail view.cDBlock view.cDTit {
-    font-size: 1.2em;
+    height: 30px;
+    justify-content: space-between;
+    font-size: 1.3em;
     color: #606060;
     /*background-color: #d1d1d1;*/
     background-color: rgba(209, 209, 209, 0.6);
@@ -520,10 +503,14 @@ view.cDetail view.cDBlock view {
     padding: 2px 18px;
 }
 
-view.cDetail view.cEditClass {
+/*view.cDetail view.cEditClass {
     padding: 0 !important;
     height: 0;
     z-index: 10;
+}*/
+
+.cDBlock > view{
+    font-size: 1.1em;
 }
 
 

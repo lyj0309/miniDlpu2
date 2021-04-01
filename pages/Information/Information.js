@@ -84,7 +84,7 @@ Page({
     },
     onPyfaChange(event){
         const { picker, value, index } = event.detail;
-        console.log(value,index,this.data.pyfa[value[0]][Object.keys(this.data.pyfa[value[0]])[0]])
+        // console.log(value,index,this.data.pyfa[value[0]][Object.keys(this.data.pyfa[value[0]])[0]])
         picker.setColumnValues(1,Object.keys(this.data.pyfa[value[0]]));
         if (index === 0){
               picker.setColumnValues(2,this.data.pyfa[value[0]][Object.keys(this.data.pyfa[value[0]])[0]]);
@@ -219,6 +219,14 @@ Page({
         })
     },
     showPyfaSelect(){//显示培养方案选择框
+        if (this.data.pyfa !== undefined){
+            wx.hideLoading()
+            this.setData({
+                empClaShow0:true
+            })
+            return
+        }
+
         API.getUserData(
             d => {
                 API.request(API.GET_CULTIVATE_SCHEME_LIST,{
@@ -248,6 +256,7 @@ Page({
 
     },
     onLoad(query) {
+
         wx.showShareMenu({
 
             withShareTicket:true,

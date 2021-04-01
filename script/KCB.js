@@ -235,9 +235,9 @@ KCB.sortClassObj = function(o, len, blank, otherWeek = false, i = 0){
     d.n = d.n.substr(0, 4) + "...";
   }
 
-  else if((d.n.length > (len - 1) * 12) && len != 1) {
+  else if((d.n.length > (len - 1) * 8) && len != 1) {
     // console.log(d.n, d.n.length, len, 2);
-    d.n = d.n.substr(0, (len - 1) * 12) + "...";
+    d.n = d.n.substr(0, (len - 1) * 8) + "...";
   }
 
   return d;

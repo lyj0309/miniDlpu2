@@ -1,6 +1,7 @@
 const API = {};
 const KCB = require("KCB");
 const LOG = require('log')
+const baseHost = "https://jwc.nogg.cn"
 
 /**
  * @function parseTime
@@ -241,6 +242,13 @@ API.request = function (api, callback, data, cookie) {
     // 成功！
     requestData.success = (d) => {
         API.runCallBack(api.success, callback.success, d);
+        if (d.statusCode === 502) {
+            wx.showToast({
+                icon: 'none',
+                title: "服务器故障，请稍后再试"
+            })
+            return;
+        }
 
         // 收集错误代码
         let code = 0;
@@ -249,6 +257,22 @@ API.request = function (api, callback, data, cookie) {
 
         // 成功
         if (code === 1) {
+            if (requestData.url !== API.GET_STATIC_DATA.url) {
+                // 更新时间
+                let date = new Date();
+
+                // 存储到缓存
+                API.set(
+                    "lastGetSessionTime", date
+                )
+
+                // 更新到全局数据
+                API.setObjData(
+                    getApp().globalData.UserData,
+                    "time", date
+                );
+            }
+
             requestData.ok(data);
 
             // 显示成功消息
@@ -258,16 +282,20 @@ API.request = function (api, callback, data, cookie) {
             })
             return
         }
-        if (code === 3) {
-            API.reLogin(() => {
+        if (code === 2) { //session 过期
+            API.reLogin(r => {
+                wx.hideLoading()
+                if (r === false) {
+                    return
+                }
+                requestData.header.cookie = `session=` + r.session
                 wx.request(requestData)
             }, getApp())
             return;
         }
 
-        // 失败
-        requestData.no(code, data);
 
+        requestData.no(code, data);
         let message = "";
         // 显示失败消息
         if (
@@ -320,7 +348,6 @@ API.request = function (api, callback, data, cookie) {
  * @static GET_JS_SESSION
  * @description JsSession授权接口
  */
-const baseHost = "https://jwc.nogg.cn"
 
 API.GET_JS_SESSION = {
     url: baseHost + '/login',
@@ -635,8 +662,9 @@ API.STATIC_DATA_INVALID = 10 * 60 * 1000;
 /**
  * @static JS_SESSION_INVALID
  * @description session失效时间（毫秒）
+ *  15小时
  */
-API.JS_SESSION_INVALID = 400 * 60 * 1000;
+API.JS_SESSION_INVALID = 15 * 60 * 60 * 1000;
 
 /**
  * @function getStaticData
@@ -802,6 +830,7 @@ API.reLogin = function (then, App, Tips = true) {
                         if (res.confirm) wx.navigateTo({url: '/pages/Subpages/StudentId/StudentId'});
                     }
                 });
+                then(false)
             }
         }, {
             id: App.globalData.UserData.user,
@@ -925,28 +954,8 @@ API.geneSemesterArr = function (semester) {
     }
 }
 
-API.keepSession = function () {
-    let App = getApp()
-    console.log(App)
-    /*    // 发送网络请求
-        API.request(
-            API.KEEP_SESSION,
-            {
-                // 成功后返回数据
-                success: (d) => {
-                    console.log(d)
-                },
-
-            }, {
-                id: App.globalData.UserData.user,
-                pwd: App.globalData.UserData.pwd
-            }
-        );*/
-}
-
 
 API.reCatchTable = function (id, del) {
-    if (del !== true) this.delTable(id)
     return new Promise(function (resolve, reject) {
         API.getUserData((d) => {
             // 获取课表

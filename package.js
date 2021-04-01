@@ -1,7 +1,7 @@
 module.exports ={
   "name": "minidlpu2",
-  "version": "2.4.0",
-  "info":"1.考试提醒（beta）\r\n2.bug修复",
+  "version": "2.4.8",
+  "info":"1.培养方案可看其他专业\r\n2.查询性能提升",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
@@ -17,5 +17,8 @@ module.exports ={
   },{
     "version": "2.3.0",
     "info":"1.四六级查询(beta)\r\n2.性能优化",
-  },]
+  },{
+    "version": "2.4.0",
+    "info":"1.考试提醒（beta）\r\n2.bug修复",
+  }]
 }

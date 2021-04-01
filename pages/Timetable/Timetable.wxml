@@ -55,7 +55,6 @@
             </view>
         </view>
     </scroll-view>
-
 </van-popup>
         <!-- 蒙版 -->
 <view class="mask {{ maskClass }}"
@@ -69,8 +68,7 @@
     <view class="cListClass" wx:for="{{ cListData }}" wx:key="cListClass"
           catchtap="clickCList" data-id="{{ index }}"
           style="{{ item.o ? 'background-color: '+item.c+';' : '' }} {{ item.o ? 'min-height:80px;' : '' }} {{ item.o ? 'color:#FFFFFF !important;' : '' }}">
-        <view class="cListTit" style="{{ item.o ? 'color:#FFFFFF !important;' : '' }}">{{ item.o ? '' : '[非本周]'
-            }}{{ item.n }}
+        <view class="cListTit" style="{{ item.o ? 'color:#FFFFFF !important;' : '' }}">{{ item.o ? '' : '[非本周]' }}{{ item.n }}
         </view>
         <view class="cListP">@{{ item.l ? item.l : '无地点'}}</view>
     </view>
@@ -81,35 +79,44 @@
       style="display: {{cDetailShow ? 'flex' : 'none'}};"
       catchtap="clickMask">
     <view class="cDBlock" catchtap="catchtap">
-        <view class="cEditClass">
+        <view class="cDTit"
+              style="{{ cDetailData.o ? 'background-color: '+cDetailData.c+';' : '' }} {{ cDetailData.o ? 'color:#FFFFFF !important;' : '' }}"
+        >
+         <view style="padding:0;{{ cDetailData.n.length>11?'font-size: '+ 270/cDetailData.n.length +'px;':'' }}">
+             {{ cDetailData.n }}
+         </view>
             <view wx:if="{{ cDetailData.i }}" bindtap="editClass"
-                  data-id="{{ cDetailData.i }}" style="{{cDetailData.o ? '' : 'color: rgba(0, 0, 0, .60);'}}margin-top: 30px;">
+                  data-id="{{ cDetailData.i }}"
+                  style="{{cDetailData.o ? '' : 'color: rgba(0, 0, 0, .60);'}};padding:0">
                 编辑
             </view>
         </view>
-        <view class="cDTit"
-              style="{{ cDetailData.o ? 'background-color: '+cDetailData.c+';' : '' }} {{ cDetailData.o ? 'color:#FFFFFF !important;' : '' }} {{ cDetailData.i ? 'padding: 8px 70px 8px 18px;' : '' }}">
-            {{ cDetailData.o ? '' : '[非本周]' }}{{ cDetailData.n }}
+        <view class="cDItem" style="margin-top:10px">
+            <image src="../../image/pop/map.svg"/>
+            <view>地点：{{ cDetailData.l ? cDetailData.l : '无地点' }}
+            </view>
         </view>
-        <view class="cDLoca">
-            <image src="../../image/map.svg"/>
-            地点：{{ cDetailData.l ? cDetailData.l : '无地点' }}
+        <view class="cDItem">
+            <image src="../../image/pop/week.svg"/>
+            <view>
+                周数：{{ cDetailData.m }}
+            </view>
         </view>
-
-        <view class="cDWeek">
-            <image src="../../image/calendar.svg"/>
-            周数：{{ cDetailData.m }}
+        <view wx-if="{{ cDetailData.o }}" class="cDItem">
+            <image src="../../image/pop/time.svg"/>
+            <view>时间：{{ date[cDetailData.w].week }} {{ cDetailData.s + 1 }}-{{ cDetailData.e + 1 }}节
+            </view>
         </view>
-        <view wx-if="{{ cDetailData.o }}" class="cDWeek">
-            <image src="../../image/menu.svg"/>
-            时间：{{ date[cDetailData.w].week }} {{ cDetailData.s + 1
-            }}-{{ cDetailData.e + 1 }}节
+        <view class="cDItem">
+            <image src="../../image/pop/teacher.svg"/>
+            <view>老师：{{ cDetailData.t ? cDetailData.t : '无老师' }}
+            </view>
         </view>
-        <view class="cDTeach">
-            <image src="../../image/user.svg"/>
-            老师：{{ cDetailData.t ? cDetailData.t : '无老师' }}
+        <view class="cDItem">
+            <image src="../../image/pop/alarm.svg"/>
+            <view style="display:flex;justify-content:space-between;align-items:center"><text>上课提醒</text><switch color="#6bc1cd" checked="{{cDetailData.r}}" bindchange="onRemindChange"/></view>
         </view>
-        <view style="height: 20px"></view>
+        <view style="height: 10px"></view>
     </view>
 </view>
 
@@ -177,16 +184,15 @@
 
         <!-- 占位 -->
 <view style="height: 83.2px;"></view>
-<view class="{{ showBlank === 1 ? '' : showBlank ? 'showSelect' : 'hideSelect'  }}"></view>
+<view class="{{ showBlank ? 'showSelect' : 'hideSelect'  }}"></view>
 
         <!-- 背景图片 -->
-<image class="bgImg" style="height:{{ bgImgHeight }}rpx" mode="aspectFill" src="{{ bgImg }}"/>
+<image wx:if="{{bgImg}}" class="bgImg" style="height:{{ bgImgHeight }}rpx" mode="aspectFill" src="{{ bgImg }}"/>
 
         <!-- 表 -->
 <view class="table">
-
     <!-- 左侧时间部分 -->
-    <view class="time">
+    <view class="time" style="{{ bgImg?'background: linear-gradient(to right,rgba(255,255,255,0.3) ,85% ,rgba(255,255,255,0));': ''}}">
         <view wx:for="{{ time }}" wx:key="time">
             <view class="number">{{ index + 1 }}</view>
             <view class="slot">{{ item[0] }}</view>
@@ -199,8 +205,9 @@
         <view wx:for="{{ class[week - 1] }}" wx:key="class" wx:for-item="classItem">
             <view wx:for="{{ classItem }}" wx:key="day" wx:for-item="dayItem"
                   style="margin-top: {{ dayItem.blank * 60 + 3.5 }}px; height: {{ dayItem.len * 60 - 3.5 }}px;background-color: {{ dayItem.other ? defBgColor : dayItem.c }}; color: #{{ dayItem.other ? defontColor : 'FFFFFF' }};    box-shadow: {{ dayItem.other ? '' : '0.7px 0.7px 2px 0.7px rgba(0, 0, 0, .15);' }}">
-                <text>{{ dayItem.other ? '[非本周]' + dayItem.n : dayItem.n }}@
-                   {{ dayItem.l ? dayItem.l : '无地点' }}</text>
+                <view wx:if="{{dayItem.other}}" style="font-size: 10px;">[非本周]</view>
+                <text>{{ dayItem.n }}@
+                    {{ dayItem.l ? dayItem.l : '无地点' }}</text>
             </view>
         </view>
     </view>
@@ -215,7 +222,8 @@
     </view>
 </view>
 <view wx:if="{{ week !== weekNow}}" id="backBtn">
-    <van-button custom-class="backBtn" color="rgba(62, 163, 216,0.8)" round type="info" bindtap="backPresent">返回当前周</van-button>
+    <van-button custom-class="backBtn" color="rgba(62, 163, 216,0.8)" round type="info" bindtap="backPresent">返回当前周
+    </van-button>
 </view>
 
 <canvas wx:if="{{canvas0Show}}" type="2d" id="weatherCanvas0" style="width: 750rpx; height: 400rpx;"/>

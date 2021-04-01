@@ -37,7 +37,7 @@ Page({
         showSemesterSelect: 1,
 
         // 展位展开
-        showBlank: 1,
+        showBlank: false,
 
         // 蒙版
         maskShow: false,
@@ -233,13 +233,13 @@ Page({
             this.data.kcb, this.data.class, this.data.user, this.data.week - 1,
             clickPos[0], clickPos[1], API.getSetting(), true
         );
+        console.log(clist)
         if (clist.length) {
 
             // 如果非本周渲染被禁用
             // if(!){
             //   if(!clist[0].o) return;
             // }
-
             // 如果只有一个 直接显示细节
             if (clist.length === 1) {
                 this.setData({
@@ -513,6 +513,7 @@ Page({
             let timeTableCallBack = (d) => {
                 wx.stopPullDownRefresh();
 
+                console.log(d.pre)
                 return then({
                     class: d.pre,
                     weekImg: d.img,
@@ -548,6 +549,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+
         wx.showShareMenu({
 
             withShareTicket: true,
@@ -697,6 +699,7 @@ Page({
                 weatherPopStyle: "filter: invert(1) hue-rotate(.5turn);"
             })
         }
+        console.log(wx.getSystemInfoSync())
     },
 
 
@@ -734,7 +737,6 @@ Page({
         this.clickMask();
         this.initBgImg()
     },
-
     /**
      * 生命周期函数--监听页面隐藏
      */
@@ -755,7 +757,7 @@ Page({
     onPullDownRefresh: function (e) {
         if (e === undefined) {
             API.getStaticData(r => {
-                API.reCatchTable(r.semester,true).then(r => {
+                API.reCatchTable(r.semester, true).then(r => {
                     this.onLoad()
                 })
             })
@@ -766,18 +768,15 @@ Page({
             }, this.data.semester);
         }
     },
-
     /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
+    * 上课提醒
+    * */
+    onRemindChange({detail}) {
 
-    },
+        console.log(detail)
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
+        console.log(this.data.cDetailData)
 
+        this.setData({['cDetailData.r']: detail.value});
     }
 })

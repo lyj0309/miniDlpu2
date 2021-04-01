@@ -273,7 +273,7 @@ Component({
             )
         },
         getPYFA(data) { //培养方案
-            console.log(data)
+            // console.log(data)
             let that = this
             if (data !== undefined){
                 this.setData({
@@ -352,58 +352,57 @@ Component({
             )
         },
         checkWaterLogin() {
-            //console.log(this.data.token)
-            API.request( //请求水卡图片地址
-                API.LOGIN_WATERCARD,
-                {
-                    success: (d) => {
-                        if (d.data.errcode === 0) {
-                            console.log('获取图片成功', d.data)
-                            this.setData({imgUrl: d.data.errmsg.codeUrl, replay: "paused"})
-                        } else {
-                            wx.setStorageSync('waterToken', '')
-                        }
-                        wx.hideLoading()
-                    }
-                }, {
+            wx.request({
+                url:   API.LOGIN_WATERCARD.url,
+                data: {
                     i: "2", j: "3", c: "entry", m: "water", do: "appapi", op: "user.getPrcode", time: "1607400092",
                     sign: "dffddefeb30cc01984f00ee8038e0793",
                     token: this.data.token
                 },
-            )
+                success: (d) => {
+                    if (d.data.errcode === 0) {
+                        console.log('获取图片成功', d.data)
+                        this.setData({imgUrl: d.data.errmsg.codeUrl, replay: "paused"})
+                    } else {
+                        wx.setStorageSync('waterToken', '')
+                    }
+                    wx.hideLoading()
+                }
+            })
+            //console.log(this.data.token)
+
         },
         setWaterInfo() {
-            API.request( //请求用户数据
-                API.LOGIN_WATERCARD,
-                {
-                    success: (d) => {
-                        //console.log('成功', d.data)
-                        if (d.data.errcode === 0) {
-                            this.setData({
-                                balance: d.data.errmsg.YskBalance,
-                                userName: d.data.errmsg.realname,
-                                stuId: d.data.errmsg.student
-                            })
-                            Notify({
-                                background: '#77C182',
-                                message: '获取成功',
-                                context: this,
-                            })
-                            //console.log(d.data)
-                        } else {
-                            Notify({
-                                background: '#CC5983',
-                                message: d.data.errmsg,
-                                context: this,
-                            })
-                        }
-                        wx.hideLoading()
-                    }
-                }, {
+            wx.request({
+                url:    API.LOGIN_WATERCARD.url,
+                data: {
                     i: "2", j: "3", c: "entry", m: "water", do: "appapi", op: "user.getIndex", time: "1607424790",
                     sign: "243e317a29b4f8f180df5047ec39cd56", token: this.data.token
                 },
-            )
+                success: (d) => {
+                    //console.log('成功', d.data)
+                    if (d.data.errcode === 0) {
+                        this.setData({
+                            balance: d.data.errmsg.YskBalance,
+                            userName: d.data.errmsg.realname,
+                            stuId: d.data.errmsg.student
+                        })
+                        Notify({
+                            background: '#77C182',
+                            message: '获取成功',
+                            context: this,
+                        })
+                        //console.log(d.data)
+                    } else {
+                        Notify({
+                            background: '#CC5983',
+                            message: d.data.errmsg,
+                            context: this,
+                        })
+                    }
+                    wx.hideLoading()
+                }
+            })
         },
         logout() {
             wx.removeStorageSync('waterToken')
@@ -411,31 +410,9 @@ Component({
 
         },
         loginWaterCard(name, stuNum, pwd) {
-            API.request(
-                API.LOGIN_WATERCARD,
-                {
-                    success: (d) => {
-                        //console.log('成功', d.data)
-                        if (d.data.errcode === '0') {
-                            wx.setStorageSync('waterToken', d.data.errmsg.token)
-                            this.setData({token: d.data.errmsg.token})
-                            this.checkWaterLogin()
-                            this.setWaterInfo()
-                            Notify({
-                                background: '#77C182',
-                                message: '登录成功',
-                                context: this,
-                            })
-                        } else {
-                            Notify({
-                                background: '#CC5983',
-                                message: this.data.name ? d.data.errmsg : "默认密码不正确，请输入自己改的密码",
-                                context: this,
-                            })
-                            wx.hideLoading()
-                        }
-                    }
-                }, {
+            wx.request({
+                url: API.LOGIN_WATERCARD.url,
+                data: {
                     i: "2", j: "3", c: "entry", m: "water", do: "appapi", op: "user.login",
                     realname: this.data.name ? this.data.name : name,
                     studentID: this.data.stuNum ? this.data.stuNum : stuNum,
@@ -443,7 +420,28 @@ Component({
                     time: "1607400092", sign: "dffddefeb30cc01984f00ee8038e0793",
                     style: "2", schoolID: "7"
                 },
-            )
+                success: (d) => {
+                    //console.log('成功', d.data)
+                    if (d.data.errcode === '0') {
+                        wx.setStorageSync('waterToken', d.data.errmsg.token)
+                        this.setData({token: d.data.errmsg.token})
+                        this.checkWaterLogin()
+                        this.setWaterInfo()
+                        Notify({
+                            background: '#77C182',
+                            message: '登录成功',
+                            context: this,
+                        })
+                    } else {
+                        Notify({
+                            background: '#CC5983',
+                            message: this.data.name ? d.data.errmsg : "默认密码不正确，请输入自己改的密码",
+                            context: this,
+                        })
+                        wx.hideLoading()
+                    }
+                }
+            })
         },
         getEmptyClass() {
             let week, weekValue = [], dayValue = []

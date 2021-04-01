@@ -1,7 +1,7 @@
 <van-notify id="van-notify"/>
 <view class="title">{{ title }}</view>
 <van-icon bind:tap="replay" style="animation-play-state: {{ replay }};"
-          wx:if="{{ title !== '空教室' && title !== '评教' && token !== ''}}" class="replay" size="55rpx" name="replay"/>
+          wx:if="{{ title !== '空教室' && title !== '评教' && token !== '' && title !== '培养方案' }}" class="replay" size="55rpx" name="replay"/>
 <view wx:if="{{ title === '成绩查询' }}">
     <van-cell title="学期" title-width="200rpx" bind:tap="showAction" is-link value='{{semester}}'/>
     <van-action-sheet
@@ -65,7 +65,7 @@
     <view class="examAlarm">
         <text>考试提醒</text>
         <view style="width:10px"/>
-        <van-switch size="1.2rem" checked="{{ examAlarm }}" bind:change="switchExamAlarm"/>
+        <van-switch active-color="#6bc1cd" size="1.2rem" checked="{{ examAlarm }}" bind:change="switchExamAlarm"/>
     </view>
     <van-cell wx:key="idx" wx:for="{{examDateData}}" wx:for-index="idx" wx:for-item="item"
               title-width="350rpx" title="{{item.Name}}" label="{{item.Time}}">
@@ -192,7 +192,7 @@
         <image class="waterImg" mode="widthFix" src="{{imgUrl}}"/>
         <view style="display:flex;align-items:center; justify-content: center;flex-direction:column">
             <view wx:if="{{balance}}">{{userName}} {{ stuId }}</view>
-            <view wx:if="{{balance}}">余额：{{balance}}</view>
+            <view wx:if="{{balance}}">余额：<text style="color:red">{{balance}}</text>元 </view>
             <van-button type="default" bind:tap="logout">退出登录</van-button>
         </view>
     </view>

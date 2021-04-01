@@ -24,6 +24,14 @@
 + 关于我们：pages/Subpages/AboutUs/AboutUs
 + 缓存管理：pages/Subpages/Storage/Storage
 + 常见问题：pages/Subpages/FAQ/FAQ
+  
+
+  | 返回码 | 说明 |
+  | ---- |---- |
+  | 1 | 请求成功 |
+  | 2 | session过期 |
+  | 3 | 用户名或密码错误 |
+  | 4 | 其他错误（如cet） |
 
 
 发版计划：

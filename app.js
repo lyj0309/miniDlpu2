@@ -5,7 +5,8 @@ const API = require("./script/API");
 const CONFIG = require("./package.js")
 App({
     onLaunch: function () {
-        //重新抓取可程表
+
+
         let ver = wx.getStorageSync(`version`)
 
         if (ver !== CONFIG["version"]) {
