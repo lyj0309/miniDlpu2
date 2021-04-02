@@ -91,7 +91,6 @@ Page({
         // 显示
         let sData = {};
         if (mode === 1) {
-            sData[show] = true;
             sData[clas] = "Show";
             this.setData(sData);
         }
@@ -100,10 +99,6 @@ Page({
         else if (mode === 0) {
             sData[clas] = "Hide";
             this.setData(sData);
-            setTimeout(() => {
-                sData[show] = false;
-                this.setData(sData);
-            }, 200)
         }
     },
 
@@ -601,12 +596,102 @@ Page({
         this.setData({show: false});
     },
     showWeather() {
+        this.drawWeatherImg()
         this.setData({show: true});
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
+
+
+        if (this.sysinfo.theme !== 'light') {
+            this.setData({
+                defontColor: "aaaaaa",
+                defBgColor: "rgba(66,66,66,0.6)",
+                weatherPopStyle: "filter: invert(1) hue-rotate(.5turn);"
+            })
+        }
+    },
+
+
+    /**
+     *  获取用户图片
+     */
+    initBgImg() {
+        this.setData({bgImg: wx.getStorageSync("bgImg"), bgImgHeight: wx.getStorageSync(`bgImgHeight`)})
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+
+        wx.checkSession({
+            fail() {
+                wx.login(
+                    {
+                        success: res => {
+                            API.getUserData(d => {
+                                wx.request({
+                                    url: 'https://jwc.nogg.cn/wx_login?id=' + d.user + '&code=' + res.code
+                                })
+                            })
+
+                        }
+                    }
+                )
+            }
+        })
+
+        if (this.data.onshow) this.onPullDownRefresh(true);
+        this.setData({onshow: true})
+        this.clickMask();
+        this.initBgImg()
+    },
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function () {
+
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function (e) {
+        if (e === undefined) {
+            API.getStaticData(r => {
+                API.reCatchTable(r.semester, true).then(r => {
+                    this.onLoad()
+                })
+            })
+        } else {
+            this.timeTable((d) => {
+                this.setData(d);
+                this.setDayList(this.data.weekNow, this.data.week);
+            }, this.data.semester);
+        }
+    },
+    /**
+    * 上课提醒
+    * */
+    onRemindChange({detail}) {
+
+        console.log(detail)
+
+        console.log(this.data.cDetailData)
+
+        this.setData({['cDetailData.r']: detail.value});
+    },
+    drawWeatherImg(){
         const dpr = this.sysinfo.pixelRatio
         if (this.data.weather === "") return
         let p = []
@@ -691,92 +776,5 @@ Page({
                     //console.log(`画完一个`)
                 })
         }
-
-        if (this.sysinfo.theme !== 'light') {
-            this.setData({
-                defontColor: "aaaaaa",
-                defBgColor: "rgba(66,66,66,0.6)",
-                weatherPopStyle: "filter: invert(1) hue-rotate(.5turn);"
-            })
-        }
-        console.log(wx.getSystemInfoSync())
-    },
-
-
-    /**
-     *  获取用户图片
-     */
-    initBgImg() {
-        this.setData({bgImg: wx.getStorageSync("bgImg"), bgImgHeight: wx.getStorageSync(`bgImgHeight`)})
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-        wx.checkSession({
-            fail() {
-                wx.login(
-                    {
-                        success: res => {
-                            API.getUserData(d => {
-                                wx.request({
-                                    url: 'https://jwc.nogg.cn/wx_login?id=' + d.user + '&code=' + res.code
-                                })
-                            })
-
-                        }
-                    }
-                )
-            }
-        })
-
-        if (this.data.onshow) this.onPullDownRefresh(true);
-        this.setData({onshow: true})
-        this.clickMask();
-        this.initBgImg()
-    },
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function (e) {
-        if (e === undefined) {
-            API.getStaticData(r => {
-                API.reCatchTable(r.semester, true).then(r => {
-                    this.onLoad()
-                })
-            })
-        } else {
-            this.timeTable((d) => {
-                this.setData(d);
-                this.setDayList(this.data.weekNow, this.data.week);
-            }, this.data.semester);
-        }
-    },
-    /**
-    * 上课提醒
-    * */
-    onRemindChange({detail}) {
-
-        console.log(detail)
-
-        console.log(this.data.cDetailData)
-
-        this.setData({['cDetailData.r']: detail.value});
     }
 })
