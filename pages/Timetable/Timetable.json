@@ -2,5 +2,7 @@
   "navigationBarTitleText": "课程表",
   "enablePullDownRefresh": true,
   "usingComponents": {
+    "userGuide": "./userGuide/userGuide",
+    "userGuide": "/pages/Timetable/userGuide/userGuide"
   }
 }

@@ -30,8 +30,8 @@ const KCB = {};
 ];*/
 const opc = "0.7"
 KCB.COLOR = [
-  "rgba(235,138,121,"+opc+")", "rgba(195,216,118,"+opc+")", "rgba(107,193,203,"+opc+")", "rgba(119,193,130,"+opc+")", "rgba(204,88,132,"+opc+")",
-  "rgba(135,126,216,"+opc+")", "rgba(255,195,107,"+opc+")", "rgba(214,142,209,"+opc+")", "rgba(137,168,197,"+opc+")", "rgba(224,217,72,"+opc+")"
+  "rgba(235,138,121,"+opc+")", "rgba(165,186,88,"+opc+")", "rgba(107,193,203,"+opc+")", "rgba(119,193,130,"+opc+")", "rgba(204,88,132,"+opc+")",
+  "rgba(135,126,216,"+opc+")", "rgba(235,175,87,"+opc+")", "rgba(214,142,209,"+opc+")", "rgba(137,168,197,"+opc+")","rgba(204, 88, 132,"+opc+")"
 ];
 
 /**
@@ -235,9 +235,9 @@ KCB.sortClassObj = function(o, len, blank, otherWeek = false, i = 0){
     d.n = d.n.substr(0, 4) + "...";
   }
 
-  else if((d.n.length > (len - 1) * 8) && len != 1) {
+  else if((d.n.length > (len - 1) * 12) && len != 1) {
     // console.log(d.n, d.n.length, len, 2);
-    d.n = d.n.substr(0, (len - 1) * 8) + "...";
+    d.n = d.n.substr(0, (len - 1) * 12) + "...";
   }
 
   return d;

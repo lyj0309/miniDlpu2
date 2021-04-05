@@ -1,0 +1,15 @@
+<view class="all">
+    <!-- 移动框框 -->
+
+    <view class="see" style="width:{{ p.width }}px;height:{{ p.height }}px;top:{{ p.top }}px;left:{{ p.left }}px"/>
+
+    <!--  展示的文字  -->
+    <text class="text">{{ text }}</text>
+
+    <!--  按钮组  -->
+    <view class="buttons">
+        <button wx:if="{{ index!==0 }}" bindtap="last">上一步</button>
+        <button wx:if="{{ index !== ps.length-1 }}" bindtap="next" >下一步</button>
+        <button wx:else bindtap="complete" >完成引导</button>
+    </view>
+</view>

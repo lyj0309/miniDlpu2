@@ -1,0 +1,53 @@
+.see{
+    /*border-radius: 5px;*/
+    position: absolute;
+    width: 10px; height: 10px;
+    left: 0; top: 0; right: 0; bottom: 0;
+    border: 0 solid #000;
+    opacity: .75;
+    filter: alpha(opacity=75);
+    z-index: -1;
+    /* 过渡效果 */
+    transition: all .25s;
+    /* 边缘闪动问题fix */
+    box-shadow: 0 0 0 2000px #000;
+    overflow: hidden;
+}
+
+.see::before {
+    content: '';
+    width: 100%; height:100%;
+    border-radius: 50%;
+    border: 2000px solid #000;
+    position: absolute;
+    left: -2000px; top: -2000px;
+    box-shadow: inset 0 0 5px 2px rgba(0,0,0,.75);
+}
+
+.all{
+    width: 100%;
+    height: 100%;
+}
+
+.text{
+    color: white;
+    position: absolute;
+    top: 45%;
+    left: 15%;
+    font-size: 1.5rem;
+    width: 70%;
+}
+
+.buttons{
+    width: 100%;
+    top: 80%;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+}
+.buttons > button{
+    background-color: rgba(62, 163, 219,0.8);
+    color: white;
+    width: 200rpx;
+    height: 80rpx;
+}

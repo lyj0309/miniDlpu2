@@ -5,7 +5,7 @@
     <view class="title" style="margin-top: 50rpx;margin-bottom: 50rpx;color:black">
         大连15天趋势预报
     </view>
-    <scroll-view wx:if="{{show}}" class="scroll-view_H" scroll-x="true">
+    <scroll-view  class="scroll-view_H" scroll-x="true">
         <view class="txt">
             <view class="blk" wx:key="idx" wx:for="{{ weather }}" wx:for-index="idx"
                   wx:for-item="item">
@@ -56,6 +56,11 @@
         </view>
     </scroll-view>
 </van-popup>
+        <!-- 用户引导 -->
+<userGuide wx:if="{{ userGuide }}"  style="position: absolute;z-index:99999;width: 100%;height: 100%;top:0"/>
+<!-- 空白快快，用户引导用 -->
+<view wx:if="{{ userGuide }}" id="blankBlock"></view>
+
         <!-- 蒙版 -->
 <view class="mask {{ maskClass }}"
       catchtap="clickMask"></view>
@@ -79,7 +84,7 @@
         <view class="cDTit"
               style="{{ cDetailData.o ? 'background-color: '+cDetailData.c+';' : '' }} {{ cDetailData.o ? 'color:#FFFFFF !important;' : '' }}"
         >
-         <view style="padding:0;{{ cDetailData.n.length>11?'font-size: '+ 270/cDetailData.n.length +'px;':'' }}">
+         <view style="padding:0;{{ cDetailData.n.length>10?'font-size: '+ 550/cDetailData.n.length +'rpx;':'' }}">
              {{ cDetailData.n }}
          </view>
             <view wx:if="{{ cDetailData.i }}" bindtap="editClass"
@@ -109,10 +114,12 @@
             <view>老师：{{ cDetailData.t ? cDetailData.t : '无老师' }}
             </view>
         </view>
+<!--
         <view class="cDItem">
             <image src="../../image/pop/alarm.svg"/>
             <view style="display:flex;justify-content:space-between;align-items:center"><text>上课提醒</text><switch color="#6bc1cd" checked="{{cDetailData.r}}" bindchange="onRemindChange"/></view>
         </view>
+-->
         <view style="height: 10px"></view>
     </view>
 </view>
@@ -120,17 +127,17 @@
 <view class="header">
     <!-- 学期选择 -->
     <view class="semester">
-        <view bindtap="headerSelecter" data-doing="showSemesterSelect" data-odoing="showWeekSelect"
+        <view bindtap="headerSelecter" id="semester" data-doing="showSemesterSelect" data-odoing="showWeekSelect"
               style="{{ semester != semesterNow ? 'color: #CC433B' : '' }}">
             {{ semester != semesterNow ? '(非本学期)' : '' }}学期：{{semester}}
         </view>
-        <view bindtap="headerSelecter" data-doing="showWeekSelect" data-odoing="showSemesterSelect"
+        <view id="week" bindtap="headerSelecter" data-doing="showWeekSelect" data-odoing="showSemesterSelect"
               style="{{ week != weekNow ? 'color: #CC433B' : '' }}">{{ week != weekNow ? '(非本周)' : '' }}第 {{week}} 周
         </view>
     </view>
 
     <!-- 周选择区域 -->
-    <view class="seleAn {{ showWeekSelect === 1 ? '' : showWeekSelect ? 'showSelect' : 'hideSelect' }}">
+    <view class="seleAn {{  showWeekSelect ? 'showSelect' : 'hideSelect' }}">
         <scroll-view class="selectWeek" scroll-left="{{ scrollLeft }}" scroll-x="true">
             <view class="wList {{ weekNow - 1 == index ? 'thisWeek' : '' }} {{ week - 1 == index ? 'selectWeek' : '' }}"
                   wx:for="{{ weekImg }}" wx:key="weekImg" bindtap="changeWeek" data-id="{{ index }}">
@@ -143,7 +150,7 @@
     </view>
 
     <!-- 学期择区域 -->
-    <view class="seleAn {{ showSemesterSelect === 1 ? '' : showSemesterSelect ? 'showSelect' : 'hideSelect' }}">
+    <view class="seleAn {{  showSemesterSelect ? 'showSelect' : 'hideSelect' }}">
         <scroll-view class="selectSemester" scroll-x>
             <view class="sList {{ semester == item ? 'thisSemester' : '' }} {{ semesterNow == item ? 'nowSemester' : '' }}"
                   wx:for="{{ semesterList }}" wx:key="sList" data-id="{{ item }}" bindtap="changeSemester">
@@ -159,11 +166,10 @@
             <image src="/image/moon.svg"></image>
         </view>
         <!--   天气   -->
-        <view class="weather">
+        <view id="weather" bind:tap="showWeather">
             <image style="filter: brightness(100)" wx:if="{{weather}}"
                    src="{{ '/image/weather/'+ weatherImg +'.svg' }}"></image>
             <view id="temperature">{{temperature}}</view>
-            <view id="openWeather" bind:tap="showWeather"></view>
         </view>
         <view wx:for="{{ date }}" wx:key="date" class="{{ item.today && week == weekNow ? 'today' : '' }}">
             <view class="weeks">{{ item.week }}</view>
@@ -173,8 +179,8 @@
 </view>
 
         <!-- 添加课程选区 -->
-<view class="selection"
-      style="top:{{selection.y}}px; left:{{selection.x}}px; height:{{selection.height}}px; width:{{selection.width}}px;z-index:  {{selection.show ? '1':'-9'}}; opacity: {{selection.show ? '1':'0'}};transition: 0.2s ease;"
+<view class="selection {{ selection.show?'selShow':'selHide' }}"
+      style="top:{{selection.y}}px; left:{{selection.x}}px; height:{{selection.height}}px; width:{{selection.width}}px; "
       catchtouchmove="dragMove" catchtouchend="dragEnd">
     <image src="/image/addClass.svg"></image>
 </view>
@@ -200,7 +206,7 @@
     <!-- 主表部分 -->
     <view wx:if="{{week >= 0}}" class="class" bindtap="selectClassStart">
         <view wx:for="{{ class[week - 1] }}" wx:key="class" wx:for-item="classItem">
-            <view wx:for="{{ classItem }}" wx:key="day" wx:for-item="dayItem"
+            <view class="block" wx:for="{{ classItem }}" wx:key="day" wx:for-item="dayItem"
                   style="margin-top: {{ dayItem.blank * 60 + 3.5 }}px; height: {{ dayItem.len * 60 - 3.5 }}px;background-color: {{ dayItem.other ? defBgColor : dayItem.c }};color: #{{ dayItem.other ? defontColor : 'FFFFFF;box-shadow:0.7px 0.7px 2px 0.7px rgba(0, 0, 0, .15);' }};">
                 <view wx:if="{{dayItem.other}}" style="font-size: 10px;">[非本周]</view>
                 <text>{{ dayItem.n }}@
@@ -223,6 +229,6 @@
     </van-button>
 </view>
 
-<canvas wx:if="{{canvas0Show}}" type="2d" id="weatherCanvas0" style="width: 750rpx; height: 400rpx;"/>
-<canvas wx:if="{{canvas1Show}}" type="2d" id="weatherCanvas1" style="width: 750rpx; height: 400rpx;"/>
-<canvas wx:if="{{canvas2Show}}" type="2d" id="weatherCanvas2" style="width: 750rpx; height: 400rpx;"/>
+<canvas wx:if="{{canvasShow}}" type="2d" id="weatherCanvas" style="width: 750rpx; height: 400rpx;"/>
+
+
