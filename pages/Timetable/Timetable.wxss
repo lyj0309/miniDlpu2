@@ -352,7 +352,7 @@ view.class > view {
     width: calc(100% - 4px);
     /* margin-bottom: 5px; */
     font-size: 25rpx;
-    line-height:25rpx;
+    line-height:30rpx;
     text-align: center;
     background-color: #F4F0F1;
     box-sizing: border-box;

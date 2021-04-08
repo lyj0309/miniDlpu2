@@ -114,12 +114,10 @@
             <view>老师：{{ cDetailData.t ? cDetailData.t : '无老师' }}
             </view>
         </view>
-<!--
-        <view class="cDItem">
+        <view wx-if="{{ cDetailData.o && semester === semesterNow }}" class="cDItem">
             <image src="../../image/pop/alarm.svg"/>
-            <view style="display:flex;justify-content:space-between;align-items:center"><text>上课提醒</text><switch color="#6bc1cd" checked="{{cDetailData.r}}" bindchange="onRemindChange"/></view>
+            <view style="display:flex;justify-content:space-between;align-items:center"><text>上课提醒</text><switch color="#6bc1cd" checked="{{ remind[week + cDetailData.w + cDetailData.s + cDetailData.e] }}" bindchange="onRemindChange"/></view>
         </view>
--->
         <view style="height: 10px"></view>
     </view>
 </view>

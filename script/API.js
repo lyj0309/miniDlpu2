@@ -434,11 +434,18 @@ API.GET_TIME_TABLE = {
     }
 }
 
-API.KEEP_SESSION = {
-    url: baseHost + '/keep_session',
-    method: 'PUT',
+//上课提醒
+API.ADD_TIME_TABLE_REMIND = {
+    url: baseHost + '/course_timetable_remind',
+    method: 'POST',
 
 }
+API.DELETE_TIME_TABLE_REMIND = {
+    url: baseHost + '/course_timetable_remind',
+    method: 'DELETE',
+
+}
+
 API.GET_EXAM_DATE = {
     url: baseHost + '/exam_date',
     method: 'GET',
@@ -796,10 +803,7 @@ API.getUserData = function (then, Tips = true) {
 
     API.reLogin(e => {
         const t = new Date().getTime() - startTime
-        if (t > 300) {
-            LOG.addFilterMsg(`登录超时`)
-            LOG.info(t)
-        }
+        wx.reportPerformance(1001, t)
         then(e)
     }, App)
     return "r";

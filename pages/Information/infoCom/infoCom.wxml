@@ -27,7 +27,7 @@
         <view wx:key="idx" wx:for="{{scoreData}}" wx:for-index="idx" wx:for-item="item">
             <van-collapse-item name="{{idx}}">
                 <view style="display:flex;justify-content:space-between" slot="title">
-                    <view>{{ item.Name }}</view>
+                    <view>{{ item.Name }}<text style="color:red" wx:if="{{item.BC!=='正常考试'}}">{{ "("+item.BC+")" }}</text></view>
                     <view style="width:150rpx;display:flex;justify-content:space-between">
                         <view>{{ item.Credit}}</view>
                         <view style="color:{{item.Grade<60||item.Grade==='不及格'?'red':''}}">{{ item.Grade}}</view>

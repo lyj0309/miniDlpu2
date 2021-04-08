@@ -1,5 +1,4 @@
 import Notify from "../../miniprogram_npm/@vant/weapp/notify/notify";
-const DEBUG = new (require("../../script/Debug"))();
 
 const API = require("../../script/API");
 
@@ -15,25 +14,32 @@ Page({
         show: false,
         array: [{
             text: '成绩查询',
-            imgSrc: '../../image/information/search.png'
+            imgSrc: '../../image/information/search.png',
+            id:"exam_score"
         }, {
             imgSrc: '../../image/information/ksrc.png',
-            text: '考试日程'
+            text: '考试日程',
+            id:"exam_date"
         }, {
             text: '校历',
-            imgSrc: '../../image/information/date.png'
+            imgSrc: '../../image/information/date.png',
+            id:"school_calendar"
         }, {
             text: '培养方案',
-            imgSrc: '../../image/information/edu.png'
+            imgSrc: '../../image/information/edu.png',
+            id:"pyfa"
         }, {
             text: '空教室',
-            imgSrc: '../../image/information/room2.png'
+            imgSrc: '../../image/information/room2.png',
+            id:"empty_class"
         }, {
             text: '水卡',
-            imgSrc: '../../image/information/qr_code.png'
+            imgSrc: '../../image/information/qr_code.png',
+            id:"water_card"
         }, {
             text: '评教',
-            imgSrc: '../../image/information/pingjiao.png'
+            imgSrc: '../../image/information/pingjiao.png',
+            id:"evaluation"
         }/*, {
             text: '四六级(beta)',
             imgSrc: '../../image/information/CET.png'
@@ -124,6 +130,7 @@ Page({
     propTap: function (prop) {
         wx.showLoading({title: '加载中···'})
         //console.log(prop.currentTarget.id)
+        wx.reportAnalytics(this.data.array[parseInt(prop.currentTarget.id)].id, {});
         switch (prop.currentTarget.id) {
             case '2':
                 wx.navigateTo({

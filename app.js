@@ -5,7 +5,7 @@ const API = require("./script/API");
 const CONFIG = require("./package.js")
 App({
     onLaunch: function () {
-
+        wx.cloud.init()
 
         let ver = wx.getStorageSync(`version`)
 

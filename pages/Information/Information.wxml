@@ -76,7 +76,7 @@
 
 <view class="items">
     <view bind:tap="propTap" id="{{idx}}" class="item" wx:key="idx" wx:for="{{array}}" wx:for-index="idx"
-          wx:for-item="item">
+          wx:for-item="item" >
         <view style="width: 175rpx;">
             <image class="itemImg" src="{{item.imgSrc}}"/>
         </view>
