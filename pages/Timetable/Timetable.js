@@ -706,10 +706,7 @@ Page({
     onRemindChange({detail}) {
         // 第几周+星期几+第几节(开始到结束) this.data.week + this.data.cDetailData.w + this.data.cDetailData.s + this.data.cDetailData.e
 
-        console.log(this.data.week,
-            this.data.cDetailData.w,
-            this.data.cDetailData.s+1,
-            this.data.cDetailData.e+1)
+
         if (detail.value === true) {
             /*            wx.showLoading({title: "加载中···"})
                         API.getUserData(d => {
@@ -740,14 +737,12 @@ Page({
                             tmplIds: ['5R2_Fuz8T01yJJLhPBKGzFjq77UaVpwP154sLXsVu-4'],
                             success :res=> {
                                 if (res["5R2_Fuz8T01yJJLhPBKGzD08g2sDN13Bu657ExkGVNE"] === "reject"){
-                                    this.setData({
-                                        ['remind.' + this.data.week + this.data.cDetailData.w + this.data.cDetailData.s + this.data.cDetailData.e]: detail.value
-                                    })
-                                    wx.setStorageSync("remind", this.data.remind)
                                     return
                                 }
-                                //ASDFASDF
-
+                                this.setData({
+                                    ['remind.' + this.data.week + this.data.cDetailData.w + this.data.cDetailData.s + this.data.cDetailData.e]: detail.value
+                                })
+                                wx.setStorageSync("remind", this.data.remind)
                             }
                         })
             return
