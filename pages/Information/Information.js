@@ -260,7 +260,6 @@ Page({
                 },{},"session=" + d.session)
             }
         )
-
     },
     onLoad(query) {
 

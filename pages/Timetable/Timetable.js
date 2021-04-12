@@ -535,11 +535,22 @@ Page({
             });
         });
     },
+    getUserProfile() {
+        // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+        // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+        wx.getUserProfile({
+            desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+            success: (res) => {
+                console.log(res)
+            }
+        })
+    },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+
         let remind = wx.getStorageSync("remind")
         if (remind === "") {
             remind = {};
@@ -705,59 +716,47 @@ Page({
      * */
     onRemindChange({detail}) {
         // 第几周+星期几+第几节(开始到结束) this.data.week + this.data.cDetailData.w + this.data.cDetailData.s + this.data.cDetailData.e
-
-
         if (detail.value === true) {
-            /*            wx.showLoading({title: "加载中···"})
-                        API.getUserData(d => {
-                            API.request(API.ADD_TIME_TABLE_REMIND,
-                                {
-                                    ok: r => {
-                                        console.log(`订阅成功`, res)
-                                        this.setData({
-                                            ['remind.' + this.data.week + this.data.cDetailData.w + this.data.cDetailData.s + this.data.cDetailData.e]: detail.value
-                                        })
-                                        wx.setStorageSync("remind", this.data.remind)
-                                    }
-                                }, {
-                                    week: this.data.week,
-                                    day: this.data.cDetailData.w,
-                                    start: this.data.cDetailData.s,
-                                    end: this.data.cDetailData.e,
-                                    name:this.data.cDetailData.n,
-                                    teacher:this.data.cDetailData.t,
-                                    class:this.data.cDetailData.l,
-                                },
-                                "session=" + d.session
-                            )
-
-                        })*/
-
                         wx.requestSubscribeMessage({
                             tmplIds: ['5R2_Fuz8T01yJJLhPBKGzFjq77UaVpwP154sLXsVu-4'],
                             success :res=> {
                                 if (res["5R2_Fuz8T01yJJLhPBKGzD08g2sDN13Bu657ExkGVNE"] === "reject"){
                                     return
                                 }
-                                this.setData({
-                                    ['remind.' + this.data.week + this.data.cDetailData.w + this.data.cDetailData.s + this.data.cDetailData.e]: detail.value
-                                })
-                                wx.setStorageSync("remind", this.data.remind)
+                                this.sendRemind(detail.value)
                             }
                         })
-            return
+        }else {
+            this.sendRemind(detail.value)
         }
-
-        this.setData({
-            ['remind.' + this.data.week + this.data.cDetailData.w + this.data.cDetailData.s + this.data.cDetailData.e]: detail.value
+    },
+    sendRemind(value){
+        wx.showLoading({title: "加载中···"})
+        API.getUserData(d => {
+            let k = API.ADD_TIME_TABLE_REMIND
+            if (value === false) k = API.DELETE_TIME_TABLE_REMIND
+            API.request(k,
+                {
+                    ok: r => {
+                        console.log(`订阅成功`, r)
+                        this.setData({
+                            ['remind.' + this.data.week + this.data.cDetailData.w + this.data.cDetailData.s + this.data.cDetailData.e]: value
+                        })
+                        wx.setStorageSync("remind", this.data.remind)
+                        wx.hideLoading()
+                    }
+                }, {
+                    week: this.data.week.toString(),
+                    day: this.data.cDetailData.w.toString(),
+                    start: (this.data.cDetailData.s+1).toString(),
+                    end: (this.data.cDetailData.e+1).toString(),
+                    name:this.data.cDetailData.n,
+                    teacher:this.data.cDetailData.t,
+                    class:this.data.cDetailData.l,
+                },
+                "session=" + d.session
+            )
         })
-        wx.setStorageSync("remind", this.data.remind)
-
-        /*        console.log(this.data.remind)
-
-                console.log(this.data.cDetailData)*/
-
-        // this.setData({['cDetailData.r']: detail.value});
     },
     drawWeatherImg() {
 

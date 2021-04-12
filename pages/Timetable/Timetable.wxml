@@ -226,6 +226,7 @@
     <van-button custom-class="backBtn" color="rgba(62, 163, 216,0.8)" round type="info" bindtap="backPresent">返回当前周
     </van-button>
 </view>
+<!--<button bindtap="getUserProfile">qwe</button>-->
 
 <canvas wx:if="{{canvasShow}}" type="2d" id="weatherCanvas" style="width: 750rpx; height: 400rpx;"/>
 
