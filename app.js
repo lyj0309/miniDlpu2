@@ -18,6 +18,8 @@ App({
             })
             wx.setStorageSync("version", CONFIG["version"])
         }
+
+
         //API.request(API.GET_STATIC_DATA, {})
     },
     onShow(options) {

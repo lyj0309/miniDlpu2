@@ -427,6 +427,19 @@ Page({
         let id = e.currentTarget.dataset.id;
         this.setData({week: id + 1});
         this.setDayList(this.data.weekNow, this.data.week);
+        const f = this.data.week
+        for (let i = 0; i < this.data.class[f - 1].length; i++) {
+            for (let j = 0; j < this.data.class[f - 1][i].length; j++) {
+                if (!this.data.bgImg) {
+                    this.data.class[f - 1][i][j].c = this.data.class[f - 1][i][j].c.substr(0, 17) + "0.95)"
+                } else {
+                    this.data.class[f - 1][i][j].c = this.data.class[f - 1][i][j].c.substr(0, 17) + "0.7)"
+                }
+            }
+        }
+        this.setData({
+            class: this.data.class
+        })
     },
 
     /**
@@ -504,7 +517,16 @@ Page({
 
             let timeTableCallBack = (d) => {
                 wx.stopPullDownRefresh();
-
+                const f = this.data.week ? this.data.week : whichKCB.week
+                for (let i = 0; i < d.pre[f - 1].length; i++) {
+                    for (let j = 0; j < d.pre[f - 1][i].length; j++) {
+                        if (!this.data.bgImg) {
+                            d.pre[f - 1][i][j].c = d.pre[f - 1][i][j].c.substr(0, 17) + "0.95)"
+                        } else {
+                            d.pre[f - 1][i][j].c = d.pre[f - 1][i][j].c.substr(0, 17) + "0.7)"
+                        }
+                    }
+                }
                 return then({
                     class: d.pre,
                     weekImg: d.img,
@@ -536,14 +558,15 @@ Page({
         });
     },
     getUserProfile() {
+
         // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
         // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-        wx.getUserProfile({
-            desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-            success: (res) => {
-                console.log(res)
-            }
-        })
+        /*        wx.getUserProfile({
+                    desc: '用于完善用户资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+                    success: (res) => {
+                        console.log(res)
+                    }
+                })*/
     },
 
     /**
@@ -551,17 +574,16 @@ Page({
      */
     onLoad: function (options) {
 
+
+        this.initBgImg()
         let remind = wx.getStorageSync("remind")
         if (remind === "") {
             remind = {};
         }
 
         wx.showShareMenu({
-
             withShareTicket: true,
-
             menus: ['shareAppMessage', 'shareTimeline']
-
         })
         this.sysinfo = wx.getSystemInfoSync()
 
@@ -601,7 +623,7 @@ Page({
             lowest: weather[15] ? weather[15].min : "",
             weather: weather.slice(0, 15),
             weatherImg: icon,
-            temperature: weather === "" ? "" : weather[1].tempDay + '/' + weather[1].tempNight + '°'
+            temperature: weather === "" ? "" : weather[1].tempDay + '°/' + weather[1].tempNight + '°'
         })
     },
     onClose() {
@@ -615,7 +637,6 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
         if (this.sysinfo.theme !== 'light') {
             this.setData({
                 defontColor: "aaaaaa",
@@ -637,6 +658,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+
 /*        wx.getWeRunData({
             success(res) {
                 console.log(res)
@@ -668,7 +690,6 @@ Page({
                                     url: 'https://jwc.nogg.cn/wx_login?id=' + d.user + '&code=' + res.code
                                 })
                             })
-
                         }
                     }
                 )
@@ -715,23 +736,27 @@ Page({
      * 上课提醒
      * */
     onRemindChange({detail}) {
+        wx.showLoading({title: "加载中···", mask: true})
+
         // 第几周+星期几+第几节(开始到结束) this.data.week + this.data.cDetailData.w + this.data.cDetailData.s + this.data.cDetailData.e
         if (detail.value === true) {
-                        wx.requestSubscribeMessage({
-                            tmplIds: ['5R2_Fuz8T01yJJLhPBKGzFjq77UaVpwP154sLXsVu-4'],
-                            success :res=> {
-                                if (res["5R2_Fuz8T01yJJLhPBKGzD08g2sDN13Bu657ExkGVNE"] === "reject"){
-                                    return
-                                }
-                                this.sendRemind(detail.value)
-                            }
+            wx.requestSubscribeMessage({
+                tmplIds: ['5R2_Fuz8T01yJJLhPBKGzFjq77UaVpwP154sLXsVu-4'],
+                success: res => {
+                    if (res["5R2_Fuz8T01yJJLhPBKGzFjq77UaVpwP154sLXsVu-4"] === "reject") {
+                        this.setData({
+                            ['remind.' + this.data.week + this.data.cDetailData.w + this.data.cDetailData.s + this.data.cDetailData.e]: !detail.value
                         })
-        }else {
+                        return
+                    }
+                    this.sendRemind(detail.value)
+                }
+            })
+        } else {
             this.sendRemind(detail.value)
         }
     },
-    sendRemind(value){
-        wx.showLoading({title: "加载中···"})
+    sendRemind(value) {
         API.getUserData(d => {
             let k = API.ADD_TIME_TABLE_REMIND
             if (value === false) k = API.DELETE_TIME_TABLE_REMIND
@@ -748,11 +773,11 @@ Page({
                 }, {
                     week: this.data.week.toString(),
                     day: this.data.cDetailData.w.toString(),
-                    start: (this.data.cDetailData.s+1).toString(),
-                    end: (this.data.cDetailData.e+1).toString(),
-                    name:this.data.cDetailData.n,
-                    teacher:this.data.cDetailData.t,
-                    class:this.data.cDetailData.l,
+                    start: (this.data.cDetailData.s + 1).toString(),
+                    end: (this.data.cDetailData.e + 1).toString(),
+                    name: this.data.cDetailData.n,
+                    teacher: this.data.cDetailData.t,
+                    class: this.data.cDetailData.l,
                 },
                 "session=" + d.session
             )

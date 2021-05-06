@@ -15,6 +15,16 @@ export default class API {
   initData = null;
   // 保存微信请求对象
   wxReqObj = null;
+  // 用户定义成功回调
+  userSuccCb = () => {};
+  // 用户自定义失败
+  userFailCb = () => {};
+  // 用户定义完成
+  userCompCb = () => {};
+  // asyns 成功回调
+  asyncSucc = () => {};
+  // async 失败回调
+  asyncFail = () => {};
   
   /**
    * 请求返回信息
@@ -54,9 +64,9 @@ export default class API {
   // 响应的数据类型
   responseType = "text";
   // 开启 http2
-  enableHttp2 = false;
+  enableHttp2 = true;
   // 开启 quic
-  enableQuic = false;
+  enableQuic = true;
   // 开启 cache
   enableCache = false;
 
@@ -72,13 +82,13 @@ export default class API {
   // 默认加载时提示
   loadingMsg = "加载中..."; 
   // 默认是否显示加载弹窗
-  showSucc = false; 
+  showSucc = true; 
   // 默认是否显示失败提示
-  showFail = false; 
+  showFail = true; 
   // 默认是否显示服务器无响应时提示
-  showNetwork = false; 
+  showNetwork = true; 
   // 默认是否显示加载动画
-  showLoading = false; 
+  showLoading = true; 
 
   /**
    * 参数设置
@@ -143,10 +153,18 @@ export default class API {
     globalData.requestLimit[this.wxData.url]++;
 
     // 触发beforeRequest
-    this.beforeRequest();
+    this.beforeRequest(this.wxData);
 
     // 加载动画
     if(this.showLoading) wx.showLoading({title: this.loadingMsg });
+
+    // 挂载用户回调函数
+    if(this.initData.success && this.initData.success.constructor === Function) 
+    this.userSuccCb = this.initData.success;
+    if(this.initData.complete && this.initData.complete.constructor === Function) 
+    this.userCompCb = this.initData.complete;
+    if(this.initData.fail && this.initData.fail.constructor === Function) 
+    this.userFailCb = this.initData.fail;
 
     // 挂载函数
     this.wxData.success = (d)=>this.wxSuccessCallback(d);
@@ -154,6 +172,28 @@ export default class API {
 
     // 释放请求
     wx.request(this.wxData);
+  }
+
+  // 开启 async 封装
+  // 开启错误
+  doAsync(){
+    return new Promise((s, f) => {
+
+      // 使用成功回调
+      this.asyncSucc = s;
+
+      // 开启失败回调
+      this.asyncFail = f;
+    });
+  }
+
+  // 开启 async 封装
+  doAsyncNc(){
+    return new Promise((s) => {
+
+      // 使用成功回调
+      this.asyncSucc = s;
+    });
   }
 
   // 这个函数在请求前调用;此时请求需要的信息已处理完成
@@ -253,7 +293,7 @@ export default class API {
     }
 
     // 返回数据
-    return d;
+    return d.data || d;
   }
 
   // 微信成功函数
@@ -281,23 +321,34 @@ export default class API {
     if(this.succ){
 
       // 显示提示信息
-      if(this.showSucc) wx.showToast({title: this.succMsg});
+      if(this.showSucc) wx.showToast({
+        title: API.msgTemplate(this.succMsg, pData)
+      });
 
-      if(this.initData.success && 
-      this.initData.success.constructor === Function) 
-      this.initData.success.call(this, pData);
+      // 触发 afterRequest
+      this.afterRequest(pData);
+
+      // 触发成功事件
+      this.userSuccCb.call(this, pData);
+      this.asyncSucc.call(this, pData);
     }
     
     // 失败回调
     else{
 
       // 显示提示信息
-      if(this.showFail) wx.showToast({title: this.failMsg, icon: "none"});
+      if(this.showFail) wx.showToast({
+        title: API.msgTemplate(this.failMsg, pData), 
+        icon: "none"
+      });
 
-      if(this.initData.fail && 
-      this.initData.fail.constructor === Function) 
-      this.initData.fail.call(this, this.errCode);
+      // 触发失败事件
+      this.userFailCb.call(this, this.errCode);
+      this.asyncFail.call(this, this.errCode);
     }
+
+    // 保存数据
+    this.data = pData;
 
     this.wxCompleteCallback(pData);
   }
@@ -318,12 +369,14 @@ export default class API {
     this.errMsg = d.errMsg;
 
     // 显示提示信息
-    if(this.showNetwork) wx.showToast({title: this.networkMsg, icon: "none"});
+    if(this.showNetwork) wx.showToast({
+      title: this.networkMsg, icon: "none"
+    });
 
     // 调用用户回调
-    if(this.initData.fail && 
-    this.initData.fail.constructor === Function) 
-    this.initData.fail.call(this, -1);
+    // 触发失败事件
+    this.userFailCb.call(this, -1);
+    this.asyncFail.call(this, -1);
 
     this.wxCompleteCallback(-1);
   }
@@ -335,9 +388,7 @@ export default class API {
     getApp().globalData.requestLimit[this.wxData.url]--;
 
     // 执行用户回调
-    if(this.initData.complete && 
-    this.initData.complete.constructor === Function) 
-    this.initData.complete.call(this, d);
+    this.userCompCb.call(this, d);
   }
 
   // 获取默认域名
@@ -384,6 +435,35 @@ export default class API {
 
   // 使用模板
   static msgTemplate(tem, data){
-    
+    if(tem.constructor !== String) throw new Error("若要使用模板字符，请传入字符串");
+    if(!data) return tem.replaceAll(/\{\{\s*([a-zA-Z\$_][a-zA-Z\d_]*)\s*\}\}*/g, tem);
+
+    // 匹配
+    let msg = tem.toString();
+    let res = tem.match(/\{\{\s*([a-zA-Z\$_][a-zA-Z\d_]*)\s*\}\}*/g);
+    if(!res) return msg;
+    for (let i = 0; i < res.length; i++) {
+      
+      // 获取属性
+      let p = res[i].replaceAll(/\{|\}|\s/g, "");
+
+      // 搜索变量
+      let d = data[p] || "";
+
+      // 替换
+      msg = msg.replace(/\{\{\s*([a-zA-Z\$_][a-zA-Z\d_]*)\s*\}\}*/, d);
+    }
+
+    return msg;
   }
+
+  // 静态常量
+  static OPTIONS = "OPTIONS"; // HTTP 请求 OPTIONS	
+  static GET = "GET"; // HTTP 请求 GET	
+  static HEAD = "HEAD";	// HTTP 请求 HEAD	
+  static POST = "POST"; // HTTP 请求 POST	
+  static PUT = "PUT"; // HTTP 请求 PUT	
+  static DELETE = "DELETE" // HTTP 请求 DELETE	
+  static TRACE = "TRACE" // HTTP 请求 TRACE	
+  static CONNEC = "CONNEC" // THTTP 请求 CONNECT
 }

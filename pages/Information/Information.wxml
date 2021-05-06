@@ -23,7 +23,6 @@
                 bind:confirm="pyfaConfirm"
                 show-toolbar
                 wx:if="{{ title === '培养方案'}}" columns="{{ columns }}" bind:change="onPyfaChange"/>
-
     <van-picker
             wx:if="{{ title === '空教室'}}"
             bind:cancel="empClaClose0"
@@ -69,7 +68,8 @@
 <view class="index_swiper">
     <swiper autoplay="true" interval="4000" duration="1000" circular="true">
         <swiper-item wx:for="{{ slides }}" wx:for-index="idx" wx:key="idx" wx:for-item="item">
-            <image id="{{ idx }}" mode="widthFix" src="{{ item.src }}" bindtap="preViewImg"/>
+            <image wx:if="{{ item.type === 'img' }}" id="{{ idx }}" mode="widthFix" src="{{ item.src }}" />
+            <image wx:if="{{ item.type === 'ad' }}" id="{{ idx }}" mode="widthFix" src="{{ item.src }}" bindtap="openAd" />
         </swiper-item>
     </swiper>
 </view>

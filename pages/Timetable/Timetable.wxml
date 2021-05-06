@@ -116,7 +116,10 @@
         </view>
         <view wx-if="{{ cDetailData.o && semester === semesterNow }}" class="cDItem">
             <image src="../../image/pop/alarm.svg"/>
-            <view style="display:flex;justify-content:space-between;align-items:center"><text>上课提醒</text><switch color="#6bc1cd" checked="{{ remind[week + cDetailData.w + cDetailData.s + cDetailData.e] }}" bindchange="onRemindChange"/></view>
+            <view style="display:flex;justify-content:space-between;align-items:center">
+                <text>上课提醒</text>
+                <switch checked="{{ remind[week + cDetailData.w + cDetailData.s + cDetailData.e] }}" bindchange="onRemindChange"/>
+            </view>
         </view>
         <view style="height: 10px"></view>
     </view>
@@ -212,6 +215,8 @@
             </view>
         </view>
     </view>
+
+
     <view class="countdown" wx:if="{{ week < 0}}">
         <view class="{{ bgImg===''?'':'dim' }}">
             <view>
@@ -227,7 +232,6 @@
     </van-button>
 </view>
 <!--<button bindtap="getUserProfile">qwe</button>-->
-
 <canvas wx:if="{{canvasShow}}" type="2d" id="weatherCanvas" style="width: 750rpx; height: 400rpx;"/>
 
 

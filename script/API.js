@@ -980,7 +980,6 @@ API.reCatchTable = function (id, del) {
                 "session=" + d.session
             );
         });
-
     })
 }
 
@@ -997,6 +996,5 @@ API.delTable = function (id) {
     app.globalData.TermList.List = tlist;
     API.set("TermList", tlist);
 }
-
 
 module.exports = API;

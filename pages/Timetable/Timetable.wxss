@@ -2,8 +2,6 @@
 
 
 page {
-    background-color: #eeeeee;
-    font-family: Microsoft YaHei, SimHei,STHeiti,serif;
     -webkit-transition: none !important;
     transition: none !important;
     animation:none !important;
