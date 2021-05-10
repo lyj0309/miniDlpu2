@@ -1,7 +1,5 @@
 //app.js
 
-const KCB = require("./script/KCB");
-const API = require("./script/API");
 const CONFIG = require("./package.js")
 App({
     onLaunch: function () {
@@ -18,7 +16,6 @@ App({
             })
             wx.setStorageSync("version", CONFIG["version"])
         }
-
 
         //API.request(API.GET_STATIC_DATA, {})
     },
