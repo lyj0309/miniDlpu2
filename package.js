@@ -1,7 +1,7 @@
 module.exports = {
     "name": "minidlpu2",
-    "version": "2.4.12",
-    "info": "1.上课提醒\r\n2.颜色优化 ",
+    "version": "2.5.0",
+    "info": "1.四六级准考证下载",
     "main": "index.js",
     "license": "MIT",
     "dependencies": {
@@ -9,6 +9,10 @@ module.exports = {
         "we-cropper": "^1.3.9"
     },
     "past": [
+        {
+            "version": "2.4.12",
+            "info": "1.上课提醒\r\n2.颜色优化 ",
+        },
         {    "version": "2.4.11",
             "info": "1.登录后用户引导\r\n2.成绩查询优化 ",},
         {

@@ -5,7 +5,7 @@
     <view class="title" style="margin-top: 50rpx;margin-bottom: 50rpx;color:black">
         大连15天趋势预报
     </view>
-    <scroll-view  class="scroll-view_H" scroll-x="true">
+    <scroll-view class="scroll-view_H" scroll-x="true">
         <view class="txt">
             <view class="blk" wx:key="idx" wx:for="{{ weather }}" wx:for-index="idx"
                   wx:for-item="item">
@@ -57,8 +57,8 @@
     </scroll-view>
 </van-popup>
         <!-- 用户引导 -->
-<userGuide wx:if="{{ userGuide }}"  style="position: absolute;z-index:99999;width: 100%;height: 100%;top:0"/>
-<!-- 空白快快，用户引导用 -->
+<userGuide wx:if="{{ userGuide }}" style="position: absolute;z-index:99999;width: 100%;height: 100%;top:0"/>
+        <!-- 空白快快，用户引导用 -->
 <view wx:if="{{ userGuide }}" id="blankBlock"></view>
 
         <!-- 蒙版 -->
@@ -71,7 +71,8 @@
     <view class="cListClass" wx:for="{{ cListData }}" wx:key="cListClass"
           catchtap="clickCList" data-id="{{ index }}"
           style="{{ item.o ? 'background-color: '+item.c+';' : '' }} {{ item.o ? 'min-height:80px;' : '' }} {{ item.o ? 'color:#FFFFFF !important;' : '' }}">
-        <view class="cListTit" style="{{ item.o ? 'color:#FFFFFF !important;' : '' }}">{{ item.o ? '' : '[非本周]' }}{{ item.n }}
+        <view class="cListTit" style="{{ item.o ? 'color:#FFFFFF !important;' : '' }}">{{ item.o ? '' : '[非本周]'
+            }}{{ item.n }}
         </view>
         <view class="cListP">@{{ item.l ? item.l : '无地点'}}</view>
     </view>
@@ -84,9 +85,9 @@
         <view class="cDTit"
               style="{{ cDetailData.o ? 'background-color: '+cDetailData.c+';' : '' }} {{ cDetailData.o ? 'color:#FFFFFF !important;' : '' }}"
         >
-         <view style="padding:0;{{ cDetailData.n.length>10?'font-size: '+ 550/cDetailData.n.length +'rpx;':'' }}">
-             {{ cDetailData.n }}
-         </view>
+            <view style="padding:0;{{ cDetailData.n.length>10?'font-size: '+ 550/cDetailData.n.length +'rpx;':'' }}">
+                {{ cDetailData.n }}
+            </view>
             <view wx:if="{{ cDetailData.i }}" bindtap="editClass"
                   data-id="{{ cDetailData.i }}"
                   style="{{cDetailData.o ? '' : 'color: rgba(0, 0, 0, .60);'}};padding:0">
@@ -118,7 +119,8 @@
             <image src="../../image/pop/alarm.svg"/>
             <view style="display:flex;justify-content:space-between;align-items:center">
                 <text>上课提醒</text>
-                <switch checked="{{ remind[week + cDetailData.w + cDetailData.s + cDetailData.e] }}" bindchange="onRemindChange"/>
+                <switch checked="{{ remind[week + cDetailData.w + cDetailData.s + cDetailData.e] }}"
+                        bindchange="onRemindChange"/>
             </view>
         </view>
         <view style="height: 10px"></view>
@@ -196,7 +198,8 @@
         <!-- 表 -->
 <view class="table">
     <!-- 左侧时间部分 -->
-    <view class="time" style="{{ bgImg?'background: linear-gradient(to right,rgba(255,255,255,0.3) ,85% ,rgba(255,255,255,0));': ''}}">
+    <view class="time"
+          style="{{ bgImg?'background: linear-gradient(to right,rgba(255,255,255,0.3) ,85% ,rgba(255,255,255,0));': ''}}">
         <view wx:for="{{ time }}" wx:key="time">
             <view class="number">{{ index + 1 }}</view>
             <view class="slot">{{ item[0] }}</view>
@@ -231,7 +234,7 @@
     <van-button custom-class="backBtn" color="rgba(62, 163, 216,0.8)" round type="info" bindtap="backPresent">返回当前周
     </van-button>
 </view>
-<!--<button bindtap="getUserProfile">qwe</button>-->
+        <!--<button bindtap="getUserProfile">qwe</button>-->
 <canvas wx:if="{{canvasShow}}" type="2d" id="weatherCanvas" style="width: 750rpx; height: 400rpx;"/>
 
 

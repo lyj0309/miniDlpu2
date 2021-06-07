@@ -20,7 +20,6 @@ App({
         //API.request(API.GET_STATIC_DATA, {})
     },
     onShow(options) {
-
     },
     globalData: {
 

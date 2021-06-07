@@ -40,17 +40,27 @@ Page({
             text: '评教',
             imgSrc: '../../image/information/pingjiao.png',
             id: "evaluation"
-        }/*, {
-            text: '四六级(beta)',
+        }, {
+            text: '四六级准考证下载(beta,只支持笔试)',
             imgSrc: '../../image/information/CET.png'
-        }*//*, {
+        }/*, {
             text: '统一支付',
             imgSrc: '../../image/pay.png'
         }*/
         ],
         slides: [{type: 'img', src: '../../image/morebg.png'},
-            {type: 'ad', appId:'wxde8ac0a21135c07d',path:'/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D1%26p%3DOWMpZ-uzIFOVe6JyOONs3dXuqV0qcAf-r-KCvHdXiNfjxCYyPaUVAwZmPr8KocAZmJ-B6nKXPPRQdH-k2oX1SKrfJ9Q1ssPaktUC0lkRVT5unD5UU8CxHJm5zOdlxCP0gy3Z1o7HimSj-nxcrK08uIgxcaFy4Kyv80pSl1_Ekhh2V8yZI0e35D5R2gHPsIf0z6d2LTHBMRziDrFB9fcrfRMEIK2iu257LPRKIRVWecI8x8AI17wdS58WCL-Rb7shJbKnT5a6zdXejlu63p6Zsa1PfwJsPU98Eu2L73g0fxVXOBiY1XJf-fkeNdMX9ABfFHfQvxu002xyjWJW3WaV4em7g_esh2h25xwK4pOA9E-6oD4cfKB7yBdE8rPjS-M3fYn528TnJDsKyOTdSZuUD7IrZhYqqr_LAQfwI0WfROIK0yctMI-iFafC00GukvPDfYWUY70gTiwakhiLHPiFMBmCAC58WILhPsXbgjV7SzmqClg3DXAtyG2vTjiqpHMDkBknYFtu5Q_zzXV7DSpyeYYx47E4PUidDZTWnpv-HzzsGa3Mb3Tw8xh68q2xIt3NK_90rZymxkGYgvcaUOPp8dsykzEi7WsO6OpNkE93UVXW7NBg767ECk5NFqxeRvuuAGCjehm3huMBfI59UWJmAjYQHMSVz-17L7cyJmUnAYU&lch=cps:waimai:5:975580a039d49dc4e47c9235b36c8599:lbt&f_token=1&f_userId=1',src: '../../image/slides/mtad.jpg'},
-            {type: 'ad',appId:'wxece3a9a4c82f58c9',path:'taoke/pages/shopping-guide/index?scene=KCSkKou', src: '../../image/slides/elad.jpg'}
+            {
+                type: 'ad',
+                appId: 'wxde8ac0a21135c07d',
+                path: '/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D1%26p%3DOWMpZ-uzIFOVe6JyOONs3dXuqV0qcAf-r-KCvHdXiNfjxCYyPaUVAwZmPr8KocAZmJ-B6nKXPPRQdH-k2oX1SKrfJ9Q1ssPaktUC0lkRVT5unD5UU8CxHJm5zOdlxCP0gy3Z1o7HimSj-nxcrK08uIgxcaFy4Kyv80pSl1_Ekhh2V8yZI0e35D5R2gHPsIf0z6d2LTHBMRziDrFB9fcrfRMEIK2iu257LPRKIRVWecI8x8AI17wdS58WCL-Rb7shJbKnT5a6zdXejlu63p6Zsa1PfwJsPU98Eu2L73g0fxVXOBiY1XJf-fkeNdMX9ABfFHfQvxu002xyjWJW3WaV4em7g_esh2h25xwK4pOA9E-6oD4cfKB7yBdE8rPjS-M3fYn528TnJDsKyOTdSZuUD7IrZhYqqr_LAQfwI0WfROIK0yctMI-iFafC00GukvPDfYWUY70gTiwakhiLHPiFMBmCAC58WILhPsXbgjV7SzmqClg3DXAtyG2vTjiqpHMDkBknYFtu5Q_zzXV7DSpyeYYx47E4PUidDZTWnpv-HzzsGa3Mb3Tw8xh68q2xIt3NK_90rZymxkGYgvcaUOPp8dsykzEi7WsO6OpNkE93UVXW7NBg767ECk5NFqxeRvuuAGCjehm3huMBfI59UWJmAjYQHMSVz-17L7cyJmUnAYU&lch=cps:waimai:5:975580a039d49dc4e47c9235b36c8599:lbt&f_token=1&f_userId=1',
+                src: '../../image/slides/mtad.jpg'
+            },
+            {
+                type: 'ad',
+                appId: 'wxece3a9a4c82f58c9',
+                path: 'taoke/pages/shopping-guide/index?scene=KCSkKou',
+                src: '../../image/slides/elad.jpg'
+            }
         ],
         container: null,
         minShow: false,
@@ -140,7 +150,7 @@ Page({
                 })
                 wx.hideLoading()
                 break
-            case '7':
+            case '7'://四级
                 this.getVerImg()
                 /*                    wx.navigateToMiniProgram({
                                         appId: 'wx96401daae94c037c',
@@ -167,9 +177,10 @@ Page({
     },
 
     getVerImg() {
+
         API.getUserData(
             data => {
-                API.request(API.CET, {
+                API.request(API.CET_CODE, {
                         ok: (d) => {
                             this.setData({
                                 verImg: d.img,
@@ -185,6 +196,61 @@ Page({
             }
         )
     },
+    cetCodeChange(e){
+        this.setData({
+            verCode:e.detail.value
+        })
+
+    },
+
+    getCetTicket(e) {
+        let code = this.data.verCode
+
+        wx.showLoading({title: "加载中"})
+        if (code.length === 0) {
+            this.getVerImg();
+            return
+        }
+
+            API.getUserData(
+                d => {
+                    API.request(API.CET_TICKET, {
+                            ok: () => {
+                                wx.downloadFile({
+                                    url: API.CET_TICKET.url,
+                                    header: {
+                                        cookie: "session=" + d.session
+                                    },
+                                    filePath: wx.env.USER_DATA_PATH + '/' + d.user + '.pdf',
+                                    success: function (res) {
+                                        let filePath = res.filePath
+                                        wx.openDocument({//打开
+                                            showMenu:true,
+                                            filePath: filePath,
+                                            success: function (res) {
+                                                wx.hideLoading()
+                                            }
+                                        })
+                                    }
+                                })
+                            },
+                            no: (c, d) => {
+                                wx.showModal({
+                                    content: d.err_msg,
+                                    showCancel:false
+                                })
+                                this.getVerImg()
+                            }
+                        }, {
+                            code: code,
+                            session: this.data.verSession
+                        },
+                        "session=" + d.session
+                    )
+                }
+            )
+
+    },
     // 查询四级成绩
     queryCet() {
         wx.showLoading({title: "加载中"})
@@ -192,6 +258,7 @@ Page({
             this.getVerImg();
             return
         }
+
         API.getUserData(
             d => {
                 API.request(API.CET, {
@@ -294,7 +361,7 @@ Page({
             },
             success: result => {
                 for (const file of result.data.files) {
-                    this.data.slides.push({src: 'https://cdn.nogg.cn/sideshow/' + file.name,type:'ad'})
+                    this.data.slides.push({src: 'https://cdn.nogg.cn/sideshow/' + file.name, type: 'ad'})
                 }
                 this.setData({slides: this.data.slides})
             }

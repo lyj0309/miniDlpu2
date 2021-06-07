@@ -489,8 +489,18 @@ API.EVALUATION_POST = {
     method: 'GET',
 }
 //四级
-API.CET = {
-    url: baseHost + '/cet',
+API.CET_CODE = {
+    url: baseHost + '/cet/code',
+    method: 'GET',
+}
+
+API.CET_TICKET = {
+    url: baseHost + '/cet/ticket',
+    method: 'GET',
+}
+
+API.CET_MARK = {
+    url: baseHost + '/cet/mark',
     method: 'GET',
 }
 

@@ -88,24 +88,37 @@
 <van-popup
         show="{{ verShow }}"
         round
-        position="bottom"
-        custom-style="height: 20%;"
         bind:close="onClose"
 >
-    <view style="margin-top:50rpx">2020年下半年全国大学英语四、六级考试（含口试）</view>
+<view style="margin:50rpx">
+    <view style="margin-top:20rpx;  text-align: center;">准考证下载</view>
     <view style="display:flex;margin-top:30rpx">
-        <image bindtap="getVerImg" style="width:200rpx;height:50rpx" mode="aspectFill"
+        <image bindtap="getVerImg" style="width:400rpx;height:60rpx" mode="aspectFill"
                src="data:image/png;base64,{{verImg}}"/>
-        <van-cell-group>
-            <van-field
-                    custom-style="width:400rpx"
-                    model:value="{{ verCode }}"
+        <view style=" border-style:solid;border-width:1px;">
+            <input
+                    bindinput="cetCodeChange"
+                    bindconfirm="getCetTicket"
                     placeholder="请输入验证码"
-                    border="{{ false }}"
-            />
-        </van-cell-group>
-        <van-button bindtap="queryCet" type="default">确定</van-button>
+            ></input>
+        </view>
     </view>
+
+    <!--
+        <van-field
+                bind:change="cetCodeChange"
+                custom-style="width:400rpx"
+                value="{{ value }}"
+                placeholder="请输入验证码"
+                border="{{ false }}"
+        />
+
+        <view style="width:100%;display:flex;  justify-content: center;">
+            <van-button style="margin:0 auto" bindtap="getCetTicket" type="default">确定</van-button>
+        </view>
+    -->
+
+</view>
 </van-popup>
 
 
