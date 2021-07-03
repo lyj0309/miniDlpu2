@@ -25,4 +25,5 @@
 <view class="btn">
     <van-button loading="{{ loadState }}" disabled="{{ loadState }}" bind:tap="evaPost" style="width:700rpx" type="info" size="large">提交</van-button>
 </view>
+<view style="height:100rpx;width:750rpx"/>
 <van-notify id="van-notify" />

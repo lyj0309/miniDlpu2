@@ -40,10 +40,10 @@ Page({
             text: '评教',
             imgSrc: '../../image/information/pingjiao.png',
             id: "evaluation"
-        }, {
+        },/* {
             text: '四六级准考证下载(beta,只支持笔试)',
             imgSrc: '../../image/information/CET.png'
-        }/*, {
+        }, {
             text: '统一支付',
             imgSrc: '../../image/pay.png'
         }*/
@@ -65,6 +65,9 @@ Page({
         container: null,
         minShow: false,
         empClaShow0: false
+    },
+    loadgzh(e){
+        console.log(e.detail)
     },
     empClaConfirm0(event) { //空教室确认
         const {picker, value, index} = event.detail
