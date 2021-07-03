@@ -256,8 +256,8 @@ Component({
                         console.log('成功', d)
                         if (d.data !== null) {
                             for (let dElement of d) {
-                                //console.log( new Date(dElement.Time.substring(0,dElement.Time.indexOf(`~`)))-  new Date()  )
-                                dElement.cdtime = new Date(dElement.Time.substring(0, dElement.Time.indexOf(`~`))) - new Date()
+                                console.log(dElement.Time.substring(0,dElement.Time.indexOf(`~`)).replace(' ','T')  )
+                                dElement.cdtime = new Date(dElement.Time.substring(0,dElement.Time.indexOf(`~`)).replace(' ','T')) - new Date()
                             }
                         } else {
                             d = null

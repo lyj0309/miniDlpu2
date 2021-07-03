@@ -165,6 +165,8 @@
         </view>
     </view>
 </van-dialog>
+<official-account bindload="loadgzh" binderror="loadgzh"></official-account>
+
 <view class='showmsg'>
     <text>您的分享就是对作者最大的支持\n</text>
 </view>

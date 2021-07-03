@@ -16,7 +16,7 @@
           "name": "pages/Information/Information",
           "pathName": "pages/Information/Information",
           "query": "",
-          "scene": null
+          "scene": 1047
         },
         {
           "name": "pages/Information/evaluation/evaluation",
