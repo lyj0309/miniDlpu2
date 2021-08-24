@@ -1,4 +1,5 @@
 <web-view wx:if="{{ name==='findpwd' }}" src="https://proxy.2333.pub/jsxsd/view/cjgl/enteraccount.jsp"></web-view>
+<web-view wx:if="{{ name==='off_count' }}" src="https://mp.weixin.qq.com/s/A-701Mm2TAINcKRXfuxrtA"></web-view>
         <!--校历-->
 <scroll-view wx:if="{{ name === 'xl' }}" scroll-y="true" style="height: {{ wx.getSystemInfoSync().windowHeight }}rpx;">
     <text style="color:red">

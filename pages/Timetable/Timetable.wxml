@@ -119,20 +119,19 @@
             <image src="../../image/pop/alarm.svg"/>
             <view style="display:flex;justify-content:space-between;align-items:center">
                 <text>上课提醒</text>
-                <switch checked="{{ remind[week + cDetailData.w + cDetailData.s + cDetailData.e] }}"
+                <switch checked="{{ remind[''+week + cDetailData.w + cDetailData.s + cDetailData.e] }}"
                         bindchange="onRemindChange"/>
             </view>
         </view>
         <view style="height: 10px"></view>
     </view>
 </view>
-
 <view class="header">
     <!-- 学期选择 -->
     <view class="semester">
         <view bindtap="headerSelecter" id="semester" data-doing="showSemesterSelect" data-odoing="showWeekSelect"
               style="{{ semester != semesterNow ? 'color: #CC433B' : '' }}">
-            {{ semester != semesterNow ? '(非本学期)' : '' }}学期：{{semester}}
+            学期：{{semester}}
         </view>
         <view id="week" bindtap="headerSelecter" data-doing="showWeekSelect" data-odoing="showSemesterSelect"
               style="{{ week != weekNow ? 'color: #CC433B' : '' }}">{{ week != weekNow ? '(非本周)' : '' }}第 {{week}} 周
@@ -176,7 +175,7 @@
         </view>
         <view wx:for="{{ date }}" wx:key="date" class="{{ item.today && week == weekNow ? 'today' : '' }}">
             <view class="weeks">{{ item.week }}</view>
-            <view class="dates">{{ item.date }}</view>
+            <view wx:if="{{semester == semesterNow }}" class="dates">{{ item.date }}</view>
         </view>
     </view>
 </view>

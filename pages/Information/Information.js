@@ -43,16 +43,18 @@ Page({
         },/* {
             text: '四六级准考证下载(beta,只支持笔试)',
             imgSrc: '../../image/information/CET.png'
-        }, {
-            text: '统一支付',
-            imgSrc: '../../image/pay.png'
-        }*/
+        },*/ {
+            text: '四六级成绩查询',
+            imgSrc:'../../image/information/CET.png'
+        }
         ],
         slides: [{type: 'img', src: '../../image/morebg.png'},
             {
                 type: 'ad',
                 appId: 'wxde8ac0a21135c07d',
-                path: '/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D1%26p%3DOWMpZ-uzIFOVe6JyOONs3dXuqV0qcAf-r-KCvHdXiNfjxCYyPaUVAwZmPr8KocAZmJ-B6nKXPPRQdH-k2oX1SKrfJ9Q1ssPaktUC0lkRVT5unD5UU8CxHJm5zOdlxCP0gy3Z1o7HimSj-nxcrK08uIgxcaFy4Kyv80pSl1_Ekhh2V8yZI0e35D5R2gHPsIf0z6d2LTHBMRziDrFB9fcrfRMEIK2iu257LPRKIRVWecI8x8AI17wdS58WCL-Rb7shJbKnT5a6zdXejlu63p6Zsa1PfwJsPU98Eu2L73g0fxVXOBiY1XJf-fkeNdMX9ABfFHfQvxu002xyjWJW3WaV4em7g_esh2h25xwK4pOA9E-6oD4cfKB7yBdE8rPjS-M3fYn528TnJDsKyOTdSZuUD7IrZhYqqr_LAQfwI0WfROIK0yctMI-iFafC00GukvPDfYWUY70gTiwakhiLHPiFMBmCAC58WILhPsXbgjV7SzmqClg3DXAtyG2vTjiqpHMDkBknYFtu5Q_zzXV7DSpyeYYx47E4PUidDZTWnpv-HzzsGa3Mb3Tw8xh68q2xIt3NK_90rZymxkGYgvcaUOPp8dsykzEi7WsO6OpNkE93UVXW7NBg767ECk5NFqxeRvuuAGCjehm3huMBfI59UWJmAjYQHMSVz-17L7cyJmUnAYU&lch=cps:waimai:5:975580a039d49dc4e47c9235b36c8599:lbt&f_token=1&f_userId=1',
+                // path: '/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D1%26p%3DOWMpZ-uzIFOVe6JyOONs3dXuqV0qcAf-r-KCvHdXiNfjxCYyPaUVAwZmPr8KocAZmJ-B6nKXPPRQdH-k2oX1SKrfJ9Q1ssPaktUC0lkRVT5unD5UU8CxHJm5zOdlxCP0gy3Z1o7HimSj-nxcrK08uIgxcaFy4Kyv80pSl1_Ekhh2V8yZI0e35D5R2gHPsIf0z6d2LTHBMRziDrFB9fcrfRMEIK2iu257LPRKIRVWecI8x8AI17wdS58WCL-Rb7shJbKnT5a6zdXejlu63p6Zsa1PfwJsPU98Eu2L73g0fxVXOBiY1XJf-fkeNdMX9ABfFHfQvxu002xyjWJW3WaV4em7g_esh2h25xwK4pOA9E-6oD4cfKB7yBdE8rPjS-M3fYn528TnJDsKyOTdSZuUD7IrZhYqqr_LAQfwI0WfROIK0yctMI-iFafC00GukvPDfYWUY70gTiwakhiLHPiFMBmCAC58WILhPsXbgjV7SzmqClg3DXAtyG2vTjiqpHMDkBknYFtu5Q_zzXV7DSpyeYYx47E4PUidDZTWnpv-HzzsGa3Mb3Tw8xh68q2xIt3NK_90rZymxkGYgvcaUOPp8dsykzEi7WsO6OpNkE93UVXW7NBg767ECk5NFqxeRvuuAGCjehm3huMBfI59UWJmAjYQHMSVz-17L7cyJmUnAYU&lch=cps:waimai:5:975580a039d49dc4e47c9235b36c8599:lbt&f_token=1&f_userId=1',
+                path: '/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3Ds5dWVr5z8O6o',
+                // path:'waimaiunion/pages/union/index.html?scene=1!SKhWVr5z8O6o!1!2!sVdWvg',
                 src: '../../image/slides/mtad.jpg'
             },
             {
@@ -66,9 +68,7 @@ Page({
         minShow: false,
         empClaShow0: false
     },
-    loadgzh(e){
-        console.log(e.detail)
-    },
+
     empClaConfirm0(event) { //空教室确认
         const {picker, value, index} = event.detail
         //console.log(value)
@@ -153,22 +153,9 @@ Page({
                 })
                 wx.hideLoading()
                 break
-            case '7'://四级
-                this.getVerImg()
-                /*                    wx.navigateToMiniProgram({
-                                        appId: 'wx96401daae94c037c',
-                                        path: 'pages/Subpages/StudentId/StudentId?id=' + 'dasfsadf' + '&pwd=' + 'asdfdsaf',
-                                        envVersion: 'release',
-                                        success(res) {
-                                            // 打开成功
-                                        }
-                                    })*/
-
-
-                /*                    wx.navigateTo({
-                                        url: './simple/index'
-                                    })*/
-                break
+            // case '7'://四级
+            //     // this.getVerImg()
+            //     break
             case '8': //意见反馈
                 wx.hideLoading()
                 break
@@ -199,13 +186,14 @@ Page({
             }
         )
     },
-    cetCodeChange(e){
+    cetCodeChange(e) {
         this.setData({
-            verCode:e.detail.value
+            verCode: e.detail.value
         })
 
     },
 
+    //获取准考证
     getCetTicket(e) {
         let code = this.data.verCode
 
@@ -215,43 +203,43 @@ Page({
             return
         }
 
-            API.getUserData(
-                d => {
-                    API.request(API.CET_TICKET, {
-                            ok: () => {
-                                wx.downloadFile({
-                                    url: API.CET_TICKET.url,
-                                    header: {
-                                        cookie: "session=" + d.session
-                                    },
-                                    filePath: wx.env.USER_DATA_PATH + '/' + d.user + '.pdf',
-                                    success: function (res) {
-                                        let filePath = res.filePath
-                                        wx.openDocument({//打开
-                                            showMenu:true,
-                                            filePath: filePath,
-                                            success: function (res) {
-                                                wx.hideLoading()
-                                            }
-                                        })
-                                    }
-                                })
-                            },
-                            no: (c, d) => {
-                                wx.showModal({
-                                    content: d.err_msg,
-                                    showCancel:false
-                                })
-                                this.getVerImg()
-                            }
-                        }, {
-                            code: code,
-                            session: this.data.verSession
+        API.getUserData(
+            d => {
+                API.request(API.CET_TICKET, {
+                        ok: () => {
+                            wx.downloadFile({
+                                url: API.CET_TICKET.url,
+                                header: {
+                                    cookie: "session=" + d.session
+                                },
+                                filePath: wx.env.USER_DATA_PATH + '/' + d.user + '.pdf',
+                                success: function (res) {
+                                    let filePath = res.filePath
+                                    wx.openDocument({//打开
+                                        showMenu: true,
+                                        filePath: filePath,
+                                        success: function (res) {
+                                            wx.hideLoading()
+                                        }
+                                    })
+                                }
+                            })
                         },
-                        "session=" + d.session
-                    )
-                }
-            )
+                        no: (c, d) => {
+                            wx.showModal({
+                                content: d.err_msg,
+                                showCancel: false
+                            })
+                            this.getVerImg()
+                        }
+                    }, {
+                        code: code,
+                        session: this.data.verSession
+                    },
+                    "session=" + d.session
+                )
+            }
+        )
 
     },
     // 查询四级成绩

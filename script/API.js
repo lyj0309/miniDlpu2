@@ -424,7 +424,7 @@ API.GET_TIME_TABLE = {
     // 成功后存储数据
     ok: (d, code, r, rd) => {
         // 如果没有数据
-        // if(d.data === null && d.code === 1) return;
+        if (d.data === null && d.code === 1) return;
 
         if (!r.semester) return;
 
@@ -950,22 +950,27 @@ API.geneSemesterArr = function (semester) {
     }
     //console.log("user",user,semester)
     user = '20' + user.slice(0, 2)
+    let c = ""
     let nowYear = new Date().getFullYear()
     for (let i = 8; i >= -1; i--) {
         for (let k = 1; k <= 2; k++) {
             let currXQ = (nowYear - (i + 1)) + "-" + (nowYear - i) + "-" + k
             let idx = nowYear - (i + 1) - user
             if (semester === currXQ) {
-                let a = currXQ + '  ' + xueQi[idx][k - 1]
-                rage.unshift({name: a})
-                rage.unshift({name: '全部学期'})
-                return [rage, a]
+                c = currXQ + '  ' + xueQi[idx][k - 1]
             }
+            // console.log(currXQ)
+
             if (idx >= 0 && idx <= 3) {
+                // console.log(currXQ + '  ' + xueQi[idx][k - 1],idx)
                 rage.unshift({name: currXQ + '  ' + xueQi[idx][k - 1]})
             }
         }
     }
+
+    rage.unshift({name: '全部学期'})
+    return [rage, c]
+
 }
 
 
@@ -977,11 +982,20 @@ API.reCatchTable = function (id, del) {
                 API.GET_TIME_TABLE,
                 {
                     loading: "正在抓取",
-                    successMsg: "抓取成功",
-                    failMsg: "api",
                     ok: (d) => {
+                        wx.showToast({
+                            title:"抓取成功"
+                        })
+
                         resolve(true)
-                        // console.log(d);
+                    },
+                    success:d=>{
+                        if (d.data.data === null){
+                            wx.showToast({
+                                icon:"none",
+                                title:"此学期无课表"
+                            })
+                        }
                     }
                 }, {
                     semester: id.slice(0, 11),

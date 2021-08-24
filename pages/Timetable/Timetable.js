@@ -439,6 +439,7 @@ Page({
         this.setData({
             class: this.data.class
         })
+
     },
 
     /**
@@ -517,12 +518,14 @@ Page({
             let timeTableCallBack = (d) => {
                 wx.stopPullDownRefresh();
                 const f = this.data.week ? this.data.week : whichKCB.week
-                for (let i = 0; i < d.pre[f - 1].length; i++) {
-                    for (let j = 0; j < d.pre[f - 1][i].length; j++) {
-                        if (!this.data.bgImg) {
-                            d.pre[f - 1][i][j].c = d.pre[f - 1][i][j].c.substr(0, 17) + "0.95)"
-                        } else {
-                            d.pre[f - 1][i][j].c = d.pre[f - 1][i][j].c.substr(0, 17) + "0.7)"
+                if (f > 0){
+                    for (let i = 0; i < d.pre[f - 1].length; i++) {
+                        for (let j = 0; j < d.pre[f - 1][i].length; j++) {
+                            if (!this.data.bgImg) {
+                                d.pre[f - 1][i][j].c = d.pre[f - 1][i][j].c.substr(0, 17) + "0.95)"
+                            } else {
+                                d.pre[f - 1][i][j].c = d.pre[f - 1][i][j].c.substr(0, 17) + "0.7)"
+                            }
                         }
                     }
                 }
@@ -589,6 +592,7 @@ Page({
         // 初始化静态数据
         this.initWeather()
 
+
         this.setData({time: TIME, remind: remind});
         this.initRuler();
 
@@ -602,11 +606,13 @@ Page({
         }, this.data.semester);
 
         this.setData(options)
+
     },
 
     backPresent() {
         this.setData({week: this.data.weekNow});
         this.setDayList(this.data.weekNow, this.data.week);
+
     },
 
     initWeather() {
@@ -730,6 +736,7 @@ Page({
                 this.setDayList(this.data.weekNow, this.data.week);
             }, this.data.semester);
         }
+
     },
     /**
      * 上课提醒

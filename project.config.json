@@ -40,7 +40,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.12.3",
+  "libVersion": "2.18.1",
   "appid": "wxc8d375bbcf2ac52f",
   "projectname": "MiniDLPU2",
   "debugOptions": {

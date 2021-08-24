@@ -151,3 +151,18 @@ view.opition > view.other > button > view {
     line-height: 40px;
     font-weight: 500;
 }
+
+.point{
+    position: relative;
+}
+
+.point::before{
+    content: " ";
+    border: 3.5px solid red;/*设置红色*/
+    border-radius:3px;/*设置圆角*/
+    position: absolute;
+    z-index: 1000;
+    right: 0;
+    top: 6px;
+    margin-right: -8px;
+}

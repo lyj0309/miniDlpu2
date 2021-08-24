@@ -37,7 +37,11 @@
 
   <!-- 其他选项 -->
   <view class="other">
-    <view class="{{ index === 0 ? 'start' : '' }}" data-id="{{ index + 1 }}"
+    <view  data-id="{{ 5 }}" class="start" bindtap="jump">
+      <view class="{{ clickOff?'':'point' }}">公众号</view>
+      <image src="/image/go.svg"></image>
+    </view>
+    <view  data-id="{{ index + 1 }}"
     wx:for="{{ pages }}" wx:key="opition" bindtap="jump">
       <view>{{ item }}</view>
       <image src="/image/go.svg"></image>
