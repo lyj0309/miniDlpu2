@@ -229,27 +229,37 @@
     </view>
 </view>
 
-<view class="score" wx:if="{{ title === '四六级' }}">
+<view class="score" wx:if="{{ title === '四六级成绩查询' }}">
+    
+<view wx:if="{{!CETSelectShow}}">
     <view id="score_tit">
-        <text> 姓　　名：{{ data.n }}\n</text>
-        <text> 学　　校：{{ data.x }}\n</text>
+        <text> 姓　　名：{{ data.xm }}\n</text>
+        <text> 学　　校：{{ data.xx }}\n</text>
     </view>
     <view id="score_write">
         <view class="titleT">笔试成绩</view>
-        <text>准考证号：{{ data.z }}\n</text>
-        <text>总　 　分： <text style=" color: red;"> {{ data.s }}</text>\n</text>
+        <text>准考证号：{{ data.zkzh }}\n</text>
+        <text>总　 　分： <text style=" color: red;"> {{ data.score }}</text>\n</text>
         <view class="scoreT">
-            <text> 听　　　力：{{ data.l }}\n</text>
-            <text> 阅　　　读：{{ data.r }}\n</text>
-            <text> 写作和翻译：{{ data.w }}\n</text>
+            <text> 听　　　力：{{ data.sco_lc }}\n</text>
+            <text> 阅　　　读：{{ data.sco_rd }}\n</text>
+            <text> 写作和翻译：{{ data.sco_wt }}\n</text>
         </view>
     </view>
     <view id="score_oral">
         <view class="titleT">口试成绩</view>
-        <text> 准考证号：{{ data.kyz }}\n</text>
-        <text> 等　　级：{{ data.kys }}\n</text>
+        <text> 准考证号：{{ data.ky_zkz }}\n</text>
+        <text> 等　　级：{{ data.ky_sco }}\n</text>
     </view>
     <view id="score_id" style="display: none;margin-top: 30px;">
         <text> 成绩报告单编号：{{ data.id }}</text>
     </view>
+</view>
+
+    <van-action-sheet
+            show="{{ CETSelectShow }}"
+            actions="{{ CETSelectActions }}"
+            bind:select="onCETSelect"
+    />
+
 </view>

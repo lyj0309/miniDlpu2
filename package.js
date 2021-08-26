@@ -1,7 +1,7 @@
 module.exports = {
     "name": "minidlpu2",
-    "version": "2.5.4",
-    "info": "1.下学期课表已可导入，详情`设置-缓存管理`",
+    "version": "2.6.0",
+    "info": "1.2021四六级成绩已可查询",
     "main": "index.js",
     "license": "MIT",
     "dependencies": {
@@ -9,6 +9,10 @@ module.exports = {
         "we-cropper": "^1.3.9"
     },
     "past": [
+        {
+            "version": "2.5.4",
+            "info": "1.下学期课表已可导入，详情`设置-缓存管理`",
+        },
         {
             "version": "2.5.0",
             "info": "1.四六级准考证下载",

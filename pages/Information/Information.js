@@ -154,8 +154,15 @@ Page({
                 wx.hideLoading()
                 break
             // case '7'://四级
-            //     // this.getVerImg()
-            //     break
+            //     if (this.data.CETSelectShow === false){
+            //         this.setData({CETSelectShow:true})
+            //         wx.hideLoading()
+            //         break
+            //
+            //     }else {
+            //         this.setData({show: true, title: this.data.array[parseInt(prop.currentTarget.id)].text});
+            //         break
+            //     }
             case '8': //意见反馈
                 wx.hideLoading()
                 break
@@ -167,7 +174,6 @@ Page({
     },
 
     getVerImg() {
-
         API.getUserData(
             data => {
                 API.request(API.CET_CODE, {
@@ -241,43 +247,6 @@ Page({
             }
         )
 
-    },
-    // 查询四级成绩
-    queryCet() {
-        wx.showLoading({title: "加载中"})
-        if (this.data.verCode.length === 0) {
-            this.getVerImg();
-            return
-        }
-
-        API.getUserData(
-            d => {
-                API.request(API.CET, {
-                        ok: d => {
-                            wx.hideLoading()
-                            const oriData = d.slice(16, d.length - 2)
-                            console.log(oriData)
-                            const verData = oriData.toString().replace(/{/g, '{"').replace(/:/g, '":').replace(/,/g, ',"').replace(/'/g, '"')
-                            //const verData = oriData.toString().replace("'",'"')
-                            console.log(verData)
-                            this.setData({show: true, title: '四六级', verShow: false, verData: JSON.parse(verData)});
-                        },
-                        no: (c, d) => {
-                            console.log(d.err_msg)
-                            wx.showToast({
-                                icon: 'none',
-                                title: d.err_msg
-                            })
-                            this.getVerImg()
-                        }
-                    }, {
-                        code: this.data.verCode,
-                        session: this.data.verSession
-                    },
-                    "session=" + d.session
-                )
-            }
-        )
     },
     openAd(e) {
         wx.navigateToMiniProgram({

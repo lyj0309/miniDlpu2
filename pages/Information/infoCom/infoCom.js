@@ -17,12 +17,21 @@ Component({
         }
     },
     data: {
+        CETSelectShow:true,
+        CETSelectActions:[{name:"四级",id:1},{name:"六级",id:2}],
         replay: "paused",
         actions: [],
         show: false,
         semester: '',
     },
     methods: {
+        onCETSelect(e){
+            this.setData({
+                CETSelectShow:false
+            })
+            wx.showLoading({title:"加载中"})
+            this.cetMark(e.detail.id)
+        },
         openPyfaDetail(e) { //打开培养方案弹窗
             this.page.setData({
                 minShow: true,
@@ -515,9 +524,37 @@ Component({
                     break
             }
         },
-        cet() {
-            console.log(this.data.data)
+        cetMark(id) {
+            API.getUserData(
+                d => {
+                    API.request(API.CET_MARK, {
+                            ok: d => {
+                                if (d.code === 200){
+                                    console.log(d)
+                                    this.setData({data: d});
+                                    wx.hideLoading()
+                                }else {
+                                    wx.showModal({
+                                        title:d.msg
+                                    })
+                                    wx.hideLoading()
+                                }
 
+                            },
+                            no: (c, d) => {
+                                console.log(d.err_msg)
+                                wx.showToast({
+                                    icon: 'none',
+                                    title: d.err_msg
+                                })
+                            }
+                        }, {
+                        km:id
+                        },
+                        "session=" + d.session
+                    )
+                }
+            )
         },
         wxlogin() {
             wx.login(
@@ -573,8 +610,9 @@ Component({
                     case '评教':
                         this.evaluation()
                         break
-                    case '四六级':
-                        this.cet()
+                    case '四六级成绩查询':
+                        wx.hideLoading()
+                        // this.cetMark()
                         break
                 }
             })
