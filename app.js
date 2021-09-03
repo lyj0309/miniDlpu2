@@ -67,7 +67,12 @@ App({
 
         //
     },
-
+    openModel(d){
+        wx.showModal({
+            content:d,
+            showCancel:false,
+        })
+    },
     /**
      * @function getTermData
      * @description 获取学期课表数据

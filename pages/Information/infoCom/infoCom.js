@@ -17,19 +17,19 @@ Component({
         }
     },
     data: {
-        CETSelectShow:true,
-        CETSelectActions:[{name:"四级",id:1},{name:"六级",id:2}],
+        CETSelectShow: true,
+        CETSelectActions: [{name: "四级", id: 1}, {name: "六级", id: 2}],
         replay: "paused",
         actions: [],
         show: false,
         semester: '',
     },
     methods: {
-        onCETSelect(e){
+        onCETSelect(e) {
             this.setData({
-                CETSelectShow:false
+                CETSelectShow: false
             })
-            wx.showLoading({title:"加载中"})
+            wx.showLoading({title: "加载中"})
             this.cetMark(e.detail.id)
         },
         openPyfaDetail(e) { //打开培养方案弹窗
@@ -209,10 +209,16 @@ Component({
         getExamDate() {
             let examAlarm = wx.getStorageSync(`examAlarm`)
             if (examAlarm === null || examAlarm === "" || examAlarm === 0 || examAlarm === undefined) {
-                this.showExamAlarm()
+                this.setData({examAlarm: true})
+                wx.setStorageSync(`examAlarm`, true)
             } else if (examAlarm === true) {
                 this.setData({examAlarm: examAlarm})
-                this.subAlarm()
+                this.reqAlarm(1)
+                if (!wx.getStorageSync("official")) {
+                    wx.requestSubscribeMessage({
+                        tmplIds: ['ev2cvXp8X8sMDzLB-BJnwVszlS6Zm7pMQHxcTd1D8wA'],
+                    })
+                }
             } else {
                 this.setData({examAlarm: examAlarm})
                 this.reqAlarm(0)
@@ -226,36 +232,8 @@ Component({
                 this.setData({examAlarm: false})
                 return
             }
-            this.showExamAlarm()
-        },
-        showExamAlarm() {
-            wx.showModal({
-                title: `考试提醒（beta）`,
-                content: `在考试前一个小时将通知宁，建议勾不再询问`,
-                confirmText: "开启",
-                cancelColor: "算了",
-                success: res => {
-                    if (res.confirm) {
-                        this.wxlogin()
-                        this.setData({examAlarm: true})
-                        wx.setStorageSync(`examAlarm`, true)
-                        this.subAlarm()
-                    } else {
-                        this.setData({examAlarm: false})
-                        wx.setStorageSync(`examAlarm`, false)
-                        this.reqAlarm(0)
-                    }
-                }
-            })
-        },
-        subAlarm() {
-            this.reqAlarm(1)
-            wx.requestSubscribeMessage({
-                tmplIds: ['ev2cvXp8X8sMDzLB-BJnwVszlS6Zm7pMQHxcTd1D8wA'],
-                success: () => {
-                    wx.setStorageSync("subCount", 99)
-                }
-            })
+            this.setData({examAlarm: true})
+            wx.setStorageSync(`examAlarm`, true)
         },
         reqAlarm(alarm) {
             API.request(
@@ -265,8 +243,8 @@ Component({
                         console.log('成功', d)
                         if (d.data !== null) {
                             for (let dElement of d) {
-                                console.log(dElement.Time.substring(0,dElement.Time.indexOf(`~`)).replace(' ','T')  )
-                                dElement.cdtime = new Date(dElement.Time.substring(0,dElement.Time.indexOf(`~`)).replace(' ','T')) - new Date()
+                                console.log(dElement.Time.substring(0, dElement.Time.indexOf(`~`)).replace(' ', 'T'))
+                                dElement.cdtime = new Date(dElement.Time.substring(0, dElement.Time.indexOf(`~`)).replace(' ', 'T')) - new Date()
                             }
                         } else {
                             d = null
@@ -524,18 +502,21 @@ Component({
                     break
             }
         },
+        openModel(e) {
+            getApp().openModel(e.currentTarget.dataset.text)
+        },
         cetMark(id) {
             API.getUserData(
                 d => {
                     API.request(API.CET_MARK, {
                             ok: d => {
-                                if (d.code === 200){
+                                if (d.code === 200) {
                                     console.log(d)
                                     this.setData({data: d});
                                     wx.hideLoading()
-                                }else {
+                                } else {
                                     wx.showModal({
-                                        title:d.msg
+                                        title: d.msg
                                     })
                                     wx.hideLoading()
                                 }
@@ -549,7 +530,7 @@ Component({
                                 })
                             }
                         }, {
-                        km:id
+                            km: id
                         },
                         "session=" + d.session
                     )

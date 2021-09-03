@@ -64,6 +64,9 @@ view.submit{
 }
 
 .agreement{
+  position: absolute;
+  bottom: 0;
+  margin: 50rpx;
   display: flex;
   justify-content: center;
 }

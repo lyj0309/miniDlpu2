@@ -2,8 +2,9 @@
 
 <van-notice-bar
         wrapable
-        scrollable="{{ false }}" mode="closeable"
-        text="掌上教务处（工大教务处v2）,有问题即时反馈哦"/>
+        scrollable="{{ false }}" mode="link"
+        bindtap="clickNotice"
+        text="{{noticeData.data }}"/>
 
 <van-popup overlay-style="{{ overlayStyle?overlayStyle:'' }}" id="popup" round
            custom-style="width: 618rpx;height: 1000rpx" show="{{ show }}" bind:close="onClose">

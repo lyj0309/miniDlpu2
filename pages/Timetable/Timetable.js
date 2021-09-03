@@ -746,6 +746,10 @@ Page({
 
         // 第几周+星期几+第几节(开始到结束) this.data.week + this.data.cDetailData.w + this.data.cDetailData.s + this.data.cDetailData.e
         if (detail.value === true) {
+            if ( wx.getStorageSync("official")){
+                this.sendRemind(detail.value)
+                return
+            }
             wx.requestSubscribeMessage({
                 tmplIds: ['5R2_Fuz8T01yJJLhPBKGzFjq77UaVpwP154sLXsVu-4'],
                 success: res => {
@@ -900,5 +904,8 @@ Page({
                 }).exec()
             }
         )
+    },
+    openModel(e){
+        getApp().openModel(e.currentTarget.dataset.text)
     }
 })

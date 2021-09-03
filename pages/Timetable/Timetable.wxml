@@ -118,7 +118,10 @@
         <view wx-if="{{ cDetailData.o && semester === semesterNow }}" class="cDItem">
             <image src="../../image/pop/alarm.svg"/>
             <view style="display:flex;justify-content:space-between;align-items:center">
-                <text>上课提醒</text>
+                <view style="padding:0">
+                    <text>上课提醒</text>
+                    <van-icon style="width:20px" bindtap="openModel" data-text="开启后将会在上课前20分钟通知" name="question-o" />
+                </view>
                 <switch checked="{{ remind[''+week + cDetailData.w + cDetailData.s + cDetailData.e] }}"
                         bindchange="onRemindChange"/>
             </view>

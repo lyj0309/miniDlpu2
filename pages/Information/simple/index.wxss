@@ -3,6 +3,11 @@
     height: 3300rpx;
 }
 
+.title{
+    font-size: 1.5em;
+    text-align: center;
+}
+
 @media (prefers-color-scheme: dark) {
     page {
         background-color: #1f1f1f;

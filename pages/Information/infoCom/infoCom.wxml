@@ -64,6 +64,8 @@
     </view>
     <view class="examAlarm">
         <text>考试提醒</text>
+        <view style="width:5px"/>
+        <van-icon bindtap="openModel" data-text="开启后将会在考试前一小时通知" name="question-o" />
         <view style="width:10px"/>
         <van-switch active-color="#6bc1cd" size="1.2rem" checked="{{ examAlarm }}" bind:change="switchExamAlarm"/>
     </view>

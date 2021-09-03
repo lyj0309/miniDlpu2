@@ -45,7 +45,7 @@ Page({
             imgSrc: '../../image/information/CET.png'
         },*/ {
             text: '四六级成绩查询',
-            imgSrc:'../../image/information/CET.png'
+            imgSrc: '../../image/information/CET.png'
         }
         ],
         slides: [{type: 'img', src: '../../image/morebg.png'},
@@ -294,6 +294,35 @@ Page({
             }
         )
     },
+    getNotice() {
+        wx.request({
+            url: "https://jwc.nogg.cn/assets/notice.json",
+            success: result => {
+                this.setData({noticeData: result.data})
+            }
+        })
+    },
+    getImgList() {
+        wx.request({
+            url: "https://v0.api.upyun.com/dpujwc/sideshow/",
+            header: {
+                'content-type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Basic Zm9udDpuTHZIRVNDZ3JpOFJXa3FnWXM2RGRnblV1S1pCcjU4eg=='
+            },
+            success: result => {
+                for (const file of result.data.files) {
+                    this.data.slides.push({src: 'https://cdn.nogg.cn/sideshow/' + file.name, type: 'ad'})
+                }
+                this.setData({slides: this.data.slides})
+            }
+        })
+    },
+    clickNotice() {
+        wx.navigateTo({
+            url: './simple/index?name=url&url=' + encodeURIComponent(this.data.noticeData.url)
+        })
+    },
     onLoad(query) {
 
         wx.showShareMenu({
@@ -311,25 +340,14 @@ Page({
             }
             this.propTap(prop)
         }
+        this.getNotice()
+        this.getImgList()
 
-        wx.request({
-            url: "https://v0.api.upyun.com/dpujwc/sideshow/",
-            header: {
-                'content-type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': 'Basic Zm9udDpuTHZIRVNDZ3JpOFJXa3FnWXM2RGRnblV1S1pCcjU4eg=='
-            },
-            success: result => {
-                for (const file of result.data.files) {
-                    this.data.slides.push({src: 'https://cdn.nogg.cn/sideshow/' + file.name, type: 'ad'})
-                }
-                this.setData({slides: this.data.slides})
-            }
-        })
         if (wx.getSystemInfoSync().theme !== 'light') {
             this.setData({
                 overlayStyle: "background-color: rgba(255,255,255,0.7)"
             })
         }
     },
+
 })

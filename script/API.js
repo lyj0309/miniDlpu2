@@ -362,15 +362,15 @@ API.GET_JS_SESSION = {
 
         // 存储到缓存
         API.set(
-            ["ip", "name", "session", "lastGetSessionTime", "user", "pwd", "idCard"],
-            [d.ip, d.name, d.session, date, r.id, r.pwd, d.idCard]
+            ["ip", "name", "session", "lastGetSessionTime", "user", "pwd", "idCard","official"],
+            [d.ip, d.name, d.session, date, r.id, r.pwd, d.idCard,d.official]
         )
 
         // 更新到全局数据
         API.setObjData(
             getApp().globalData.UserData,
-            ["ip", "name", "session", "user", "pwd", "time", "idCard"],
-            [d.ip, d.name, d.session, r.id, r.pwd, date, d.idCard]
+            ["ip", "name", "session", "user", "pwd", "time", "idCard","official"],
+            [d.ip, d.name, d.session, r.id, r.pwd, date, d.idCard,"official"]
         );
 
         rd();
