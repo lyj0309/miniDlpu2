@@ -38,8 +38,5 @@
     <view class="space"></view>
     <view class="Stit2">开源地址</view>
     <view class="Sintro" style="text-indent: 0;">https://github.com/lyj0309/miniDlpu2</view>
-    <view class="Sintro">
-        当然，如果你想体验小程序的新功能，或者想为小程序找BUG，或想当客服，可以选择联系客服沟通，我将把你拉到小程序DEBUG群里，届时你将体验到最新的功能！
-    </view>
 
     <view class="space"></view>

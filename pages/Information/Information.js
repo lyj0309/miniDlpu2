@@ -43,30 +43,25 @@ Page({
         },/* {
             text: '四六级准考证下载(beta,只支持笔试)',
             imgSrc: '../../image/information/CET.png'
-        },*/ {
+        }, {
             text: '四六级成绩查询',
             imgSrc: '../../image/information/CET.png'
-        }
+        }*/
         ],
-        slides: [{type: 'img', src: '../../image/morebg.png'},
-            {
-                type: 'ad',
-                appId: 'wxde8ac0a21135c07d',
-                // path: '/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D1%26p%3DOWMpZ-uzIFOVe6JyOONs3dXuqV0qcAf-r-KCvHdXiNfjxCYyPaUVAwZmPr8KocAZmJ-B6nKXPPRQdH-k2oX1SKrfJ9Q1ssPaktUC0lkRVT5unD5UU8CxHJm5zOdlxCP0gy3Z1o7HimSj-nxcrK08uIgxcaFy4Kyv80pSl1_Ekhh2V8yZI0e35D5R2gHPsIf0z6d2LTHBMRziDrFB9fcrfRMEIK2iu257LPRKIRVWecI8x8AI17wdS58WCL-Rb7shJbKnT5a6zdXejlu63p6Zsa1PfwJsPU98Eu2L73g0fxVXOBiY1XJf-fkeNdMX9ABfFHfQvxu002xyjWJW3WaV4em7g_esh2h25xwK4pOA9E-6oD4cfKB7yBdE8rPjS-M3fYn528TnJDsKyOTdSZuUD7IrZhYqqr_LAQfwI0WfROIK0yctMI-iFafC00GukvPDfYWUY70gTiwakhiLHPiFMBmCAC58WILhPsXbgjV7SzmqClg3DXAtyG2vTjiqpHMDkBknYFtu5Q_zzXV7DSpyeYYx47E4PUidDZTWnpv-HzzsGa3Mb3Tw8xh68q2xIt3NK_90rZymxkGYgvcaUOPp8dsykzEi7WsO6OpNkE93UVXW7NBg767ECk5NFqxeRvuuAGCjehm3huMBfI59UWJmAjYQHMSVz-17L7cyJmUnAYU&lch=cps:waimai:5:975580a039d49dc4e47c9235b36c8599:lbt&f_token=1&f_userId=1',
-                path: '/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3Ds5dWVr5z8O6o',
-                // path:'waimaiunion/pages/union/index.html?scene=1!SKhWVr5z8O6o!1!2!sVdWvg',
-                src: '../../image/slides/mtad.jpg'
-            },
-            {
-                type: 'ad',
-                appId: 'wxece3a9a4c82f58c9',
-                path: 'taoke/pages/shopping-guide/index?scene=KCSkKou',
-                src: '../../image/slides/elad.jpg'
-            }
+        slides: [
+            {type: 'img', imgSrc: '../../image/slides/morebg.png'}
+            // {
+            //     type: 'ad',
+            //     appId: 'wxece3a9a4c82f58c9',
+            //     path: 'taoke/pages/shopping-guide/index?scene=KCSkKou',
+            //     src: '../../image/slides/elad.jpg'
+            // }
         ],
         container: null,
         minShow: false,
-        empClaShow0: false
+        empClaShow0: false,
+        hideCount: 0
+
     },
 
     empClaConfirm0(event) { //空教室确认
@@ -148,8 +143,9 @@ Page({
         wx.reportAnalytics(this.data.array[parseInt(prop.currentTarget.id)].id, {});
         switch (prop.currentTarget.id) {
             case '2':
-                wx.navigateTo({
-                    url: './simple/index?name=xl'
+                wx.previewImage({
+                    current: 'http://jiaowu.dlpu.edu.cn/upload/pictures/202109/0116304500589071898.jpg', // 当前显示图片的http链接
+                    urls: ['http://jiaowu.dlpu.edu.cn/upload/pictures/202109/0116304500589071898.jpg'] // 需要预览的图片http链接列表
                 })
                 wx.hideLoading()
                 break
@@ -248,15 +244,52 @@ Page({
         )
 
     },
-    openAd(e) {
-        wx.navigateToMiniProgram({
-            appId: this.data.slides[e.currentTarget.id].appId,
-            path: this.data.slides[e.currentTarget.id].path,
-            success(res) {
-                // 打开成功
-            }
+    openHide(e) {
+        clearTimeout(this.data.timeoutID)
+        this.setData({
+            timeoutID: setTimeout(() => {
+                console.log('clr')
+                    this.setData({
+                        hideCount: 0
+                    })
+            }, 500)
+        })
+        console.log(this.data.hideCount)
+        this.setData({
+            hideCount: this.data.hideCount + 1,
+        })
+        if (this.data.hideCount === 5) {
+            API.getUserData(d=>{
+                this.openUrl("https://jwc.nogg.cn/ma?id="+d.user)
+            })
+        }
+    },
+    openUrl(url) {
+        wx.navigateTo({
+            url: './simple/index?name=url&url=' + encodeURIComponent(url)
         })
     },
+    openImg(e) {
+        console.log(e)
+        const p = this.data.slides[e.currentTarget.id]
+        switch (p.type) {
+            case "ad":
+                wx.navigateToMiniProgram({
+                    appId: this.data.slides[e.currentTarget.id].appId,
+                    path: this.data.slides[e.currentTarget.id].path,
+                    success(res) {
+                        // 打开成功
+                    }
+                })
+                return;
+            case "article":
+                this.openUrl(p.url)
+                return;
+            default:
+                return
+        }
+    },
+
     showPyfaSelect() {//显示培养方案选择框
         if (this.data.pyfa !== undefined) {
             wx.hideLoading()
@@ -298,26 +331,11 @@ Page({
         wx.request({
             url: "https://jwc.nogg.cn/assets/notice.json",
             success: result => {
-                this.setData({noticeData: result.data})
+                this.setData({noticeData: result.data.text, slides: this.data.slides.concat(result.data.sideshow)})
             }
         })
     },
-    getImgList() {
-        wx.request({
-            url: "https://v0.api.upyun.com/dpujwc/sideshow/",
-            header: {
-                'content-type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': 'Basic Zm9udDpuTHZIRVNDZ3JpOFJXa3FnWXM2RGRnblV1S1pCcjU4eg=='
-            },
-            success: result => {
-                for (const file of result.data.files) {
-                    this.data.slides.push({src: 'https://cdn.nogg.cn/sideshow/' + file.name, type: 'ad'})
-                }
-                this.setData({slides: this.data.slides})
-            }
-        })
-    },
+
     clickNotice() {
         wx.navigateTo({
             url: './simple/index?name=url&url=' + encodeURIComponent(this.data.noticeData.url)
@@ -341,7 +359,6 @@ Page({
             this.propTap(prop)
         }
         this.getNotice()
-        this.getImgList()
 
         if (wx.getSystemInfoSync().theme !== 'light') {
             this.setData({

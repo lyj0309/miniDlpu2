@@ -69,8 +69,7 @@
 <view class="index_swiper">
     <swiper autoplay="true" interval="4000" duration="1000" circular="true">
         <swiper-item wx:for="{{ slides }}" wx:for-index="idx" wx:key="idx" wx:for-item="item">
-            <image wx:if="{{ item.type === 'img' }}" id="{{ idx }}" mode="widthFix" src="{{ item.src }}" />
-            <image wx:if="{{ item.type === 'ad' }}" id="{{ idx }}" mode="widthFix" src="{{ item.src }}" bindtap="openAd" />
+            <image  id="{{ idx }}" mode="widthFix" src="{{ item.imgSrc }}" bindtap="openImg" />
         </swiper-item>
     </swiper>
 </view>
@@ -167,6 +166,6 @@
     </view>
 </van-dialog>
 
-<view class='showmsg'>
+<view bindtap="openHide" class='showmsg'>
     <text>您的分享就是对作者最大的支持\n</text>
 </view>
