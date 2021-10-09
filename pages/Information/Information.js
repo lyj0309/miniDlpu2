@@ -12,42 +12,6 @@ Page({
         verCode: '',
         title: '',
         show: false,
-        array: [{
-            text: '成绩查询',
-            imgSrc: '../../image/information/search.png',
-            id: "exam_score"
-        }, {
-            imgSrc: '../../image/information/ksrc.png',
-            text: '考试日程',
-            id: "exam_date"
-        }, {
-            text: '校历',
-            imgSrc: '../../image/information/date.png',
-            id: "school_calendar"
-        }, {
-            text: '培养方案',
-            imgSrc: '../../image/information/edu.png',
-            id: "pyfa"
-        }, {
-            text: '空教室',
-            imgSrc: '../../image/information/room2.png',
-            id: "empty_class"
-        }, {
-            text: '水卡',
-            imgSrc: '../../image/information/qr_code.png',
-            id: "water_card"
-        }, {
-            text: '评教',
-            imgSrc: '../../image/information/pingjiao.png',
-            id: "evaluation"
-        },/* {
-            text: '四六级准考证下载(beta,只支持笔试)',
-            imgSrc: '../../image/information/CET.png'
-        }, {
-            text: '四六级成绩查询',
-            imgSrc: '../../image/information/CET.png'
-        }*/
-        ],
         slides: [
             {type: 'img', imgSrc: '../../image/slides/morebg.png'}
             // {
@@ -365,6 +329,68 @@ Page({
                 overlayStyle: "background-color: rgba(255,255,255,0.7)"
             })
         }
+
+        this.renderIconList();
     },
+
+    /**
+     * 渲染功能按钮列表
+     * @return void
+     */
+    renderIconList(){
+
+        /**
+         * 功能列表
+         * @readonly
+         * @type {[param:string]:{text:string,img:string}}
+         */
+        const functionList = {
+            exam_score: {
+                text: "成绩查询",
+                img: "search"
+            },
+            exam_date: {
+                text: "考试日程",
+                img: "ksrc"
+            },
+            school_calendar: {
+                text: "校历",
+                img: "date"
+            },
+            pyfa: {
+                text: "培养方案",
+                img: "edu"
+            },
+            empty_class: {
+                text: "空教室",
+                img: "room"
+            },
+            water_card: {
+                text: "水卡",
+                img: "water"
+            },
+            evaluation: {
+                text: "评教",
+                img: "pingjiao"
+            },
+            // cet: {
+            //     text: "四六级",
+            //     img: "cet"
+            // }
+        };
+
+        // 生成渲染数据
+        let data = [];
+        for (let key in functionList) {
+            data.push({
+                text: functionList[key].text,
+                imgDark: `../../image/information/MiniDLPU-ICON-C-D_${functionList[key].img}.svg`,
+                imgLight: `../../image/information/MiniDLPU-ICON-C_${functionList[key].img}.svg`,
+                id: key
+            })
+        }
+
+        this.setData({array: data});
+    }
 
 })
