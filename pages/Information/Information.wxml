@@ -75,10 +75,11 @@
 </view>
 
 <view class="items">
-    <view bind:tap="propTap" id="{{idx}}" wx:key="idx" wx:for="{{array}}" wx:for-index="idx" wx:for-item="item" >
-        <image class="icon-dark" src="{{item.imgDark}}"/>
-        <image class="icon-light" src="{{item.imgLight}}"/>
-        <view>{{item.text}}</view>
+    <view class="{{item.fake?'fake-node':''}}" bind:tap="{{item.fake?'':'propTap'}}" 
+    id="{{idx}}" wx:key="idx" wx:for="{{array}}" wx:for-index="idx" wx:for-item="item" >
+        <image wx:if="{{!item.fake}}" class="icon-dark" src="{{item.imgDark}}"/>
+        <image wx:if="{{!item.fake}}" class="icon-light" src="{{item.imgLight}}"/>
+        <view wx:if="{{!item.fake}}">{{item.text}}</view>
     </view>
 </view>
 

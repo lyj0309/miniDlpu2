@@ -55,6 +55,11 @@ view.items {
     width: 690rpx;
     flex-wrap: wrap;
     display: flex;
+    justify-content: center;
+}
+
+view.items > view.fake-node{
+    opacity: 0;
 }
 
 view.items > view {

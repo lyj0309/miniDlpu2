@@ -372,12 +372,14 @@ Page({
             evaluation: {
                 text: "评教",
                 img: "pingjiao"
-            },
-            // cet: {
-            //     text: "四六级",
-            //     img: "cet"
-            // }
+            }
         };
+
+        // cet
+        // functionList.cet = {
+        //     text: "四六级",
+        //     img: "cet"
+        // }
 
         // 生成渲染数据
         let data = [];
@@ -386,8 +388,22 @@ Page({
                 text: functionList[key].text,
                 imgDark: `../../image/information/MiniDLPU-ICON-C-D_${functionList[key].img}.svg`,
                 imgLight: `../../image/information/MiniDLPU-ICON-C_${functionList[key].img}.svg`,
-                id: key
+                id: key,
+                fake: false
             })
+        }
+
+        /**
+         * 一行四个
+         * 不够四个用假的节点补齐
+         * 这里是为了修复微信 rpx 对齐问题
+         * 不要随意优化下面的代码 !!!
+         * 除非微信修复了rpx bug
+         */
+        let fakeNum = 4 - ( data.length % 4);
+        fakeNum = fakeNum === 4 ? 0 : fakeNum;
+        for (let i = 0; i < fakeNum; i++) {
+            data.push({fake: true});
         }
 
         this.setData({array: data});
