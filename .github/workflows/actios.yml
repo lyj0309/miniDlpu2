@@ -20,3 +20,4 @@ jobs:
         env:
           MINI_APP_ID: ${{ secrets.MINI_APP_ID }}
           MINI_APP_PRIVATE_KEY: ${{ secrets.MINI_APP_PRIVATE_KEY }}
+
