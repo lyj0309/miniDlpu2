@@ -38,7 +38,7 @@
 
 .index_swiper swiper {
     width: 750rpx;
-    height: 400rpx;
+    height: 468rpx;
 }
 
 .index_swiper swiper image {
@@ -123,4 +123,14 @@ view.items > view view {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#transBtn{
+    z-index: 99999999;
+    /*background-color: pink;*/
+    position: relative;
+    width: 250rpx;
+    height: 80rpx;
+    top: -190rpx;
+    left: 480rpx;
 }

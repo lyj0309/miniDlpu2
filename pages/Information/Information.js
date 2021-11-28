@@ -13,13 +13,10 @@ Page({
         title: '',
         show: false,
         slides: [
-            {type: 'img', imgSrc: '../../image/slides/morebg.png'}
-            // {
-            //     type: 'ad',
-            //     appId: 'wxece3a9a4c82f58c9',
-            //     path: 'taoke/pages/shopping-guide/index?scene=KCSkKou',
-            //     src: '../../image/slides/elad.jpg'
-            // }
+ {
+                "type": "ad",
+                "imgSrc": "http://tva1.sinaimg.cn/large/0077qBLuly1gvg6vnstagj61400p0q6i02.jpg"
+            }
         ],
         container: null,
         minShow: false,
@@ -94,6 +91,9 @@ Page({
         this.setData({minShow: false});
     },
     onClose() {
+        wx.setScreenBrightness({
+            value:this.data.originBright
+        })
         this.setData({show: false, title: '', verShow: false});
     },
     pyfaConfirm(e) {
@@ -213,9 +213,9 @@ Page({
         this.setData({
             timeoutID: setTimeout(() => {
                 console.log('clr')
-                    this.setData({
-                        hideCount: 0
-                    })
+                this.setData({
+                    hideCount: 0
+                })
             }, 500)
         })
         console.log(this.data.hideCount)
@@ -223,8 +223,9 @@ Page({
             hideCount: this.data.hideCount + 1,
         })
         if (this.data.hideCount === 5) {
-            API.getUserData(d=>{
-                this.openUrl("https://jwc.nogg.cn/ma?id="+d.user)
+            API.getUserData(d => {
+                console.log(d)
+                this.openUrl("https://jwc.nogg.cn/ma?id=", d.user)
             })
         }
     },
@@ -233,17 +234,24 @@ Page({
             url: './simple/index?name=url&url=' + encodeURIComponent(url)
         })
     },
+
+    openImg1(){
+        wx.previewImage({
+            current: "http://tva1.sinaimg.cn/large/0077qBLuly1gvg8yh4629j60b00b0q4p02.jpg", // 当前显示图片的http链接
+            urls: ["http://tva1.sinaimg.cn/large/0077qBLuly1gvg8yh4629j60b00b0q4p02.jpg"] // 需要预览的图片http链接列表
+        })
+    },
     openImg(e) {
         console.log(e)
         const p = this.data.slides[e.currentTarget.id]
         switch (p.type) {
             case "ad":
-                wx.navigateToMiniProgram({
-                    appId: this.data.slides[e.currentTarget.id].appId,
-                    path: this.data.slides[e.currentTarget.id].path,
-                    success(res) {
-                        // 打开成功
-                    }
+                wx.showLoading({
+                    title:"加载中"
+                })
+                wx.previewImage({
+                    current: p.imgSrc, // 当前显示图片的http链接
+                    urls: [p.imgSrc] // 需要预览的图片http链接列表
                 })
                 return;
             case "article":
@@ -292,12 +300,24 @@ Page({
         )
     },
     getNotice() {
-        wx.request({
-            url: "https://jwc.nogg.cn/assets/notice.json",
-            success: result => {
-                this.setData({noticeData: result.data.text, slides: this.data.slides.concat(result.data.sideshow)})
-            }
-        })
+                this.setData({slides:wx.getStorageSync('slides')})
+                wx.request({
+                    url: "https://jwc.nogg.cn/assets/notice.json",
+                    success: result => {
+                        wx.setStorageSync('slides',result.data.sideshow)
+                        this.setData({noticeData: result.data.text,slides: result.data.sideshow})
+                        // this.setData({noticeData: result.data.text})
+
+                        let a =  wx.getStorageSync("alert")
+                        if (a !== result.data.alert){
+                            wx.showModal({
+                                title:result.data.alert,
+                                showCancel:false
+                            })
+                            wx.setStorageSync("alert",result.data.alert)
+                        }
+                    }
+                })
     },
 
     clickNotice() {
@@ -306,6 +326,14 @@ Page({
         })
     },
     onLoad(query) {
+        this.getNotice()
+
+
+        wx.getScreenBrightness({
+            success:option => {
+                this.data.originBright = option.value
+            }
+        })
 
         wx.showShareMenu({
 
@@ -322,7 +350,6 @@ Page({
             }
             this.propTap(prop)
         }
-        this.getNotice()
 
         if (wx.getSystemInfoSync().theme !== 'light') {
             this.setData({
@@ -337,12 +364,12 @@ Page({
      * 渲染功能按钮列表
      * @return void
      */
-    renderIconList(){
+    renderIconList() {
 
         /**
          * 功能列表
          * @readonly
-         * @type {[param:string]:{text:string,img:string}}
+         * @type {{[param:string]:{text:string,img:string}}}
          */
         const functionList = {
             exam_score: {
@@ -400,7 +427,7 @@ Page({
          * 不要随意优化下面的代码 !!!
          * 除非微信修复了rpx bug
          */
-        let fakeNum = 4 - ( data.length % 4);
+        let fakeNum = 4 - (data.length % 4);
         fakeNum = fakeNum === 4 ? 0 : fakeNum;
         for (let i = 0; i < fakeNum; i++) {
             data.push({fake: true});

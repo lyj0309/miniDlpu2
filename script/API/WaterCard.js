@@ -2,7 +2,7 @@ import API from "./API";
 
 export default class WaterCard extends API {
     limit = 2
-    forceDomain='www.wuweixuezi.com'
+    forceDomain='app.gzblackcloud.com'
     showSucc = false
     params = [
         {

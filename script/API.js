@@ -1,7 +1,13 @@
 const API = {};
 const KCB = require("KCB");
 const LOG = require('log')
-const baseHost = "https://jwc.nogg.cn"
+let baseHost = "https://jwc.nogg.cn"
+const testHost = "https://jwctest.nogg.cn"
+
+const ver =wx.getAccountInfoSync().miniProgram.envVersion
+if (ver === "develop" || ver === "trial"){
+    baseHost = testHost
+}
 
 /**
  * @function parseTime
@@ -282,7 +288,8 @@ API.request = function (api, callback, data, cookie) {
             })
             return
         }
-        if (code === 2) { //session 过期
+        if (code === 2) {
+            //session 过期
             API.reLogin(r => {
                 wx.hideLoading()
                 if (r === false) {

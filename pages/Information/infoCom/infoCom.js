@@ -366,6 +366,9 @@ Component({
                     userName: d.realname,
                     stuId: d.student
                 })
+                wx.setScreenBrightness({
+                    value:1
+                })
                 Notify({
                     background: '#77C182',
                     message: '获取成功',
@@ -387,6 +390,7 @@ Component({
                 this.setData({token: d.token})
                 this.checkToken()
                 this.setWaterInfo()
+
                 Notify({
                     background: '#77C182',
                     message: '登录成功',
