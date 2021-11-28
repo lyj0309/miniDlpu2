@@ -1,113 +1,111 @@
 {
-  "description": "项目配置文件",
-  "cloudbaseRoot": "cloudbase/",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": true,
-    "es6": true,
-    "enhance": false,
-    "postcss": false,
-    "preloadBackgroundData": false,
-    "minified": true,
-    "newFeature": false,
-    "coverView": true,
-    "nodeModules": true,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": false,
-    "scopeDataCheck": false,
-    "uglifyFileName": true,
-    "checkInvalidKey": true,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
-    "lazyloadPlaceholderEnable": false,
-    "useMultiFrameRuntime": true,
-    "useApiHook": true,
-    "useApiHostProcess": true,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
+    "description": "项目配置文件",
+    "cloudbaseRoot": "cloudbase/",
+    "packOptions": {
+        "ignore": []
     },
-    "enableEngineNative": false,
-    "useIsolateContext": true,
-    "userConfirmedBundleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "disableUseStrict": false,
-    "showES6CompileOption": false,
-    "useCompilerPlugins": false,
-    "minifyWXML": true
-  },
-  "compileType": "miniprogram",
-  "libVersion": "2.18.1",
-  "appid": "wxc8d375bbcf2ac52f",
-  "projectname": "MiniDLPU2",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "scripts": {},
-  "isGameTourist": false,
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
-  "condition": {
-    "plugin": {
-      "list": []
+    "setting": {
+        "urlCheck": true,
+        "es6": true,
+        "enhance": false,
+        "postcss": false,
+        "preloadBackgroundData": false,
+        "minified": true,
+        "newFeature": false,
+        "coverView": true,
+        "nodeModules": true,
+        "autoAudits": false,
+        "showShadowRootInWxmlPanel": false,
+        "scopeDataCheck": false,
+        "uglifyFileName": true,
+        "checkInvalidKey": true,
+        "checkSiteMap": true,
+        "uploadWithSourceMap": true,
+        "compileHotReLoad": false,
+        "lazyloadPlaceholderEnable": false,
+        "useMultiFrameRuntime": true,
+        "useApiHook": true,
+        "useApiHostProcess": true,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        },
+        "enableEngineNative": false,
+        "useIsolateContext": true,
+        "userConfirmedBundleSwitch": false,
+        "packNpmManually": false,
+        "packNpmRelationList": [],
+        "minifyWXSS": true,
+        "showES6CompileOption": false,
+        "minifyWXML": true
     },
-    "game": {
-      "list": []
+    "compileType": "miniprogram",
+    "libVersion": "2.18.1",
+    "appid": "wxc8d375bbcf2ac52f",
+    "projectname": "MiniDLPU2",
+    "debugOptions": {
+        "hidedInDevtools": []
     },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "name": "pages/Information/Information",
-          "pathName": "pages/Information/Information",
-          "query": "",
-          "scene": null
+    "scripts": {},
+    "isGameTourist": false,
+    "simulatorType": "wechat",
+    "simulatorPluginLibVersion": {},
+    "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+    "condition": {
+        "plugin": {
+            "list": []
         },
-        {
-          "name": "pages/Information/evaluation/evaluation",
-          "pathName": "pages/Information/evaluation/evaluation",
-          "query": "",
-          "scene": null
+        "game": {
+            "list": []
         },
-        {
-          "name": "pages/Subpages/Setting/Setting",
-          "pathName": "pages/Subpages/Setting/Setting",
-          "query": "",
-          "scene": null
+        "gamePlugin": {
+            "list": []
         },
-        {
-          "name": "pages/Account/Account",
-          "pathName": "pages/Account/Account",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/Subpages/Storage/Storage",
-          "pathName": "pages/Subpages/Storage/Storage",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/Subpages/StudentId/StudentId",
-          "pathName": "pages/Subpages/StudentId/StudentId",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/Information/unifyPay/index",
-          "pathName": "pages/Information/unifyPay/index",
-          "scene": null
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "pages/Information/Information",
+                    "pathName": "pages/Information/Information",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Information/evaluation/evaluation",
+                    "pathName": "pages/Information/evaluation/evaluation",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Subpages/Setting/Setting",
+                    "pathName": "pages/Subpages/Setting/Setting",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Account/Account",
+                    "pathName": "pages/Account/Account",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Subpages/Storage/Storage",
+                    "pathName": "pages/Subpages/Storage/Storage",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Subpages/StudentId/StudentId",
+                    "pathName": "pages/Subpages/StudentId/StudentId",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Information/unifyPay/index",
+                    "pathName": "pages/Information/unifyPay/index",
+                    "scene": null
+                }
+            ]
         }
-      ]
     }
-  }
 }
