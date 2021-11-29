@@ -16,7 +16,7 @@ jobs:
           version: 1.0.0
           command_options:
             --enable-es6
-            --project-ignores=['node_modules/**/*']
+#            --project-ignores=['node_modules/**/*']
         env:
           MINI_APP_ID: ${{ secrets.MINI_APP_ID }}
           MINI_APP_PRIVATE_KEY: ${{ secrets.MINI_APP_PRIVATE_KEY }}
