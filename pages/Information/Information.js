@@ -102,8 +102,9 @@ Page({
         this.setData({empClaShow0: false})
     },
     propTap: function (prop) {
+
         wx.showLoading({title: '加载中···'})
-        //console.log(prop.currentTarget.id)
+        console.log(prop.currentTarget.id)
         wx.reportAnalytics(this.data.array[parseInt(prop.currentTarget.id)].id, {});
         switch (prop.currentTarget.id) {
             case '2':
@@ -342,14 +343,6 @@ Page({
             menus: ['shareAppMessage', 'shareTimeline']
 
         })
-        if (query.id !== undefined) {
-            let prop = {
-                currentTarget: {
-                    id: 1
-                }
-            }
-            this.propTap(prop)
-        }
 
         if (wx.getSystemInfoSync().theme !== 'light') {
             this.setData({
@@ -358,6 +351,15 @@ Page({
         }
 
         this.renderIconList();
+
+
+        if (query.id !== undefined) {
+            this.propTap({
+                currentTarget: {
+                    id: 1
+                }
+            })
+        }
     },
 
     /**

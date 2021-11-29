@@ -1,78 +1,84 @@
 {
-  "setting": {},
-  "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "name": "pages/Information/Information",
-          "pathName": "pages/Information/Information",
-          "query": "",
-          "scene": 1047
+    "setting": {},
+    "condition": {
+        "plugin": {
+            "list": []
         },
-        {
-          "name": "pages/Information/evaluation/evaluation",
-          "pathName": "pages/Information/evaluation/evaluation",
-          "query": "",
-          "scene": null
+        "game": {
+            "list": []
         },
-        {
-          "name": "pages/Subpages/Setting/Setting",
-          "pathName": "pages/Subpages/Setting/Setting",
-          "query": "",
-          "scene": null
+        "gamePlugin": {
+            "list": []
         },
-        {
-          "name": "pages/Account/Account",
-          "pathName": "pages/Account/Account",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/Subpages/Storage/Storage",
-          "pathName": "pages/Subpages/Storage/Storage",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/Subpages/StudentId/StudentId",
-          "pathName": "pages/Subpages/StudentId/StudentId",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/Subpages/EditClass/EditClass",
-          "pathName": "pages/Subpages/EditClass/EditClass",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/Information/simple/index",
-          "pathName": "pages/Information/simple/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/Subpages/FAQ/FAQ",
-          "pathName": "pages/Subpages/FAQ/FAQ",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/Subpages/AboutUs/AboutUs",
-          "pathName": "pages/Subpages/AboutUs/AboutUs",
-          "query": "",
-          "scene": null
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "pages/Information/Information",
+                    "pathName": "pages/Information/Information",
+                    "query": "",
+                    "scene": 1047
+                },
+                {
+                    "name": "pages/Information/evaluation/evaluation",
+                    "pathName": "pages/Information/evaluation/evaluation",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Subpages/Setting/Setting",
+                    "pathName": "pages/Subpages/Setting/Setting",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Account/Account",
+                    "pathName": "pages/Account/Account",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Subpages/Storage/Storage",
+                    "pathName": "pages/Subpages/Storage/Storage",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Subpages/StudentId/StudentId",
+                    "pathName": "pages/Subpages/StudentId/StudentId",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Subpages/EditClass/EditClass",
+                    "pathName": "pages/Subpages/EditClass/EditClass",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Information/simple/index",
+                    "pathName": "pages/Information/simple/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Subpages/FAQ/FAQ",
+                    "pathName": "pages/Subpages/FAQ/FAQ",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Subpages/AboutUs/AboutUs",
+                    "pathName": "pages/Subpages/AboutUs/AboutUs",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Information/Information",
+                    "pathName": "pages/Information/Information",
+                    "query": "id=1",
+                    "scene": null
+                }
+            ]
         }
-      ]
     }
-  }
 }
