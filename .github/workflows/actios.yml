@@ -8,11 +8,11 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: actions.mini-program
-        uses: echoings/actions.mini-program@main
+        uses: echoings/actions.mini-program@0.0.3
         with:
           project_type: miniProgram
           action_type: preview
-          project_path: ./dist
+          project_path: ./
           version: 1.0.0
           command_options:
             --enable-es6

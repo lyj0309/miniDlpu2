@@ -1,6 +1,6 @@
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
-
++ back-end [![Build Status](https://drone.nogg.cn/api/badges/lyj/dpuJWC/status.svg)](https://drone.nogg.cn/lyj/dpuJWC)
 ## miniDLPU2-WechatProgram
 
 掌上教务处(大连工业大学的工大教务处小程序v2)，主要有学生课程表查询、学生成绩、考试日程、校历、培养方案、空教室、评教等功能。
