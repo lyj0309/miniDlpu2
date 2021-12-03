@@ -12,12 +12,7 @@ Page({
         verCode: '',
         title: '',
         show: false,
-        slides: [
- {
-                "type": "ad",
-                "imgSrc": "http://tva1.sinaimg.cn/large/0077qBLuly1gvg6vnstagj61400p0q6i02.jpg"
-            }
-        ],
+        slides: [],
         container: null,
         minShow: false,
         empClaShow0: false,
@@ -92,7 +87,7 @@ Page({
     },
     onClose() {
         wx.setScreenBrightness({
-            value:this.data.originBright
+            value: this.data.originBright
         })
         this.setData({show: false, title: '', verShow: false});
     },
@@ -236,7 +231,7 @@ Page({
         })
     },
 
-    openImg1(){
+    openImg1() {
         wx.previewImage({
             current: "http://tva1.sinaimg.cn/large/0077qBLuly1gvg8yh4629j60b00b0q4p02.jpg", // 当前显示图片的http链接
             urls: ["http://tva1.sinaimg.cn/large/0077qBLuly1gvg8yh4629j60b00b0q4p02.jpg"] // 需要预览的图片http链接列表
@@ -245,22 +240,29 @@ Page({
     openImg(e) {
         console.log(e)
         const p = this.data.slides[e.currentTarget.id]
+        wx.showLoading({
+            title: "加载中"
+        })
         switch (p.type) {
             case "ad":
-                wx.showLoading({
-                    title:"加载中"
-                })
                 wx.previewImage({
                     current: p.imgSrc, // 当前显示图片的http链接
                     urls: [p.imgSrc] // 需要预览的图片http链接列表
                 })
-                return;
+                break
             case "article":
                 this.openUrl(p.url)
-                return;
+                break
+            case "mini":
+                wx.navigateToMiniProgram({
+                    appId: p.appId,
+                    path: p.path
+                })
+                break
             default:
-                return
+                break
         }
+        wx.hideLoading()
     },
 
     showPyfaSelect() {//显示培养方案选择框
@@ -301,24 +303,24 @@ Page({
         )
     },
     getNotice() {
-                this.setData({slides:wx.getStorageSync('slides')})
-                wx.request({
-                    url: "https://jwc.nogg.cn/assets/notice.json",
-                    success: result => {
-                        wx.setStorageSync('slides',result.data.sideshow)
-                        this.setData({noticeData: result.data.text,slides: result.data.sideshow})
-                        // this.setData({noticeData: result.data.text})
+        this.setData({slides: wx.getStorageSync('slides')})
+        API.request(API.NOTICE, {
+            ok: r => {
+                wx.setStorageSync('slides', r.sideshow)
 
-                        let a =  wx.getStorageSync("alert")
-                        if (a !== result.data.alert){
-                            wx.showModal({
-                                title:result.data.alert,
-                                showCancel:false
-                            })
-                            wx.setStorageSync("alert",result.data.alert)
-                        }
-                    }
-                })
+                this.setData({noticeData: r.text, slides: r.sideshow})
+                // this.setData({noticeData: r.text})
+
+                let a = wx.getStorageSync("alert")
+                if (a !== r.alert) {
+                    wx.showModal({
+                        title: r.alert,
+                        showCancel: false
+                    })
+                    wx.setStorageSync("alert", r.alert)
+                }
+            }
+        },{},"")
     },
 
     clickNotice() {
@@ -331,7 +333,7 @@ Page({
 
 
         wx.getScreenBrightness({
-            success:option => {
+            success: option => {
                 this.data.originBright = option.value
             }
         })

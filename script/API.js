@@ -475,6 +475,11 @@ API.GET_CULTIVATE_SCHEME_LIST = {
     url: baseHost + '/cultivate_scheme_list',
     method: 'GET',
 }
+// 培养方案列表
+API.NOTICE = {
+    url: baseHost + '/assets/notice.json',
+    method: 'GET',
+}
 
 API.GET_EMPTY_CLASS = {
     url: baseHost + '/empty_class',
