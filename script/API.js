@@ -1,11 +1,10 @@
 const API = {};
 const KCB = require("KCB");
-const LOG = require('log')
 let baseHost = "https://jwc.nogg.cn"
 const testHost = "https://jwctest.nogg.cn"
 
-const ver =wx.getAccountInfoSync().miniProgram.envVersion
-if (ver === "develop" || ver === "trial"){
+const ver = wx.getAccountInfoSync().miniProgram.envVersion
+if (ver === "develop" || ver === "trial") {
     baseHost = testHost
 }
 
@@ -259,7 +258,7 @@ API.request = function (api, callback, data, cookie) {
         // 收集错误代码
         let code = 0;
         if (d.data) code = d.data.code;
-        let data = d.data ? (d.data.data ? d.data.data : d.data) : undefined;
+        let data = d.data !== undefined ? (d.data.data !== undefined ? d.data.data : d.data) : undefined;
 
         // 成功
         if (code === 1) {
@@ -369,15 +368,15 @@ API.GET_JS_SESSION = {
 
         // 存储到缓存
         API.set(
-            ["ip", "name", "session", "lastGetSessionTime", "user", "pwd", "idCard","official"],
-            [d.ip, d.name, d.session, date, r.id, r.pwd, d.idCard,d.official]
+            ["ip", "name", "session", "lastGetSessionTime", "user", "pwd", "idCard", "official"],
+            [d.ip, d.name, d.session, date, r.id, r.pwd, d.idCard, d.official]
         )
 
         // 更新到全局数据
         API.setObjData(
             getApp().globalData.UserData,
-            ["ip", "name", "session", "user", "pwd", "time", "idCard","official"],
-            [d.ip, d.name, d.session, r.id, r.pwd, date, d.idCard,"official"]
+            ["ip", "name", "session", "user", "pwd", "time", "idCard", "official"],
+            [d.ip, d.name, d.session, r.id, r.pwd, date, d.idCard, "official"]
         );
 
         rd();
@@ -832,7 +831,7 @@ API.getUserData = function (then, Tips = true) {
 }
 
 
-API.reLogin = function (then, App, Tips = true) {
+API.reLogin = function (then, App, Tips = false) {
     // 发送网络请求
     API.request(
         API.GET_JS_SESSION,
@@ -996,16 +995,16 @@ API.reCatchTable = function (id, del) {
                     loading: "正在抓取",
                     ok: (d) => {
                         wx.showToast({
-                            title:"抓取成功"
+                            title: "抓取成功"
                         })
 
                         resolve(true)
                     },
-                    success:d=>{
-                        if (d.data.data === null){
+                    success: d => {
+                        if (d.data.data === null) {
                             wx.showToast({
-                                icon:"none",
-                                title:"此学期无课表"
+                                icon: "none",
+                                title: "此学期无课表"
                             })
                         }
                     }
