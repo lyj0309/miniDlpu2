@@ -103,7 +103,6 @@ Page({
                             });
                             // 这里就是处理的事件
                         }, 1500);
-
                     },
                 }, {
                     query: encodeURIComponent(formStr),

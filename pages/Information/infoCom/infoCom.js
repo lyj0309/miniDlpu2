@@ -439,10 +439,11 @@ Component({
             wx.hideLoading()
         },
         evaluation(data, url) {
+            wx.hideLoading()
             wx.showLoading({title: '加载中'})
             // console.log('data', data)
             let query = ''
-            if (data !== undefined) {
+            if (data !== undefined && data.currentTarget.id !== undefined) {
                 query = this.data.Urls[data.currentTarget.id]
             }
             if (url !== undefined) {
