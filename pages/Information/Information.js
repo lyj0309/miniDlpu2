@@ -8,6 +8,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        //验证码弹窗
         verShow: false,
         verCode: '',
         title: '',
@@ -77,6 +78,7 @@ Page({
     empClaClose1() {
         this.setData({empClaShow1: false})
     },
+    //评教提交完后的回调
     refreshEva(data) {
         this.popup = this.selectComponent("#com"); //组件的id
         this.popup.evaluation(undefined, data); //组件里里面定义的方法
@@ -86,9 +88,11 @@ Page({
         this.setData({minShow: false});
     },
     onClose() {
-        wx.setScreenBrightness({
-            value: this.data.originBright
-        })
+        if (this.data.title === "水卡") {
+            wx.setScreenBrightness({
+                value: this.data.originBright
+            })
+        }
         this.setData({show: false, title: '', verShow: false});
     },
     pyfaConfirm(e) {
@@ -320,7 +324,7 @@ Page({
                     wx.setStorageSync("alert", r.alert)
                 }
             }
-        },{},"")
+        }, {}, "")
     },
 
     clickNotice() {

@@ -98,28 +98,6 @@ Page({
             return;
         }
 
-/*        API.request(
-            API.GET_JS_SESSION,
-            {
-                loading: '正在验证',
-                successMsg: '验证成功!',
-                failMsg: 'api',
-
-                // 成功后保存数据
-                ok: (d, code, r) => {
-                    // 传递到视图层
-                    this.setStorageData(1);
-
-                },
-
-                // 失败后提示错误
-                no: (d) => {
-                    this.inputError(3);
-                }
-            },
-            {id: this.userData.user, pwd: this.userData.pwd}
-        );*/
-
         wx.login({
             success: res => {
                 if (res.code) {
