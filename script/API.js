@@ -963,7 +963,7 @@ API.geneSemesterArr = function (semester) {
     user = '20' + user.slice(0, 2)
     let c = ""
     let nowYear = new Date().getFullYear()
-    for (let i = 8; i >= -1; i--) {
+    for (let i = xueQi.length; i >= -1; i--) {
         for (let k = 1; k <= 2; k++) {
             let currXQ = (nowYear - (i + 1)) + "-" + (nowYear - i) + "-" + k
             let idx = nowYear - (i + 1) - user
@@ -972,7 +972,7 @@ API.geneSemesterArr = function (semester) {
             }
             // console.log(currXQ)
 
-            if (idx >= 0 && idx <= 3) {
+            if (idx >= 0 && idx <= xueQi.length) {
                 // console.log(currXQ + '  ' + xueQi[idx][k - 1],idx)
                 rage.unshift({name: currXQ + '  ' + xueQi[idx][k - 1]})
             }
