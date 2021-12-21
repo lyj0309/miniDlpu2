@@ -241,14 +241,11 @@ Component({
                 {
                     ok: (d) => {
                         console.log('成功', d)
-                        if (d.data !== null) {
-                            for (let dElement of d) {
-                                console.log(dElement.Time.substring(0, dElement.Time.indexOf(`~`)).replace(' ', 'T'))
-                                dElement.cdtime = new Date(dElement.Time.substring(0, dElement.Time.indexOf(`~`)).replace(' ', 'T')) - new Date()
-                            }
-                        } else {
-                            d = null
+                        for (let dElement of d) {
+                            console.log(dElement.Time.substring(0, dElement.Time.indexOf(`~`)).replace(' ', 'T'))
+                            dElement.cdtime = new Date(dElement.Time.substring(0, dElement.Time.indexOf(`~`)).replace(' ', 'T')) - new Date()
                         }
+
                         this.setData({
                             examDateData: d,
                             replay: "paused",
@@ -367,7 +364,7 @@ Component({
                     stuId: d.student
                 })
                 wx.setScreenBrightness({
-                    value:1
+                    value: 1
                 })
                 Notify({
                     background: '#77C182',
@@ -443,7 +440,7 @@ Component({
             wx.showLoading({title: '加载中'})
             // console.log('data', data)
             let query = ''
-            if (this.data.Urls!==undefined && data !== undefined && data.currentTarget.id !== undefined) {
+            if (this.data.Urls !== undefined && data !== undefined && data.currentTarget.id !== undefined) {
                 query = this.data.Urls[data.currentTarget.id]
             }
             // console.log("urls",this.data.Urls)
