@@ -79,9 +79,9 @@ Page({
         this.setData({empClaShow1: false})
     },
     //评教提交完后的回调
-    refreshEva(data) {
+    refreshEva(callbackUrl) {
         this.popup = this.selectComponent("#com"); //组件的id
-        this.popup.evaluation(undefined, data); //组件里里面定义的方法
+        this.popup.evaluation(undefined, callbackUrl); //组件里里面定义的方法
     },
 
     closeMinModel() {

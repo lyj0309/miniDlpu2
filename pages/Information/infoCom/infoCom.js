@@ -443,9 +443,10 @@ Component({
             wx.showLoading({title: '加载中'})
             // console.log('data', data)
             let query = ''
-            if (data !== undefined && data.currentTarget.id !== undefined) {
+            if (this.data.Urls!==undefined && data !== undefined && data.currentTarget.id !== undefined) {
                 query = this.data.Urls[data.currentTarget.id]
             }
+            // console.log("urls",this.data.Urls)
             if (url !== undefined) {
                 query = url
             }
