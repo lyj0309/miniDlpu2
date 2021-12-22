@@ -470,6 +470,22 @@ view.cDBlock {
     box-shadow: 0 0 50px rgba(0, 0, 0, .1) !important;
 }
 
+#addBlock{
+    width: 78%;
+    height: 40px;
+    margin: 6% 11%;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, .2);
+    border: rgba(0, 0, 0, .25) dashed 1.5px;
+    box-sizing: border-box;
+}
+#addBlock image {
+    padding: 0 13%;
+    width: 74%;
+    height: 100%;
+    opacity: .35;
+}
+
 view.cDetail view.cDBlock view.cDTit {
     height: 30px;
     justify-content: space-between;
