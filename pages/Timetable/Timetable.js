@@ -559,17 +559,6 @@ Page({
             });
         });
     },
-    getUserProfile() {
-
-        // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
-        // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-/*                wx.getUserProfile({
-                    desc: '用于完善用户资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-                    success: (res) => {
-                        console.log(res)
-                    }
-                })*/
-    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -907,5 +896,19 @@ Page({
     },
     openModel(e){
         getApp().openModel(e.currentTarget.dataset.text)
+    },
+    //添加自定义课程按钮
+    addCourse(){
+        // 跳转到课表编辑界面
+        wx.navigateTo({
+            url: '/pages/Subpages/EditClass/EditClass?' +
+                'semester=' + this.data.semester +
+                '&week=' + (this.data.week - 1) +
+                '&day=' + this.data.cDetailData.w+
+                '&start=' + this.data.cDetailData.s +
+                '&end=' + this.data.cDetailData.e
+        })
     }
+
+
 })

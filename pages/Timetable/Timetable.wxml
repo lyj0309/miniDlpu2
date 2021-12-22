@@ -1,4 +1,5 @@
 <!--pages/Timetable/Timetable.wxml-->
+<add-tips />
         <!-- 天气 -->
 <van-popup round show="{{ show }}" custom-style="height: 1050rpx;{{ weatherPopStyle?weatherPopStyle:'' }}"
            bind:close="onClose" position="top">
@@ -105,7 +106,7 @@
                 周数：{{ cDetailData.m }}
             </view>
         </view>
-        <view wx-if="{{ cDetailData.o }}" class="cDItem">
+        <view class="cDItem">
             <image src="../../image/pop/time.svg"/>
             <view>时间：{{ date[cDetailData.w].week }} {{ cDetailData.s + 1 }}-{{ cDetailData.e + 1 }}节
             </view>
@@ -127,6 +128,10 @@
             </view>
         </view>
         <view style="height: 10px"></view>
+    </view>
+<!--  添加自定义课程  -->
+    <view wx:if="{{!cDetailData.o}}" id="addBlock" bindtap="addCourse">
+        <image src="/image/addClass.svg"></image>
     </view>
 </view>
 <view class="header">

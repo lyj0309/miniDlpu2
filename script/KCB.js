@@ -649,7 +649,7 @@ KCB.searchClass = function(kcb, kd, user, week, day, time, setting, detail = tru
     ));
 
     // 不上丢入cListF
-    else cListF.push(KCB.sortCList(
+    else cList.push(KCB.sortCList(
       weekDay[i], 0
     ));
   }
@@ -713,7 +713,7 @@ KCB.searchClass = function(kcb, kd, user, week, day, time, setting, detail = tru
       // 累计空白
       blank += clas.blank;
       // console.log(blank, blank + clas.len, time + 1);
-      if((blank + clas.len >= (time + 1)) && !clas.other){
+      if((blank + clas.len >= (time + 1)) ){
         cList[i].w = day;
         cList[i].s = blank;
         cList[i].e = blank + clas.len - 1;
