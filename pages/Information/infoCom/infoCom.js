@@ -241,6 +241,15 @@ Component({
                 {
                     ok: (d) => {
                         console.log('成功', d)
+                        wx.hideLoading()
+                        Notify({
+                            background: '#77C182',
+                            message: '获取成功',
+                            context: this,
+                        })
+                        if (d === null){
+                            return
+                        }
                         for (let dElement of d) {
                             console.log(dElement.Time.substring(0, dElement.Time.indexOf(`~`)).replace(' ', 'T'))
                             dElement.cdtime = new Date(dElement.Time.substring(0, dElement.Time.indexOf(`~`)).replace(' ', 'T')) - new Date()
@@ -250,12 +259,7 @@ Component({
                             examDateData: d,
                             replay: "paused",
                         })
-                        wx.hideLoading()
-                        Notify({
-                            background: '#77C182',
-                            message: '获取成功',
-                            context: this,
-                        })
+
                     }
                 }, {alarm: alarm}, "session=" + this.session
             )
