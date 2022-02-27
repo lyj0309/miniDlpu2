@@ -1,7 +1,7 @@
 module.exports = {
     "name": "minidlpu2",
-    "version": "2.6.0",
-    "info": "1.2021四六级成绩已可查询",
+    "version": "2.7.9",
+    "info": "1.修复水卡服务器故障",
     "main": "index.js",
     "license": "MIT",
     "dependencies": {
@@ -10,6 +10,9 @@ module.exports = {
     },
     "past": [
         {
+            "version": "2.6.0",
+            "info": "1.2021四六级成绩已可查询",
+        },        {
             "version": "2.5.4",
             "info": "1.下学期课表已可导入，详情`设置-缓存管理`",
         },

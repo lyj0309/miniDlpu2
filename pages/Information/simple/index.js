@@ -8,6 +8,7 @@ Page({
             menus: ['shareAppMessage', 'shareTimeline']
 
         })
+
         console.log(query)
         this.setData({name: query.name,url:decodeURIComponent(query.url)})
     },

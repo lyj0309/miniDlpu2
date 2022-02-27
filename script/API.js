@@ -499,6 +499,12 @@ API.EVALUATION_POST = {
     url: baseHost + '/evaluation_post',
     method: 'GET',
 }
+
+API.DONATE = {
+    url: baseHost + '/wx_pay/donate',
+    method: 'POST',
+}
+
 //四级
 API.CET_CODE = {
     url: baseHost + '/cet/code',

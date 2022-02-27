@@ -2,7 +2,8 @@ import API from "./API";
 
 export default class WaterCard extends API {
     limit = 2
-    forceDomain='app.gzblackcloud.com'
+    // forceDomain='app.gzblackcloud.com'
+    forceDomain='www.wuweixuezi.com'
     showSucc = false
     params = [
         {
@@ -30,6 +31,7 @@ export default class WaterCard extends API {
 
 
     parseResData = function (d) {
+        console.log(d)
 
         // 处理成功情况
         if (d.errcode/1 === 0) {

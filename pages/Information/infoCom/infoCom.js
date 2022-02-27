@@ -397,6 +397,8 @@ Component({
                     message: '登录成功',
                     context: this,
                 })
+            }).catch(e=>{
+                console.log("获取水卡出错",e)
             })
         },
         getEmptyClass() {

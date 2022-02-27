@@ -123,8 +123,43 @@ Page({
             //         this.setData({show: true, title: this.data.array[parseInt(prop.currentTarget.id)].text});
             //         break
             //     }
-            case '8': //意见反馈
-                wx.hideLoading()
+            case '7': //意见反馈
+                API.getUserData(
+                    data => {
+                        wx.login({
+                                success: result => {
+                                    API.request(API.DONATE, {
+                                            ok: (d) => {
+                                                console.log(d)
+                                                wx.requestPayment({
+                                                    timeStamp: d.timeStamp,
+                                                    nonceStr: d.nonceStr,
+                                                    package: d.package,
+                                                    signType: d.signType,
+                                                    paySign: d.paySign,
+                                                    success(res) {
+                                                        console.log("支付成功", res)
+                                                    },
+                                                    fail(res) {
+                                                        console.log("支付失败", res)
+                                                    },
+                                                    complete: () => {
+                                                        wx.hideLoading()
+                                                    }
+                                                })
+                                            }
+                                        }, {
+                                            "amount": 2,
+                                            "code": result.code,
+                                            "note": "666"
+                                        },
+                                        "session=" + data.session
+                                    )
+                                }
+                            }
+                        )
+                    }
+                )
                 break
             default:
                 this.setData({show: true, title: this.data.array[parseInt(prop.currentTarget.id)].text});
@@ -408,6 +443,10 @@ Page({
                 text: "评教",
                 img: "pingjiao"
             }
+            // donate: {
+            //     text: "捐助",
+            //     img: "pingjiao"
+            // }
         };
 
         // cet
