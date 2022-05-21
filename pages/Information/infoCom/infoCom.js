@@ -247,7 +247,7 @@ Component({
                             message: '获取成功',
                             context: this,
                         })
-                        if (d === null){
+                        if (d === null) {
                             return
                         }
                         for (let dElement of d) {
@@ -333,7 +333,7 @@ Component({
             API.getUserData(
                 e => {
                     let pwd
-                    if (e.user.substring(0, 2) === "20") { //判断是19还是20级
+                    if (parseInt(e.user.substring(0, 2)) >= 20) { //判断是19还是20级
                         console.log("20级")
                         pwd = e.user.substring(e.user.length - 6)
                     } else {
@@ -348,7 +348,10 @@ Component({
             API1.run(WaterCard.Img, {
                 token: this.data.token
             }).doAsync().then(d => {
-                this.setData({imgUrl: d.codeUrl, replay: "paused"})
+                this.setData({
+                    imgUrl: d.codeUrl.replace("app.gzblackcloud.com", API1.getDomain() + "/water_card"),
+                    replay: "paused"
+                })
                 Notify({
                     background: '#77C182',
                     message: '获取成功',
@@ -397,8 +400,8 @@ Component({
                     message: '登录成功',
                     context: this,
                 })
-            }).catch(e=>{
-                console.log("获取水卡出错",e)
+            }).catch(e => {
+                console.log("获取水卡出错", e)
             })
         },
         getEmptyClass() {

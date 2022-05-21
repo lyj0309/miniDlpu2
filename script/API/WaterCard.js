@@ -2,8 +2,11 @@ import API from "./API";
 
 export default class WaterCard extends API {
     limit = 2
+    //这玩意证书链不完整，不能使用小程序
     // forceDomain='app.gzblackcloud.com'
-    forceDomain='www.wuweixuezi.com'
+    //这玩意证书过期了
+    // forceDomain='www.wuweixuezi.com'
+    forceDomain = API.getDomain() + '/water_card'
     showSucc = false
     params = [
         {
@@ -34,17 +37,17 @@ export default class WaterCard extends API {
         console.log(d)
 
         // 处理成功情况
-        if (d.errcode/1 === 0) {
+        if (d.errcode / 1 === 0) {
             this.succ = true;
             this.errCode = 1;
-            return  d.errmsg;
+            return d.errmsg;
         }
 
         // 处理失败情况
         else {
             this.succ = false;
             this.errCode = d.errcode;
-            return  d;
+            return d;
         }
     }
 }
