@@ -518,7 +518,7 @@ Page({
             let timeTableCallBack = (d) => {
                 wx.stopPullDownRefresh();
                 const f = this.data.week ? this.data.week : whichKCB.week
-                if (f > 0){
+                if (f > 0) {
                     for (let i = 0; i < d.pre[f - 1].length; i++) {
                         for (let j = 0; j < d.pre[f - 1][i].length; j++) {
                             if (!this.data.bgImg) {
@@ -564,6 +564,20 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        //
+        const tKey = "GetTimeTableTime"
+        const t = wx.getStorageSync(tKey)
+        // console.log("过期时间",t, Date.now())
+        if (typeof t !== "object" || t.getTime() < Date.now()) {
+            API.getStaticData(r => {
+                API.reCatchTable(r.semester, true).then(r => {
+                    this.onLoad()
+                })
+            })
+            const expTime = new Date()
+            expTime.setDate(expTime.getDate() + 7)
+            wx.setStorageSync(tKey,expTime)
+        }
 
 
         this.initBgImg()
@@ -653,27 +667,6 @@ Page({
      */
     onShow: function () {
 
-/*        wx.getWeRunData({
-            success(res) {
-                console.log(res)
-                // 拿 encryptedData 到开发者后台解密开放数据
-                const encryptedData = res.encryptedData
-                // 或拿 cloudID 通过云调用直接获取开放数据
-                const cloudID = res.cloudID
-                wx.cloud.callFunction({
-                    name: 'getRun',
-                    data: {
-                        weRunData: wx.cloud.CloudID(cloudID), // 这个 CloudID 值到云函数端会被替换
-                        obj: {
-                            shareInfo: wx.cloud.CloudID(cloudID), // 非顶层字段的 CloudID 不会被替换，会原样字符串展示
-                        }
-                    }
-                }).then(r =>
-                    console.log(r)
-                )
-            }
-        })*/
-
         wx.checkSession({
             fail() {
                 wx.login(
@@ -713,6 +706,7 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function (e) {
+        console.log(e)
         if (e === undefined) {
             API.getStaticData(r => {
                 API.reCatchTable(r.semester, true).then(r => {
@@ -735,7 +729,7 @@ Page({
 
         // 第几周+星期几+第几节(开始到结束) this.data.week + this.data.cDetailData.w + this.data.cDetailData.s + this.data.cDetailData.e
         if (detail.value === true) {
-            if ( wx.getStorageSync("official")){
+            if (wx.getStorageSync("official")) {
                 this.sendRemind(detail.value)
                 return
             }
@@ -894,17 +888,17 @@ Page({
             }
         )
     },
-    openModel(e){
+    openModel(e) {
         getApp().openModel(e.currentTarget.dataset.text)
     },
     //添加自定义课程按钮
-    addCourse(){
+    addCourse() {
         // 跳转到课表编辑界面
         wx.navigateTo({
             url: '/pages/Subpages/EditClass/EditClass?' +
                 'semester=' + this.data.semester +
                 '&week=' + (this.data.week - 1) +
-                '&day=' + this.data.cDetailData.w+
+                '&day=' + this.data.cDetailData.w +
                 '&start=' + this.data.cDetailData.s +
                 '&end=' + this.data.cDetailData.e
         })
