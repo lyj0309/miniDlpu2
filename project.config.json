@@ -46,12 +46,16 @@
         "useStaticServer": true
     },
     "compileType": "miniprogram",
-    "libVersion": "2.18.1",
+    "libVersion": "2.23.0",
     "appid": "wxc8d375bbcf2ac52f",
     "projectname": "MiniDLPU2",
     "simulatorType": "wechat",
     "simulatorPluginLibVersion": {},
     "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
+    "editorSetting": {
+        "tabIndent": "insertSpaces",
+        "tabSize": 4
+    },
     "condition": {
         "plugin": {
             "list": []
@@ -107,9 +111,5 @@
                 }
             ]
         }
-    },
-    "editorSetting": {
-        "tabIndent": "insertSpaces",
-        "tabSize": 4
     }
 }

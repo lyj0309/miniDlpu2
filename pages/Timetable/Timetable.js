@@ -134,7 +134,7 @@ Page({
         let now = new Date().getDay();
         this.setData({
             date: WEEK.map((v, i) => {
-                return {week: v, date: date[i], today: (i + 1) % 7 === now ? 1 : 0}
+                return { week: v, date: date[i], today: (i + 1) % 7 === now ? 1 : 0 }
             })
         });
     },
@@ -195,7 +195,7 @@ Page({
         this.data.selection.y = this.ruler.bt + start * this.ruler.uh + 3.5;
 
         // 更新轴向数据
-        this.setData({selection: this.data.selection});
+        this.setData({ selection: this.data.selection });
     },
 
     /**
@@ -272,7 +272,7 @@ Page({
     },
 
     // 记录拖拽事件
-    dragData: {week: 0, start: 0, end: 0, st: 0, se: 0, cl: 0, cbufer: []},
+    dragData: { week: 0, start: 0, end: 0, st: 0, se: 0, cl: 0, cbufer: [] },
 
     /**
      * @function dragMove
@@ -385,7 +385,7 @@ Page({
         // 关闭已经选择的框框
         if (this.data.selection.show) {
             this.data.selection.show = false;
-            this.setData({selection: this.data.selection});
+            this.setData({ selection: this.data.selection });
         }
 
         // 开启
@@ -424,7 +424,7 @@ Page({
      */
     changeWeek: function (e) {
         let id = e.currentTarget.dataset.id;
-        this.setData({week: id + 1});
+        this.setData({ week: id + 1 });
         this.setDayList(this.data.weekNow, this.data.week);
         const f = this.data.week
         for (let i = 0; i < this.data.class[f - 1].length; i++) {
@@ -465,7 +465,7 @@ Page({
         let date = new Date();
         if (seleckWeek < 0) {
             let cday = date.getDay() === 0 ? 0 : 7 - date.getDay()
-            this.setData({countdownTime: ((Math.abs(nowWeek) - 1) * 7 * 24 * 60 + ((24 - date.getHours()) * 60) + (60 - date.getMinutes()) + cday * 24 * 60) * 60 * 1000})
+            this.setData({ countdownTime: ((Math.abs(nowWeek) - 1) * 7 * 24 * 60 + ((24 - date.getHours()) * 60) + (60 - date.getMinutes()) + cday * 24 * 60) * 60 * 1000 })
         }
         let oneDay = 1000 * 60 * 60 * 24 * 1;
         let pd = new Date(date.getTime() + (seleckWeek / 1 - nowWeek / 1) * oneDay * 7);
@@ -517,6 +517,7 @@ Page({
 
             let timeTableCallBack = (d) => {
                 wx.stopPullDownRefresh();
+                console.log("课程表", d)
                 const f = this.data.week ? this.data.week : whichKCB.week
                 if (f > 0) {
                     for (let i = 0; i < d.pre[f - 1].length; i++) {
@@ -576,7 +577,7 @@ Page({
             })
             const expTime = new Date()
             expTime.setDate(expTime.getDate() + 7)
-            wx.setStorageSync(tKey,expTime)
+            wx.setStorageSync(tKey, expTime)
         }
 
 
@@ -596,7 +597,7 @@ Page({
         this.initWeather()
 
 
-        this.setData({time: TIME, remind: remind});
+        this.setData({ time: TIME, remind: remind });
         this.initRuler();
 
         this.timeTable((d) => {
@@ -613,7 +614,7 @@ Page({
     },
 
     backPresent() {
-        this.setData({week: this.data.weekNow});
+        this.setData({ week: this.data.weekNow });
         this.setDayList(this.data.weekNow, this.data.week);
 
     },
@@ -635,11 +636,11 @@ Page({
         })
     },
     onClose() {
-        this.setData({show: false});
+        this.setData({ show: false });
     },
     showWeather() {
         if (this.data.srcs === undefined) this.drawWeatherImg()
-        this.setData({show: true});
+        this.setData({ show: true });
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -659,7 +660,7 @@ Page({
      *  获取用户图片
      */
     initBgImg() {
-        this.setData({bgImg: wx.getStorageSync("bgImg"), bgImgHeight: wx.getStorageSync(`bgImgHeight`)})
+        this.setData({ bgImg: wx.getStorageSync("bgImg"), bgImgHeight: wx.getStorageSync(`bgImgHeight`) })
     },
 
     /**
@@ -684,7 +685,7 @@ Page({
         })
 
         if (this.data.onshow) this.onPullDownRefresh(true);
-        this.setData({onshow: true})
+        this.setData({ onshow: true })
         this.clickMask();
         this.initBgImg()
     },
@@ -724,8 +725,8 @@ Page({
     /**
      * 上课提醒
      * */
-    onRemindChange({detail}) {
-        wx.showLoading({title: "加载中···", mask: true})
+    onRemindChange({ detail }) {
+        wx.showLoading({ title: "加载中···", mask: true })
 
         // 第几周+星期几+第几节(开始到结束) this.data.week + this.data.cDetailData.w + this.data.cDetailData.s + this.data.cDetailData.e
         if (detail.value === true) {
@@ -764,14 +765,14 @@ Page({
                         wx.hideLoading()
                     }
                 }, {
-                    week: this.data.week.toString(),
-                    day: this.data.cDetailData.w.toString(),
-                    start: (this.data.cDetailData.s + 1).toString(),
-                    end: (this.data.cDetailData.e + 1).toString(),
-                    name: this.data.cDetailData.n,
-                    teacher: this.data.cDetailData.t,
-                    class: this.data.cDetailData.l,
-                },
+                week: this.data.week.toString(),
+                day: this.data.cDetailData.w.toString(),
+                start: (this.data.cDetailData.s + 1).toString(),
+                end: (this.data.cDetailData.e + 1).toString(),
+                name: this.data.cDetailData.n,
+                teacher: this.data.cDetailData.t,
+                class: this.data.cDetailData.l,
+            },
                 "session=" + d.session
             )
         })
@@ -783,100 +784,83 @@ Page({
             canvasShow: true
         })
         let p = []
-        for (let k = 0; k < 15; k++) p.push(new Object({x: 0.0, y1: 0.0, y2: 0.0}));
-        this.draw(0, p).then(() => this.draw(1, p).then(() => this.draw(2, p)).then(() => {
-            this.setData({
-                canvasShow: false
-            })
-        }))
+        for (let k = 0; k < 15; k++) p.push(new Object({ x: 0.0, y1: 0.0, y2: 0.0 }));
+
+        for (let index = 0; index < 3; index++) {
+            this.drawNew(index, p)
+        }
+        this.setData({
+            canvasShow: false
+        })
+        //console.log(this.data.srcs)
+
     },
-    draw(v, p) {
-        const dpr = this.sysinfo.pixelRatio
-        return new Promise(
-            (resolve) => {
-                const query = wx.createSelectorQuery()
-                query.select('#weatherCanvas')
-                    .fields({node: true, size: true})
-                    .exec(res => {
-                        if (res[0] === null) return
-                        let canvas = res[0].node
-                        let ctx = canvas.getContext('2d')
-                        canvas.width = res[0].width * dpr
-                        canvas.height = res[0].height * dpr
-                        ctx.scale(dpr, dpr)
-                        //console.log("宽度：", res[0].width)
-                        //console.log("高度；", res[0].height)
-                        //需要为字留40px
+    drawNew(v, p) {
+        //console.log(this.sysinfo)
+        const width = this.sysinfo.screenWidth, height = this.sysinfo.screenWidth * 400 / 750
+        //console.log(width, height)
+        // 创建离屏 2D canvas 实例
+        const canvas = wx.createOffscreenCanvas({ type: '2d', width: width, height: height })
+        // 获取 context。注意这里必须要与创建时的 type 一致
+        const ctx = canvas.getContext('2d')
 
-                        //console.log("天气", weather)
-                        let unitY = (res[0].height - 90) / (this.data.highest - this.data.lowest) //单位高度 (改这里变斜率)
-                        let unitX = res[0].width / 5
-                        //console.log("单位：", unitY)
+        //console.log("天气", weather)
+        let unitY = (height - 90) / (this.data.highest - this.data.lowest) //单位高度 (改这里变斜率)
+        let unitX = width / 5
+        //console.log("单位：", unitY)
 
-                        for (let i = v * 5; i < v * 5 + 6; i++) {
-                            if (i === 15) {
-                                break
-                            }
-                            let high = this.data.weather[i].tempDay
-                            let low = this.data.weather[i].tempNight
-                            p[i].y1 = 35 + unitY * (this.data.highest - high) //改这里变间距
-                            p[i].y2 = res[0].height - 35 - unitY * (low - this.data.lowest)
-                            p[i].x = Math.round((unitX * ((2 * (i - 5 * v) + 1)) / 2))
-
-                            let draw = function (y, yl, k) {
-                                if ((i === 5 && v === 1) || (i === 10 && v === 2)) {
-                                    ctx.lineWidth = 2
-                                    ctx.strokeStyle = "#D2D2D2";
-                                    ctx.beginPath();
-                                    //计算三角函数
-                                    let long = Math.sqrt(unitX * unitX + (y - yl) * (y - yl))  //计算长边
-                                    //console.log((Math.round((unitX * -1 / 2))) + 5.1 * (unitX / long), yl + 5.1 * ((y - yl) / long))
-                                    ctx.moveTo((Math.round((unitX * -1 / 2))) + 5.1 * (unitX / long), yl + 5.1 * ((y - yl) / long));
-                                    ctx.lineTo(p[i].x - +5.1 * (unitX / long), y - +5.1 * ((y - yl) / long));
-                                    ctx.stroke();
-                                } else if (i >= 1) { //画线
-                                    ctx.lineWidth = 2
-                                    ctx.strokeStyle = "#D2D2D2";
-                                    ctx.beginPath();
-                                    //计算三角函数
-                                    let long = Math.sqrt(unitX * unitX + (y - yl) * (y - yl))  //计算长边
-                                    ctx.moveTo(p[i - 1].x + 5.1 * (unitX / long), yl + 5.1 * ((y - yl) / long));
-                                    ctx.lineTo(p[i].x - +5.1 * (unitX / long), y - +5.1 * ((y - yl) / long));
-                                    ctx.stroke();
-                                }
-                                //画圆
-                                ctx.lineWidth = 1
-                                ctx.strokeStyle = "#B5B5B5";
-                                ctx.beginPath();
-                                ctx.arc(p[i].x, y, 4, 0, 2 * Math.PI);
-                                ctx.arc(p[i].x, y, 3, 0, 2 * Math.PI);
-                                ctx.stroke();
-
-                                //写字
-                                ctx.font = "18px Arial";
-                                ctx.fillText((k === 0 ? high : low) + '°', p[i].x - 9, k === 0 ? y - 10 : y + 25);
-                            }
-                            draw(p[i].y1, p[i - 1] ? p[i - 1].y1 : 0, 0)
-                            draw(p[i].y2, p[i - 1] ? p[i - 1].y2 : 0, 1)
-                        }
-                        wx.canvasToTempFilePath({
-                            canvas: canvas,
-                            canvasId: "weatherCanvas",
-                            success: res => {
-                                //console.log(res.tempFilePath)
-                                this.setData({
-                                    ['srcs[' + v + ']']: res.tempFilePath,
-                                })
-                                resolve(true)
-                            },
-                            fail: r => {
-                                console.log(r)
-                            }
-                        })
-                        //console.log(`画完一个`)
-                    })
+        for (let i = v * 5; i < v * 5 + 6; i++) {
+            if (i === 15) {
+                break
             }
-        )
+            let high = this.data.weather[i].tempDay
+            let low = this.data.weather[i].tempNight
+            p[i].y1 = 35 + unitY * (this.data.highest - high) //改这里变间距
+            p[i].y2 = height - 35 - unitY * (low - this.data.lowest)
+            p[i].x = Math.round((unitX * ((2 * (i - 5 * v) + 1)) / 2))
+
+            let draw = function (y, yl, k) {
+                if ((i === 5 && v === 1) || (i === 10 && v === 2)) {
+                    ctx.lineWidth = 2
+                    ctx.strokeStyle = "#D2D2D2";
+                    ctx.beginPath();
+                    //计算三角函数
+                    let long = Math.sqrt(unitX * unitX + (y - yl) * (y - yl))  //计算长边
+                    //console.log((Math.round((unitX * -1 / 2))) + 5.1 * (unitX / long), yl + 5.1 * ((y - yl) / long))
+                    ctx.moveTo((Math.round((unitX * -1 / 2))) + 5.1 * (unitX / long), yl + 5.1 * ((y - yl) / long));
+                    ctx.lineTo(p[i].x - +5.1 * (unitX / long), y - +5.1 * ((y - yl) / long));
+                    ctx.stroke();
+                } else if (i >= 1) { //画线
+                    ctx.lineWidth = 2
+                    ctx.strokeStyle = "#D2D2D2";
+                    ctx.beginPath();
+                    //计算三角函数
+                    let long = Math.sqrt(unitX * unitX + (y - yl) * (y - yl))  //计算长边
+                    ctx.moveTo(p[i - 1].x + 5.1 * (unitX / long), yl + 5.1 * ((y - yl) / long));
+                    ctx.lineTo(p[i].x - +5.1 * (unitX / long), y - +5.1 * ((y - yl) / long));
+                    ctx.stroke();
+                }
+                //画圆
+                ctx.lineWidth = 1
+                ctx.strokeStyle = "#B5B5B5";
+                ctx.beginPath();
+                ctx.arc(p[i].x, y, 4, 0, 2 * Math.PI);
+                ctx.arc(p[i].x, y, 3, 0, 2 * Math.PI);
+                ctx.stroke();
+
+                //写字
+                ctx.font = "18px Arial";
+                ctx.fillText((k === 0 ? high : low) + '°', p[i].x - 9, k === 0 ? y - 10 : y + 25);
+            }
+            draw(p[i].y1, p[i - 1] ? p[i - 1].y1 : 0, 0)
+            draw(p[i].y2, p[i - 1] ? p[i - 1].y2 : 0, 1)
+        }
+        //console.log("Test")
+        const b64 = ctx.canvas.toDataURL('image/png')
+        //console.log(b64)
+        this.setData({
+            ['srcs[' + v + ']']: b64,
+        })
     },
     select(str) {
         return new Promise(
