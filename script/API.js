@@ -4,9 +4,9 @@ let baseHost = "https://jwc.nogg.cn"
 const testHost = "https://jwctest.nogg.cn"
 
 const ver = wx.getAccountInfoSync().miniProgram.envVersion
-if (ver === "develop" || ver === "trial") {
-    baseHost = testHost
-}
+// if (ver === "develop" || ver === "trial") {
+//     baseHost = testHost
+// }
 
 /**
  * @function parseTime
@@ -383,6 +383,34 @@ API.GET_JS_SESSION = {
     }
 };
 
+API.RESET_PWD = {
+    url: baseHost + '/login',
+    method: 'POST',
+    contentType: 'application/json',
+
+    // 成功后将数据保存到本地
+    ok: (d, code, r, rd) => {
+
+        // 更新时间
+        let date = new Date();
+
+        // 存储到缓存
+        API.set(
+            ["ip", "name", "session", "lastGetSessionTime", "user", "pwd", "idCard", "official"],
+            [d.ip, d.name, d.session, date, r.id, r.pwd, d.idCard, d.official]
+        )
+
+        // 更新到全局数据
+        API.setObjData(
+            getApp().globalData.UserData,
+            ["ip", "name", "session", "user", "pwd", "time", "idCard", "official"],
+            [d.ip, d.name, d.session, r.id, r.pwd, date, d.idCard, "official"]
+        );
+
+        rd();
+    }
+};
+
 /**
  * @static GET_STATIC_DATA
  * @description 获取静态数据接口
@@ -561,7 +589,13 @@ API.calcKCB = function (semester, d, then, o = {}) {
 
     // 转为异步函数调用
     // 涉及到复杂的运算
-    setTimeout(() => {
+    setTimeout(async () => {
+        let weekNum = o.weekNum
+        var p2 = await new Promise(API.getStaticData);
+        if (p2.weekNow >= weekNum + 1){
+            console.log("周数不匹配")
+            weekNum = parseInt(p2.weekNow) + 1
+        }
 
         // 获取数据
         let data = API.get(semester) || {};
@@ -596,7 +630,7 @@ API.calcKCB = function (semester, d, then, o = {}) {
         let userKCB = data.user;
 
         // 解析课程表
-        for (let i = 0; i < o.weekNum; i++) {
+        for (let i = 0; i < weekNum; i++) {
             let pw = KCB.KCB2PerWeek(data.kcb, i, o.otherClass);
 
             // 课表注入

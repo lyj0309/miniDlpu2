@@ -516,6 +516,7 @@ Page({
             };
 
             let timeTableCallBack = (d) => {
+                // console.log("callback",d,whichKCB)
                 wx.stopPullDownRefresh();
                 const f = this.data.week ? this.data.week : whichKCB.week
                 if (f > 0) {
