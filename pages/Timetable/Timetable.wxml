@@ -1,5 +1,4 @@
 <!--pages/Timetable/Timetable.wxml-->
-<add-tips />
         <!-- 天气 -->
 <van-popup round show="{{ show }}" custom-style="height: 1050rpx;{{ weatherPopStyle?weatherPopStyle:'' }}"
            bind:close="onClose" position="top">

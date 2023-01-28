@@ -2,7 +2,6 @@
   "navigationBarTitleText": "课程表",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "userGuide": "/pages/Timetable/userGuide/userGuide",
-    "add-tips": "/components/weplug-add-tips/index"
+    "userGuide": "/pages/Timetable/userGuide/userGuide"
   }
 }
